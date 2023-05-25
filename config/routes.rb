@@ -7,5 +7,9 @@ Rails.application.routes.draw do
   # root "articles#index"
   root 'pages#home'
   get '/resume', to: 'pages#resume'
+<<<<<<< HEAD
   get 'index', to: 'pages#index'
+=======
+  get '/index', to: 'pages#index'
+>>>>>>> implement_bootstrap
 end
