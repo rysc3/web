@@ -1,0 +1,2 @@
+class CalculatorApp < ApplicationRecord
+end

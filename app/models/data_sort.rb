@@ -1,0 +1,2 @@
+class DataSort < ApplicationRecord
+end
