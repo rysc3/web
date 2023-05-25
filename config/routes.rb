@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   # root "articles#index"
   root 'pages#home'
   get '/resume', to: 'pages#resume'
+  get 'index', to: 'pages#index'
 end
