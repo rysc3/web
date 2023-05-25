@@ -11,3 +11,5 @@ To set up locally:
 
   Build & start docker container:
   $ docker compose up
+
+#test
