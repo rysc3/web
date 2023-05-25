@@ -1,0 +1,18 @@
+version: 0.3
+
+phases:
+  install:
+    runtime-versions:
+      ruby: 2.7
+    commands:
+      - bundle install
+
+  pre_build:
+    commands:
+      - rake db:create db:migrate
+
+  build:
+    commands:
+      - bundle exec rspec
+
+# Add additional phases and commands as needed for your specific requirements
