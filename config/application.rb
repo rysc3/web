@@ -11,8 +11,10 @@ module Web
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
-    #
+    # enable assets
     config.assets.enabled = true
+    # set the custom path for assets, since they're not in the right place and I don't want to move all the paths
+    config.assets.paths << Rails.root.join("app", "assets", "images", "img")
 
     # Configuration for the application, engines, and railties goes here.
     #
