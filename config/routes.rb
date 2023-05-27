@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get '/contact', to: 'pages#contact', as: 'contact'
   get '/resume', to: 'pages#resume', as: 'resume'
   get '/index', to: 'pages#index', as: 'index'
+  get '/schedule', to: 'pages#schedule', as: 'schedule'
 
   # Prog routes
   scope '/prog' do

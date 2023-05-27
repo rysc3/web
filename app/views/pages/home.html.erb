@@ -16,40 +16,67 @@
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
+
         <!-- Navigation-->
     <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
     <nav id="sidebar-wrapper">
         <ul class="sidebar-nav">
-            <li class="sidebar-brand"><a href="#page-top">Everything Here</a></li>
-            <li class="sidebar-nav-item"><a href="#page-top">Home</a></li>
-            <li class="sidebar-nav-item"><a href="#about">About</a></li>
-            <li class="sidebar-nav-item"><a href="#work_experience">Services</a></li>
-            <li class="sidebar-nav-item"><a href="#portfolio">Portfolio</a></li>
-            <li class="sidebar-nav-item"><a href="#contact">Contact</a></li>
+            <li class="sidebar-brand"><a href="#page-top">The things here</a></li>
+            <li class="sidebar-nav-item"><a href="#about">About Me</a></li>
+            <li class="sidebar-nav-item"><a href="#work-experience">Work Experience</a></li>
+            <li class="sidebar-nav-item"><a href="#education">Education</a></li>
+            <li class="sidebar-nav-item"><a href="#extra-carricular">Extra Carricular</a></li>
+            <li class="sidebar-nav-item"><a href="#honors-and-awards">Honors and Awards</a></li>
+            <li class="sidebar-nav-item"><a href="#name-links">Mentions</a></li>
+            <li class="sidebar-nav-item"><a href="#referral-links">Referral Links</a></li>
         </ul>
     </nav>
-
 
         <!-- Header-->
         <header class="masthead d-flex align-items-center">
             <div class="container px-4 px-lg-5 text-center">
-                <h1 class="mb-1">Ryan Scherbarth</h1>
+                <h1 class="mb-1">Ryan Website</h1>
                 <h3 class="mb-5"><em>My website / Resume / Portfolio / Whatever else I put on here</em></h3>
-
             </div>
         </header>
 
-
-        <!-- Resume Page -->
+        <!-- Body -->
         <section class=" bg-light large-section p-5" id="online_resume">
-            <%= render partial: 'online_resume' %>
+            <!-- About Me -->
+            <%= render partial: 'about_block' %>
+
+            <!-- Buttons -->
+            <div class="text-center button-container">
+                <a class="btn btn-primary btn-xl" href="/resume">View / Download Resume</a>
+                <a class="btn btn-primary btn-xl" href="/schedule">Schedule a Meeting</a>
+                <a class="btn btn-primary btn-xl" href="/contact">Contact Me</a>
+                <a class="btn btn-primary btn-xl" href="/#">Other Button</a>
+            </div>
+
+            <!-- Work Experience -->
+            <%= render partial: 'work_experience_block' %>
+
+            <!-- Education -->
+            <%= render partial: 'education_block' %>
+
+            <!-- Extra-carricular -->
+            <%= render partial: 'extra_carricular_block' %>
+
+            <!-- Honors / Awards -->
+            <%= render partial: 'honors_awards_block' %>
+
+            <!-- Projects Template  -->
+            <%= render partial: 'projects_in_progress_block' %>
+
+            <!-- Links -->
+            <%= render partial: 'name_links_block' %>
+
+            <!-- Referral Links -->
+            <%= render partial: 'referral_link_block' %>
         </section>
 
-
-        <!-- Portfolio-->
+        <!-- Portfolio -->
 <!--
-
-
         <section class="content-section" id="portfolio">
             <div class="container px-4 px-lg-5">
                 <div class="content-section-heading text-center">
@@ -104,7 +131,6 @@
                 </div>
             </div>
         </section>
-
 -->
 
         <!-- Footer-->

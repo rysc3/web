@@ -11110,5 +11110,16 @@ footer.footer .social-link:hover {
 }
 
 .large-section {
-  height: 470vh;
+  height: 390vh;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.button-container a {
+  flex: 1;
+  margin: 0 10px; /* Optional margin between buttons */
 }

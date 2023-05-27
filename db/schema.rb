@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_25_084759) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_27_230023) do
   create_table "bookshelves", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -32,6 +32,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_084759) do
   end
 
   create_table "portfolio_trackers", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "schedules", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
