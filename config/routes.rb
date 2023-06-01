@@ -26,4 +26,14 @@ Rails.application.routes.draw do
     get '/bookshelf', to: 'prog#bookshelf', as:'bookshelf'
     get '/data_sort', to: 'prog#data_sort', as: 'data_sort'
   end
+
+  #ASUNM Example Site routes
+  # scope '/example' do
+  #   get '/example', to: 'example#home'
+  #   get 'personnel', to: 'example#personnel'
+  #   get '/information', to: 'example#information'
+  # end
+  get '/example', to: 'example#home'
+  get '/example/personnel', to: 'example#personnel'
+  get '/example/information', to: 'example#information'
 end
