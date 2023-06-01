@@ -11,6 +11,10 @@ module Web
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    # Make default haml vs erb
+    config.generators.template_engine = :haml
+
+
     # enable assets
     config.assets.enabled = true
     # set the custom path for assets, since they're not in the right place and I don't want to move all the paths

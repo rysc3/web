@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   #   get 'personnel', to: 'example#personnel'
   #   get '/information', to: 'example#information'
   # end
-  get '/example', to: 'example#home'
-  get '/example/personnel', to: 'example#personnel'
-  get '/example/information', to: 'example#information'
+  get '/asunm', to: 'asunm#home'
+  get '/asunm/personnel', to: 'asunm#personnel'
+  get '/asunm/information', to: 'asunm#information'
 end
