@@ -11033,6 +11033,33 @@ footer.footer .social-link:hover {
   }
 }
 
+.masthead-opaque {
+  min-height: 30rem;
+  position: relative;
+  display: table;
+  width: 100%;
+  height: auto;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.35) 100%), url("../assets/img/asunm_header.jpeg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.masthead-opaque h1, .masthead-opaque .h1 {
+  font-size: 4rem;
+  margin: 0;
+  padding: 0;
+}
+@media (min-width: 992px) {
+  .masthead-opaque {
+    height: 100vh;
+  }
+  .masthead-opaque h1, .masthead-opaque .h1 {
+    font-size: 5.5rem;
+  }
+}
+
 .portfolio-item {
   display: block;
   position: relative;

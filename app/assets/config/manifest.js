@@ -10,3 +10,9 @@
 //= link boxicons/css/boxicons.min.css
 //= link remixicon/remixicon.css
 //= link swiper/swiper-bundle.min.css
+
+//= link purecounter/purecounter_vanilla.js
+//= link aos/aos.js
+//= link bootstrap/js/bootstrap.bundle.min.js
+//= link swiper/swiper-bundle.min.js
+//= link php-email-form/validate.js

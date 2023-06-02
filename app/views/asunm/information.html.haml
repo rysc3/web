@@ -1,1 +1,35 @@
-%h1 information page
+!!!
+%html{lang: "en"}
+  %h1 spacing
+  %section#events.events
+    .container{"data-aos" => "fade-up"}
+      .row
+        .col-md-6.d-flex.align-items-stretch
+          .card
+            .card-img
+              %img{alt: "...", src: "../assets/img/yoshi-crop.jpg"}/
+            .card-body
+              %h5.card-title
+                %a{href: ""} Celebrating first day of summer semester
+              %p.fst-italic.text-center Monday, June 5th at 5:00pm
+              %p.card-text the summer semester has now began, hurray. Speaking of which, I guess I should mention that these tiles will not link to anything and will just refresh the page, since I have more meetings I need to get to.
+        .col-md-6.d-flex.align-items-stretch
+          .card
+            .card-img
+              %img{alt: "...", src: "../assets/img/yumi-crop.jpg"}/
+            .card-body
+              %h5.card-title
+                %a{href: ""} Celebrating first day of fall semester
+              %p.fst-italic.text-center Monday, August 21st at 5:01pm
+              %p.card-text This item, as well, will link to nothing. It should be relatively simple to make it such that when you click the image it will bring you to a calendar link that opens, say, google calendar, and asks you to accept the invite on your personal calendar. It is more work on the google calendar side than the actual code side that is out of scope for this project, but you get the idea.
+      .row
+        .col-md-6.d-flex.align-items-stretch
+          .card
+            .card-img
+              %img{alt: "...", src: "../assets/img/yoshi-crop2.jpg"}/
+            .card-body
+              %h5.card-title
+                %a{href: ""} Another item
+              %p.fst-italic.text-center wheneva
+              %p.card-text This item is just here to show how it would look with more than 2 items. Clicking any one of these items could bring you to a different page view that has more information, rendering a calendar, but you can easily take the api to get the information out of the public google calendar without it looking as ugly as it does there.
+              %a{href: "/schedule"} My Calendar
