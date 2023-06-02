@@ -10,6 +10,7 @@ phases:
   pre_build:
     commands:
       - rake db:create db:migrate
+      - bundle exec rake assets:precompile
 
   build:
     commands:
