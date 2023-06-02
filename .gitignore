@@ -36,3 +36,5 @@
 
 # Ignore the actual docker-compose file.
 docker-compose.yml
+
+/config/credentials/production.key

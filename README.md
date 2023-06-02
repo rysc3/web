@@ -7,3 +7,6 @@ This is my ruby on rails webiste
 - Connect to heroku w/ github CI (program auto builds/deploys each time a push is made to main branch)
 - Connect to custom domain, ryanscherbarth.com via google domains
 - Configure SSL certificates through *.heroku-app.com
+
+To Precompile all assets in the /assets dir:
+$ bundle exec rake assets:precompile

@@ -27,13 +27,11 @@ Rails.application.routes.draw do
     get '/data_sort', to: 'prog#data_sort', as: 'data_sort'
   end
 
-  #ASUNM Example Site routes
-  # scope '/example' do
-  #   get '/example', to: 'example#home'
-  #   get 'personnel', to: 'example#personnel'
-  #   get '/information', to: 'example#information'
-  # end
+  # ASUNM Example Site routes
   get '/asunm', to: 'asunm#home'
   get '/asunm/personnel', to: 'asunm#personnel'
   get '/asunm/information', to: 'asunm#information'
+  # misc temp. routes
+  # get '/vendor/animate.css/animate.min.css', to: 'assets#animate_css'
+  get '/vendor/animate.css/animate.min.css', to: redirect('app/assets/vendor/animate.css/animate.min.css')
 end

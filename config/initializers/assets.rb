@@ -10,3 +10,11 @@ Rails.application.config.assets.version = "1.0"
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
+
+# Additional things to load assets
+Rails.application.config.assets.enabled = true  # Enable assets
+
+# Rails.application.config.assets.paths << Rails.root.join("app", "assets", "stylesheets")  # Include stylesheets dir. in pipeline
+# Rails.application.config.assets.paths << Rails.root.join("app", "assets", "vendor")  # Include stylesheets dir. in pipeline
+
+Rails.application.config.assets.paths << Rails.root.join("app", "assets")  # Include stylesheets dir. in pipeline

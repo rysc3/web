@@ -14,11 +14,14 @@ module Web
     # Make default haml vs erb
     config.generators.template_engine = :haml
 
-
-    # enable assets
+    # Enable assets
     config.assets.enabled = true
-    # set the custom path for assets, since they're not in the right place and I don't want to move all the paths
+
+    # Set the custom path for assets
     config.assets.paths << Rails.root.join("app", "assets", "images", "img")
+
+    # Precompile additional assets
+    config.assets.precompile += %w( asunm_styles.css )
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -29,3 +32,4 @@ module Web
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
+
