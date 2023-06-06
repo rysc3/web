@@ -11142,11 +11142,13 @@ footer.footer .social-link:hover {
 
 .button-container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
 }
 
 .button-container a {
   flex: 1;
-  margin: 0 10px; /* Optional margin between buttons */
+  margin: 0 10px; /* Optional horizontal margin between buttons */
+  margin-bottom: 10px; /* Vertical margin between buttons */
 }

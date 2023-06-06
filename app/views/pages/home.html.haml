@@ -1,13 +1,13 @@
 !!!
 %html{lang: "en"}
   %head
-    -# Google tag (gtag.js)
-    %script{async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-7VD1T7W41S"}
-    :javascript
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-7VD1T7W41S');
+  -# Google tag (gtag.js)
+  %script{async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-7VD1T7W41S"}
+  :javascript
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7VD1T7W41S');
     %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{charset: "utf-8"}/
     %meta{content: "width=device-width, initial-scale=1, shrink-to-fit=no", name: "viewport"}/
@@ -55,11 +55,7 @@
       / About Me
       = render partial: 'about_block'
       / Buttons
-      .text-center.button-container
-        %a.btn.btn-primary.btn-xl{href: "/resume"} View / Download Resume
-        %a.btn.btn-primary.btn-xl{href: "/schedule"} Schedule a Meeting
-        %a.btn.btn-primary.btn-xl{href: "/contact"} Contact Me
-        %a.btn.btn-primary.btn-xl{href: "/#"} Other Button
+      = render partial: 'buttons'
       / Work Experience
       = render partial: 'work_experience_block'
       / Education
@@ -74,7 +70,7 @@
       = render partial: 'name_links_block'
       / Referral Links
       = render partial: 'referral_link_block'
-    / Portfolio
+      / Portfolio
     /
       <section class="content-section" id="portfolio">
       <div class="container px-4 px-lg-5">
