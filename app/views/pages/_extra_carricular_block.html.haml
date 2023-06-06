@@ -1,0 +1,35 @@
+!!!
+%html{lang: "en"}
+  -# Google tag (gtag.js)
+  %script{async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-7VD1T7W41S"}
+  :javascript
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7VD1T7W41S');
+  #extra-carricular.shadow-1-strong.bg-white.my-5.p-5
+    .education-section
+      %h2.h2.fw-light.mb-4.text-center Extra Carricular
+      .timeline
+        .timeline-card.timeline-card-success{"data-aos" => "fade-in", "data-aos-delay" => "400"}
+          .timeline-head.px-4.pt-3
+            .h5
+              Peer Mentor
+              %span.text-muted.h6 - UNM School of Engineering
+          .timeline-body.px-4.pb-4
+            .text-muted.text-small.mb-3 Jan 2023 - Present
+        .timeline-card.timeline-card-success{"data-aos" => "fade-in", "data-aos-delay" => "0"}
+          .timeline-head.px-4.pt-3
+            .h5
+              %a{href: "https://www.winterclassicinvitational.com/team/university-of-new-mexico/"} Winter Classic Invitational HPC Competition
+              %span.text-muted.h6 - Team Manager
+          .timeline-body.px-4.pb-4
+            .text-muted.text-small.mb-3 Spring 2023
+            %div
+        .timeline-card.timeline-card-success{"data-aos" => "fade-in", "data-aos-delay" => "200"}
+          .timeline-head.px-4.pt-3
+            .h5
+              %a{href: "https://drive.google.com/file/d/1lyjeK7hHzxfpkWrZFMXKVdWN3r56dOvG/view?pli=1"} UNM Nasa Minds Competiton
+              %span.text-muted.h6 - Machine Learning Team
+          .timeline-body.px-4.pb-4
+            .text-muted.text-small.mb-3 Spring 2023
