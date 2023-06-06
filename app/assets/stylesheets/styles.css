@@ -11137,8 +11137,9 @@ footer.footer .social-link:hover {
 }
 
 .large-section {
-  height: 460vh;
+  min-height: 100vh;
 }
+
 
 .button-container {
   display: flex;
