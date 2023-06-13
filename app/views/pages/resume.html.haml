@@ -15,11 +15,11 @@
     %link{href: "https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i", rel: "stylesheet", type: "text/css"}/
     / Core theme CSS (includes Bootstrap)
     -# %link{href: "../../assets/resume_styles/styles.css", rel: "stylesheet"}/
-    %link{href: asset_path('resume_stylesheets/styles.css'), rel: 'stylesheet'}
+    %link{href: asset_path('resume_stylesheets/resume_styles.css'), rel: 'stylesheet'}
 
   %body#page-top
     / Navigation
-    %nav#sideNav.navbar.navbar-expand-lg.navbar-dark.bg-primary.fixed-top
+    %nav#sideNav.navbar.navbar-expand-lg.navbar-dark.bg-primary.fixed-left
       %a.navbar-brand.js-scroll-trigger{href: "#page-top"}
         %span.d-block.d-lg-none Ryan Scherbarth
         %span.d-none.d-lg-block
@@ -151,55 +151,59 @@
             .flex-shrink-0
               %span.text-primary Dec. 2022 - May 2023
       %hr.m-0/
+
+
       / Skills
-      %section#skills.resume-section
-        .resume-section-content
-          %h2.mb-5 Skills
-          .subheading.mb-3 Programming Languages &amp; Tools
-          %ul.list-inline.dev-icons
-            %li.list-inline-item
-              %i.fab.fa-html5
-            %li.list-inline-item
-              %i.fab.fa-css3-alt
-            %li.list-inline-item
-              %i.fab.fa-js-square
-            %li.list-inline-item
-              %i.fab.fa-angular
-            %li.list-inline-item
-              %i.fab.fa-react
-            %li.list-inline-item
-              %i.fab.fa-node-js
-            %li.list-inline-item
-              %i.fab.fa-sass
-            %li.list-inline-item
-              %i.fab.fa-less
-            %li.list-inline-item
-              %i.fab.fa-wordpress
-            %li.list-inline-item
-              %i.fab.fa-gulp
-            %li.list-inline-item
-              %i.fab.fa-grunt
-            %li.list-inline-item
-              %i.fab.fa-npm
-          .subheading.mb-3 Workflow
-          %ul.fa-ul.mb-0
-            %li
-              %span.fa-li
-                %i.fas.fa-check
-              Mobile-First, Responsive Design
-            %li
-              %span.fa-li
-                %i.fas.fa-check
-              Cross Browser Testing &amp; Debugging
-            %li
-              %span.fa-li
-                %i.fas.fa-check
-              Cross Functional Teams
-            %li
-              %span.fa-li
-                %i.fas.fa-check
-              Agile Development &amp; Scrum
-      %hr.m-0/
+      -# %section#skills.resume-section
+      -#   .resume-section-content
+      -#     %h2.mb-5 Skills
+      -#     .subheading.mb-3 Programming Languages &amp; Tools
+      -#     %ul.list-inline.dev-icons
+      -#       %li.list-inline-item
+      -#         %i.fab.fa-html5
+      -#       %li.list-inline-item
+      -#         %i.fab.fa-css3-alt
+      -#       %li.list-inline-item
+      -#         %i.fab.fa-js-square
+      -#       %li.list-inline-item
+      -#         %i.fab.fa-angular
+      -#       %li.list-inline-item
+      -#         %i.fab.fa-react
+      -#       %li.list-inline-item
+      -#         %i.fab.fa-node-js
+      -#       %li.list-inline-item
+      -#         %i.fab.fa-sass
+      -#       %li.list-inline-item
+      -#         %i.fab.fa-less
+      -#       %li.list-inline-item
+      -#         %i.fab.fa-wordpress
+      -#       %li.list-inline-item
+      -#         %i.fab.fa-gulp
+      -#       %li.list-inline-item
+      -#         %i.fab.fa-grunt
+      -#       %li.list-inline-item
+      -#         %i.fab.fa-npm
+      -#     .subheading.mb-3 Workflow
+      -#     %ul.fa-ul.mb-0
+      -#       %li
+      -#         %span.fa-li
+      -#           %i.fas.fa-check
+      -#         Mobile-First, Responsive Design
+      -#       %li
+      -#         %span.fa-li
+      -#           %i.fas.fa-check
+      -#         Cross Browser Testing &amp; Debugging
+      -#       %li
+      -#         %span.fa-li
+      -#           %i.fas.fa-check
+      -#         Cross Functional Teams
+      -#       %li
+      -#         %span.fa-li
+      -#           %i.fas.fa-check
+      -#         Agile Development &amp; Scrum
+      -# %hr.m-0/
+
+
       / Awards
       %section#awards.resume-section
         .resume-section-content

@@ -16,3 +16,6 @@
 //= link bootstrap/js/bootstrap.bundle.min.js
 //= link swiper/swiper-bundle.min.js
 //= link php-email-form/validate.js
+//= link layout.css
+//= link_tree ../img
+//= link resume_styles.css

@@ -1,0 +1,93 @@
+!!!
+%html{lang: "en"}
+  %head
+  -# Google tag (gtag.js)
+  %script{async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-7VD1T7W41S"}
+  :javascript
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7VD1T7W41S');
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{charset: "utf-8"}/
+    %meta{content: "width=device-width, initial-scale=1, shrink-to-fit=no", name: "viewport"}/
+    %meta{content: "", name: "description"}/
+    %meta{content: "", name: "author"}/
+    %title Ryan's Website
+    / Font Awesome icons (free version)
+    %script{crossorigin: "anonymous", src: "https://use.fontawesome.com/releases/v6.3.0/js/all.js"}
+    / Simple line icons
+    %link{href: "https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css", rel: "stylesheet"}/
+    / Google fonts
+    %link{href: "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic", rel: "stylesheet", type: "text/css"}/
+    / Core theme CSS (includes Bootstrap)
+    %link{href: "stylesheets/styles.css", rel: "stylesheet"}/
+  %body#page-top
+    -# / Navigation
+    -# %a.menu-toggle.rounded{href: "#"}
+    -#   %i.fas.fa-bars
+    -# %nav#sidebar-wrapper
+    -#   %ul.sidebar-nav
+    -#     %li.sidebar-brand
+    -#       %a{href: "#page-top"} The things here
+    -#     %li.sidebar-nav-item
+    -#       %a{href: "#about"} About Me
+    -#     %li.sidebar-nav-item
+    -#       %a{href: "#work-experience"} Work Experience
+    -#     %li.sidebar-nav-item
+    -#       %a{href: "#education"} Education
+    -#     %li.sidebar-nav-item
+    -#       %a{href: "#extra-carricular"} Extra Carricular
+    -#     %li.sidebar-nav-item
+    -#       %a{href: "#honors-and-awards"} Honors and Awards
+    -#     %li.sidebar-nav-item
+    -#       %a{href: "#name-links"} Mentions
+    -#     %li.sidebar-nav-item
+    -#       %a{href: "#referral-links"} Referral Links
+    / Header
+    %header.masthead.d-flex.align-items-center
+      .container.px-4.px-lg-5.text-center
+        %h1.mb-1 Ryan Scherbarth
+        %h3.mb-5
+          %em My website / Resume / Portfolio / Whatever else I put on here
+    / Body
+    %section#online_resume.bg-light.large-section.p-5
+      / About Me
+      = render partial: 'about_block'
+      / Buttons
+      = render partial: 'buttons'
+      / Work Experience
+      = render partial: 'work_experience_block'
+      / Education
+      = render partial: 'education_block'
+      / Extra-carricular
+      = render partial: 'extra_carricular_block'
+      / Honors / Awards
+      = render partial: 'honors_awards_block'
+      / Projects Template
+      = render partial: 'projects_in_progress_block'
+      / Links
+      = render partial: 'name_links_block'
+      / Referral Links
+      = render partial: 'referral_link_block'
+    / Footer
+    %footer.footer.text-center
+      .container.px-4.px-lg-5
+        %ul.list-inline.mb-5
+          %li.list-inline-item
+            %a.social-link.rounded-circle.text-white.mr-3{href: "#!"}
+              %i.icon-social-facebook
+          %li.list-inline-item
+            %a.social-link.rounded-circle.text-white.mr-3{href: "#!"}
+              %i.icon-social-twitter
+          %li.list-inline-item
+            %a.social-link.rounded-circle.text-white{href: "#!"}
+              %i.icon-social-github
+        %p.text-muted.small.mb-0 Copyright © Ry Holdings LLC, 2023
+    / Scroll to Top Button
+    %a.scroll-to-top.rounded{href: "#page-top"}
+      %i.fas.fa-angle-up
+    / Bootstrap core JS
+    %script{src: "https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"}
+    / Core theme JS
+    %script{src: "app/assets/javascript/scripts.js"}

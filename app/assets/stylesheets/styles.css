@@ -11014,7 +11014,7 @@ footer.footer .social-link:hover {
   height: auto;
   padding-top: 8rem;
   padding-bottom: 8rem;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%), url("../assets/images/img/header_photo.JPG");
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%), url("../img/yumi-crop.JPG");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -11152,4 +11152,13 @@ footer.footer .social-link:hover {
   flex: 1;
   margin: 0 10px; /* Optional horizontal margin between buttons */
   margin-bottom: 10px; /* Vertical margin between buttons */
+}
+
+.head-photo-size {
+  max-width: 50%;
+  max-height: 50%;
+}
+
+.top-bar {
+  z-index: 9999;
 }
