@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # get 'tests/index'
+  resources :tests
   # resources :contacts
   # resources :data_sorts
   # resources :bookshelves
@@ -33,5 +35,8 @@ Rails.application.routes.draw do
   get '/asunm/information', to: 'asunm#information'
   # misc temp. routes
   # get '/vendor/animate.css/animate.min.css', to: 'assets#animate_css'
-  get '/vendor/animate.css/animate.min.css', to: redirect('app/assets/vendor/animate.css/animate.min.css')
+  # get '/vendor/animate.css/animate.min.css', to: redirect('app/assets/vendor/animate.css/animate.min.css')
+
+  # Tests routes
+  get '/tests', to: 'tests#index'
 end
