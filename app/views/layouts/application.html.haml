@@ -1,4 +1,11 @@
 %html
+  -# Google tag (gtag.js)
+  %script{async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-7VD1T7W41S"}
+  :javascript
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7VD1T7W41S');
   %head
     %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title My Portfolio
@@ -23,8 +30,8 @@
               %a.nav-link{href: "/resume"} Resume
             %li.nav-item
               %a.nav-link{href: "/contact"} Contact
-            %li.nav-item
-              %a.nav-link{href: "/asunm"} asunm
+            -# %li.nav-item
+            -#   %a.nav-link{href: "/asunm"} asunm
 
 
     .header-placeholder
