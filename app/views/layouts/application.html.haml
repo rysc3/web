@@ -18,26 +18,9 @@
     = stylesheet_link_tag 'styles', media: 'all', 'data-turbolinks-track': 'reload'
 
   %body
-    / Responsive navbar
-    %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.top-bar
-      .container
-        %a.navbar-brand{"aria-current" => "page", href: "/"} Ryan Scherbarth
-        %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarSupportedContent", "data-bs-toggle" => "collapse", type: "button"}
-          %span.navbar-toggler-icon
-        #navbarSupportedContent.collapse.navbar-collapse
-          %ul.navbar-nav.ms-auto.mb-2.mb-lg-0
-            %li.nav-item
-              %a.nav-link{href: "/resume"} Resume
-            %li.nav-item
-              %a.nav-link{href: "/contact"} Contact
-            -# %li.nav-item
-            -#   %a.nav-link{href: "/asunm"} asunm
-
+    =render partial: 'header'
 
     .header-placeholder
     = yield
 
-  -# %footer.navbar-dark.bg-dark.bottom-0
-  -#   .container.px-4.px-lg-5.footer-content
-  -#     %p.m-0.small.text-light
-  -#       | We both know it isn't copyright
+    =render partial: 'footer'
