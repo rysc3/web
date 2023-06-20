@@ -4,9 +4,7 @@
     %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{charset: "utf-8"}/
     %meta{content: "width=device-width, initial-scale=1, shrink-to-fit=no", name: "viewport"}/
-    %meta{content: "", name: "description"}/
-    %meta{content: "", name: "author"}/
-    %title Resume - Start Bootstrap Theme
+    %title Resume
     %link{href: "assets/img/favicon.ico", rel: "icon", type: "image/x-icon"}/
     / Font Awesome icons (free version)
     %script{crossorigin: "anonymous", src: "https://use.fontawesome.com/releases/v6.3.0/js/all.js"}
