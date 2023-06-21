@@ -3,5 +3,4 @@
 //= link_tree ../../javascript .js
 //= link_tree ../../../vendor/javascript .js
 
-//= link layout.css
 //= link_tree ../img

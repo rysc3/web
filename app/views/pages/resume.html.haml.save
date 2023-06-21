@@ -5,15 +5,13 @@
     %meta{charset: "utf-8"}/
     %meta{content: "width=device-width, initial-scale=1, shrink-to-fit=no", name: "viewport"}/
     %title Resume
-    %link{href: "assets/img/favicon.ico", rel: "icon", type: "image/x-icon"}/
-    / Font Awesome icons (free version)
     %script{crossorigin: "anonymous", src: "https://use.fontawesome.com/releases/v6.3.0/js/all.js"}
     / Google fonts
     %link{href: "https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700", rel: "stylesheet", type: "text/css"}/
     %link{href: "https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i", rel: "stylesheet", type: "text/css"}/
     / Core theme CSS (includes Bootstrap)
     -# %link{href: "../../assets/resume_styles/styles.css", rel: "stylesheet"}/
-    %link{href: asset_path('resume_stylesheets/resume_styles.css'), rel: 'stylesheet'}
+    %link{href: asset_path('styles.css'), rel: 'stylesheet'}
 
   %body#page-top
     / Navigation

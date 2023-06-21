@@ -1,1 +1,284 @@
-%h1 this is in the process of being fixed 
+!!!
+%html{lang: "en"}
+  -# Google tag (gtag.js)
+  %script{async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-7VD1T7W41S"}
+  :javascript
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7VD1T7W41S');
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Portfolio
+    / Meta
+    %meta{charset: "utf-8"}/
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}/
+    %link{href: "favicon.ico", rel: "shortcut icon"}/
+    / Google fonts
+    %link{href: "https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i", rel: "stylesheet"}/
+    %link{href: "https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i", rel: "stylesheet"}/
+    / FontAwesome CSS
+    %link{href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css", rel: "stylesheet"}/
+    / Global CSS
+    -# %link{href: "assets/plugins/bootstrap/css/bootstrap.min.css", rel: "stylesheet"}
+    / github calendar css
+    -# %link{href: "assets/plugins/github-calendar/dist/github-calendar-responsive.css", rel: "stylesheet"}/
+    / github activity css
+    %link{href: "https://cdnjs.cloudflare.com/ajax/libs/octicons/2.0.2/octicons.min.css", rel: "stylesheet"}/
+    -# %link{href: "assets/plugins/github-activity/src/github-activity.css", rel: "stylesheet"}/
+    / Theme CSS
+    %link{href: asset_path('resume.css'), rel: 'stylesheet'}/
+  %body
+
+    / ******HEADER******
+    %header.header
+      .container
+        .row.align-items-center
+          .col
+            %img.profile-image.img-fluid.float-start.rounded-circle{alt: "image", src: "assets/img/ryan.jpg", style: "width: 180px; height: 180px;"}/
+
+            .profile-content
+              %h1.name Ryan Scherbarth 
+              %h2.desc Junior - Computer Science
+              %ul.social.list-inline
+                %li.list-inline-item
+                  %a{href: "https://www.linkedin.com/in/ryanscherbarth/"}
+                    %i.fab.fa-linkedin-in
+                %li.list-inline-item
+                  %a{href: "https://github.com/rysc3"}
+                    %i.fab.fa-github-alt
+                %li.list-inline-item
+                  %a{href: "https://stackoverflow.com/users/20306478/ry-sch"}
+                    %i.fab.fa-stack-overflow
+            / //profile
+          / //col
+ 
+          / // RESUME PDF ALSO IN home.html.haml 35
+          .col-12.col-md-auto
+            %a.btn.btn-cta-primary{href: "https://www.dropbox.com/s/9kr9aqxgj5usnsi/Ryan%20Scherbarth%20-%20Resume.pdf?dl=0"}
+              %i.fas.fa-newspaper
+              view pdf
+ 
+ 
+          / //col
+        / //row
+      / //container
+    / //header
+    .container.sections-wrapper.py-5
+      .row
+        .primary.col-lg-8.col-12
+          %section.about.section
+            .section-inner.shadow-sm.rounded
+              %h2.heading About Me
+              .content
+                %p Junior studying computer science seeking a career in the cyber security space. Background comprised of consistent, relevant internship experience. Expected graduation date of Dec. 2024.
+              / //content
+            / //section-inner
+          / //section
+        
+          %section.experience.section
+            .section-inner.shadow-sm.rounded
+              %h2.heading Work Experience
+              .content
+                .item
+                  %h3.title
+                    Senior Research Assistant -
+                    %span.place
+                      %a{href: "https://www.carc.unm.edu"} Center for Advanced Research Computing
+                    %span.year (May 2023 - Present)
+                  %ul 
+                    %li Customer tickets
+                    %li DevOps: Software installation, optimization &amp; troubleshooting
+                / //item
+                .item
+                  %h3.title
+                    Solutions Architect Intern -
+                    %span.place
+                      %a{href: "https://www.sandia.gov/"} Sandia National Laboratories
+                    %span.year (Oct. 2022 - Present)
+                  %ul 
+                    %li Year round software R&D (Offer through graduation)
+                    %li DOE-Q Top Secret security clearance
+                    %li Developing and maintaining secure web applications using Ruby on Rails, HTML, CSS, Javascript.
+                / //item
+                .item
+                  %h3.title
+                    Software Engineer Intern -
+                    %span.place
+                      %a{href: "https://www.afrl.af.mil/"} Air Force Research Laboratory
+                    %span.year (Aug. 2022 - Dec. 2022)
+                  %ul 
+                    %li Collaborating with the Cyber Resiliency Team as a part of the Space Vehicles Directorate on cyber hardened software & hardware.
+                    %li Created a virtual space vehicle test environment, gaining familiarity with Open Sat Kit (OSK), COSMOS, and NASA’s Core Flight Software (cFS), while studying common types of cyber - attacks toward space vehicles.
+                / //item
+              / //content
+            / //section-inner
+          / //section
+
+          %section.education.section
+            .section-inner.shadow-sm.rounded
+              %h2.heading Extra Curricular
+              .content
+                .item
+                  %h3.title
+                    Team Manager -
+                    %span.place
+                      %a{href: "https://sc23.supercomputing.org/"} SC23 HPC Competiton
+                    %span.year (Present)
+                / //item
+                .item
+                  %h3.title
+                    Peer Mentor -
+                    %span.place
+                      %a{href: "https://ess.unm.edu/programs/current-students/mentoring-programs/peer-mentoring/index.html"} UNM School of Engineering
+                    %span.year (Jan 2023 - Present)
+                / //item
+                .item
+                  %h3.title
+                    Team Manager -
+                    %span.place
+                      %a{href: "https://www.winterclassicinvitational.com/team/university-of-new-mexico/"} HPC Winter Classic Invitational 
+                    %span.year (Jan 2023 - May 2023)
+                / //item
+                .item
+                  %h3.title
+                    Machine Learning Team -
+                    %span.place
+                      %a{href: "https://drive.google.com/file/d/1lyjeK7hHzxfpkWrZFMXKVdWN3r56dOvG/view?pli=1"} Nasa Minds - Team Chili House
+                    %span.year (Oct 2022 - May 2023)
+                / //item
+              / //content
+            / //section-inner
+          / //section
+
+          / //section
+        / //primary
+        .secondary.col-lg-4.col-12
+          %aside.info.aside.section
+            .section-inner.shadow-sm.rounded
+              %h2.heading.sr-only Basic Information
+              .content
+                %ul.list-unstyled
+                  %li
+                    %i.fas.fa-map-marker-alt
+                    = succeed "Albuquerque, NM" do
+                      %span.sr-only Location:
+                  %li
+                    %i.fas.fa-envelope
+                    %span.sr-only Email:
+                    %a{href: "mailto:ryan@ryanscherbarth.com"} ryan@ryanscherbarth.com
+                  %li
+                    %i.fas.fa-link
+                    %span.sr-only Website:
+                    %a{href: "https://www.ryanscherbarth.com"} ryanscherbarth.com
+              / //content
+            / //section-inner
+          / //aside
+          %aside.skills.aside.section
+            .section-inner.shadow-sm.rounded
+              %h2.heading Languages
+              .content
+                .skillset
+                  .item
+                    %h3.level-title
+                      Ruby | Ruby on Rails
+                  / //item
+                  .item
+                    %h3.level-title
+                      HTML, CSS &amp; SASS
+                  / //item
+                  .item
+                    %h3.level-title
+                      Java  |  Javascript  |  C
+                  / //item
+              / //content
+            / //section-inner
+          / //section
+          %aside.skills.aside.section
+            .section-inner.shadow-sm.rounded
+              %h2.heading Other
+              .content
+                .skillset
+                  .item
+                    %h3.level-title
+                      Git  |  Docker  |  MYSQL, PostgreSQL
+                  / //item
+                  .item
+                    %h3.level-title
+                      Linux (Ubuntu, Centos, Debain)
+                  / //item
+                  .item
+                    %h3.level-title
+                      Computer hardware Assembly
+                  / //item
+              / //content
+            / //section-inner
+          / //section
+
+          %section.education.section
+            .section-inner.shadow-sm.rounded
+              %h2.heading Honors / Awards
+              .content
+                .item
+                  %h3.title
+                    Outstanding Sophomore Award - 
+                    %span.year (Spring 2023)
+                    %ul 
+                      %li 
+                        %a{href: "https://www.dropbox.com/s/xey490yhyxfw5qh/annual-awards-2023.pdf?dl=0"} UNM School of Engineering
+                / //item
+                .item
+                  %h3.title
+                    Dean's List - 
+                    %span.year (Spring 2023)
+                    %ul 
+                      %li 21 semester credit hours
+                / //item
+                .item
+                  %h3.title
+                    Dean's List - 
+                    %span.year (Fall 2022)
+                    %ul 
+                      %li 18 semester credit hours
+                / //item
+                .item
+                  %h3.title
+                    Honor Society - 
+                    %span.year (Jan 2023)
+                / //item
+              / //content
+            / //section-inner
+          / //section
+          
+    / ******FOOTER******
+    %footer.footer
+      .container.text-center
+
+
+        -# / /* This template is free as long as you keep the attribution link below. Thank you for your support. :) If you'd like to use the template without the attribution, you can buy the commercial license via our website: themes.3rdwavemedia.com */
+        -# %small.copyright
+        -#   Designed with
+        -#   %span.sr-only love
+        -#   %i.fas.fa-heart
+        -#   by
+        -#   %a{href: "https://themes.3rdwavemedia.com", target: "_blank"} Xiaoying Riley
+        -#   for developers
+
+
+      / //container
+    / //footer
+
+
+    / Javascript
+    -# %script{src: "assets/plugins/popper.min.js", type: "text/javascript"}
+    -# %script{src: "assets/plugins/bootstrap/js/bootstrap.min.js", type: "text/javascript"}
+    -# %script{src: "assets/plugins/vanilla-rss/dist/rss.global.min.js", type: "text/javascript"}
+    -# %script{src: "assets/plugins/dark-mode-switch/dark-mode-switch.min.js", type: "text/javascript"}
+    -# / github calendar plugin
+    -# %script{src: "assets/plugins/github-calendar/dist/github-calendar.min.js", type: "text/javascript"}
+    -# / github activity plugin
+    -# %script{src: "//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js", type: "text/javascript"}
+    -# %script{src: "assets/plugins/github-activity/src/github-activity.js", type: "text/javascript"}
+    -# / custom js
+    -# %script{src: "assets/js/main.js", type: "text/javascript"}

@@ -1,5 +1,12 @@
 !!!
 %html{lang: "en"}
+  -# Google tag (gtag.js)
+  %script{async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-7VD1T7W41S"}
+  :javascript
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7VD1T7W41S');
   %head
     %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{charset: "utf-8"}/
@@ -9,29 +16,12 @@
     / Google fonts
     %link{href: "https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i", rel: "stylesheet"}/
     %link{href: "https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i", rel: "stylesheet"}/
-    / Core theme CSS (includes Bootstrap)
-    %link{href: asset_path('layout_stylesheets/layout.css'), rel: 'stylesheet'}/
+    %link{href: asset_path('styles.css'), rel: 'stylesheet'}/
   %body
     %header
       %h1.site-heading.text-center.text-faded.d-none.d-lg-block
         %span.site-heading-upper.text-primary.mb-3 Ryan Scherbarth
         %span.site-heading-lower Portfolio
-    / Navigation
-    -# %nav#mainNav.navbar.navbar-expand-lg.navbar-dark.py-lg-4
-    -#   .container
-    -#     %a.navbar-brand.text-uppercase.fw-bold.d-lg-none{href: "index.html"} Start Bootstrap
-    -#     %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarSupportedContent", "data-bs-toggle" => "collapse", type: "button"}
-    -#       %span.navbar-toggler-icon
-    -#     #navbarSupportedContent.collapse.navbar-collapse
-    -#       %ul.navbar-nav.mx-auto
-    -#         %li.nav-item.px-lg-4
-    -#           %a.nav-link.text-uppercase{href: "index.html"} Home
-    -#         %li.nav-item.px-lg-4
-    -#           %a.nav-link.text-uppercase{href: "about.html"} About
-    -#         %li.nav-item.px-lg-4
-    -#           %a.nav-link.text-uppercase{href: "products.html"} Products
-    -#         %li.nav-item.px-lg-4
-    -#           %a.nav-link.text-uppercase{href: "store.html"} Store
     %section.page-section.clearfix
       .container
         .intro
@@ -40,6 +30,7 @@
             %h2.section-heading.mb-4
               %span.section-heading-upper
               %span.section-heading-lower Online Resume
+            / // RESUME PDF ALSO IN resume.html.haml 57
             %p.mb-3 View my online Resume below, or click
             %a{href: "https://www.dropbox.com/s/9kr9aqxgj5usnsi/Ryan%20Scherbarth%20-%20Resume.pdf?dl=0"} here
             %span to view or download the PDF.
