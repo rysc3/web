@@ -1,7 +1,66 @@
-%footer.footer.text-faded.text-center.py-5
-  .container
-    %p.m-0.small Here goes my site map I haven't done this yet
-/ Bootstrap core JS
-%script{src: "https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"}
-/ Core theme JS
-%script{src: "../../assets/js/scripts.js"}
+%footer#mainNav.footer
+  .footer-top
+    .container
+      .row
+        .col-lg-3.col-md-6.footer-contact
+          %h3.text-center Site 
+          %span
+            Website is made with Ruby on Rails and hosted on Heroku. The git repo can be found 
+            %a{href: "https://github.com/rysc3/web"}here
+            which is then hosted through heroku. More info on my entire site configuration can be found 
+            %a{href: "/site"}here.
+            %p 
+        .col-lg-2.col-md-6.footer-links
+          %h4.text-center Site Map
+          %ul
+            %li
+              %i.bx.bx-chevron-right
+              %a{href: "/"} Home
+            %li
+              %i.bx.bx-chevron-right
+              %a{href: "/resume"} Resume
+            %li
+              %i.bx.bx-chevron-right
+              %a{href: "/schedule"} Schedule
+            %li
+              %i.bx.bx-chevron-right
+              %a{href: "/sc23"} SC23
+        .col-lg-3.col-md-6.footer-links
+          %h4.text-center Other Links
+          %ul
+            %li
+              %i.bx.bx-chevron-right
+              %a{href: "/really_long_path_for_the_best_cable_management_ever"} Really long route
+        .col-lg-3.col-md-6.footer-links
+          %h4.text-center Our Services
+          %ul
+            %li
+              %i.bx.bx-chevron-right
+              %a{href: "/asunm"} Running out of random ideas to put here
+      -# .row 
+      -#   %br/
+      -#   %strong Linkedin:
+      -#   %a{href: "https://www.linkedin.com/in/ryanscherbarth"} Ryan Scherbarth
+      -#   %strong Email:
+      -#   %a{href: "mailto:ryan@ryanscherbarth.com"} ryan@ryanscherbarth.com
+      -#   %br/
+  .container.d-md-flex.py-4
+    .me-md-auto.text-center.text-md-start
+      .copyright.text-center
+        © Copyright
+        = succeed "." do
+          %strong
+            %span by me
+      .credits
+        Designed by
+        %a{href: "https://www.ryanscherbarth.com/"} Ryan Scherbarth
+    .social-links.text-center.text-md-right.pt-3.pt-md-0
+      %a.twitter{href: "https://twitter.com/asunmlobos"}
+        %i.bx.bxl-twitter
+      %a.facebook{href: "https://www.facebook.com/asunmlobos/"}
+        %i.bx.bxl-facebook
+      %a.instagram{href: "https://www.instagram.com/asunmlobos/?hl=en"}
+        %i.bx.bxl-instagram
+      %a.linkedin{href: "https://www.linkedin.com/company/asunm/"}
+        %i.bx.bxl-linkedin
+/ End Footer

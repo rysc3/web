@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get '/schedule', to: 'pages#schedule', as: 'schedule'
   get '/really_long_path_for_the_best_cable_management_ever', to: 'pages#photos', as: 'photos'
   get '/easy', to: 'pages#photos', as: 'easy_photos'
+  get 'sc23', to: 'pages#sc23', as: 'sc23'
 
   # Prog routes
   scope '/prog' do

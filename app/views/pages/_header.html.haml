@@ -10,16 +10,13 @@
         %li.nav-item.px-lg-4
           %a.nav-link.text-uppercase{href: "/resume"} Resume
         %li.nav-item.px-lg-4
-          %a.nav-link.text-uppercase{href: "/contact"} Contact
-        -# %li.nav-item.dropdown
-        -#   %a.nav-link.text-uppercase.dropdown-toggle{href: "#", "id" => "storeDropdown", "role" => "button", "data-bs-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false"} Store
-        -#   %ul.dropdown-menu.dropdown-menu-dark{"aria-labelledby" => "storeDropdown"}
-        -#     %li
-        -#       %a.dropdown-item{href: "#"} Button 1
-        -#     %li
-        -#       %a.dropdown-item{href: "#"} Button 2
-        -#     %li
-        -#       %a.dropdown-item{href: "#"} Button 3
+          %a.nav-link.text-uppercase{href: "/schedule"} Contact
+        %li.nav-item.dropdown
+          %a.nav-link.dropdown-toggle{href: "#", "data-toggle": "dropdown", "aria-haspopup": "true", "aria-expanded": "false"} Dropdown
+          .dropdown-menu
+            %a.dropdown-item{href: "#"} Action
+            %a.dropdown-item{href: "#"} Another action
+            %a.dropdown-item{href: "#"} Something else here
 / Core theme JS
 %script{src: "../../assets/js/scripts.js"}
 / Bootstrap core JS

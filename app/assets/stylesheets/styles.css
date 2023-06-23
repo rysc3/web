@@ -10894,7 +10894,7 @@ p {
 TODO @ryan theNavbarColor
 */
 #mainNav {
-  background-color: rgb(76, 78, 82, 0.8);
+  background-color: rgb(76, 78, 82, 0.9);
   font-family: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 #mainNav .navbar-brand {
@@ -10958,7 +10958,7 @@ TODO @ryan theNavbarColor
 }
 
 .footer {
-  background-color: rgb(76, 78, 82, 0.8);
+  background-color: rgb(76, 78, 82, 0.9);
 }
 
 .intro {
