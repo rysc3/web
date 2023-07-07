@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # get 'tests/index'
+  resources :docs
   resources :tests
   # resources :contacts
   # resources :data_sorts
@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get '/resume', to: 'pages#resume', as: 'resume'
   get '/index', to: 'pages#index', as: 'index'
   get '/schedule', to: 'pages#schedule', as: 'schedule'
+
   get '/really_long_path_for_the_best_cable_management_ever', to: 'pages#photos', as: 'photos'
   get '/easy', to: 'pages#photos', as: 'easy_photos'
 

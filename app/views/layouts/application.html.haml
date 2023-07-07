@@ -11,9 +11,9 @@
     = stylesheet_link_tag 'styles', media: 'all', 'data-turbolinks-track': 'reload'
 
   %body
-    =render partial: 'header'
+    =render partial: 'layouts/header'
 
     .header-placeholder
     = yield
 
-    =render partial: 'footer'
+    =render partial: '/layouts/footer'
