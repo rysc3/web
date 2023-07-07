@@ -1,23 +1,32 @@
-%h1 Listing docs
-
-%table
-  %thead
-    %tr
-      %th Title
-      %th Content
-      %th
-      %th
-      %th
-
-  %tbody
-    - @docs.each do |doc|
+!!!
+%html{lang: "en"}
+  -# Google tag (gtag.js)
+  %script{async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-7VD1T7W41S"}
+  :javascript
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7VD1T7W41S');
+  %link{href: asset_path('resume.css'), rel: 'stylesheet'}/
+  
+  %table
+    %thead
       %tr
-        %td= doc.title
-        %td= doc.content
-        %td= link_to 'Show', doc
-        %td= link_to 'Edit', edit_doc_path(doc)
-        %td= link_to 'Destroy', doc, method: :delete, data: { confirm: 'Are you sure?' }
+        %th Title
+        %th Content
+        %th
+        %th
+        %th
 
-%br
+    %tbody
+      - @docs.each do |doc|
+        %tr
+          %td= doc.title
+          %td= doc.content
+          %td= link_to 'Show', doc
+          %td= link_to 'Edit', edit_doc_path(doc)
+          %td= link_to 'Destroy', doc, method: :delete, data: { confirm: 'Are you sure?' }
 
-= link_to 'New Doc', new_doc_path
+  %br
+
+  = link_to 'New Doc', new_doc_path
