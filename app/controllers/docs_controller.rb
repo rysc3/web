@@ -8,6 +8,7 @@ class DocsController < ApplicationController
 
   # GET /docs/1 or /docs/1.json
   def show
+    @doc = Doc.find(params[:id])
   end
 
   # GET /docs/new

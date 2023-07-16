@@ -1,0 +1,46 @@
+!!!
+%html
+  %head
+    %title My Docs App
+    %link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css")
+    %script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js")
+    %script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js")
+    %link{href: asset_path('resume.css'), rel: 'stylesheet'}/
+    %style
+      :plain
+        #mainNav {
+          background-color: rgb(76, 78, 82, 0.8);
+          font-family: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+        #mainNav .navbar-brand {
+          color: #e6a756;
+        }
+        #mainNav .navbar-nav .nav-item .nav-link {
+          color: rgba(255, 255, 255, 0.7);
+          font-weight: 800;
+        }
+        #mainNav .navbar-nav .nav-item.active .nav-link {
+          color: #e6a756;
+        }
+        @media (min-width: 992px) {
+          #mainNav .navbar-nav .nav-item .nav-link {
+            font-size: 0.9rem;
+          }
+          #mainNav .navbar-nav .nav-item .nav-link:hover {
+            color: rgba(255, 255, 255, 0.4);
+          }
+          #mainNav .navbar-nav .nav-item.active .nav-link:hover {
+            color: #e6a756;
+          }
+          .footer {
+            background-color: rgb(76, 78, 82, 0.8);
+          }
+        }
+  %body
+    =render partial: 'layouts/header'
+
+    .header-placeholder
+    = yield
+    -console
+
+    =render partial: '/layouts/footer'

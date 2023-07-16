@@ -1,4 +1,3 @@
-!!!
 %html{lang: "en"}
   -# Google tag (gtag.js)
   %script{async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-7VD1T7W41S"}
@@ -8,25 +7,20 @@
     gtag('js', new Date());
     gtag('config', 'G-7VD1T7W41S');
   %link{href: asset_path('resume.css'), rel: 'stylesheet'}/
-  
-  %table
-    %thead
-      %tr
-        %th Title
-        %th Content
-        %th
-        %th
-        %th
 
-    %tbody
-      - @docs.each do |doc|
-        %tr
-          %td= doc.title
-          %td= doc.content
-          %td= link_to 'Show', doc
-          %td= link_to 'Edit', edit_doc_path(doc)
-          %td= link_to 'Destroy', doc, method: :delete, data: { confirm: 'Are you sure?' }
-
-  %br
-
-  = link_to 'New Doc', new_doc_path
+  -# #carouselFade.carousel.slide.carousel-fade{"data-ride" => "carousel"}
+  -#   .carousel-inner
+  -#     .carousel-item.active
+  -#       %img.d-block.w-100{alt: "/docs/1", src: "/assets/img/cable-1.jpg", style: "max-width: 65%; height: auto;", link_to: "/docs/1"}/
+  -#     .carousel-item
+  -#       %img.d-block.w-100{alt: "...", src: "/assets/img/cable-2.jpg", style: "max-width: 65%; height: auto;"}/
+  -#     .carousel-item
+  -#       %img.d-block.w-100{alt: "...", src: "/assets/img/cable-3.jpg", style: "max-width: 65%; height: auto;"}/
+  -#   %a.carousel-control-prev{"data-slide" => "prev", href: "#carouselExampleFade", role: "button"}
+  -#     %span.carousel-control-prev-icon{"aria-hidden" => "true"}
+  -#     %span.sr-only Previous
+  -#   %a.carousel-control-next{"data-slide" => "next", href: "#carouselExampleFade", role: "button"}
+  -#     %span.carousel-control-next-icon{"aria-hidden" => "true"}
+  -#     %span.sr-only Next
+  #docs-container
+    = render 'docs/show'
