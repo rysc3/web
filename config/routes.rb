@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  get 'admin/index'
   # get 'tests/index'
   resources :tests
+  resources :admin
   # resources :contacts
   # resources :data_sorts
   # resources :bookshelves
