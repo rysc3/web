@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :sessions
   get 'admin/index'
   # get 'tests/index'
   resources :tests

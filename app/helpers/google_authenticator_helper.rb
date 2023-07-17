@@ -1,0 +1,2 @@
+module GoogleAuthenticatorHelper
+end

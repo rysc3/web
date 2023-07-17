@@ -1,0 +1,20 @@
+%h1 Google Authenticator Setup
+
+%p Follow the instructions below to set up Google Authenticator:
+
+%ol
+  %li Download and install the Google Authenticator app on your mobile device.
+  %li Open the app and click the '+' button to add a new account manually.
+  %li Scan the QR code below or enter the secret key manually:
+
+#qr-code
+  = image_tag @qr_code_url
+
+%p Secret Key: #{@secret}
+
+%p After scanning the QR code or entering the secret key, the app will display a 6-digit code. Enter the code below to complete the setup:
+
+= form_tag verify_qr_code_path, method: :post do
+  = label_tag :otp_attempt, 'Google Authenticator Code'
+  = text_field_tag :otp_attempt
+  = submit_tag 'Verify'
