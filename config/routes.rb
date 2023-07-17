@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   # get 'tests/index'
   resources :tests
   resources :admin
+  # for google auth verification 
+  post 'admin/verify',  to: 'admin#verify'
+
   # resources :contacts
   # resources :data_sorts
   # resources :bookshelves

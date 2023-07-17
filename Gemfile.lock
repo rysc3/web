@@ -103,6 +103,12 @@ GEM
     ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    google-authenticator-rails (3.2.1)
+      actionpack
+      activerecord
+      rails
+      rotp (>= 5.0, < 7.0)
+      rqrcode
     haml (6.1.1)
       temple (>= 0.8.2)
       thor
@@ -265,6 +271,7 @@ DEPENDENCIES
   debug
   execjs
   ffi
+  google-authenticator-rails
   haml-rails
   importmap-rails
   jbuilder
