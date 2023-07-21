@@ -1,4 +1,5 @@
 class DocsController < ApplicationController
+  before_action :set_doc_type
   before_action :set_doc, only: %i[ show edit update destroy ]
 
   # GET /docs or /docs.json
@@ -67,5 +68,9 @@ class DocsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def doc_params
       params.require(:doc).permit(:title, :content)
+    end
+
+    def set_doc_type 
+      @doc_type = Doc_type.find(params[:doc_type_id])
     end
 end

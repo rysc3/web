@@ -12,9 +12,9 @@
   .row
     .col-md-4
       #list-example.list-group
-        - @docs.each do |doc|
-          = link_to "##{doc.id}", class: 'list-group-item list-group-item-action' do 
-            = doc.title
+        - @doc_type.each do |doc_type|
+          = link_to "##{doc_type.docs.first.id}", class: 'list-group-item list-group-item-action' do 
+            = doc_type.name
     .col-md-8.pr-0
       #list-example-container.scrollspy-example
         - @docs.each do |doc| 
