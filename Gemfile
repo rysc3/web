@@ -47,7 +47,7 @@ gem "bootsnap", require: false
 
 # Other
 gem 'haml-rails'
-gem 'bootstrap', '~> 5.0'
+gem 'bootstrap', '5.3.0.alpha3'
 gem 'bootstrap_form'
 gem 'autoprefixer-rails'
 gem 'popper_js', '~> 2.9'
