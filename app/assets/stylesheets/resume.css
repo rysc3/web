@@ -820,12 +820,16 @@ body[data-theme="dark"] .text-muted {
   }
 }
 
+/*
+  
+*/
+
 #list-example-container.scrollspy-example {
-  max-height: 100px;
+  max-height: 1100px;
   overflow-y: auto;
 }
 
 #list-example.list-group {
-  max-height: 100px;
+  max-height: 1100px;
   overflow-y: auto;
 }
