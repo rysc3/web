@@ -1,0 +1,2 @@
+class DocType < ApplicationRecord
+end
