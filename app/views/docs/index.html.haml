@@ -9,15 +9,39 @@
   %link{href: asset_path('resume.css'), rel: 'stylesheet'}/
 
 .container.border.rounded.p-3
+  -# .row
+  -#   .col-md-4
+  -#     #list-example.list-group
+  -#       - @doc_type.each do |doc_type|
+  -#         = link_to "##{doc_type.docs.first.id}", class: 'list-group-item list-group-item-action' do 
+  -#           = doc_type.name
   .row
     .col-md-4
       #list-example.list-group
-        - @doc_type.each do |doc_type|
-          = link_to "##{doc_type.docs.first.id}", class: 'list-group-item list-group-item-action' do 
-            = doc_type.name
+        - @docs.each do |doc|
+          = link_to "##{doc.id}", class: 'list-group-item list-group-item-action' do 
+            = doc.title
     .col-md-8.pr-0
       #list-example-container.scrollspy-example
         - @docs.each do |doc| 
-          = link_to doc_path(doc) do 
+          = link_to doc_type_doc_path(doc.doc_type, doc) do 
             %h4{id: "#{doc.id}"}= doc.title 
           %p= doc.content
+
+-# %p
+-#   %a.btn.btn-primary{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#collapseExample", role: "button"}
+-#     Link with href
+-#   %button.btn.btn-primary{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-bs-target" => "#collapseExample", "data-bs-toggle" => "collapse", type: "button"}
+-#     Button with data-bs-target
+-# #collapseExample.collapse
+-#   .card.card-body
+-#     Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+
+-# %p
+-#   %button.btn.btn-primary{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-bs-target" => "#collapseExample", "data-bs-toggle" => "collapse", type: "button"}
+-#     Button with data-bs-target
+-#   #collapseExample.collapse
+-#     .card.card-body
+-#       Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+
+

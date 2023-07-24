@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  resources :docs
   resources :tests
+
+  resources :doc_types do 
+    resources :docs
+  end
+
+  get 'docs', to: 'docs#index', as: 'docs'
   # resources :contacts
   # resources :data_sorts
   # resources :bookshelves

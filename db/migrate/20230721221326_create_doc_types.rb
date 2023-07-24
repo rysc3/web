@@ -5,5 +5,7 @@ class CreateDocTypes < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+
+    remove_table :doc_types
   end
 end

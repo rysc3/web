@@ -1,0 +1,17 @@
+%html{lang: "en"}
+  -# Google tag (gtag.js)
+  %script{async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-7VD1T7W41S"}
+  :javascript
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7VD1T7W41S');
+  %link{href: asset_path('resume.css'), rel: 'stylesheet'}/
+
+%h1 Editing doc type
+
+= render 'form'
+
+= link_to 'Show', @doc
+\|
+= link_to 'Back', docs_path

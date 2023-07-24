@@ -14,6 +14,6 @@
   %b Content:
   = @doc.content
 
-= link_to 'Edit', edit_doc_path(@doc)
+= link_to 'Edit', edit_doc_type_doc_path(@doc.doc_type, @doc)
 \|
 = link_to 'Back', docs_path

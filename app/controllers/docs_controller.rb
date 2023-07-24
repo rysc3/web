@@ -19,6 +19,7 @@ class DocsController < ApplicationController
 
   # GET /docs/1/edit
   def edit
+    redirect_to edit_doc_type_path(@doc.doc_type)
   end
 
   # POST /docs or /docs.json
@@ -71,6 +72,6 @@ class DocsController < ApplicationController
     end
 
     def set_doc_type 
-      @doc_type = Doc_type.find(params[:doc_type_id])
+      # @doc_type = DocType.find(params[:doc_type_id])
     end
 end

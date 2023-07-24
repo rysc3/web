@@ -1,0 +1,9 @@
+= bootstrap_form_for @doc_type do |f|
+  - if @doc_type.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@doc_type.errors.count, "error")} prohibited this doc from being saved:"
+      %ul
+        - @doc_type.errors.full_messages.each do |message|
+          %li= message
+  = f.text_field :name
+  = f.submit
