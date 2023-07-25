@@ -1,0 +1,13 @@
+/*
+    Things for bootstrap table
+*/
+
+.scrollspy-example {
+  max-height: 700px;
+  overflow-y: auto;
+}
+
+#list-example.list-group {
+  max-height: 700px;
+  overflow-y: auto;
+}

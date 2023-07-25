@@ -1,0 +1,66 @@
+!!!
+%html{lang: "en"}
+  -# Google tag (gtag.js)
+  %script{async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-7VD1T7W41S"}
+  :javascript
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7VD1T7W41S');
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{charset: "utf-8"}/
+    %meta{content: "width=device-width, initial-scale=1, shrink-to-fit=no", name: "viewport"}/
+    %title Portfolio
+    %link{href: "assets/favicon.ico", rel: "icon", type: "image/x-icon"}/
+    / Google fonts
+    %link{href: "https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i", rel: "stylesheet"}/
+    %link{href: "https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i", rel: "stylesheet"}/
+    %link{href: asset_path('styles.css'), rel: 'stylesheet'}/
+  %body 
+
+  .container
+    #accordion
+      .card
+        .card-header
+          %a.collapsed.btn{"data-bs-toggle" => "collapse", href: "#collapseOne"}
+            Collapsible Group Item #1
+        #collapseOne.collapse{"data-bs-parent" => "#accordion"}
+          .card-body
+            Lorem ipsum..
+      .card
+        .card-header
+          %a.collapsed.btn{"data-bs-toggle" => "collapse", href: "#collapseTwo"}
+            Collapsible Group Item #2
+        #collapseTwo.collapse{"data-bs-parent" => "#accordion"}
+          .card-body
+            Lorem ipsum..
+      .card
+        .card-header
+          %a.collapsed.btn{"data-bs-toggle" => "collapse", href: "#collapseThree"}
+            Collapsible Group Item #3
+        #collapseThree.collapse{"data-bs-parent" => "#accordion"}
+          .card-body
+            Lorem ipsum..
+
+  .container.border.rounded.p-3
+    .row
+      .col-md-4
+        #list-example.list-group
+          - @docs.each do |doc|
+            %a.list-group-item.list-group-item-action{href: "#list-item-1"}= doc.title
+      .col-md-8.pr-0
+        .scrollspy-example{"data-bs-smooth-scroll" => "true", "data-bs-spy" => "scroll", "data-bs-target" => "#list-example", tabindex: "0"}
+          %h4#list-item-1 Item 1
+          %p orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas quis ipsum suspendisse ultrices gravida dictum fusce. Consequat ac felis donec et. Sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum. Facilisis gravida neque convallis a cras semper auctor neque. Eget mi proin sed libero enim. Porttitor eget dolor morbi non arcu. Nullam non nisi est sit amet facilisis. Tincidunt lobortis feugiat vivamus at augue eget arcu. Lectus mauris ultrices eros in cursus turpis. Nisi lacus sed viverra tellus in hac. Urna neque viverra justo nec ultrices dui sapien eget. Erat velit scelerisque in dictum non consectetur a. Commodo quis imperdiet massa tincidunt. Blandit aliquam etiam erat velit scelerisque in dictum. Duis convallis convallis tellus id interdum. orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas quis ipsum suspendisse ultrices gravida dictum fusce. Consequat ac felis donec et. Sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum. Facilisis gravida neque convallis a cras semper auctor neque. Eget mi proin sed libero enim. Porttitor eget dolor morbi non arcu. Nullam non nisi est sit amet facilisis. Tincidunt lobortis feugiat vivamus at augue eget arcu. Lectus mauris ultrices eros in cursus turpis. Nisi lacus sed viverra tellus in hac. Urna neque viverra justo nec ultrices dui sapien eget. Erat velit scelerisque in dictum non consectetur a. Commodo quis imperdiet massa tincidunt. Blandit aliquam etiam erat velit scelerisque in dictum. Duis convallis convallis tellus id interdum.
+          %h4#list-item-2 Item 2
+          %p Facilisis magna etiam tempor orci eu lobortis. Pellentesque diam volutpat commodo sed egestas egestas. Pharetra massa massa ultricies mi quis hendrerit dolor magna eget. Egestas congue quisque egestas diam. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin. Lorem ipsum dolor sit amet consectetur adipiscing. Ut sem viverra aliquet eget. Vitae purus faucibus ornare suspendisse sed. Posuere lorem ipsum dolor sit. Urna molestie at elementum eu facilisis sed. Mauris commodo quis imperdiet massa tincidunt nunc pulvinar sapien et. orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas quis ipsum suspendisse ultrices gravida dictum fusce. Consequat ac felis donec et. Sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum. Facilisis gravida neque convallis a cras semper auctor neque. Eget mi proin sed libero enim. Porttitor eget dolor morbi non arcu. Nullam non nisi est sit amet facilisis. Tincidunt lobortis feugiat vivamus at augue eget arcu. Lectus mauris ultrices eros in cursus turpis. Nisi lacus sed viverra tellus in hac. Urna neque viverra justo nec ultrices dui sapien eget. Erat velit scelerisque in dictum non consectetur a. Commodo quis imperdiet massa tincidunt. Blandit aliquam etiam erat velit scelerisque in dictum. Duis convallis convallis tellus id interdum.
+          %h4#list-item-3 Item 3
+          %p Facilisis magna etiam tempor orci eu lobortis. Pellentesque diam volutpat commodo sed egestas egestas. Pharetra massa massa ultricies mi quis hendrerit dolor magna eget. Egestas congue quisque egestas diam. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin. Lorem ipsum dolor sit amet consectetur adipiscing. Ut sem viverra aliquet eget. Vitae purus faucibus ornare suspendisse sed. Posuere lorem ipsum dolor sit. Urna molestie at elementum eu facilisis sed. Mauris commodo quis imperdiet massa tincidunt nunc pulvinar sapien et. orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas quis ipsum suspendisse ultrices gravida dictum fusce. Consequat ac felis donec et. Sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum. Facilisis gravida neque convallis a cras semper auctor neque. Eget mi proin sed libero enim. Porttitor eget dolor morbi non arcu. Nullam non nisi est sit amet facilisis. Tincidunt lobortis feugiat vivamus at augue eget arcu. Lectus mauris ultrices eros in cursus turpis. Nisi lacus sed viverra tellus in hac. Urna neque viverra justo nec ultrices dui sapien eget. Erat velit scelerisque in dictum non consectetur a. Commodo quis imperdiet massa tincidunt. Blandit aliquam etiam erat velit scelerisque in dictum. Duis convallis convallis tellus id interdum.
+          %h4#list-item-4 Item 4
+          %p Facilisis magna etiam tempor orci eu lobortis. Pellentesque diam volutpat commodo sed egestas egestas. Pharetra massa massa ultricies mi quis hendrerit dolor magna eget. Egestas congue quisque egestas diam. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin. Lorem ipsum dolor sit amet consectetur adipiscing. Ut sem viverra aliquet eget. Vitae purus faucibus ornare suspendisse sed. Posuere lorem ipsum dolor sit. Urna molestie at elementum eu facilisis sed. Mauris commodo quis imperdiet massa tincidunt nunc pulvinar sapien et.
+          %h4#list-item-5 Item 5
+          %p Facilisis magna etiam tempor orci eu lobortis. Pellentesque diam volutpat commodo sed egestas egestas. Pharetra massa massa ultricies mi quis hendrerit dolor magna eget. Egestas congue quisque egestas diam. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin. Lorem ipsum dolor sit amet consectetur adipiscing. Ut sem viverra aliquet eget. Vitae purus faucibus ornare suspendisse sed. Posuere lorem ipsum dolor sit. Urna molestie at elementum eu facilisis sed. Mauris commodo quis imperdiet massa tincidunt nunc pulvinar sapien et.
+          %h4#list-item-6 Item 6
+          %p Facilisis magna etiam tempor orci eu lobortis. Pellentesque diam volutpat commodo sed egestas egestas. Pharetra massa massa ultricies mi quis hendrerit dolor magna eget. Egestas congue quisque egestas diam. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin. Lorem ipsum dolor sit amet consectetur adipiscing. Ut sem viverra aliquet eget. Vitae purus faucibus ornare suspendisse sed. Posuere lorem ipsum dolor sit. Urna molestie at elementum eu facilisis sed. Mauris commodo quis imperdiet massa tincidunt nunc pulvinar sapien et.
+          

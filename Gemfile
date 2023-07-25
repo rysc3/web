@@ -47,6 +47,9 @@ gem "bootsnap", require: false
 
 # Other
 gem 'haml-rails'
+gem 'bootstrap', '~> 5.2.3'
+gem 'jquery-rails'
+gem 'popper_js'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
