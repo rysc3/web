@@ -1,28 +1,46 @@
-!!!
-%html{lang: "en"}
-  -# Google tag (gtag.js)
-  %script{async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-7VD1T7W41S"}
-  :javascript
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-7VD1T7W41S');
-  %body
-  %section.page-section.cta
+%head
+  %link{href: asset_path('resume.css'), rel: 'stylesheet'}/
+  = stylesheet_link_tag 'carousel', media: 'all' # Add this line to include your custom styles
+
+%body
+  - doc_image_filenames = Dir.glob("app/assets/images/docs/#{params[:id]}/*.{jpg,jpeg,png,gif}").map { |path| File.basename(path) }
+.row
+  .col-md-6.p-3
+    .row 
+      %h1.text-center= @doc.title
+    .row 
+      %p= @doc.blob
+  .col-md-6.p-3
     .container
-      .row.justify-content-center
-        .col-xl-9.mx-auto
-          .cta-inner.bg-faded.text-center.rounded
-            %h2.section-heading.mb-4
-              %span.section-heading-upper
-              %span.section-heading-lower Fall 2023
-            .row
-              .col
-                %p.mb-0
-                %li 28 Credit Hours
-                %li Team Manager - SC23 HPC Competition
-                %li UNM SOE Peer Mentor
-              .col
-                %p.mb-0
-                %li Sandia Labs
-                %li UNM EPICS Internship
+      - if doc_image_filenames.any?
+        #carouselExampleCaptions.carousel.slide.carousel-static.rounded
+          .carousel-indicators
+            - doc_image_filenames.each_with_index do |image_filename, index|
+              %button{"aria-label" => "Slide #{index + 1}", "data-bs-slide-to" => index.to_s, "data-bs-target" => "#carouselExampleCaptions", type: "button", class: index.zero? ? 'active' : ''}
+          .carousel-inner.rounded
+            - doc_image_filenames.each_with_index do |image_filename, index|
+              %div{class: index.zero? ? 'carousel-item active' : 'carousel-item'}
+                %a{"data-bs-toggle" => "modal", "data-bs-target" => "#modalImage#{index}"}
+                  = image_tag "docs/#{params[:id]}/#{image_filename}", class: 'd-block w-100'
+                -# .carousel-caption.d-none.d-md-block
+                -#   %h5 Slide #{index + 1} label
+                -#   %p Some representative placeholder content for slide #{index + 1}.
+          %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselExampleCaptions", type: "button"}
+            %span.carousel-control-prev-icon{"aria-hidden" => "true"}
+            %span.visually-hidden Previous
+          %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselExampleCaptions", type: "button"}
+            %span.carousel-control-next-icon{"aria-hidden" => "true"}
+            %span.visually-hidden Next
+        - doc_image_filenames.each_with_index do |image_filename, index|
+          // Modal for each image
+          .modal.fade{id: "modalImage#{index}", tabindex: "-1", role: "dialog", "aria-labelledby" => "modalImage#{index}Label", "aria-hidden" => "true"}
+            .modal-dialog.modal-dialog-centered.modal-dialog-scrollable
+              .modal-content
+                .modal-body
+                  = image_tag "docs/#{params[:id]}/#{image_filename}", class: 'img-fluid' # Use class "img-fluid" for responsive images
+                .modal-footer
+                  %button.btn.btn-secondary{"data-bs-dismiss" => "modal"} Close
+.row 
+  %p= @doc.content
+
+%script{src: asset_path('carousel.js')}

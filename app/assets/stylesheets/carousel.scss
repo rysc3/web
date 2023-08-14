@@ -1,0 +1,30 @@
+@import 'variables';
+@import 'bootstrap';
+
+// Use the $white variable to set the background color of .carousel-item
+// .carousel-item {
+//   max-width: 70%; // Set the maximum width to 70% of the screen
+//   max-height: 400px;
+//   margin: 0 auto; // Center the carousel horizontally
+// }
+
+// Ensure the images within the carousel scale proportionally
+// .carousel-item img {
+//   max-width: 100%;
+//   height: auto;
+//   display: block; // Ensures images do not leave extra space beneath them
+// }
+// app/assets/stylesheets/carousel.scss
+
+.carousel-inner {
+  max-height: 400px;
+}
+
+.carousel-item img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.modal-body {
+  text-align: center; // Center the image in the modal
+}

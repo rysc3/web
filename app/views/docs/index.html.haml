@@ -10,37 +10,16 @@
   %body 
   .container
     #accordion
-      .card
-        .card-header
-          %a.collapsed.btn{"data-bs-toggle" => "collapse", href: "#collapseOne"}
-            Collapsible Group Item #1
-        #collapseOne.collapse{"data-bs-parent" => "#accordion"}
-          .card-body
-            Lorem ipsum..
-      .card
-        .card-header
-          %a.collapsed.btn{"data-bs-toggle" => "collapse", href: "#collapseTwo"}
-            Collapsible Group Item #2
-        #collapseTwo.collapse{"data-bs-parent" => "#accordion"}
-          .card-body
-            Lorem ipsum..
-      .card
-        .card-header
-          %a.collapsed.btn{"data-bs-toggle" => "collapse", href: "#collapseThree"}
-            Collapsible Group Item #3
-        #collapseThree.collapse{"data-bs-parent" => "#accordion"}
-          .card-body
-            Lorem ipsum..
-
-  .container.border.rounded.p-3
-    .row
-      .col-md-4
-        #list-example.list-group
-          - @docs.each do |doc|
-            %a.list-group-item.list-group-item-action{href: "#list-item-1"}= doc.title
-      .col-md-8.pr-0
-        .scrollspy-example{"data-bs-smooth-scroll" => "true", "data-bs-spy" => "scroll", "data-bs-target" => "#list-example", tabindex: "0"}
-          - @docs.each do |doc|
-            = link_to doc_path(doc) do
-              %h4#list-item-1= doc.title
-            %p= doc.content
+      - @docs.each_with_index do |doc, index|
+        .card
+          .card-header
+            %a.collapsed.btn{"data-bs-toggle" => "collapse", "href" => "#collapse#{index + 1}"}
+              = doc.title
+          %div{id: "collapse#{index + 1}", class: "collapse", "data-bs-parent" => "#accordion"}
+            .card-body
+              = doc.content
+              - doc_image_files = Dir.glob("app/assets/images/docs/#{doc.id}/*").select { |file| File.file?(file) }
+              - if doc_image_files.any?
+                .image-container
+                  - doc_image_files.each do |image_file|
+                    %img.rounded.float-start.img-fluid{src: asset_path(image_file), alt: doc.title}

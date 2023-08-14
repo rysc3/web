@@ -42,15 +42,22 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
-# Use Sass to process CSS
-# gem "sassc-rails"
-
-# Other
+# haml
 gem 'haml-rails'
+
+# Bootstrap and its dependencies
 gem 'bootstrap', '~> 5.2.3'
 gem 'jquery-rails'
 gem 'popper_js'
+
+# Faker used to create fake data for testing (this is in prod since I'm generating at least one 
+# fake doc to start every time so that I don't need to through if cases to catch nil values for 
+# a very unique version and yea its just easier it would have been simpler to just not leave this 
+# entire comment but I'm still going for some reason.)
 gem 'faker'
+
+# Used to make new folders, /docs/<id>/ for each new doc that is created
+gem 'trix'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

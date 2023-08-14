@@ -18,10 +18,8 @@ module Web
     config.assets.enabled = true
 
     # Set the custom path for assets
-    config.assets.paths << Rails.root.join("app", "assets", "images", "img")
+    config.assets.paths << Rails.root.join("app", "assets", "images")
 
-    # Precompile additional assets
-    config.assets.precompile += %w( asunm_styles.css )
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -32,4 +30,3 @@ module Web
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
-
