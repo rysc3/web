@@ -8,3 +8,21 @@
     gtag('js', new Date());
     gtag('config', 'G-7VD1T7W41S');
   %h1 Contact Page
+
+
+.col-auto
+  %label.sr-only{for: "inlineFormInputGroup"} Username
+  .input-group.mb-2
+    .input-group-prepend
+      .input-group-text @
+    %input#inlineFormInputGroup.form-control{placeholder: "Username", type: "text"}/
+
+
+
+.dropdown
+  %button.btn.btn-secondary.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", type: "button"}
+    Dropdown button
+  .dropdown-menu
+    %a.dropdown-item{href: "#"} Action
+    %a.dropdown-item{href: "#"} Another action
+    %a.dropdown-item{href: "#"} Something else here
