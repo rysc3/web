@@ -9,19 +9,7 @@ Bundler.require(*Rails.groups)
 module Web
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.0
-
-    # Make default haml vs erb
-    config.generators.template_engine = :haml
-
-    # Enable assets
-    config.assets.enabled = true
-
-    # Set the custom path for assets
-    config.assets.paths << Rails.root.join("app", "assets", "images", "img")
-
-    # Precompile additional assets
-    config.assets.precompile += %w( asunm_styles.css )
+    config.load_defaults 6.1
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -32,4 +20,3 @@ module Web
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
-

@@ -1,2 +1,0 @@
-class PortfolioTracker < ApplicationRecord
-end
