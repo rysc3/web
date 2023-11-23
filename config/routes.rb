@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
-  get 'pages/home'
-  get 'pages/contact'
+  # Define root route
+  root 'pages#index'
+
+  resources :pages
+
+  # get 'pages/home'
+  # get 'pages/contact'
 end
