@@ -20,3 +20,7 @@ module Web
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
+
+# Precompile all assets in the app/assets directory
+Rails.application.config.assets.precompile += Dir.glob('app/assets/**/*').reject { |f| File.directory?(f) }
+Rails.application.config.assets.precompile += %w( *.ttf *.woff *.svg *.eot )
