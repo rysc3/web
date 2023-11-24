@@ -154,8 +154,8 @@
                       %span.company Aug. 2022 - (Exp. May 2025)
                     .timeline-body
                       %p - Team Manager for UNM HPC Team
-                      %p - UNM Honors College
                       %p - Deans List: (Fall 2022, Spring 2023)
+                      %p - UNM Honors College
                       %P - Honor Society
 
                 %li.animate-box.timeline-unverted
@@ -167,7 +167,7 @@
                       %span.company B.B.A Information Technology w/ Concentration in Cyber Security
                       %span.company Jan 2022 - Aug. 2022
                     .timeline-body
-                      %p Did not spend much time here
+                      %p
 
                 %li.timeline-inverted.animate-box
                   .timeline-badge
@@ -179,20 +179,19 @@
                     .timeline-body
                       %p I was able to graduate one semester early by taking all of the second semester courses concurrently during the first semester of my senior year.
 
-
       #fh5co-work.fh5co-bg-dark
         .container
           .row.animate-box
             .col-md-8.col-md-offset-2.text-center.fh5co-heading
-              %h2 Work
+              %h2 Links
           .row
             .col-md-3.text-center.col-padding.animate-box
-              %a.work{:href => "#", :style => "background-image: image_tag(setup-background.jpg);"}
+              %a.work{:href => "https://www.studentclustercompetition.us/2023/Teams/NewMexico/index.html", :style => "background-image: url(#{asset_path('sc23_logo.png')})"}
                 .desc
-                  %h3 Project Name
-                  %span Illustration
+                  %h3 SC23 Student Cluster Competition
+                  %span 11/25/2023
             .col-md-3.text-center.col-padding.animate-box
-              %a.work{:href => "#", :style => "background-image: image_tag(portfolio-2.jpg);"}
+              %a.work{:href => "/contact", :style => "background-image: url(#{asset_path('carc_logo.png')})"}
                 .desc
                   %h3 Project Name
                   %span Brading
@@ -226,103 +225,9 @@
                 .desc
                   %h3 Project Name
                   %span Illustration
-      #fh5co-blog
-        .container
-          .row.animate-box
-            .col-md-8.col-md-offset-2.text-center.fh5co-heading
-              %h2 Post on Medium
-              %p Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.
-          .row
-            .col-md-4
-              .fh5co-blog.animate-box
-                %a.blog-bg{:href => "#", :style => "background-image: image_tag(portfolio-1.jpg);"}
-                .blog-text
-                  %span.posted_on Mar. 15th 2016
-                  %h3
-                    %a{:href => "#"} Photoshoot On The Street
-                  %p Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.
-                  %ul.stuff
-                    %li
-                      %i.icon-heart2>
-                      249
-                    %li
-                      %i.icon-eye2>
-                      308
-                    %li
-                      %a{:href => "#"}
-                        Read More
-                        %i.icon-arrow-right22
-            .col-md-4
-              .fh5co-blog.animate-box
-                %a.blog-bg{:href => "#", :style => "background-image: image_tag(portfolio-2.jpg);"}
-                .blog-text
-                  %span.posted_on Mar. 15th 2016
-                  %h3
-                    %a{:href => "#"} Surfing at Philippines
-                  %p Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.
-                  %ul.stuff
-                    %li
-                      %i.icon-heart2>
-                      249
-                    %li
-                      %i.icon-eye2>
-                      308
-                    %li
-                      %a{:href => "#"}
-                        Read More
-                        %i.icon-arrow-right22
-            .col-md-4
-              .fh5co-blog.animate-box
-                %a.blog-bg{:href => "#", :style => "background-image: image_tag(portfolio-3.jpg);"}
-                .blog-text
-                  %span.posted_on Mar. 15th 2016
-                  %h3
-                    %a{:href => "#"} Capture Living On Uderwater
-                  %p Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.
-                  %ul.stuff
-                    %li
-                      %i.icon-heart2>
-                      249
-                    %li
-                      %i.icon-eye2>
-                      308
-                    %li
-                      %a{:href => "#"}
-                        Read More
-                        %i.icon-arrow-right22
-      #fh5co-started.fh5co-bg-dark
-        .overlay
-        .container
-          .row.animate-box
-            .col-md-8.col-md-offset-2.text-center.fh5co-heading
-              %h2 Hire Me!
-              %p Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.
-              %p
-                %a.btn.btn-default.btn-lg{:href => "#"} Contact Us
-      #fh5co-consult
-        .video.fh5co-video{:style => "background-image: image_tag(cover_bg_1.jpg);"}
-          .overlay
-        .choose.animate-box
-          %h2 Contact
-          %form{:action => "#"}
-            .row.form-group
-              .col-md-6
-                %input#fname.form-control{:placeholder => "Your firstname", :type => "text"}/
-            .row.form-group
-              .col-md-6
-                %input#lname.form-control{:placeholder => "Your lastname", :type => "text"}/
-            .row.form-group
-              .col-md-12
-                %input#email.form-control{:placeholder => "Your email address", :type => "text"}/
-            .row.form-group
-              .col-md-12
-                %input#subject.form-control{:placeholder => "Your subject of this message", :type => "text"}/
-            .row.form-group
-              .col-md-12
-                %textarea#message.form-control{:cols => "30", :name => "message", :placeholder => "Say something about us", :rows => "10"}
-            .form-group
-              %input.btn.btn-primary{:type => "submit", :value => "Send Message"}/
-      #map.fh5co-map
+
+
+
     #fh5co-footer
       .container
         .row
