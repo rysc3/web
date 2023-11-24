@@ -1,15 +1,6 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %meta{:charset => "utf-8"}/
-    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
-    %title Ryan Scherbarth - Portfolio
-    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
-    %meta{:content => "Ryan Scherbarth - Portfolio", :name => "description"}/
-    %meta{:content => "ryan, ryan scherbarth, scherbarth, ry, UNM, University of New Mexico, New Mexico, Sandia Labs, Center for Advanced Research Computing, studnet, computer science, cs, intern, internship", :name => "keywords"}/
-    %meta{:content => "Ryan Scherbarth", :name => "author"}/
-
     / Google tag (gtag.js)
     %script{async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-7VD1T7W41S"}
     :javascript
@@ -18,6 +9,15 @@
       gtag('js', new Date());
 
       gtag('config', 'G-7VD1T7W41S');
+
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %title Ryan Scherbarth - Portfolio
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %meta{:content => "Ryan Scherbarth - Portfolio", :name => "description"}/
+    %meta{:content => "ryan, ryan scherbarth, scherbarth, ry, UNM, University of New Mexico, New Mexico, Sandia Labs, Center for Advanced Research Computing, studnet, computer science, cs, intern, internship", :name => "keywords"}/
+    %meta{:content => "Ryan Scherbarth", :name => "author"}/
 
     / Rails Asset Pipeline Helpers for Stylesheets
     = stylesheet_link_tag 'animate'
