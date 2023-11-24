@@ -10,6 +10,15 @@
     %meta{:content => "ryan, ryan scherbarth, scherbarth, ry, UNM, University of New Mexico, New Mexico, Sandia Labs, Center for Advanced Research Computing, studnet, computer science, cs, intern, internship", :name => "keywords"}/
     %meta{:content => "Ryan Scherbarth", :name => "author"}/
 
+    / Google tag (gtag.js)
+    %script{async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-7VD1T7W41S"}
+    :javascript
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-7VD1T7W41S');
+
     / Rails Asset Pipeline Helpers for Stylesheets
     = stylesheet_link_tag 'animate'
     = stylesheet_link_tag 'icomoon'
