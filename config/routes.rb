@@ -1,10 +1,3 @@
 Rails.application.routes.draw do
-
-  # Define root route
-  root 'pages#index'
-
-  resources :pages
-
-  # get 'pages/home'
-  # get 'pages/contact'
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
