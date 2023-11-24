@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_11_24_005457) do
+ActiveRecord::Schema.define(version: 2023_11_24_103138) do
+
+  create_table "links", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "pic"
+    t.string "blob"
+  end
 
   create_table "pages", force: :cascade do |t|
     t.string "title"

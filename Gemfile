@@ -30,6 +30,8 @@ gem 'haml-rails'
 gem 'bootstrap', '~> 5.0'
 gem 'jquery-rails'
 
+gem 'redcarpet'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
