@@ -1306,4 +1306,15 @@ input[type="text"] {
   }
 }
 
+.center {
+  text-align: center;
+  margin-top: 10px; /* Adjust margin as needed */
+}
+
+.center a {
+  display: inline-block;
+  margin-left: 5px; /* Adjust margin as needed */
+  margin-right: 5px; /* Adjust margin as needed */
+}
+
 /*# sourceMappingURL=style.css.map */
