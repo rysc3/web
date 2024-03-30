@@ -135,7 +135,63 @@
                   %div
                     %h3 Work Experience
 
+                %li.animate-box.timeline-unverted
+                  .timeline-badge
+                    %i.fas.fa-building
+                  .timeline-panel
+                    .timeline-heading
+                      %span.h3.timeline-title
+                        %a{:href => "https://www.sandia.gov/", :target => "_blank", style: "color: black;"} Sandia National Laboratories
+                      %span.company HPC Systems Specialist Intern
+                      %span.company
+                        October 2022 -
+                        %b Present
+                    .timeline-body
+                      %p
+                        I have now transferred to the HPC Systems team, where I am working on optimization and benchmarking.
+                        I started at Sandia National Laboratories as a year round R&D intern in October 2022. I work on the Application Engineering team, where I work on a variety of different projects that consist of full-stack web application development in Ruby on Rails.
 
+                %li.timeline-inverted.animate-box
+                  .timeline-badge
+                    %i.fas.fa-building
+                  .timeline-panel
+                    .timeline-heading
+                      %h3.timeline-title HPC Systems Specialist
+                      %span.company
+                        %a{:href => "https://carc.unm.edu/", :target => "_blank"} Center for Advanced Research Computing (CARC)
+                      %span.company
+                        May 2023 -
+                        %b Present
+                    .timeline-body
+                      %p Benchmarking, profiling & reporting. Workload management and resource allocation, assiting in workshops for CARC users, and holding open office hours for users.
+
+                %li.animate-box.timeline-unverted
+                  .timeline-badge
+                    %i.fas.fa-building
+                  .timeline-panel
+                    .timeline-heading
+                      %h3.timeline-title Faculty Assistant
+                      %span.company
+                        %a{:href => "https://fricke.co.uk/Teaching/CS499_2023/HPC_Course_Syllabus.pdf", :target => "_blank"} University of New Mexico CS Dept.
+                      %span.company
+                        Dec. 2023 -
+                        %b Present
+                    .timeline-body
+                      %p I will be a faculty assistant for the CS491: HPC course at UNM. I will be assisting in the teaching of the course, as well as holding office hours for students & grading assignments.
+
+                %li.timeline-inverted.animate-box
+                  .timeline-badge
+                    %i.fas.fa-handshake
+                  .timeline-panel
+                    .timeline-heading
+                      %h3.timeline-title Peer Mentor
+                      %span.company
+                        %a{:href => "https://engineering.unm.edu/", :target => "_blank"} University of New Mexico School of Engineering
+                      %span.company
+                        Jan 2023 -
+                        %b present
+                    .timeline-body
+                      %p As a peer mentor I have a number of new incoming students that I am responsible for helping with their transition into the UNM School of Engineering. I provide help with any questions they may have and direct to different resources available at UNM for student success.
 
                 %li.animate-box.timeline-unverted
                   .timeline-badge
@@ -178,20 +234,6 @@
 
                 %li.timeline-inverted.animate-box
                   .timeline-badge
-                    %i.fas.fa-building
-                  .timeline-panel
-                    .timeline-heading
-                      %h3.timeline-title Faculty Assistant
-                      %span.company
-                        %a{:href => "https://fricke.co.uk/Teaching/CS499_2023/HPC_Course_Syllabus.pdf", :target => "_blank"} University of New Mexico CS Dept.
-                      %span.company
-                        Dec. 2023 -
-                        %b Present
-                    .timeline-body
-                      %p I will be a faculty assistant for the CS491: HPC course at UNM. I will be assisting in the teaching of the course, as well as holding office hours for students & grading assignments.
-
-                %li.animate-box.timeline-unverted
-                  .timeline-badge
                     %i.fas.fa-code
                   .timeline-panel
                     .timeline-heading
@@ -201,48 +243,6 @@
                       %span.company June 2023 - November 2023
                     .timeline-body
                       %p HPL, HPCG, MLPerf, STREAM, OSU Microbenchmark suite, MPAS-A, 3DMHD, Reproducibility Challenge, Mystery Application (Capture the flag).
-
-                %li.timeline-inverted.animate-box
-                  .timeline-badge
-                    %i.fas.fa-building
-                  .timeline-panel
-                    .timeline-heading
-                      %h3.timeline-title Senior Research Assistant
-                      %span.company
-                        %a{:href => "https://carc.unm.edu/", :target => "_blank"} Center for Advanced Research Computing (CARC)
-                      %span.company
-                        May 2023 -
-                        %b Present
-                    .timeline-body
-                      %p Benchmarking, profiling & reporting. Workload management and resource allocation, assiting in workshops for CARC users, and holding open office hours for users.
-
-                %li.animate-box.timeline-unverted
-                  .timeline-badge
-                    %i.fas.fa-building
-                  .timeline-panel
-                    .timeline-heading
-                      %h3.timeline-title Software Engineer Intern
-                      %span.company
-                        %a{:href => "https://www.sandia.gov/", :target => "_blank"} Sandia National Laboratories
-                      %span.company
-                        Oct. 2022 -
-                        %b Present
-                    .timeline-body
-                      %p As a year round R&D intern, I work on the Application Engineering team. I am currently maintaining a DOE-Q Top Secret security clearance. I work on a variety of differnt projects that consist of full-stack web application development in Ruby on Rails.
-
-                %li.timeline-inverted.animate-box
-                  .timeline-badge
-                    %i.fas.fa-handshake
-                  .timeline-panel
-                    .timeline-heading
-                      %h3.timeline-title Peer Mentor
-                      %span.company
-                        %a{:href => "https://engineering.unm.edu/", :target => "_blank"} University of New Mexico School of Engineering
-                      %span.company
-                        Jan 2023 -
-                        %b present
-                    .timeline-body
-                      %p As a peer mentor I have a number of new incoming students that I am responsible for helping with their transition into the UNM School of Engineering. I provide help with any questions they may have and direct to different resources available at UNM for student success.
 
                 %li.animate-box.timeline-unverted
                   .timeline-badge
@@ -358,12 +358,18 @@
                   %span I read book, I put on list.
 
 
-
     #fh5co-footer
       .container
         .row
           .col-md-12
-            %p
+            %ul.fh5co-social-icons
+              %li
+                %a{:href => "/"} Home
+              %li
+                %a{:href => "/zoom"} Zoom
+              %li
+                %a{:href => "/links"} Links
+
 
     .gototop.js-top
       %a.js-gotop{:href => "#"}

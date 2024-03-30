@@ -29,9 +29,6 @@
     = javascript_include_tag 'bootstrap'
     = javascript_include_tag 'main'
   %body
-
-
-
     / Backups are saved at /app/assets/backups/<LINK_NAME>.<DATE_BACKED_UP>.html
     %h1 Links where I show up, somewhat in order
     %li
@@ -63,7 +60,17 @@
     %li
       %a{:href => "https://github.com/UNM-CARC/webinfo/blob/main/office_hours.md", :target => "_blank"} CARC Ofice Hours
 
-
+    #fh5co-footer
+      .container
+        .row
+          .col-md-12
+            %ul.fh5co-social-icons
+              %li
+                %a{:href => "/"} Home
+              %li
+                %a{:href => "/zoom"} Zoom
+              %li
+              %a{:href => "/links"} Links
 
 
     .gototop.js-top
