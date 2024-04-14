@@ -1,0 +1,408 @@
+!!!
+%html
+  %head
+    / Google tag (gtag.js)
+    %script{async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-7VD1T7W41S"}
+    :javascript
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-7VD1T7W41S');
+
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %title Ryan Scherbarth - Portfolio
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %meta{:content => "Ryan Scherbarth - Portfolio", :name => "description"}/
+    %meta{:content => "ryan, ryan scherbarth, scherbarth, ry, UNM, University of New Mexico, New Mexico, Sandia Labs, Center for Advanced Research Computing, studnet, computer science, cs, intern, internship", :name => "keywords"}/
+    %meta{:content => "Ryan Scherbarth", :name => "author"}/
+
+    / Rails Asset Pipeline Helpers for Stylesheets
+    = stylesheet_link_tag 'animate'
+    = stylesheet_link_tag 'icomoon'
+    = stylesheet_link_tag 'bootstrap'
+    = stylesheet_link_tag 'style'
+
+    / Rails Asset Pipeline Helpers for JavaScript
+    = javascript_include_tag 'jquery.min'
+    = javascript_include_tag 'modernizr-2.6.2.min'
+    = javascript_include_tag 'bootstrap'
+    = javascript_include_tag 'main'
+
+  %body
+
+    %br
+
+    .container.p3
+      %h4.text-center Fall 2022
+
+      %table.table.table-striped
+        %thead
+          %tr
+            %th{:scope => "col"} Course
+            %th{:scope => "col"}
+            %th{:scope => "col"} Credits
+        %tbody
+          %tr
+            %th{:scope => "row"} CS 152L
+            %td Computer Programming Fundamentals
+            %td 3
+          %tr
+            %th{:scope => "row"} ENGL 1120
+            %td Composition 2
+            %td 3
+          %tr
+            %th{:scope => "row"} GEOL 1110
+            %td Physical Geology
+            %td 3
+          %tr
+            %th{:scope => "row"} GEOL 1110L
+            %td Physical Geology Lab
+            %td 1
+          %tr
+            %th{:scope => "row"} GRMN 1110
+            %td German 1
+            %td 3
+          %tr
+            %th{:scope => "row"} Math 1250
+            %td Trigonometry & Pre-Calculus
+            %td 5
+          %tr
+            %th{:scope => "row"} 18 Semester CH
+            %td Deans List
+            %td
+
+      %br
+
+      .container.p3
+        %h4.text-center Spring 2023
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th{:scope => "col"} Course
+              %th{:scope => "col"}
+              %th{:scope => "col"} Credits
+          %tbody
+            %tr
+              %th{:scope => "row"} CS 241L
+              %td Data Organization
+              %td 3
+            %tr
+              %th{:scope => "row"} CS 251L
+              %td Intermediate Programming
+              %td 3
+            %tr
+              %th{:scope => "row"} CS 293
+              %td Social and Ethical Issues in Computing
+              %td 1
+            %tr
+              %th{:scope => "row"} ECE 238L
+              %td Computer Logic Design
+              %td 4
+            %tr
+              %th{:scope => "row"} ENGL 2210
+              %td Professional and Technical Communication
+              %td 3
+            %tr
+              %th{:scope => "row"} GEOL 1165
+              %td People and Place
+              %td 3
+            %tr
+              %th{:scope => "row"} MATH 1512
+              %td Calculus 1
+              %td 4
+            %tr
+              %th{:scope => "row"} 21 Semester CH
+              %td Deans List
+              %td
+
+        %br
+
+        .container.p3
+          %h4.text-center Summer 2023
+
+          %table.table.table-striped
+            %thead
+              %tr
+                %th{:scope => "col"} Course
+                %th{:scope => "col"}
+                %th{:scope => "col"} Credits
+            %tbody
+              %tr
+                %th{:scope => "row"} ARCH 1120
+                %td Intro to Architecture
+                %td 3
+              %tr
+                %th{:scope => "row"} ENVS 1130
+                %td The Blue Planet
+                %td 3
+              %tr
+                %th{:scope => "row"} 6 Semester CH
+                %td (Deans list not offered in summer)
+                %td
+
+        %br
+
+        .container.p3
+          %h4.text-center Fall 2023
+
+          %table.table.table-striped
+            %thead
+              %tr
+                %th{:scope => "col"} Course
+                %th{:scope => "col"}
+                %th{:scope => "col"} Credits
+            %tbody
+              %tr
+                %th{:scope => "row"} CS 261
+                %td Maht Foundations of Computer Science
+                %td 3
+              %tr
+                %th{:scope => "row"} CS 351L
+                %td Design of Large Programs
+                %td 4
+              %tr
+                %th{:scope => "row"} CS 499
+                %td Individual Study - UNM EPICS Progarm
+                %td 3
+              %tr
+                %th{:scope => "row"} CS 499
+                %td Individual Study - SC23 Student Cluster Competition
+                %td 3
+              %tr
+                %th{:scope => "row"} HNRS 1120
+                %td Legacy of Ancient Greece
+                %td 3
+              %tr
+                %th{:scope => "row"} MATH 1522
+                %td Calculus 2 (CNM)
+                %td 4
+              %tr
+                %th{:scope => "row"} 20 Semester CH
+                %td Deans List
+                %td
+
+        %br
+
+        .container.p3
+          %h4.text-center Spring 2024
+
+          %table.table.table-striped
+            %thead
+              %tr
+                %th{:scope => "col"} Course
+                %th{:scope => "col"}
+                %th{:scope => "col"} Credits
+            %tbody
+              %tr
+                %th{:scope => "row"} CS 357L
+                %td Declarative Programming
+                %td 3
+              %tr
+                %th{:scope => "row"} CS 361L
+                %td Data Structures and Algorithms
+                %td 3
+              %tr
+                %th{:scope => "row"} CS 591
+                %td ST: High Performance Computing
+                %td 3
+              %tr
+                %th{:scope => "row"} MATH 2531
+                %td Calculus 3
+                %td 4
+              %tr
+                %th{:scope => "row"} MATH 306
+                %td College Geometry
+                %td 3
+              %tr
+                %th{:scope => "row"} MATH 356
+                %td Symbolic Logic
+                %td 4
+              %tr
+                %th{:scope => "row"} 20 Semester CH
+                %td (In Progress)
+                %td
+
+        %br
+
+        .container.p3
+          %h4.text-center Summer 2024
+
+          %table.table.table-striped
+            %thead
+              %tr
+                %th{:scope => "col"} Course
+                %th{:scope => "col"}
+                %th{:scope => "col"} Credits
+            %tbody
+              %tr
+                %th{:scope => "row"} MATH 1250
+                %td Trigonometry and Pre-Calculus (retaking to imporve grade)
+                %td 5
+              %tr
+                %th{:scope => "row"} MATH 314
+                %td Linear Algebra with Applications
+                %td 3
+              %tr
+                %th{:scope => "row"} STAT 345
+                %td Elements fo Math Statistics and Probability
+                %td 3
+              %tr
+                %th{:scope => "row"} PHYS 1310
+                %td Calculus-Based Physics 1 (CNM)
+                %td 3
+              %tr
+                %th{:scope => "row"} 14 Semester CH
+                %td (In Progress)
+                %td
+
+        %br
+
+        .container.p3
+          %h4.text-center Fall 2024
+
+          %table.table.table-striped
+            %thead
+              %tr
+                %th{:scope => "col"} Course
+                %th{:scope => "col"}
+                %th{:scope => "col"} Credits
+            %tbody
+              %tr
+                %th{:scope => "row"} CS 341L
+                %td Intro to Computer Architecture and Organization
+                %td 3
+              %tr
+                %th{:scope => "row"} CS 561
+                %td Data Structures and Algorithms (Graduate)
+                %td 3
+              %tr
+                %th{:scope => "row"} 460
+                %td Software Engineering
+                %td 3
+              %tr
+                %th{:scope => "row"} 481
+                %td Computer Operating Systems
+                %td 3
+              %tr
+                %th{:scope => "row"} GEOL 2110C
+                %td Historical Geology
+                %td 4
+              %tr
+                %th{:scope => "row"} MATH 375
+                %td Introduction to Numerical Computing
+                %td 3
+              %tr
+                %th{:scope => "row"} CS 599
+                %td SC24 Student Cluster Competition (TBD)
+                %td 3
+              %tr
+                %th{:scope => "row"} 22 Semester CH
+                %td (In Progress)
+                %td
+          %h2.text-center - Bachelors Graduation -
+
+        %br
+
+        .container.p3
+          %h4.text-center Spring 2025
+
+          %table.table.table-striped
+            %thead
+              %tr
+                %th{:scope => "col"} Course
+                %th{:scope => "col"}
+                %th{:scope => "col"} Credits
+            %tbody
+              %tr
+                %th{:scope => "row"} CS 527
+                %td Principles of Artificially Intelligent Machines
+                %td 3
+              %tr
+                %th{:scope => "row"} CS 529
+                %td Introduction to Machine Learning
+                %td 3
+              %tr
+                %th{:scope => "row"} CS 544
+                %td Introduction to Cybersecurity
+                %td 3
+              %tr
+                %th{:scope => "row"} CS 592
+                %td Colloquium
+                %td 1
+              %tr
+                %th{:scope => "row"} 10 Semester CH
+                %td (In Progress)
+                %td
+
+        %br
+
+        .container.p3
+          %h4.text-center Summer 2025
+
+          %table.table.table-striped
+            %thead
+              %tr
+                %th{:scope => "col"} Course
+                %th{:scope => "col"}
+                %th{:scope => "col"} Credits
+            %tbody
+              %tr
+                %th{:scope => "row"} CS 599
+                %td HPC Benchmarking Grant (TBD)
+                %td 3
+              %tr
+                %th{:scope => "row"} 3 Semester CH
+                %td (In Progress)
+                %td
+
+        %br
+
+        .container.p3
+          %h4.text-center Fall 2025
+
+          %table.table.table-striped
+            %thead
+              %tr
+                %th{:scope => "col"} Course
+                %th{:scope => "col"}
+                %th{:scope => "col"} Credits
+            %tbody
+              %tr
+                %th{:scope => "row"} CS 558
+                %td Software Foundations
+                %td 3
+              %tr
+                %th{:scope => "row"} CS 585
+                %td Computer Networks
+                %td 3
+              %tr
+                %th{:scope => "row"} CS 442
+                %td Introduction to Parallel Processing
+                %td 3
+              %tr
+                %th{:scope => "row"} CS 592
+                %td Colloquium
+                %td 1
+              %tr
+                %th{:scope => "row"} 10 Semester CH
+                %td (In Progress)
+                %td
+          %h2.text-center - Masters Graduation -
+
+    #fh5co-footer
+      .container.p3
+        .row
+          .col-md-12
+            %ul.fh5co-social-icons
+              %li
+                %a{:href => "/"} Home
+              %li
+                %a{:href => "/zoom"} Zoom
+              %li
+                %a{:href => "/links"} Links
+              %li
+                %a{:href => "/courses"} Courses

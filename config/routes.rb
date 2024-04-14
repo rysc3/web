@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :pages
   resources :links
+  get '/courses' => 'pages#courses'
 
   # route for zoom meeting link
   # https://unm.zoom.us/my/ryans
