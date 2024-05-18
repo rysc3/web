@@ -1,10 +1,18 @@
 !!!
 %html
   %head
+    / Google tag (gtag.js)
+    %script{async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-7VD1T7W41S"}
+    :javascript
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7VD1T7W41S');
+
     %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
     %meta{charset: "utf-8"}
     %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}
-    %title Ryan Scherbarth's Website'
+    %title Ryan Scherbarths Courses
     %meta{content: "width=device-width, initial-scale=1", name: "viewport"}
     %meta{content: "CS491 - High Performance Computing", name: "description"}
     %meta{content: "ryan, ryan scherbarth, scherbarth, ry, UNM, University of New Mexico, New Mexico, Sandia Labs, Center for Advanced Research Computing, student, computer science, cs, intern, internship", name: "keywords"}
@@ -18,7 +26,55 @@
     = stylesheet_link_tag 'style'
 
   %body
-    / Main Content
+    / Conditional header content
+    - if controller_name == 'home' && action_name == 'index'
+      %header#fh5co-header.fh5co-cover.js-fullheight{ "data-stellar-background-ratio" => "0.5", :role => "banner", :style => "background-image:url(#{ActionController::Base.helpers.asset_path('setup-background.jpg')});" }
+        .overlay
+        .container
+          .row
+            .col-md-8.col-md-offset-2.text-center
+              .display-t.js-fullheight
+                .display-tc.js-fullheight.animate-box{"data-animate-effect" => "fadeIn"}
+                  .profile-thumb{ style: "background-image: url(#{asset_path('profile.jpg')})" }
+                  %h1
+                    %span Ryan Scherbarth
+                  %h3
+                    %span Junior, Computer Science @ UNM
+                  %p
+                  %ul.fh5co-social-icons
+                    %li
+                      %a{href: "https://www.linkedin.com/in/ryanscherbarth/"}
+                        %i.fab.fa-linkedin
+                    %li
+                      %a{href: "https://github.com/rysc3"}
+                        %i.fab.fa-github
+                    %li
+                      %a{href: "https://stackoverflow.com/users/20306478/ry-sch"}
+                        %i.fab.fa-stack-overflow
+                    %li
+                      %a{href: "https://www.dropbox.com/scl/fi/f2zpxufjrmamy2zrpxmcn/Ryan-Scherbarth-Resume.pdf?rlkey=t5gi0dvmvxzrxdzgn8ff2brv3&dl=0", target: "_blank"}
+                        %i.fas.fa-file
+    - else
+      %header#small-header
+        .container
+          .row
+            .col-md-12.text-center
+              %ul.fh5co-social-icons
+                %li
+                  %a{href: "/"} Home
+                %li
+                  %a{href: "https://www.linkedin.com/in/ryanscherbarth/"}
+                    %i.fab.fa-linkedin
+                %li
+                  %a{href: "https://github.com/rysc3"}
+                    %i.fab.fa-github
+                %li
+                  %a{href: "https://stackoverflow.com/users/20306478/ry-sch"}
+                    %i.fab.fa-stack-overflow
+                %li
+                  %a{href: "https://www.dropbox.com/scl/fi/f2zpxufjrmamy2zrpxmcn/Ryan-Scherbarth-Resume.pdf?rlkey=t5gi0dvmvxzrxdzgn8ff2brv3&dl=0", target: "_blank"}
+                    %i.fas.fa-file
+
     = yield
 
     #fh5co-footer

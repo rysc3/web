@@ -20,3 +20,26 @@
  *= require_tree .
  *= require_self
  */
+
+#small-header {
+  background-color: #8B4513; /* Adjust this color to match your site's color scheme */
+  height: 60px; /* Adjust this value for the desired header height */
+  padding: 10px 0;
+}
+
+#small-header .fh5co-social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#small-header .fh5co-social-icons li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+#fh5co-header {
+  background-size: cover;
+  background-position: center;
+}
