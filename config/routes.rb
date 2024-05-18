@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :pages
   resources :links
   get '/courses' => 'pages#courses'
+  get '/cs491' => 'pages#cs491'
 
   # route for zoom meeting link
   # https://unm.zoom.us/my/ryans

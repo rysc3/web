@@ -1,12 +1,50 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title Ryan Scherbarth's Website
-    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
-    = csrf_meta_tags
-    = csp_meta_tag
-    = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload', 'expand': true
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    %meta{charset: "utf-8"}
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}
+    %title Ryan Scherbarth's Website'
+    %meta{content: "width=device-width, initial-scale=1", name: "viewport"}
+    %meta{content: "CS491 - High Performance Computing", name: "description"}
+    %meta{content: "ryan, ryan scherbarth, scherbarth, ry, UNM, University of New Mexico, New Mexico, Sandia Labs, Center for Advanced Research Computing, student, computer science, cs, intern, internship", name: "keywords"}
+    %meta{content: "Ryan Scherbarth", name: "author"}
+    %meta{property: "og:image", content: "https://ryanscherbarth.com/assets/profile.jpg"}
+
+    / Rails Asset Pipeline Helpers for Stylesheets
+    = stylesheet_link_tag 'animate'
+    = stylesheet_link_tag 'icomoon'
+    = stylesheet_link_tag 'bootstrap'
+    = stylesheet_link_tag 'style'
+
   %body
+    / Main Content
     = yield
+
+    #fh5co-footer
+      .container
+        .row
+          .col-md-12
+            %ul.fh5co-social-icons
+              %li
+                %a{href: "/"} Home
+              %li
+                %a{href: "/zoom"} Zoom
+              %li
+                %a{href: "/links"} Links
+              %li
+                %a{href: "/courses"} Courses
+
+    .gototop.js-top
+      %a.js-gotop{href: "#"}
+        %i.fas.fa-angle-up
+
+    / Rails Asset Pipeline Helpers for JavaScript
+    = javascript_include_tag 'jquery.min'
+    = javascript_include_tag 'modernizr-2.6.2.min'
+    = javascript_include_tag 'bootstrap.min'
+    = javascript_include_tag 'jquery.easing.1.3'
+    = javascript_include_tag 'jquery.waypoints.min'
+    = javascript_include_tag 'jquery.stellar.min'
+    = javascript_include_tag 'jquery.easypiechart.min'
+    = javascript_include_tag 'main'
