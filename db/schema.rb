@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_11_24_103138) do
+ActiveRecord::Schema.define(version: 2024_05_29_022825) do
+
+  create_table "carc_statuses", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "links", force: :cascade do |t|
     t.string "title"
@@ -25,6 +30,11 @@ ActiveRecord::Schema.define(version: 2023_11_24_103138) do
   create_table "pages", force: :cascade do |t|
     t.string "title"
     t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "statuses", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
