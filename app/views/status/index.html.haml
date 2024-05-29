@@ -1,5 +1,18 @@
-%h1 Hostname
-- if @hostname.present?
-  %p The hostname is: #{@hostname}
+%h1 Status Information
+- if @hostname.present? && @system_time.present?
+  %h2 Hostname
+  %p= @hostname
+
+  %h2 System Time
+  %p= @system_time
+
+  %h2 Node Information
+  - if @nodes.present?
+    .nodes
+      - @nodes.each do |node|
+        .node
+          = node
+  - else
+    %p No nodes available.
 - else
-  %p No hostname available.
+  %p No information available.

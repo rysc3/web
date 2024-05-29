@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :pages
   resources :links
   resources :status, path: 'status'
+  get '/status/data', to: 'status#data'
   get '/courses' => 'pages#courses'
 
   # route for zoom meeting link
