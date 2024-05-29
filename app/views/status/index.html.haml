@@ -1,1 +1,5 @@
-%h1 Status index
+%h1 Hostname
+- if @hostname.present?
+  %p The hostname is: #{@hostname}
+- else
+  %p No hostname available.

@@ -1,48 +1,30 @@
 class StatusController < ApplicationController
-  before_action :set_status, only: [:show, :edit, :update, :destroy]
+  require 'net/ssh'
 
   def index
-    @statuses = Status.all
-  end
+    host = '129.24.245.8'
+    username = 'ryan'
+    private_key = 'app/assets/server_key'
 
-  def show
-  end
-
-  def new
-    @status = Status.new
-  end
-
-  def create
-    @status = Status.new(status_params)
-    if @status.save
-      redirect_to @status, notice: 'Status was successfully created.'
-    else
-      render :new
+    begin
+      Net::SSH.start(host, username, keys: [private_key]) do |ssh|
+        result = ssh.exec!("hostname")
+        @hostname = result&.strip  # Use &. to safely call strip on result if it's not nil
+      end
+    rescue Net::SSH::AuthenticationFailed
+      flash[:error] = "Authentication failed. Please check your credentials."
+      @hostname = nil
+    rescue StandardError => e
+      flash[:error] = "Failed to fetch hostname: #{e.message}"
+      @hostname = nil
     end
-  end
-
-  def edit
-  end
-
-  def update
-    if @status.update(status_params)
-      redirect_to @status, notice: 'Status was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
-  def destroy
-    @status.destroy
-    redirect_to statuses_url, notice: 'Status was successfully destroyed.'
   end
 
   private
-    def set_status
-      @status = Status.find(params[:id])
-    end
 
-    def status_params
-      params.require(:status).permit(:attribute1, :attribute2, :attribute3)
-    end
+  def process_output(output)
+    # Process the output and extract the desired data
+    # For example, parse the output as JSON or extract specific values
+    # Return the processed data
+  end
 end
