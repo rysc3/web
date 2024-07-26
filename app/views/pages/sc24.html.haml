@@ -1,0 +1,61 @@
+!!!
+%html
+  %head
+    / Google tag (gtag.js)
+    %script{async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-7VD1T7W41S"}
+    :javascript
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-7VD1T7W41S');
+
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %title "Ryan Scherbarth's Courses"
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %meta{:content => "Ryan Scherbarth - Portfolio", :name => "description"}/
+    %meta{:content => "ryan, ryan scherbarth, scherbarth, ry, UNM, University of New Mexico, New Mexico, Sandia Labs, Center for Advanced Research Computing, studnet, computer science, cs, intern, internship", :name => "keywords"}/
+    %meta{:content => "Ryan Scherbarth", :name => "author"}/
+    %meta{:property => "og:image", :content => "https://ryanscherbarth.com/assets/profile.jpg"}/
+
+    / Rails Asset Pipeline Helpers for Stylesheets
+    = stylesheet_link_tag 'animate'
+    = stylesheet_link_tag 'icomoon'
+    = stylesheet_link_tag 'bootstrap'
+    = stylesheet_link_tag 'style'
+
+    / Rails Asset Pipeline Helpers for JavaScript
+    = javascript_include_tag 'jquery.min'
+    = javascript_include_tag 'modernizr-2.6.2.min'
+    = javascript_include_tag 'bootstrap'
+    = javascript_include_tag 'main'
+
+  %body
+
+    %h1 sc24
+
+
+    Im definitely going to fill this out soon
+
+
+
+
+
+
+
+
+    #fh5co-footer
+      .container
+        .row
+          .col-md-12
+            %ul.fh5co-social-icons
+              %li
+                %a{:href => "/"} Home
+              %li
+                %a{:href => "/zoom"} Zoom
+              %li
+                %a{:href => "/links"} Links
+              %li
+                %a{:href => "/courses"} Courses
