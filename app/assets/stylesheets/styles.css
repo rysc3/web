@@ -107,6 +107,7 @@ body {
   border-radius: 15px; /* Rounded corners */
 }
 
+/* Timeline dot and line styling */
 .timeline-dot {
   width: 10px;
   height: 10px;
@@ -128,6 +129,7 @@ body {
   transform: translateX(-50%);
 }
 
+/* Logo styling */
 .logo {
   max-width: 100px;
   max-height: 100px;
@@ -135,20 +137,23 @@ body {
   margin-bottom: 15px;
 }
 
+/* Skills section margin */
 .skills {
   margin-top: 10px;
 }
 
+/* Heading styling */
 h6 {
   font-weight: bold;
   margin-bottom: 5px;
 }
 
+/* Paragraph margin */
 p {
   margin-bottom: 10px;
 }
 
-/* Add padding between the container, positions, and after skills */
+/* Padding adjustments */
 .mt-5.pt-5 {
   margin-top: 5rem;
   padding-top: 5rem;
@@ -162,7 +167,13 @@ p {
   margin-top: 5rem;
 }
 
-
+/* Hide timeline dots and lines on smaller screens */
+@media (max-width: 768px) {
+  .timeline-dot,
+  .timeline-line {
+    display: none;
+  }
+}
 /*
     ~~ End Pages#index ~~
 */
