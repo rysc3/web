@@ -1,14 +1,6 @@
-body {
-  background-color: #000000; /* Jet black background */
-  color: #ffffff; /* White text for readability */
-  font-family: Arial, sans-serif; /* Set a default font */
-  margin: 0; /* Remove all default margin */
-  padding: 0 25px; /* Add 25px padding on the left and right, none on the top and bottom */
-  min-height: 100vh; /* Ensure the body covers the full height */
-  font-family: 'FiraCode', sans-serif; /* Custom font */
-}
-
-
+/*
+    ~~ Begin nav bar stuff ~~
+*/
 .navbar {
   display: flex;
   justify-content: center; /* Center the entire navbar content */
@@ -27,7 +19,6 @@ body {
   margin-right: 65px; /* Space between items */
 }
 
-
 .navbar-nav .nav-link {
   color: #ffffff; /* White text */
   font-weight: bold;
@@ -36,7 +27,71 @@ body {
   text-decoration: none;
 }
 
-/* Hover effect */
 .navbar-nav .nav-link:hover {
   color: #cccccc; /* Slightly lighter on hover */
 }
+/*
+    ~~ End nav bar stuff ~~
+*/
+
+/*
+    ~~ Begin Pages#index ~~
+*/
+body {
+  background-color: #000000; /* Jet black background */
+  color: #ffffff; /* White text for readability */
+  margin: 0; /* Remove all default margin */
+  padding: 0 25px; /* Add 25px padding on the left and right, none on the top and bottom */
+  min-height: 100vh; /* Ensure the body covers the full height */
+  font-family: 'FiraCode', sans-serif; /* Custom font */
+}
+
+.profile-picture img {
+  width: 20%; /* Ensure the image uses up the full width of its container */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 15px; /* Rounded corners */
+}
+
+.text-content {
+  text-align: left; /* Align text to the left */
+  display: flex; /* Use flexbox to align items */
+  flex-direction: column;
+  justify-content: center; /* Vertically center text in its column */
+  height: 100%; /* Ensure it takes up the full height of the row */
+}
+
+.text-content h1 {
+  font-size: 3rem; /* Increase the font size of the header */
+}
+
+.favicon-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 15px;
+  margin-top: 1rem;
+  justify-content: flex-start; /* Align icons to the left */
+}
+
+.favicon-item a {
+  font-size: 2rem;
+  color: #ffffff; /* Ensure icons are white */
+  transition: color 0.3s ease;
+}
+
+.favicon-item a:hover {
+  color: #cccccc; /* Change color on hover */
+}
+
+.footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin: 0; /* Remove all default margin */
+  padding: 0 25px; /* Add 25px padding on the left and right, none on the top and bottom */
+  justify-content: center; /* Vertically center text in its column */
+}
+/*
+    ~~ End Pages#index ~~
+*/
