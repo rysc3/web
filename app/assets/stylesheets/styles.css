@@ -1,6 +1,4 @@
-/*
-    ~~ Begin nav bar stuff ~~
-*/
+/* Navbar styles */
 .navbar {
   display: flex;
   justify-content: center; /* Center the entire navbar content */
@@ -30,13 +28,8 @@
 .navbar-nav .nav-link:hover {
   color: #cccccc; /* Slightly lighter on hover */
 }
-/*
-    ~~ End nav bar stuff ~~
-*/
 
-/*
-    ~~ Begin Pages#index ~~
-*/
+/* Body styles */
 body {
   background-color: #000000; /* Jet black background */
   color: #ffffff; /* White text */
@@ -46,12 +39,14 @@ body {
   font-family: 'FiraCode', sans-serif; /* Custom font */
 }
 
+/* Image styles */
 .profile-picture img {
   width: 100%; /* Ensure the image uses up the full width of its container */
   height: auto; /* Maintain aspect ratio */
   border-radius: 15px; /* Rounded corners */
 }
 
+/* Text content styles */
 .text-content {
   text-align: left; /* Align text to the left */
   display: flex; /* Use flexbox to align items */
@@ -64,6 +59,7 @@ body {
   font-size: 3rem; /* Increase the font size of the header */
 }
 
+/* Favicon list styles */
 .favicon-list {
   list-style: none;
   padding: 0;
@@ -83,6 +79,7 @@ body {
   color: #cccccc; /* Change color on hover */
 }
 
+/* Footer styles */
 .footer {
   width: 100%;
   margin: 0;
@@ -94,17 +91,13 @@ body {
   height: 20px;
 }
 
+/* Logo styles */
 .logo {
   width: 100%;
-  height: auto;
-  max-width: 100px; /* Maximum width */
   max-height: 100px; /* Maximum height */
-  min-width: 75px; /* Minimum width */
-  min-height: 75px; /* Minimum height */
-  object-fit: cover;
-  flex-shrink: 0;
-  flex-grow: 1;
-  border-radius: 15px; /* Rounded corners */
+  height: auto;
+  object-fit: contain; /* Maintain aspect ratio within bounds */
+  margin-bottom: 15px;
 }
 
 /* Timeline dot and line styling */
@@ -125,16 +118,8 @@ body {
   background-color: #ccc;
   left: 50%;
   top: 10px; /* Aligns the line just below the first dot */
-  bottom: -50px; /* Extends the line only up to the second dot */
+  bottom: -160px; /* Extends the line only up to the second dot */
   transform: translateX(-50%);
-}
-
-/* Logo styling */
-.logo {
-  max-width: 100px;
-  max-height: 100px;
-  object-fit: contain;
-  margin-bottom: 15px;
 }
 
 /* Heading styling */
@@ -169,6 +154,3 @@ p {
     display: none;
   }
 }
-/*
-    ~~ End Pages#index ~~
-*/
