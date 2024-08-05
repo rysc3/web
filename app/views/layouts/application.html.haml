@@ -21,13 +21,14 @@
 
     = stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload'
     = javascript_include_tag 'application', 'data-turbo-track': 'reload'
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
 
   %body
     %header#main-header
       .container
-        %nav.navbar.navbar-expand-lg.navbar-dark.bg-black.justify-content-center
-          #navbarNav.collapse.navbar-collapse
+        %nav.navbar.navbar-expand-lg.navbar-dark.bg-black
+          %button.navbar-toggler{"data-bs-toggle" => "collapse", "data-bs-target" => "#navbarNav", "aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation"}
+            %span.navbar-toggler-icon
+          #navbarNav.collapse.navbar-collapse.justify-content-center
             %ul.navbar-nav
               %li.nav-item
                 %a.nav-link{:href => "/"} Home
