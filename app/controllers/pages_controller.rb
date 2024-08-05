@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  layout "application"
+
   def index
     # logic for index
   end
