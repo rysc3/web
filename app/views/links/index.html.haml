@@ -1,0 +1,109 @@
+!!!
+%html
+  %head
+    / Google tag (gtag.js)
+    %script{async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-7VD1T7W41S"}
+    :javascript
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-7VD1T7W41S');
+
+    %title "Ryan Scherbarth's Links"
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %meta{:content => "Ryan Scherbarth - Links", :name => "Links"}/
+    %meta{:content => "Ryan Scherbarth", :name => "author"}/
+    %meta{:property => "og:image", :content => "https://ryanscherbarth.com/assets/profile.jpg"}/
+
+    / Rails Asset Pipeline Helpers for Stylesheets
+    = stylesheet_link_tag 'animate'
+    = stylesheet_link_tag 'icomoon'
+    = stylesheet_link_tag 'bootstrap'
+    = stylesheet_link_tag 'style'
+
+    / Rails Asset Pipeline Helpers for JavaScript
+    = javascript_include_tag 'jquery.min'
+    = javascript_include_tag 'modernizr-2.6.2.min'
+    = javascript_include_tag 'bootstrap'
+    = javascript_include_tag 'main'
+  %body
+    / Backups are saved at /app/assets/backups/<LINK_NAME>.<DATE_BACKED_UP>.html
+    %h1 Links where I show up, somewhat in order
+    %li
+      %a{:href => "https://supercomputingchallenge.org/23-24/evaluations-schedule", :target => "_blank"} Supercomputing Challenge Evaluation Committee (Febuary 2024)
+    %li
+      %a{:href => "https://fricke.co.uk/Teaching/CS491_2024/HPC_Course_Syllabus.pdf", :target => "_blank"} HPC Course Syllabus (Spring 2024)
+    %li
+      %a{:href => "https://www.hpcadvisorycouncil.com/events/student-cluster-competition/team-unm.php", :target => "_blank"} ISC Student Cluster Competition (Spring 2024)
+    %li
+      %a{:href => "https://www.winterclassicinvitational.com/team/university-of-new-mexico-lobo24/", :target => "_blank"} 2024 Winter Classic Invitational HPC Competition (Spring 2024)
+    %li
+      %a{:href => "https://icpe2024.spec.org/program-committee/", :target => "_blank"} International Conference on Performance Engineering (ICPE) 2024 Program Committee (Spring 2024)
+    %li
+      %a{:href => "https://engineering.unm.edu/students/student-honors.html", :target => "_blank"} Deans List (Fall 2023)
+    %li
+      %a{:href => "https://www.instagram.com/p/CxGW4koRCGI/?next=%2Fcidadalri%2Ftagged%2F&hl=hi&img_index=1", :target => "_blank"} SC Conference Post (September 2023)
+    %li
+      %a{:href => "https://carc.unm.edu/news--events/News/sc23-conference.html", :target => "_blank"} CARC SC23 Article (December 2023)
+    %li
+      %a{:href => "https://www.penguinsolutions.com/company/resources/newsroom/student-cluster-competition-team-the-roadrunners-sponsored-by-penguin-solutions-at-sc23", :target => "_blank"} Penguin Solutions SC23 article (Nov. 2023)
+    %li
+      %a{:href => "https://sc23.supercomputing.org/2023/08/meet-this-years-scc-teams/", :target => "_blank"} SC23 Meet the Teams (August 2023)
+    %li
+      %a{:href => "https://engineering.unm.edu/awards/annual-awards-2023.pdf", :target => "_blank"} UNM Outstanding Sophomore Award (May 2023)
+    %li
+      %a{:href => "https://carc.unm.edu/news--events/News/fall-23-undergrads.html", :target => "_blank"} CARC Employee Article (September 2023)
+    %li
+      %a{:href => "https://carc.unm.edu/news--events/News/hpc-competitions-2023.html", :target => "_blank"} CARC HPC Team Article (March 2023)
+    %li
+      %a{:href => "https://www.winterclassicinvitational.com/team/university-of-new-mexico/", :target => "_blank"} 2023 Winter Classic Invitational HPC Competition (Spring 2023)
+    %li
+      %a{:href => "https://www.youtube.com/watch?v=p8fZZVrqlEk", :target => "_blank"} 2023 Winter Classic Team Interview (March 2023)
+    %li
+      %a{:href => "https://www.winterclassicinvitational.com/meet-team-new-mexico/", :target => "_blank"} Meet Team New Mexico (WC23) (Spring 2023)
+    %li
+      %a{:href => "https://github.com/UNM-CARC/webinfo/blob/main/office_hours.md", :target => "_blank"} CARC Ofice Hours
+
+    #fh5co-footer
+      .container
+        .row
+          .col-md-12
+            %ul.fh5co-social-icons
+              %li
+                %a{:href => "/"} Home
+              %li
+                %a{:href => "/zoom"} Zoom
+              %li
+                %a{:href => "/links"} Links
+              %li
+                %a{:href => "/courses"} Courses
+
+
+    .gototop.js-top
+    %a.js-gotop{:href => "#"}
+      %i.fas.fa-angle-up
+
+      / jQuery
+      = javascript_include_tag 'jquery.min'
+
+      / jQuery Easing
+      = javascript_include_tag 'jquery.easing.1.3'
+
+      / Bootstrap
+      = javascript_include_tag 'bootstrap.min'
+
+      / Waypoints
+      = javascript_include_tag 'jquery.waypoints.min'
+
+      / Stellar Parallax
+      = javascript_include_tag 'jquery.stellar.min'
+
+      / Easy PieChart
+      = javascript_include_tag 'jquery.easypiechart.min'
+
+      / Main
+      = javascript_include_tag 'main'

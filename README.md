@@ -1,24 +1,30 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is my ruby on rails webiste
 
-Things you may want to cover:
+The site is dockerized, and can be run locally by
+- clone the repo: 
+$ git@github.com:rysc3/web.git
+- create docker comopse 
+$ cp docker-compose.yml.tmpl docker-compose.yml
+- Build docker container 
+$ docker compose build
+- Run local instance 
+$ docker compose up 
 
-* Ruby version
+### Other important docker commands:
+# connect to the running container
+$ docker exec web-web-1 -i -t bash
 
-* System dependencies
+# Run docker container just in command line
+$ docker compose run web bash
 
-* Configuration
 
-* Database creation
+- Implemented theme via bootstrap
+- Connect to github repo
+- Connect to heroku w/ github CI (program auto builds/deploys each time a push is made to main branch)
+- Connect to custom domain, ryanscherbarth.com via google domains
+- Configure SSL certificates through *.heroku-app.com
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To Precompile all assets in the /assets dir:
+$ bundle exec rake assets:precompile
