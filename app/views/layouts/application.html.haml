@@ -25,14 +25,10 @@
   %body
     %header#main-header
       .container
-        %nav.navbar.navbar-expand-lg.navbar-dark.bg-black
-          %a.navbar-brand{:href => "#"}
-            %img{src: asset_path('profile.jpg'), alt: "Logo"}
-          %button.navbar-toggler{"data-toggle" => "collapse", "data-target" => "#navbarNav", "aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation"}
-            %span.navbar-toggler-icon
+        %nav.navbar.navbar-expand-lg.navbar-dark.bg-black.justify-content-center
           #navbarNav.collapse.navbar-collapse
-            %ul.navbar-nav.mr-auto
-              %li.nav-item.active
+            %ul.navbar-nav
+              %li.nav-item
                 %a.nav-link{:href => "#"} Home
               %li.nav-item
                 %a.nav-link{:href => "#about"} About
@@ -40,13 +36,13 @@
                 %a.nav-link{:href => "#services"} Services
               %li.nav-item
                 %a.nav-link{:href => "#contact"} Contact
-            %ul.navbar-nav.ml-auto
               %li.nav-item
                 %a.nav-link{:href => "#shop"} Shop
               %li.nav-item
                 %a.nav-link{:href => "#menu"} Menu
 
-    = yield
+    .content
+      = yield
 
     .gototop.js-top
       %a.js-gotop{:href => "#"}

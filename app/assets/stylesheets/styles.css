@@ -2,55 +2,41 @@ body {
   background-color: #000000; /* Jet black background */
   color: #ffffff; /* White text for readability */
   font-family: Arial, sans-serif; /* Set a default font */
-  margin: 0; /* Remove default margin */
-  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove all default margin */
+  padding: 0 25px; /* Add 25px padding on the left and right, none on the top and bottom */
   min-height: 100vh; /* Ensure the body covers the full height */
-  font-family: 'FiraCode', sans-serif; /* custom font app/assets/fonts */
+  font-family: 'FiraCode', sans-serif; /* Custom font */
 }
 
-#main-header {
-  background-color: #000000; /* Jet black background */
-  padding: 10px 0;
-}
 
 .navbar {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0;
+  justify-content: center; /* Center the entire navbar content */
+  align-items: center; /* Vertically center items */
+  padding: 35px 0; /* Add some padding for spacing */
 }
 
 .navbar-nav {
   display: flex;
-  list-style: none; /* Remove bullets */
+  list-style: none;
   padding-left: 0;
+  margin: 0;
 }
 
 .navbar-nav .nav-item {
-  margin-right: 20px;
+  margin-right: 65px; /* Space between items */
 }
+
 
 .navbar-nav .nav-link {
   color: #ffffff; /* White text */
   font-weight: bold;
   text-transform: uppercase;
   font-size: 14px;
-  padding: 0;
   text-decoration: none;
 }
 
+/* Hover effect */
 .navbar-nav .nav-link:hover {
   color: #cccccc; /* Slightly lighter on hover */
-}
-
-.navbar-brand img {
-  height: 40px; /* Adjust the logo height */
-}
-
-.navbar-toggler {
-  border: none; /* Remove border for toggler */
-}
-
-.navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%2899, 99, 99, 0.5%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
