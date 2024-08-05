@@ -39,15 +39,15 @@
 */
 body {
   background-color: #000000; /* Jet black background */
-  color: #ffffff; /* White text for readability */
-  margin: 0; /* Remove all default margin */
-  padding: 0 25px; /* Add 25px padding on the left and right, none on the top and bottom */
-  min-height: 100vh; /* Ensure the body covers the full height */
+  color: #ffffff; /* White text */
+  margin: 0; /* Remove default margin */
+  padding: 0 25px 50px; /* Add bottom padding to ensure space for the footer */
+  min-height: 100vh;
   font-family: 'FiraCode', sans-serif; /* Custom font */
 }
 
 .profile-picture img {
-  width: 20%; /* Ensure the image uses up the full width of its container */
+  width: 100%; /* Ensure the image uses up the full width of its container */
   height: auto; /* Maintain aspect ratio */
   border-radius: 15px; /* Rounded corners */
 }
@@ -69,12 +69,12 @@ body {
   padding: 0;
   display: flex;
   gap: 15px;
-  margin-top: 1rem;
-  justify-content: flex-start; /* Align icons to the left */
+  margin: 0; /* Remove the top margin to avoid extra space */
+  justify-content: center; /* Center icons horizontally */
 }
 
 .favicon-item a {
-  font-size: 2rem;
+  font-size: 2rem; /* Favicon size is 2rem */
   color: #ffffff; /* Ensure icons are white */
   transition: color 0.3s ease;
 }
@@ -85,13 +85,84 @@ body {
 
 .footer {
   width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  margin: 0; /* Remove all default margin */
-  padding: 0 25px; /* Add 25px padding on the left and right, none on the top and bottom */
-  justify-content: center; /* Vertically center text in its column */
+  margin: 0;
+  padding: 5px 0 5px 0; /* Minimize padding to give a smaller gap */
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
+  background-color: #000000; /* Jet black background for the footer */
+  height: 20px;
 }
+
+.logo {
+  width: 100%;
+  height: auto;
+  max-width: 100px; /* Maximum width */
+  max-height: 100px; /* Maximum height */
+  min-width: 75px; /* Minimum width */
+  min-height: 75px; /* Minimum height */
+  object-fit: cover;
+  flex-shrink: 0;
+  flex-grow: 1;
+  border-radius: 15px; /* Rounded corners */
+}
+
+.timeline-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #999;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.timeline-line {
+  position: absolute;
+  width: 2px;
+  background-color: #ccc;
+  left: 50%;
+  top: 10px; /* Aligns the line just below the first dot */
+  bottom: -50px; /* Extends the line only up to the second dot */
+  transform: translateX(-50%);
+}
+
+.logo {
+  max-width: 100px;
+  max-height: 100px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.skills {
+  margin-top: 10px;
+}
+
+h6 {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+/* Add padding between the container, positions, and after skills */
+.mt-5.pt-5 {
+  margin-top: 5rem;
+  padding-top: 5rem;
+}
+
+.mt-4 {
+  margin-top: 4rem;
+}
+
+.mt-5 {
+  margin-top: 5rem;
+}
+
+
 /*
     ~~ End Pages#index ~~
 */

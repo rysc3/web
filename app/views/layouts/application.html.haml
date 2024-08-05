@@ -21,6 +21,7 @@
 
     = stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload'
     = javascript_include_tag 'application', 'data-turbo-track': 'reload'
+    = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css', media: 'all'
 
   %body
     %header#main-header
@@ -41,13 +42,13 @@
               %li.nav-item
                 %a.nav-link{:href => "/sc24"} SC24
 
-    .content.flex-fill
+    .content.flex-grow-1
       = yield
 
-    %footer.footer.bg-black.py-4
+    %footer.footer.bg-black
       .container
-        .row
-          .col-md-12
+        .row.justify-content-center
+          .col-md-12.d-flex.justify-content-center
             %ul.favicon-list.list-inline
               %li.favicon-item.list-inline-item
                 %a{:href => "https://www.linkedin.com/in/yourprofile", :target => "_blank"}

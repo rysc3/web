@@ -1,4 +1,59 @@
 %div.container
   %div.row
-    %div.col-12.text-center
-      %h1 Hello, Bootstrap!
+    %div.col.d-flex.flex-column.justify-content-center
+      %h1.text-center Ryan Scherbarth
+
+  %div.row
+    %div.col.d-flex.justify-content-center
+      %ul.favicon-list.list-inline
+        %li.favicon-item.list-inline-item
+          %a{:href => "https://www.linkedin.com/in/yourprofile", :target => "_blank"}
+            %i.fab.fa-linkedin
+        %li.favicon-item.list-inline-item
+          %a{:href => "https://github.com/yourprofile", :target => "_blank"}
+            %i.fab.fa-github
+        %li.favicon-item.list-inline-item
+          %a{:href => "https://twitter.com/yourprofile", :target => "_blank"}
+            %i.fab.fa-twitter
+        %li.favicon-item.list-inline-item
+          %a{:href => "mailto:your.email@example.com"}
+            %i.fas.fa-envelope
+
+  %div.container.mt-5.pt-5
+    %div.row
+      %div.col-md-2.text-center
+        %img{src: asset_path('sandia_labs_logo.png'), alt: "Company Logo", class: "img-fluid logo"}
+      %div.col-md-10
+        %h5 Sandia National Laboratories
+        %p Internship · 1 yr 11 mos
+        %p Albuquerque, New Mexico, United States
+
+    %div.row.position-relative.mt-4
+      %div.col-md-2.text-center.position-relative
+        %div.timeline-dot
+        %div.timeline-line
+      %div.col-md-10
+        %h6 Software Engineer Intern - HPC
+        %p Jan 2024 - Present · 8 mos
+        %p I have transferred to the Performance Engineering team. We work on the design, acquisition, deployment, operation, and optimization of Sandias large-scale scientific HPC clusters and their supporting platforms.
+        %div.skills.mt-3
+          %span.badge.badge-secondary High Performance Computing (HPC)
+          %span.badge.badge-secondary Cloud Computing
+          %span.badge.badge-secondary +1 skill
+
+    %div.row.position-relative.mt-5
+      %div.col-md-2.text-center.position-relative
+        %div.timeline-dot
+      %div.col-md-10
+        %h6 Software Engineer Intern - Full Stack
+        %p Oct 2022 - Jan 2024 · 1 yr 4 mos
+        %p - Fullstack web application developer in Ruby on Rails
+        %p - Year round Software R&D Intern in the Cyber Security & Mission Computing Center.
+        %div.skills.mt-3
+          %span.badge.badge-secondary Git
+          %span.badge.badge-secondary Ruby on Rails
+          %span.badge.badge-secondary +6 skills
+    %div.mt-5
+
+
+  %hr
