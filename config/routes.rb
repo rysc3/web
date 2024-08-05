@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get 'courses', to: 'pages#courses'
   get 'meet', to: 'pages#meet'
 
+  # route for dropbox resume pdf
+  get '/resume', to: redirect('https://www.dropbox.com/scl/fi/gvtppgbtwmum74o1j5a88/Ryan-Scherbarth-Resume.pdf?rlkey=vyygimwhisrypxhrwl948aey5&st=cx3tp0ls&dl=0')
+
   # route for zoom meeting link
   # https://unm.zoom.us/my/ryans
   get '/zoom', to: redirect('https://unm.zoom.us/my/ryans')

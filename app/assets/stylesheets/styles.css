@@ -94,7 +94,7 @@ body {
 /* Logo styles */
 .logo {
   width: 100%;
-  max-height: 100px; /* Maximum height */
+  max-height: 75px; /* Maximum height */
   height: auto;
   object-fit: contain; /* Maintain aspect ratio within bounds */
   margin-bottom: 15px;
@@ -118,7 +118,7 @@ body {
   background-color: #ccc;
   left: 50%;
   top: 10px; /* Aligns the line just below the first dot */
-  bottom: -160px; /* Extends the line only up to the second dot */
+  bottom: -170px; /* Extends the line only up to the second dot */
   transform: translateX(-50%);
 }
 
@@ -153,4 +153,61 @@ p {
   .timeline-line {
     display: none;
   }
+}
+
+.company-name {
+  font-size: 1.5em; /* Increase font size */
+  margin-bottom: 0.5rem; /* Adjust bottom margin */
+}
+
+.job-title {
+  font-weight: bold;
+  margin-bottom: 0.25rem; /* Small margin below job title */
+}
+
+.job-dates {
+  font-style: italic;
+  margin-bottom: 1rem; /* Margin between dates and description */
+}
+
+.job-description {
+  margin-top: 1rem; /* Increase space between dates and description */
+}
+
+/* Meeting container */
+.meeting-container {
+  width: 100%; /* Adjust width as needed */
+  /* max-width: 1500px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Meeting title */
+.meeting-title {
+  font-weight: bold;
+  font-size: 120%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Meeting content */
+.meeting-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Google Calendar iframe */
+.google-calendar {
+  width: 70%; /* 65% width for Google Calendar */
+  border-top-left-radius: 12px; /* Match top left corner radius */
+  border-bottom-left-radius: 12px; /* Match bottom left corner radius */
+}
+
+/* Koalendar iframe */
+.koalendar {
+  width: 30%; /* 35% width for Koalendar */
+  border-top-right-radius: 12px; /* Match top right corner radius */
+  border-bottom-right-radius: 12px; /* Match bottom right corner radius */
 }
