@@ -20,13 +20,14 @@
     %meta{:property => "og:image", :content => "https://ryanscherbarth.com/assets/profile.jpg"}/
 
     = stylesheet_link_tag 'styles', media: 'all'
+    = stylesheet_link_tag 'application', media: 'all'
 
   %body
     %header#main-header
       .container
         %nav.navbar.navbar-expand-lg.navbar-dark.bg-black
           %a.navbar-brand{:href => "#"}
-            %img{src: "app/assets/images/profile.jpg", alt: "Logo"}
+            %img{src: asset_path('profile.jpg'), alt: "Logo"}
           %button.navbar-toggler{"data-toggle" => "collapse", "data-target" => "#navbarNav", "aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation"}
             %span.navbar-toggler-icon
           #navbarNav.collapse.navbar-collapse
