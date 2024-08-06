@@ -208,3 +208,7 @@ p {
   border-top-right-radius: 12px; /* Match top right corner radius */
   border-bottom-right-radius: 12px; /* Match bottom right corner radius */
 }
+
+.underline {
+  text-decoration: underline;
+}
