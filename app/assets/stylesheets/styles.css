@@ -212,3 +212,8 @@ p {
 .underline {
   text-decoration: underline;
 }
+
+.profile-photo {
+  border-radius: 15px;
+  max-height: 100px; /* Adjust this value as needed */
+}
