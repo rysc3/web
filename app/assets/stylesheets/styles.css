@@ -212,3 +212,38 @@ p {
 .underline {
   text-decoration: underline;
 }
+
+/* Begin Hero Section */
+#hero-section {
+  position: relative;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  animation: slideShow 15s infinite;
+  color: white;
+}
+
+.hero-content {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#scroll-down {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.navbar-fixed {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Adjust this based on your design */
+  z-index: 1000;
+}
+/* End Hero Section */

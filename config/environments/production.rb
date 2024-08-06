@@ -9,6 +9,8 @@ Rails.application.configure do
   # Uncomment the line below if you're using Rails credentials or encrypted files
   # config.require_master_key = true
 
+  config.secret_key_base = ENV['SECRET_KEY_BASE'] || 'e11d6f46d635a4b913ad01acc2c4ff83'
+
   # Serve static files from the /public folder (set by default)
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
