@@ -27,8 +27,8 @@
     %header#main-header
       .container
         %nav.navbar.navbar-expand-lg.navbar-dark.bg-black
-          %button.navbar-toggler{"data-bs-toggle" => "collapse", "data-bs-target" => "#navbarNav", "aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation"}
-            %span.navbar-toggler-icon
+          #menu-button.navbar-toggler{"aria-label" => "Toggle side menu"}
+            %i.fas.fa-bars
           #navbarNav.collapse.navbar-collapse.justify-content-center
             %ul.navbar-nav
               %li.nav-item
@@ -41,6 +41,17 @@
                 %a.nav-link{:href => "https://www.dropbox.com/scl/fi/gvtppgbtwmum74o1j5a88/Ryan-Scherbarth-Resume.pdf?rlkey=vyygimwhisrypxhrwl948aey5&st=cx3tp0ls&dl=0", :target => "_blank"} Resume
               %li.nav-item
                 %a.nav-link{:href => "/zoom"} Zoom
+
+    #side-menu
+      .side-menu-content
+        %ul.side-menu-list
+          %li.side-menu-item
+            %a{:href => "/additional-option1"} Additional Option 1
+          %li.side-menu-item
+            %a{:href => "/additional-option2"} Additional Option 2
+          %li.side-menu-item
+            %a{:href => "/additional-option3"} Additional Option 3
+        %button.close-button Close
 
     .content.flex-grow-1
       = yield
@@ -63,4 +74,3 @@
                   %i.fab.fa-stack-overflow
               %li.favicon-item.list-inline-item
                 %a{:href => "mailto:online@ryanscherbarth.com"}
-                  %i.fas.fa-envelope
