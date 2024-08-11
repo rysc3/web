@@ -33,7 +33,7 @@
 
 /* Body styles */
 body {
-  padding-top: 85px; /* Adjust this value based on the height of your navbar */
+  padding-top: 100px; /* Adjust this value based on the height of your navbar */
   background-color: #000000; /* Jet black background */
   color: #ffffff; /* White text */
   margin: 0; /* Remove default margin */
