@@ -1,23 +1,15 @@
 FROM ruby:3.2.0
 
-# Node.js
-RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
-RUN apt-get install -y nodejs
-
-# Yarn 
-RUN npm install -g yarn
-
-# Python 
-RUN apt-get update && apt-get install -y python
+# Node.js and Yarn
+RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
+  && apt-get install -y nodejs \
+  && npm install -g yarn
 
 # Set up working directory
 WORKDIR /app
 
-# Install dependencies
-RUN apt-get update -qq && apt-get install -y nodejs
-
 # Install the correct version of Bundler
-RUN gem install bundler:2.2.33
+RUN gem install bundler:2.4.22
 
 # Copy Gemfile and Gemfile.lock to the container
 COPY Gemfile Gemfile.lock ./
