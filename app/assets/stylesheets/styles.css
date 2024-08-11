@@ -2,6 +2,9 @@
 .offcanvas {
   background-color: #000000; /* Jet black background for offcanvas */
   color: #ffffff; /* White text */
+  width: auto !important;
+  max-width: 100px;
+  width: 100%;
 }
 
 .offcanvas-title {
@@ -10,6 +13,7 @@
 
 .offcanvas-body {
   color: #ffffff; /* Ensure the offcanvas body text is white */
+  text-align: center;
 }
 
 .offcanvas .nav-link {
