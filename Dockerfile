@@ -5,7 +5,10 @@ RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get install -y nodejs
 
 # Yarn 
-# RUN npm install -g yarn@
+RUN npm install -g yarn
+
+# Python 
+RUN apt-get update && apt-get install -y python
 
 # Set up working directory
 WORKDIR /app
