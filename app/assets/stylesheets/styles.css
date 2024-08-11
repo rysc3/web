@@ -4,6 +4,7 @@
   color: #ffffff; /* White text */
   width: auto !important; /* Allow width to be determined by content */
   max-width: 100%; /* Ensure it doesn't exceed the viewport width */
+  text-align: center; /* Center text in offcanvas */
 }
 
 .offcanvas-title {
