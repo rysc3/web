@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get 'about', to: 'pages#about'
   get 'sc24', to: 'pages#sc24'
+  get 'sc23', to: 'pages#sc23'
   get 'courses', to: 'pages#courses'
   get 'meet', to: 'pages#meet'
 
