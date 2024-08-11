@@ -1,3 +1,4 @@
+%h1 Website Setup
 %div
   %p
     My website is made from scratch in Ruby on Rails. The repo for the site can be found
@@ -15,12 +16,19 @@
     which makes it convenient to create git pipelines for deployment, as well as manage the SSL certificates. The domain is managed through
     %a{href: "https://domains.google/", target: "_blank"} google domains.
 
-%div.container.mt-5
-  %div.row
-    %div.col-md-6
-      %div.row.mb-3
-        %img{src: asset_path('server-01.JPG'), alt: "First Image", class: "img-fluid", style: "max-height: 300px; width: 100%; object-fit: cover;"}
-    %div.col-md-6
+%div.container-fluid.pb-2
+  %div.row.g-0
+    %div.col-auto
+      %img{src: asset_path('server-01.JPG'), alt: "First Image", class: "img-fluid aspect-ratio-image"}
+    %div.col.px-3
       %div.text-content
         %p
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Aenean lacinia bibendum nulla sed consectetur.
+          In 2020 apple switched to "M" series CPUs, which use an ARM architecture. For this reason I chose a 2019 macbook pro so that I could still have an x86 based processor and have more freedom with choosing a linux distribution for my server.
+        %p
+          All of the development for my website, as well as most of my coures are done through this server running Ubuntu 20.04. Generally, booting from MacOS to Linux is relatively straightforward.
+
+%div
+  %p
+    One notable issue arose because after installing Ubuntu from a boot drive, you lack many of the drivers necessary for the typical use of a laptop. You then have to connect all of your peripherals and manually install the drivers for your keyboard, trackpad, and wifi card.
+  %p
+    Specifically for my implementation, the necessary wifi card drivers had been depricated in the linux kernel, so I ended up opting to just rely on an ethernet connection at all times.

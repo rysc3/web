@@ -283,3 +283,10 @@ p {
   margin: 0;
   padding: 0;
 }
+
+.aspect-ratio-image {
+  width: 100%; /* Full width of the container */
+  height: auto; /* Maintain the height automatically to preserve the aspect ratio */
+  max-height: 300px; /* Optional: Limit the maximum height if desired */
+  object-fit: contain; /* Ensure the image fits within the container without distortion */
+}
