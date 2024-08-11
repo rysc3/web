@@ -22,56 +22,47 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload'
     = javascript_include_tag 'application', 'data-turbo-track': 'reload'
     = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css', media: 'all'
+    = stylesheet_link_tag 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css', media: 'all'
+    = javascript_include_tag 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js', defer: true
 
   %body
-    %header#main-header
-      .container
-        %nav.navbar.navbar-expand-lg.navbar-dark.bg-black
-          #menu-button.navbar-toggler{"aria-label" => "Toggle side menu"}
-            %i.fas.fa-bars
-          #navbarNav.collapse.navbar-collapse.justify-content-center
-            %ul.navbar-nav
-              %li.nav-item
-                %a.nav-link{:href => "/"} Home
-              %li.nav-item
-                %a.nav-link{:href => "/courses"} Courses
-              %li.nav-item
-                %a.nav-link{:href => "/sc24"} SC24
-              %li.nav-item
-                %a.nav-link{:href => "https://www.dropbox.com/scl/fi/gvtppgbtwmum74o1j5a88/Ryan-Scherbarth-Resume.pdf?rlkey=vyygimwhisrypxhrwl948aey5&st=cx3tp0ls&dl=0", :target => "_blank"} Resume
-              %li.nav-item
-                %a.nav-link{:href => "/zoom"} Zoom
+    .container-fluid.bg-black.text-white.min-vh-100.p-0
+      %header#main-header
+        .container
+          %nav.navbar.navbar-expand-lg.navbar-dark.bg-black
+            %button.navbar-toggler{"type" => "button", "data-bs-toggle" => "collapse", "data-bs-target" => "#navbarNav", "aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation"}
+              %span.navbar-toggler-icon
+            #navbarNav.collapse.navbar-collapse.justify-content-center
+              %ul.navbar-nav
+                %li.nav-item
+                  %a.nav-link{:href => "/"} Home
+                %li.nav-item
+                  %a.nav-link{:href => "/courses"} Courses
+                %li.nav-item
+                  %a.nav-link{:href => "/sc24"} SC24
+                %li.nav-item
+                  %a.nav-link{:href => "https://www.dropbox.com/scl/fi/gvtppgbtwmum74o1j5a88/Ryan-Scherbarth-Resume.pdf?rlkey=vyygimwhisrypxhrwl948aey5&st=cx3tp0ls&dl=0", :target => "_blank"} Resume
+                %li.nav-item
+                  %a.nav-link{:href => "/zoom"} Zoom
 
-    #side-menu
-      .side-menu-content
-        %ul.side-menu-list
-          %li.side-menu-item
-            %a{:href => "/additional-option1"} Additional Option 1
-          %li.side-menu-item
-            %a{:href => "/additional-option2"} Additional Option 2
-          %li.side-menu-item
-            %a{:href => "/additional-option3"} Additional Option 3
-        %button.close-button Close
+      .content.flex-grow-1
+        = yield
 
-    .content.flex-grow-1
-      = yield
+      %hr
 
-    %hr
-
-    %footer.footer.bg-black
-      .container
-        .row.justify-content-center
-          .col-md-12.d-flex.justify-content-center
-            %ul.favicon-list.list-inline
-              %li.favicon-item.list-inline-item
-                %a{:href => "https://www.linkedin.com/in/ryanscherbarth/", :target => "_blank"}
-                  %i.fab.fa-linkedin
-              %li.favicon-item.list-inline-item
-                %a{:href => "https://github.com/rysc3", :target => "_blank"}
-                  %i.fab.fa-github
-              %li.favicon-item.list-inline-item
-                %a{:href => "https://stackoverflow.com/users/20306478/ry-sch", :target => "_blank"}
-                  %i.fab.fa-stack-overflow
-              %li.favicon-item.list-inline-item
-                %a{:href => "mailto:online@ryanscherbarth.com"}
-                  %i.fas.fa-envelope
+      %footer.footer
+        .container
+          .row.justify-content-center
+            .col-md-12.d-flex.justify-content-center
+              %ul.favicon-list.list-inline
+                %li.favicon-item.list-inline-item
+                  %a{:href => "https://www.linkedin.com/in/ryanscherbarth/", :target => "_blank"}
+                    %i.fab.fa-linkedin
+                %li.favicon-item.list-inline-item
+                  %a{:href => "https://github.com/rysc3", :target => "_blank"}
+                    %i.fab.fa-github
+                %li.favicon-item.list-inline-item
+                  %a{:href => "https://stackoverflow.com/users/20306478/ry-sch", :target => "_blank"}
+                    %i.fab.fa-stack-overflow
+                %li.favicon-item.list-inline-item
+                  %a{:href => "mailto:online@ryanscherbarth.com"}
