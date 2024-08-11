@@ -55,22 +55,8 @@
             %h1.text-center
               %a.custom-link{:href => "/"} Ryan Scherbarth
 
-        %div.row
-          %div.col.d-flex.justify-content-center
-            %ul.favicon-list.list-inline
-              %li.favicon-item.list-inline-item
-                %a{:href => "https://www.linkedin.com/in/ryanscherbarth/", :target => "_blank"}
-                  %i.fab.fa-linkedin
-              %li.favicon-item.list-inline-item
-                %a{:href => "https://github.com/rysc3", :target => "_blank"}
-                  %i.fab.fa-github
-              %li.favicon-item.list-inline-item
-                %a{:href => "https://stackoverflow.com/users/20306478/ry-sch", :target => "_blank"}
-                  %i.fab.fa-stack-overflow
-              %li.favicon-item.list-inline-item
-                %a{:href => "mailto:online@ryanscherbarth.com"}
-                  %i.fas.fa-envelope
-      = yield
+      %div.pt-4
+        = yield
 
     %hr
 

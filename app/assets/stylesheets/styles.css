@@ -262,3 +262,17 @@ p {
 .custom-link:hover {
   color: #cccccc; /* Slightly lighter on hover */
 }
+
+.favicon-container {
+  display: flex;
+  justify-content: center;
+  width: 100%; /* Make sure the container spans the full width of its parent */
+}
+
+.favicon-list {
+  display: flex;
+  gap: 15px;
+  justify-content: center; /* Center the favicons */
+  margin: 0;
+  padding: 0;
+}

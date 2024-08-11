@@ -1,7 +1,24 @@
 %div.row
-  %div.col-md-4
+  %div.col-md-4.d-flex.flex-column.align-items-center
     .profile-picture
       %img{src: asset_path('profile.jpg'), alt: "Profile Photo", class: "img-fluid"}
+
+    / Favicon container below the image, centered
+    %div.favicon-container.mt-3.d-flex.justify-content-center
+      %ul.favicon-list.list-inline.text-center
+        %li.favicon-item.list-inline-item
+          %a{href: "https://www.linkedin.com/in/ryanscherbarth/", target: "_blank"}
+            %i.fab.fa-linkedin
+        %li.favicon-item.list-inline-item
+          %a{href: "https://github.com/rysc3", target: "_blank"}
+            %i.fab.fa-github
+        %li.favicon-item.list-inline-item
+          %a{href: "https://stackoverflow.com/users/20306478/ry-sch", target: "_blank"}
+            %i.fab.fa-stack-overflow
+        %li.favicon-item.list-inline-item
+          %a{href: "mailto:online@ryanscherbarth.com"}
+            %i.fas.fa-envelope
+
   %div.col-md-8.d-flex.align-items-center
     %div.text-center
       %p
@@ -19,8 +36,3 @@
       %p.pt-2
         %b.underline
           %a{href: "/meet"} You can schedule a meeting with me here.
-
-%div.row.mt-3
-  %div.col-md-12
-    %p
-      This is the third paragraph that is below the image, in a new row.
