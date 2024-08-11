@@ -28,7 +28,7 @@
   %body
     %nav.navbar.fixed-top
       .container-fluid
-        %a.navbar-brand{:href => "/"} Ryan Scherbarth
+        %a.navbar-brand{:href => "/"}
         %button.navbar-toggler.ms-auto{"aria-controls" => "offcanvasNavbar", "aria-label" => "Toggle navigation", "data-bs-target" => "#offcanvasNavbar", "data-bs-toggle" => "offcanvas", :type => "button"}
           %span.navbar-toggler-icon
         #offcanvasNavbar.offcanvas.offcanvas-end{"aria-labelledby" => "offcanvasNavbarLabel", :tabindex => "-1"}
@@ -44,11 +44,32 @@
               %li.nav-item
                 %a.nav-link{:href => "/sc24"} SC24
               %li.nav-item
-                %a.nav-link{:href => "https://www.dropbox.com/scl/fi/gvtppgbtwmum74o1j5a88/Ryan-Scherbarth-Resume.pdf?rlkey=vyygimwhisrypxhrwl948aey5&st=cx3tp0ls&dl=0", :target => "_blank"} Resume
+                %a.nav-link{:href => "/resume"} Resume
               %li.nav-item
                 %a.nav-link{:href => "/zoom"} Zoom
 
     .content.flex-grow-1
+      %div.container
+        %div.row
+          %div.col.d-flex.flex-column.justify-content-center
+            %h1.text-center
+              %a.custom-link{:href => "/"} Ryan Scherbarth
+
+        %div.row
+          %div.col.d-flex.justify-content-center
+            %ul.favicon-list.list-inline
+              %li.favicon-item.list-inline-item
+                %a{:href => "https://www.linkedin.com/in/ryanscherbarth/", :target => "_blank"}
+                  %i.fab.fa-linkedin
+              %li.favicon-item.list-inline-item
+                %a{:href => "https://github.com/rysc3", :target => "_blank"}
+                  %i.fab.fa-github
+              %li.favicon-item.list-inline-item
+                %a{:href => "https://stackoverflow.com/users/20306478/ry-sch", :target => "_blank"}
+                  %i.fab.fa-stack-overflow
+              %li.favicon-item.list-inline-item
+                %a{:href => "mailto:online@ryanscherbarth.com"}
+                  %i.fas.fa-envelope
       = yield
 
     %hr

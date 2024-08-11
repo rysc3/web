@@ -241,3 +241,15 @@ p {
 .offcanvas-body .nav-item {
   margin-bottom: 15px;
 }
+
+/* Custom styles for the specific "Ryan Scherbarth" link */
+.custom-link {
+  color: inherit; /* Inherit color from surrounding text */
+  font-family: inherit; /* Inherit font from surrounding text */
+  font-weight: inherit; /* Inherit font weight */
+  text-decoration: none; /* Remove underline */
+}
+
+.custom-link:hover {
+  color: #cccccc; /* Slightly lighter on hover */
+}
