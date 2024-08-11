@@ -1,9 +1,9 @@
 /* Navbar styles */
 .navbar {
   display: flex;
-  justify-content: center; /* Center the entire navbar content */
-  align-items: center; /* Vertically center items */
-  padding: 35px 0; /* Add some padding for spacing */
+  justify-content: center;
+  align-items: center;
+  padding: 25px 0; /* Adjust the padding to control the height */
   background-color: #000000; /* Jet black background */
 }
 
@@ -54,10 +54,13 @@
 
 /* Body styles */
 body {
+  padding-top: 85px; /* Adjust this value based on the height of your navbar */
   background-color: #000000; /* Jet black background */
   color: #ffffff; /* White text */
   margin: 0; /* Remove default margin */
-  padding: 0 25px 50px; /* Add bottom padding to ensure space for the footer */
+  padding-left: 25px; /* Adjust side padding if needed */
+  padding-right: 25px; /* Adjust side padding if needed */
+  padding-bottom: 50px; /* Add bottom padding to ensure space for the footer */
   min-height: 100vh;
   font-family: 'FiraCode', sans-serif; /* Custom font */
 }
