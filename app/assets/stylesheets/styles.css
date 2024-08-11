@@ -4,6 +4,7 @@
   justify-content: center; /* Center the entire navbar content */
   align-items: center; /* Vertically center items */
   padding: 35px 0; /* Add some padding for spacing */
+  background-color: #000000; /* Jet black background */
 }
 
 .navbar-nav {
@@ -18,7 +19,7 @@
 }
 
 .navbar-nav .nav-link {
-  color: #ffffff; /* White text */
+  color: #ffffff !important; /* White text */
   font-weight: bold;
   text-transform: uppercase;
   font-size: 14px;
@@ -26,7 +27,29 @@
 }
 
 .navbar-nav .nav-link:hover {
-  color: #cccccc; /* Slightly lighter on hover */
+  color: #cccccc !important; /* Slightly lighter on hover */
+}
+
+/* Offcanvas styles */
+.offcanvas {
+  background-color: #000000; /* Jet black background for offcanvas */
+  color: #ffffff; /* White text */
+}
+
+.offcanvas-title {
+  color: #ffffff; /* Ensure the offcanvas title is white */
+}
+
+.offcanvas-body {
+  color: #ffffff; /* Ensure the offcanvas body text is white */
+}
+
+.offcanvas .nav-link {
+  color: #ffffff !important; /* White text for offcanvas links */
+}
+
+.offcanvas .nav-link:hover {
+  color: #cccccc !important; /* Slightly lighter on hover in offcanvas */
 }
 
 /* Body styles */
@@ -147,7 +170,7 @@ p {
   .text-center {
     text-align: center;
   }
-  .timeline-dot{
+  .timeline-dot {
     display: none !important; /* Hide timeline elements on small screens */
   }
 }
@@ -173,8 +196,7 @@ p {
 
 /* Meeting container */
 .meeting-container {
-  width: 100%; /* Adjust width as needed */
-  /* max-width: 1500px; */
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -215,51 +237,5 @@ p {
 
 .profile-photo {
   border-radius: 15px;
-  max-height: 100px; /* Adjust this value as needed */
-}
-
-#menu-button {
-  margin-left: auto;
-  color: #ffffff;
-  font-size: 24px;
-  background: none;
-  border: none;
-}
-
-/* Ensure the navbar content centers and the button stays on the right */
-.navbar {
-  display: flex;
-  align-items: center;
-  padding: 35px 0; /* Add some padding for spacing */
-}
-
-.navbar-nav {
-  display: flex;
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-  flex: 1; /* Ensure the nav items occupy the full available space */
-  justify-content: center; /* Center the nav items */
-}
-
-/* Additional Navbar Styles */
-.navbar-nav .nav-item {
-  margin-right: 65px; /* Space between items */
-}
-
-.navbar-nav .nav-link {
-  color: #ffffff; /* White text */
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 14px;
-  text-decoration: none;
-}
-
-.navbar-nav .nav-link:hover {
-  color: #cccccc; /* Slightly lighter on hover */
-}
-
-/* Force the menu button to always be visible */
-.navbar-toggler {
-  display: block !important;
+  max-height: 100px;
 }
