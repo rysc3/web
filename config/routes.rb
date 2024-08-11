@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'sc23', to: 'pages#sc23'
   get 'courses', to: 'pages#courses'
   get 'meet', to: 'pages#meet'
+  get 'web', to: 'pages#web'
 
   # route for dropbox resume pdf
   # get '/resume', to: redirect('https://www.dropbox.com/scl/fi/gvtppgbtwmum74o1j5a88/Ryan-Scherbarth-Resume.pdf?rlkey=vyygimwhisrypxhrwl948aey5&st=cx3tp0ls&dl=0')
