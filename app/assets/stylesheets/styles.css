@@ -2,9 +2,8 @@
 .offcanvas {
   background-color: #000000; /* Jet black background for offcanvas */
   color: #ffffff; /* White text */
-  width: auto !important;
-  max-width: 100px;
-  width: 100%;
+  width: auto !important; /* Allow width to be determined by content */
+  max-width: 100%; /* Ensure it doesn't exceed the viewport width */
 }
 
 .offcanvas-title {
@@ -18,11 +17,18 @@
 
 .offcanvas .nav-link {
   color: #ffffff !important; /* White text for offcanvas links */
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 .offcanvas .nav-link:hover {
   color: #cccccc !important; /* Slightly lighter on hover in offcanvas */
 }
+
+/* Ensure Proper Spacing in the Offcanvas Menu */
+.offcanvas-body .nav-item {
+  margin-bottom: 15px;
+}
+
 
 /* Body styles */
 body {
