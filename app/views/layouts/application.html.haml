@@ -28,20 +28,8 @@
   %body
     %nav.navbar.fixed-top
       .container-fluid
-        %a.navbar-brand{:href => "/"}
-        %div#navbarNav.collapse.navbar-collapse.justify-content-center
-          %ul.navbar-nav
-            %li.nav-item
-              %a.nav-link.active{"aria-current" => "page", :href => "/"} Home
-            %li.nav-item
-              %a.nav-link{:href => "/courses"} Courses
-            %li.nav-item
-              %a.nav-link{:href => "/sc24"} SC24
-            %li.nav-item
-              %a.nav-link{:href => "https://www.dropbox.com/scl/fi/gvtppgbtwmum74o1j5a88/Ryan-Scherbarth-Resume.pdf?rlkey=vyygimwhisrypxhrwl948aey5&st=cx3tp0ls&dl=0", :target => "_blank"} Resume
-            %li.nav-item
-              %a.nav-link{:href => "/zoom"} Zoom
-        %button.navbar-toggler{"aria-controls" => "offcanvasNavbar", "aria-label" => "Toggle navigation", "data-bs-target" => "#offcanvasNavbar", "data-bs-toggle" => "offcanvas", :type => "button"}
+        %a.navbar-brand{:href => "/"} Ryan Scherbarth
+        %button.navbar-toggler.ms-auto{"aria-controls" => "offcanvasNavbar", "aria-label" => "Toggle navigation", "data-bs-target" => "#offcanvasNavbar", "data-bs-toggle" => "offcanvas", :type => "button"}
           %span.navbar-toggler-icon
         #offcanvasNavbar.offcanvas.offcanvas-end{"aria-labelledby" => "offcanvasNavbarLabel", :tabindex => "-1"}
           .offcanvas-header
@@ -59,7 +47,6 @@
                 %a.nav-link{:href => "https://www.dropbox.com/scl/fi/gvtppgbtwmum74o1j5a88/Ryan-Scherbarth-Resume.pdf?rlkey=vyygimwhisrypxhrwl948aey5&st=cx3tp0ls&dl=0", :target => "_blank"} Resume
               %li.nav-item
                 %a.nav-link{:href => "/zoom"} Zoom
-
 
     .content.flex-grow-1
       = yield
