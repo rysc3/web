@@ -19,7 +19,7 @@ Rails.application.configure do
 
   config.assets.compile = false
 
-  config.assets.precompile += ['*.js', '*.css', '*.jpg', '*.jpeg', '*.png', '*.gif', '*.svg', '*.ico']
+  # config.assets.precompile += ['*.js', '*.css', '*.jpg', '*.jpeg', '*.png', '*.gif', '*.svg', '*.ico']
 
   # Enable SSL for secure connections
   # config.force_ssl = true
