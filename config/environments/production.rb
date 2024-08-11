@@ -17,7 +17,8 @@ Rails.application.configure do
   precompile_logger.formatter = config.log_formatter
   config.assets.logger = precompile_logger
 
-  config.assets.compile = false
+  config.assets.initialize_on_precompile = false
+  config.assets.enabled = false
 
   # config.assets.precompile += ['*.js', '*.css', '*.jpg', '*.jpeg', '*.png', '*.gif', '*.svg', '*.ico']
 
