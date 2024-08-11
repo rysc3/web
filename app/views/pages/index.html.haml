@@ -1,1 +1,27 @@
-%h2 index
+%div.row
+  %div.col-md-4
+    .profile-picture
+      %img{src: asset_path('profile.jpg'), alt: "Profile Photo", class: "img-fluid"}
+  %div.col-md-8.d-flex.align-items-center
+    %div.text-center
+      %p
+        I am a senior at the University of New Mexico studying Computer Science & Math, with a
+        %b.underline graduation date of December 2024.
+      %p.pt-2
+        I am currently working two simultaneous internships at Sandia National Laboratories in the High Performance Computing division, and at the Center for Advanced Research Computing as an HPC Systems Specialist. View my resume
+        %a{href: "/resume"} here.
+      %p.pt-2
+        I am also involved in a number of different extracurricular competitions, including managing the UNM HPC team in the SC23 & SC24 HPC Competitions, and working as a student volunteer at the PEARC24 HPC Conference. View more
+        %a{href: "/extra"} here.
+      %p.pt-2
+        My website is made in Ruby on Rails, source code can be found
+        %a{href: "https://github.com/rysc3/web"} here.
+      %p.pt-2
+        %b.underline
+          You can schedule a meeting with me
+          %a{href: "/meet"} here.
+
+%div.row.mt-3
+  %div.col-md-12
+    %p
+      This is the third paragraph that is below the image, in a new row.

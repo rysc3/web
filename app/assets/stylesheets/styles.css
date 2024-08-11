@@ -42,7 +42,12 @@ body {
   width: 100%; /* Ensure the image uses up the full width of its container */
   height: auto; /* Maintain aspect ratio */
   border-radius: 15px; /* Rounded corners */
+  max-width: 500px; /* Maximum width */
+  max-height: 500px; /* Maximum height */
+  object-fit: cover; /* Ensures the image covers the container while maintaining aspect ratio */
+  aspect-ratio: 1 / 1; /* Maintain a square aspect ratio */
 }
+
 
 /* Text content styles */
 .text-content {
