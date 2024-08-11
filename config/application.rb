@@ -18,5 +18,5 @@ module Web
 end
 
 # Precompile all assets in the app/assets directory
-Rails.application.config.assets.precompile += Dir.glob('app/assets/**/*').reject { |f| File.directory?(f) }
-Rails.application.config.assets.precompile += %w( *.ttf *.woff *.svg *.eot )
+# Rails.application.config.assets.precompile += Dir.glob('app/assets/**/*').reject { |f| File.directory?(f) }
+# Rails.application.config.assets.precompile += %w( *.ttf *.woff *.svg *.eot )
