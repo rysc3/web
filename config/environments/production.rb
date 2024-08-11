@@ -6,13 +6,20 @@ Rails.application.configure do
 
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
-  config.assets.initialize_on_precompile = false
-  config.assets.enabled = false
+  # Add file types to precompile in assets
+  precompile_logger = ActiveSupport::Logger.new(STDOUT)
+  precompile_logger.formatter = config.log_formatter
+  config.assets.logger = precompile_logger
+
   config.assets.compile = false
-  config.assets.digest = true
+
+  config.assets.precompile += ['*.js', '*.css', '*.jpg', '*.jpeg', '*.png', '*.gif', '*.svg', '*.ico']
+
+  # Enable SSL for secure connections
+  # config.force_ssl = true
 
   config.log_level = :info
-  config.log_tags = [:request_id]
+  config.log_tags = [ :request_id ]
 
   config.i18n.fallbacks = true
   config.active_support.deprecation = :notify
