@@ -29,6 +29,9 @@
     %nav.navbar.fixed-top
       .container-fluid
         %a.navbar-brand{:href => "/"}
+          %div.col.d-flex.flex-column.justify-content-center
+            %h1.text-center
+              %a.custom-link{:href => "/"} Ryan Scherbarth
         %button.navbar-toggler.ms-auto{"aria-controls" => "offcanvasNavbar", "aria-label" => "Toggle navigation", "data-bs-target" => "#offcanvasNavbar", "data-bs-toggle" => "offcanvas", :type => "button"}
           %span.navbar-toggler-icon
         #offcanvasNavbar.offcanvas.offcanvas-end{"aria-labelledby" => "offcanvasNavbarLabel", :tabindex => "-1"}
@@ -51,12 +54,6 @@
                 %a.nav-link{:href => "/sc24"} SC24
 
     .content.flex-grow-1
-      %div.container
-        %div.row
-          %div.col.d-flex.flex-column.justify-content-center
-            %h1.text-center
-              %a.custom-link{:href => "/"} Ryan Scherbarth
-
       %div.pt-4
         = yield
 
