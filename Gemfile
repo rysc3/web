@@ -13,7 +13,8 @@ gem 'sqlite3', '~> 1.4'
 gem 'sass-rails', '>= 6'
 
 # JavaScript and asset pipeline
-gem 'webpacker', '>= 4.0'
+# gem 'webpacker', '>= 4.0'
+gem 'jsbundling-rails'
 gem 'turbolinks', '~> 5'
 
 # API building and JSON rendering
