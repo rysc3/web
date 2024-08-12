@@ -3,8 +3,7 @@ FROM ruby:3.2.0
 # Node.js and Yarn
 RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
   && apt-get install -y nodejs \
-  && npm install -g yarn \
-  && yarn install webpack-cli
+  && npm install -g yarn
 
 # Set up working directory
 WORKDIR /app
@@ -14,6 +13,9 @@ RUN gem install bundler:2.4.22
 
 # Copy Gemfile and Gemfile.lock to the container
 COPY Gemfile Gemfile.lock ./
+
+# Install dependencies 
+RUN yarn install
 
 # Install gems
 RUN bundle install --jobs 4 --retry 3
