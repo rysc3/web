@@ -3,14 +3,17 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "5",
+    "sass": "^1.77.8",
     "turbolinks": "^5.2.0",
     "webpack": "^5.93.0",
-    "sass": "^1.77.8",
     "webpack-dev-server": "^4.15.1"
   },
   "version": "0.1.0",
   "engines": {
     "node": "14.x",
     "yarn": "1.x"
+  },
+  "devDependencies": {
+    "webpack-cli": "^5.1.4"
   }
 }
