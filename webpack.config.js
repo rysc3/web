@@ -7,6 +7,10 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'public', 'packs')
   },
+  resolve: {
+    fallback: {
+      fs: false
+  },
   module: {
     rules: [
       {
@@ -21,11 +25,5 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
     ],
-  },
-  // Adjust the node configuration
-  node: {
-    __dirname: false,
-    __filename: false,
-    global: true,
   },
 };
