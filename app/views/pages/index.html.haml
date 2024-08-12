@@ -1,7 +1,23 @@
 %div.row
   %div.col-md-4.d-flex.flex-column.align-items-center
     .profile-picture
-      %img{src: asset_path('profile.jpg'), alt: "Profile Photo", class: "img-fluid"}
+      #carouselProfile.carousel.slide.carousel-fade{"data-bs-ride" => "carousel"}
+        .carousel-indicators
+          %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselProfile", :type => "button"}
+          %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselProfile", :type => "button"}
+          %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselProfile", :type => "button"}
+          %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselProfile", :type => "button"}
+        .carousel-inner
+          .carousel-item.active
+            %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('Profile-01.jpg')}/
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('Profile-02.jpeg')}/
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('Profile-03.jpeg')}/
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('Profile-04.jpeg')}/
+
+
 
     / Favicon container below the image, centered
     %div.favicon-container.mt-3.d-flex.justify-content-center
