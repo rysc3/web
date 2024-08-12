@@ -181,40 +181,53 @@ p {
 }
 
 /* Meeting container */
-.meeting-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* Default styles for larger screens */
+.google-calendar {
+  width: 70%;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
 }
 
-/* Meeting title */
-.meeting-title {
-  font-weight: bold;
-  font-size: 120%;
-  text-align: center;
-  margin-bottom: 20px;
+.koalendar {
+  width: 30%;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 
-/* Meeting content */
 .meeting-content {
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
 
-/* Google Calendar iframe */
-.google-calendar {
-  width: 70%; /* 65% width for Google Calendar */
-  border-top-left-radius: 12px; /* Match top left corner radius */
-  border-bottom-left-radius: 12px; /* Match bottom left corner radius */
-}
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+  .meeting-content {
+    flex-direction: column;
+    align-items: center;
+  }
 
-/* Koalendar iframe */
-.koalendar {
-  width: 30%; /* 35% width for Koalendar */
-  border-top-right-radius: 12px; /* Match top right corner radius */
-  border-bottom-right-radius: 12px; /* Match bottom right corner radius */
+  .google-calendar{
+    width: 100%;
+    height: 750px;
+  }
+
+  .koalendar {
+    width: 100%;
+    height: 600px;
+  }
+
+  .calendar-wrapper {
+    margin-bottom: 20px; /* Add some space between calendar and Koalendar */
+  }
+
+  .google-calendar {
+    border-radius: 12px 12px 0 0; /* Top rounded corners */
+  }
+
+  .koalendar {
+    border-radius: 0 0 12px 12px; /* Bottom rounded corners */
+  }
 }
 
 .underline {
