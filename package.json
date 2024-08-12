@@ -4,7 +4,8 @@
   "dependencies": {
     "@rails/webpacker": "5",
     "sass": "^1.77.8",
-    "turbolinks": "^5.2.0"
+    "turbolinks": "^5.2.0",
+    "esbuild": "^0.14.0"
   },
   "version": "0.1.0",
   "engines": {
