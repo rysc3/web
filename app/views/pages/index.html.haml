@@ -117,6 +117,31 @@
 %div.mt-5
   %div.text-center
     %h3
+      %a{href: "https://www.athlinks.com/event/35398/results/Event/1063165/Course/2408972/Bib/54", :target => "_blank"} Duke City Marathon (10/2023)
+
+  %div.d-flex.justify-content-center
+    #carouseldukeFull.carousel.slide{style: "width: 95%; max-width: 1500px;"}
+      .carousel-indicators
+        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouseldukeFull", :type => "button"}
+        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouseldukeFull", :type => "button"}
+        %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouseldukeFull", :type => "button"}
+      .carousel-inner
+        .carousel-item.active
+          %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('DukeFull-01.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('DukeFull-03.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('DukeFull-02.png')}
+      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouseldukeFull", :type => "button"}
+        %span.carousel-control-prev-icon{"aria-hidden" => "true"}
+        %span.visually-hidden Previous
+      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouseldukeFull", :type => "button"}
+        %span.carousel-control-next-icon{"aria-hidden" => "true"}
+        %span.visually-hidden Next
+
+%div.mt-5
+  %div.text-center
+    %h3
       %a{href: "https://www.athlinks.com/event/35398/results/Event/1032202/Course/2296577/Bib/1417", :target => "_blank"} Duke City Half Marathon (10/2022)
 
   %div.d-flex.justify-content-center
