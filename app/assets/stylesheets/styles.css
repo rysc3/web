@@ -310,3 +310,9 @@ p {
   height: auto;
   aspect-ratio: 16 / 9;
 }
+
+.sc-poster {
+  width: 95%;
+  max-width: 95vw; /* Ensures it doesn't exceed 95% of the viewport width */
+  height: auto; /* Maintains the aspect ratio */
+}
