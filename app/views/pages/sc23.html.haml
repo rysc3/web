@@ -2,3 +2,46 @@
   %img.sc-poster{src: asset_path('SC23Poster.jpg'), alt: 'SC23'}
   %p
     %a{href: "https://www.dropbox.com/scl/fi/yl7cvamao76y4biv2hiky/SC23Poster.pdf?rlkey=wefdxtu024bplxmh1uxn12ihy&st=1dh4posj&dl=0", target: "_blank"} view pdf
+
+
+%div.mt-5
+  %div.text-center
+    %h3 SC23 Photos
+
+  %div.d-flex.justify-content-center
+    #carouselSC23.carousel.slide{style: "width: 95%; max-width: 1500px;"}
+      .carousel-indicators
+        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC23", :type => "button"}
+        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC23", :type => "button"}
+        %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselSC23", :type => "button"}
+        %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselSC23", :type => "button"}
+        %button{"aria-label" => "Slide 5", "data-bs-slide-to" => "4", "data-bs-target" => "#carouselSC23", :type => "button"}
+        %button{"aria-label" => "Slide 6", "data-bs-slide-to" => "5", "data-bs-target" => "#carouselSC23", :type => "button"}
+        %button{"aria-label" => "Slide 7", "data-bs-slide-to" => "6", "data-bs-target" => "#carouselSC23", :type => "button"}
+        %button{"aria-label" => "Slide 8", "data-bs-slide-to" => "7", "data-bs-target" => "#carouselSC23", :type => "button"}
+        %button{"aria-label" => "Slide 9", "data-bs-slide-to" => "8", "data-bs-target" => "#carouselSC23", :type => "button"}
+      .carousel-inner
+        .carousel-item.active
+          %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('SC23-04.jpg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC23-01.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('SC23-02.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('SC23-03.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 5", src: asset_path('SC23-06.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 6", src: asset_path('SC23-05.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 7", src: asset_path('SC23-07.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 8", src: asset_path('SC23-08.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 9", src: asset_path('SC23-09.jpeg')}
+      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC23", :type => "button"}
+        %span.carousel-control-prev-icon{"aria-hidden" => "true"}
+        %span.visually-hidden Previous
+      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSC23", :type => "button"}
+        %span.carousel-control-next-icon{"aria-hidden" => "true"}
+        %span.visually-hidden Next
