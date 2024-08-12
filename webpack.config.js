@@ -1,8 +1,10 @@
+const path = require('path');
+
 module.exports = {
-  entry: './app/javascript/packs/application.js',
+  entry: './app/assets/javascripts/application.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'public', 'packs'),
+    path: path.resolve(__dirname, 'public', 'packs')
   },
   module: {
     rules: [
@@ -18,5 +20,11 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
     ],
+  },
+  // Adjust the node configuration
+  node: {
+    __dirname: false,
+    __filename: false,
+    global: true,
   },
 };

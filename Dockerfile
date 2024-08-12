@@ -1,3 +1,5 @@
+FROM ruby:3.2.0
+
 # Install Node.js and Yarn
 RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
   && apt-get install -y nodejs \
