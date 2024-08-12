@@ -316,3 +316,26 @@ p {
   max-width: 95vw; /* Ensures it doesn't exceed 95% of the viewport width */
   height: auto; /* Maintains the aspect ratio */
 }
+
+.carousel-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: opacity 0.6s ease-in-out; /* Adjust the duration to match the fade effect */
+}
+
+.carousel-item.active {
+  position: relative;
+  z-index: 2;
+  opacity: 1;
+}
+
+.carousel-item-next.carousel-item-left,
+.carousel-item-prev.carousel-item-right,
+.carousel-item-next.carousel-item-right,
+.carousel-item-prev.carousel-item-left {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+}
