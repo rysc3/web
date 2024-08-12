@@ -125,6 +125,48 @@
 
 %div.mt-5
   %div.text-center
+    %h3 Setup Photos
+
+  %div.d-flex.justify-content-center
+    #carouselSetup.carousel.slide{style: "width: 95%; max-width: 1500px;"}
+      .carousel-indicators
+        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSetup", :type => "button"}
+        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSetup", :type => "button"}
+        %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselSetup", :type => "button"}
+        %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselSetup", :type => "button"}
+        %button{"aria-label" => "Slide 5", "data-bs-slide-to" => "4", "data-bs-target" => "#carouselSetup", :type => "button"}
+        %button{"aria-label" => "Slide 6", "data-bs-slide-to" => "5", "data-bs-target" => "#carouselSetup", :type => "button"}
+        %button{"aria-label" => "Slide 7", "data-bs-slide-to" => "6", "data-bs-target" => "#carouselSetup", :type => "button"}
+        %button{"aria-label" => "Slide 8", "data-bs-slide-to" => "7", "data-bs-target" => "#carouselSetup", :type => "button"}
+        %button{"aria-label" => "Slide 9", "data-bs-slide-to" => "8", "data-bs-target" => "#carouselSetup", :type => "button"}
+      .carousel-inner
+        .carousel-item.active
+          %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('Setup-01.jpg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('Setup-05.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('Setup-06.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('Setup-08.jpg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 5", src: asset_path('Setup-09.jpg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 6", src: asset_path('Setup-07.jpg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 7", src: asset_path('Setup-02.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 8", src: asset_path('Setup-03.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 9", src: asset_path('Setup-04.jpeg')}
+      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSetup", :type => "button"}
+        %span.carousel-control-prev-icon{"aria-hidden" => "true"}
+        %span.visually-hidden Previous
+      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSetup", :type => "button"}
+        %span.carousel-control-next-icon{"aria-hidden" => "true"}
+        %span.visually-hidden Next
+
+%div.mt-5
+  %div.text-center
     %h3
       %a{href: "https://www.athlinks.com/event/35398/results/Event/1063165/Course/2408972/Bib/54", :target => "_blank"} Duke City Marathon (10/2023)
 
@@ -140,7 +182,7 @@
         .carousel-item
           %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('DukeFull-03.jpeg')}
         .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('DukeFull-02.png')}
+          %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('DukeFull-02.png')}
       %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouseldukeFull", :type => "button"}
         %span.carousel-control-prev-icon{"aria-hidden" => "true"}
         %span.visually-hidden Previous
@@ -165,7 +207,7 @@
         .carousel-item
           %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('DukeHalf-03.jpg')}
         .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('DukeHalf-01.png')}
+          %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('DukeHalf-01.png')}
       %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselDukeHalf", :type => "button"}
         %span.carousel-control-prev-icon{"aria-hidden" => "true"}
         %span.visually-hidden Previous
