@@ -87,13 +87,22 @@
         %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselExampleCaptions", :type => "button"}
         %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselExampleCaptions", :type => "button"}
         %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselExampleCaptions", :type => "button"}
+        %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselExampleCaptions", :type => "button"}
+        %button{"aria-label" => "Slide 5", "data-bs-slide-to" => "4", "data-bs-target" => "#carouselExampleCaptions", :type => "button"}
+        %button{"aria-label" => "Slide 6", "data-bs-slide-to" => "5", "data-bs-target" => "#carouselExampleCaptions", :type => "button"}
       .carousel-inner
         .carousel-item.active
-          %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('SC23-01.jpeg')}
+          %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('SC23-04.jpg')}
         .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC23-02.jpeg')}
+          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC23-01.jpeg')}
         .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('SC23-03.jpeg')}
+          %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('SC23-02.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('SC23-03.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('SC23-06.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('SC23-05.jpeg')}
       %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselExampleCaptions", :type => "button"}
         %span.carousel-control-prev-icon{"aria-hidden" => "true"}
         %span.visually-hidden Previous
