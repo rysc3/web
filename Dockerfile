@@ -1,6 +1,4 @@
-FROM ruby:3.2.0
-
-# Node.js and Yarn
+# Install Node.js and Yarn
 RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
   && apt-get install -y nodejs \
   && npm install -g yarn
@@ -8,20 +6,20 @@ RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
 # Set up working directory
 WORKDIR /app
 
-# Install the correct version of Bundler
-RUN gem install bundler:2.4.22
+# Copy package.json and yarn.lock
+COPY package.json yarn.lock ./
 
-# Copy Gemfile and Gemfile.lock to the container
-COPY Gemfile Gemfile.lock ./
-
-# Install dependencies 
+# Install dependencies, including devDependencies
 RUN yarn install
-
-# Install gems
-RUN bundle install --jobs 4 --retry 3
 
 # Copy the rest of the application code
 COPY . .
+
+# Install the correct version of Bundler
+RUN gem install bundler:2.4.22
+
+# Install gems
+RUN bundle install --jobs 4 --retry 3
 
 # Expose port 3000 (or the port you use for the Rails server)
 EXPOSE 3000
