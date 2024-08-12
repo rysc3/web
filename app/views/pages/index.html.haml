@@ -37,6 +37,7 @@
         %b.underline
           %a{href: "/meet"} You can schedule a meeting with me here.
 
+%h2.pt-5 Recent Events
 %hr
 
   %div
@@ -75,21 +76,24 @@
         (3/30/2023)
         %a{href: "https://www.winterclassicinvitational.com/team/university-of-new-mexico/", :target => "_blank"} 2023 Winter Classic Invitational HPC Competition
 
+
+%h2.pt-5 Images
 %hr
 
-%div
+%div.mt-5
   %div.text-center
-    %h1 SC23 Student Cluster Competition
+    %h3
+      %a{href: "/sc23"} SC23 HPC Competition (11/2023)
 
   %div.d-flex.justify-content-center
-    #carouselExampleCaptions.carousel.slide{style: "width: 95%;"}
+    #carouselSC23.carousel.slide{style: "width: 95%; max-width: 1500px;"}
       .carousel-indicators
-        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselExampleCaptions", :type => "button"}
-        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselExampleCaptions", :type => "button"}
-        %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselExampleCaptions", :type => "button"}
-        %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselExampleCaptions", :type => "button"}
-        %button{"aria-label" => "Slide 5", "data-bs-slide-to" => "4", "data-bs-target" => "#carouselExampleCaptions", :type => "button"}
-        %button{"aria-label" => "Slide 6", "data-bs-slide-to" => "5", "data-bs-target" => "#carouselExampleCaptions", :type => "button"}
+        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC23", :type => "button"}
+        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC23", :type => "button"}
+        %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselSC23", :type => "button"}
+        %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselSC23", :type => "button"}
+        %button{"aria-label" => "Slide 5", "data-bs-slide-to" => "4", "data-bs-target" => "#carouselSC23", :type => "button"}
+        %button{"aria-label" => "Slide 6", "data-bs-slide-to" => "5", "data-bs-target" => "#carouselSC23", :type => "button"}
       .carousel-inner
         .carousel-item.active
           %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('SC23-04.jpg')}
@@ -103,11 +107,34 @@
           %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('SC23-06.jpeg')}
         .carousel-item
           %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('SC23-05.jpeg')}
-      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselExampleCaptions", :type => "button"}
+      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC23", :type => "button"}
         %span.carousel-control-prev-icon{"aria-hidden" => "true"}
         %span.visually-hidden Previous
-      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselExampleCaptions", :type => "button"}
+      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSC23", :type => "button"}
         %span.carousel-control-next-icon{"aria-hidden" => "true"}
         %span.visually-hidden Next
 
-%hr
+%div.mt-5
+  %div.text-center
+    %h3
+      %a{href: "https://www.athlinks.com/event/35398/results/Event/1032202/Course/2296577/Bib/1417", :target => "_blank"} Duke City Half Marathon (10/2022)
+
+  %div.d-flex.justify-content-center
+    #carouselDukeHalf.carousel.slide{style: "width: 95%; max-width: 1500px;"}
+      .carousel-indicators
+        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselDukeHalf", :type => "button"}
+        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselDukeHalf", :type => "button"}
+        %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselDukeHalf", :type => "button"}
+      .carousel-inner
+        .carousel-item.active
+          %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('DukeHalf-02.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('DukeHalf-03.jpg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('DukeHalf-01.png')}
+      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselDukeHalf", :type => "button"}
+        %span.carousel-control-prev-icon{"aria-hidden" => "true"}
+        %span.visually-hidden Previous
+      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselDukeHalf", :type => "button"}
+        %span.carousel-control-next-icon{"aria-hidden" => "true"}
+        %span.visually-hidden Next
