@@ -74,3 +74,31 @@
       %li
         (3/30/2023)
         %a{href: "https://www.winterclassicinvitational.com/team/university-of-new-mexico/", :target => "_blank"} 2023 Winter Classic Invitational HPC Competition
+
+%hr
+
+%div
+  %div.text-center
+    %h1 SC23 Student Cluster Competition
+
+  %div.d-flex.justify-content-center
+    #carouselExampleCaptions.carousel.slide{style: "width: 95%;"}
+      .carousel-indicators
+        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselExampleCaptions", :type => "button"}
+        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselExampleCaptions", :type => "button"}
+        %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselExampleCaptions", :type => "button"}
+      .carousel-inner
+        .carousel-item.active
+          %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('SC23-01.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC23-02.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('SC23-03.jpeg')}
+      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselExampleCaptions", :type => "button"}
+        %span.carousel-control-prev-icon{"aria-hidden" => "true"}
+        %span.visually-hidden Previous
+      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselExampleCaptions", :type => "button"}
+        %span.carousel-control-next-icon{"aria-hidden" => "true"}
+        %span.visually-hidden Next
+
+%hr

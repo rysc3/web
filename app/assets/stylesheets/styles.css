@@ -303,3 +303,10 @@ p {
   max-height: 300px; /* Optional: Limit the maximum height if desired */
   object-fit: contain; /* Ensure the image fits within the container without distortion */
 }
+
+.custom-carousel-img {
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
