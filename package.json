@@ -5,7 +5,6 @@
     "@rails/webpacker": "5",
     "turbolinks": "^5.2.0",
     "webpack": "^5.93.0",
-    "webpack-cli": "^5.1.4",
     "sass": "^1.77.8",
     "webpack-dev-server": "^4.15.1"
   },
