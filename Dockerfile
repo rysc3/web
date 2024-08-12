@@ -3,7 +3,8 @@ FROM ruby:3.2.0
 # Node.js and Yarn
 RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
   && apt-get install -y nodejs \
-  && npm install -g yarn
+  && npm install -g yarn \
+  && yarn install webpack-cli
 
 # Set up working directory
 WORKDIR /app
