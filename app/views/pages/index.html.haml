@@ -17,9 +17,6 @@
           .carousel-item
             %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('Profile-04.jpeg')}
 
-
-
-    / Favicon container below the image, centered
     %div.favicon-container.mt-3.d-flex.justify-content-center
       %ul.favicon-list.list-inline.text-center
         %li.favicon-item.list-inline-item
@@ -55,12 +52,8 @@
 
 %h2.pt-5 Recent Events
 %hr
-
   %div
     %ul
-      %li
-        (8/11/2024)
-        %a{href: "/web"} How I built my website
       %li
         (5/15/2024)
         %a{href: "https://www.winterclassicinvitational.com/team/university-of-new-mexico-lobo24/", target: "_blank"} 2024 Winter Classic Invitational HPC Competition
@@ -68,20 +61,32 @@
         (5/5/2024)
         %a{href: "https://icpe2024.spec.org/program-committee/", target: "_blank"} Member of ICPE Artifact Review Committee
       %li
+        (4/1/2024)
+        %a{href: "https://www.hpcadvisorycouncil.com/events/student-cluster-competition/team-unm.php", target: "_blank"} ISC24 Student Cluster Competition Team
+      %li
         (1/20/2024)
         %a{href: "https://fricke.co.uk/Teaching/CS491_2024/HPC_Course_Syllabus.pdf", target: "_blank"} TA for CS491 HPC Course
       %li
         (12/3/2023)
         %a{href: "https://carc.unm.edu/news--events/News/sc23-conference.html", :target => "_blank"} UNM CARC SC23 Team Article
       %li
+        (11/23/2023)
+        %a{href: "https://roadrunners.cs.unm.edu/", :target => "_blank"} UNM HPC Roadrunners Team Site
+      %li
         (11/20/2023)
         %a{href: "https://www.penguinsolutions.com/company/resources/newsroom/student-cluster-competition-team-the-roadrunners-sponsored-by-penguin-solutions-at-sc23", :target => "_blank"} Penguin Solutions SC23 Team Sponsorship Article
+      %li
+        (10/22/2023)
+        %a{href: "https://www.athlinks.com/event/35398/results/Event/1063165/Course/2408972/Bib/54", :target => "_blank"} Duke City Marathon
       %li
         (8/7/2023)
         %a{href: "https://sc23.supercomputing.org/2023/08/meet-this-years-scc-teams/", :target => "_blank"} SC23 Student Cluster Competition Team
       %li
         (5/5/2023)
         %a{href: "https://engineering.unm.edu/awards/annual-awards-2023.pdf", :target => "_blank"} UNM Outstanding Sophomore Award
+      %li
+        (5/3/2023)
+        %a{href: "/web"} How I built my website
       %li
         (5/1/2023)
         %a{href: "https://carc.unm.edu/news--events/News/fall-23-undergrads.html", :target => "_blank"} UNM CARC Employee Article
@@ -91,10 +96,75 @@
       %li
         (3/30/2023)
         %a{href: "https://www.winterclassicinvitational.com/team/university-of-new-mexico/", :target => "_blank"} 2023 Winter Classic Invitational HPC Competition
+      %li
+        (1/25/2023)
+        %a{href: "https://drive.google.com/file/d/1lyjeK7hHzxfpkWrZFMXKVdWN3r56dOvG/view", :target => "_blank"} NASA Minds Team Chilihouse
+      %li
+        (10/16/2022)
+        %a{href: "https://www.athlinks.com/event/35398/results/Event/1032202/Course/2296577/Bib/1417", :target => "_blank"} Duke City Half Marathon
 
 
 %h2.pt-5 Images
 %hr
+
+%div.mt-5
+  %div.text-center
+    %h3
+      %a{href: "https://pearc.acm.org/"} PEARC24 HPC Conference (7/2024)
+
+  %div.d-flex.justify-content-center
+    #carouselPEARC24.carousel.slide{style: "width: 95%; max-width: 1500px;"}
+      .carousel-indicators
+        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselPEARC24", :type => "button"}
+        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselPEARC24", :type => "button"}
+        %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselPEARC24", :type => "button"}
+        %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselPEARC24", :type => "button"}
+        %button{"aria-label" => "Slide 5", "data-bs-slide-to" => "4", "data-bs-target" => "#carouselPEARC24", :type => "button"}
+        %button{"aria-label" => "Slide 6", "data-bs-slide-to" => "5", "data-bs-target" => "#carouselPEARC24", :type => "button"}
+      .carousel-inner
+        .carousel-item.active
+          %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('PEARC24-06.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('PEARC24-01.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('PEARC24-02.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('PEARC24-03.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 5", src: asset_path('PEARC24-04.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 6", src: asset_path('PEARC24-05.jpeg')}
+      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselPEARC24", :type => "button"}
+        %span.carousel-control-prev-icon{"aria-hidden" => "true"}
+        %span.visually-hidden Previous
+      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselPEARC24", :type => "button"}
+        %span.carousel-control-next-icon{"aria-hidden" => "true"}
+        %span.visually-hidden Next
+
+%div.mt-5
+  %div.text-center
+    %h3
+      %a{href: "https://rmacc.org/about-us"} RMACC HPC Conference (5/2024)
+
+  %div.d-flex.justify-content-center
+    #carouselRMACC24.carousel.slide{style: "width: 95%; max-width: 1500px;"}
+      .carousel-indicators
+        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselRMACC24", :type => "button"}
+        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselRMACC24", :type => "button"}
+        %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselRMACC24", :type => "button"}
+      .carousel-inner
+        .carousel-item.active
+          %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('RMACC24-01.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('RMACC24-02.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('RMACC24-03.jpeg')}
+      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselRMACC24", :type => "button"}
+        %span.carousel-control-prev-icon{"aria-hidden" => "true"}
+        %span.visually-hidden Previous
+      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselRMACC24", :type => "button"}
+        %span.carousel-control-next-icon{"aria-hidden" => "true"}
+        %span.visually-hidden Next
 
 %div.mt-5
   %div.text-center
