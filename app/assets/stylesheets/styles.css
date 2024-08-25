@@ -312,8 +312,8 @@ p {
 }
 
 .sc-poster {
-  width: 95%;
-  max-width: 95vw; /* Ensures it doesn't exceed 95% of the viewport width */
+  width: 97%;
+  max-width: 96vw; /* Ensures it doesn't exceed 95% of the viewport width */
   height: auto; /* Maintains the aspect ratio */
 }
 
