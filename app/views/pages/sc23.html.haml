@@ -1,12 +1,11 @@
-%div.d-flex.flex-column.align-items-center
-  %img.sc-poster{src: asset_path('SC23Poster.jpg'), alt: 'SC23'}
-  %p
-    %a{href: "https://www.dropbox.com/scl/fi/yl7cvamao76y4biv2hiky/SC23Poster.pdf?rlkey=wefdxtu024bplxmh1uxn12ihy&st=1dh4posj&dl=0", target: "_blank"} view pdf
-
+%div.mt-5
+  %div.p-5
+    %p
+      %a{href: "https://www.studentclustercompetition.us/2023/Teams/NewMexico/index.html", target: "_blank"} SCC23 team site.
 
 %div.mt-5
   %div.text-center
-    %h3 SC23 Photos
+    %h3 Photos
 
   %div.d-flex.justify-content-center
     #carouselSC23.carousel.slide{style: "width: 95%; max-width: 1500px;"}
@@ -45,3 +44,12 @@
       %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSC23", :type => "button"}
         %span.carousel-control-next-icon{"aria-hidden" => "true"}
         %span.visually-hidden Next
+
+%div.mt-5
+  %div.text-center
+    %h3 Team Poster
+
+  %div.d-flex.flex-column.align-items-center
+    %img.sc-poster{src: asset_path('SC23Poster.jpg'), alt: 'SC23'}
+    %p
+      %a{href: "https://www.dropbox.com/scl/fi/yl7cvamao76y4biv2hiky/SC23Poster.pdf?rlkey=wefdxtu024bplxmh1uxn12ihy&st=1dh4posj&dl=0", target: "_blank"} view pdf

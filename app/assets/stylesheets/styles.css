@@ -141,6 +141,10 @@ p {
   padding-top: 5rem;
 }
 
+.pl-t {
+  padding-left: 5rem !important;
+}
+
 .mt-4 {
   margin-top: 4rem;
 }
