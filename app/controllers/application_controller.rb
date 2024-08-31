@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
   private
 
   def set_default_og_image
-    @og_image = 'Profile-01.jpeg'
+    @og_image = 'Profile-01.jpg'
   end
 end
