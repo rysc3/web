@@ -316,7 +316,7 @@ p {
 }
 
 .sc-poster {
-  width: 97%;
+  width: 95%;
   max-width: 96vw; /* Ensures it doesn't exceed 95% of the viewport width */
   height: auto; /* Maintains the aspect ratio */
 }
@@ -340,3 +340,16 @@ p {
   position: relative;
   z-index: 1;
 } 
+
+.custom-dark-button {
+  background-color: #333; /* Dark grey background */
+  color: #fff; /* White text */
+  border: none; /* Remove the border */
+  border-radius: 4px; /* Optional: Adds a slight rounding to the corners */
+  padding: 10px 20px; /* Optional: Adjusts padding to make the button look better */
+  cursor: pointer; /* Ensures it looks clickable */
+}
+
+.custom-dark-button:hover {
+  background-color: #444; /* Slightly lighter grey on hover */
+}

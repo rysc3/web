@@ -1,11 +1,17 @@
-%div.mt-5
-  %div.p-5
-    %p
-      %a{href: "https://www.studentclustercompetition.us/2023/Teams/NewMexico/index.html", target: "_blank"} SCC23 conference team site.
-    %p
-      %a{href: "https://www.studentclustercompetition.us/2023/index.html", target: "_blank"} SCC23 competition site.
-    %p
-      %a{href: "https://roadrunners.cs.unm.edu/", target: "_blank"} UNM Roadrunners team site.
+%div.mt-5.container
+  %div.row
+    %div.col-md-4.col-12
+      %img{src: asset_path('sc23_logo_2.png'), alt: 'Image description', style: "width: 100%; height: auto; object-fit: cover;"}
+
+    %div.col-md-8.col-12.p-5
+      %p
+        %a{href: "https://www.studentclustercompetition.us/2023/Teams/NewMexico/index.html", target: "_blank"} SCC23 conference team site.
+      %p
+        %a{href: "https://www.studentclustercompetition.us/2023/index.html", target: "_blank"} SCC23 competition site.
+      %p
+        %a{href: "https://roadrunners.cs.unm.edu/", target: "_blank"} UNM Roadrunners team site.
+
+%hr
 
 %div.mt-5
   %div.text-center
@@ -49,11 +55,14 @@
         %span.carousel-control-next-icon{"aria-hidden" => "true"}
         %span.visually-hidden Next
 
-%div.mt-5
-  %div.text-center
-    %h3 Team Poster
+%hr
 
+%div
   %div.d-flex.flex-column.align-items-center
-    %img.sc-poster{src: asset_path('SC23Poster.jpg'), alt: 'SC23'}
-    %p
-      %a{href: "https://www.dropbox.com/scl/fi/yl7cvamao76y4biv2hiky/SC23Poster.pdf?rlkey=wefdxtu024bplxmh1uxn12ihy&st=1dh4posj&dl=0", target: "_blank"} view pdf
+    %button.custom-dark-button{type: "button", "data-bs-toggle" => "collapse", "data-bs-target" => "#collapsePoster", "aria-expanded" => "false", "aria-controls" => "collapsePoster", style: "width: 95%;"}
+      Team Poster
+    %div#collapsePoster.collapse.text-center
+      %img.sc-poster{src: asset_path('SC23Poster.jpg'), alt: 'SC23'}
+      %div.mt-3
+        %p
+          %a{href: "https://www.dropbox.com/scl/fi/yl7cvamao76y4biv2hiky/SC23Poster.pdf?rlkey=wefdxtu024bplxmh1uxn12ihy&st=1dh4posj&dl=0", target: "_blank"} view pdf

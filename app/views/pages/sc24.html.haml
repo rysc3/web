@@ -1,1 +1,47 @@
-%h1 SC24
+%div.mt-5.container{style: "width: 97%; max-width: 1500px;"}
+  %div.row
+    %div.col-md-4.col-12
+      %img{src: asset_path('sc24_logo_2.png'), alt: 'Image description', style: "width: 100%; height: auto; object-fit: cover;"}
+
+    %div.col-md-8.col-12.p-5
+      %p
+        %a{href: "https://sc24.supercomputing.org/students/student-cluster-competition/", target: "_blank"} SCC24 conference team site.
+
+%hr
+
+%div.m5-5.container{style: "width: 97%; max-width: 1500px;"}
+  %div.text-center
+    %h3.p-3 Cluster Configuration
+  %div.row
+    %div.col-md-8
+      %img{src: asset_path('SC24-03.png'), alt: 'Image description', style: "width: 100%; height: auto; object-fit: cover;"}
+    %div.col-md-4
+      %p.text-center 3x Nodes
+      %p
+      %p - 2x Intel Xeon Platinum 8580
+      %p - 64GB x 32 DDR5-5600 Memory
+      %p - 4x Nvidia H100 NVL
+      %p - 4x Nvidia ConnectX-7 NIC
+
+%hr
+
+%div.mt-5
+  %div.text-center
+    %h3 Photos
+
+  %div.d-flex.justify-content-center
+    #carouselSC24.carousel.slide{style: "width: 95%; max-width: 1500px;"}
+      .carousel-indicators
+        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC24", :type => "button"}
+        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC24", :type => "button"}
+      .carousel-inner
+        .carousel-item.active
+          %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('SC24-01.jpg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC24-02.jpeg')}
+      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC24", :type => "button"}
+        %span.carousel-control-prev-icon{"aria-hidden" => "true"}
+        %span.visually-hidden Previous
+      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSC24", :type => "button"}
+        %span.carousel-control-next-icon{"aria-hidden" => "true"}
+        %span.visually-hidden Next
