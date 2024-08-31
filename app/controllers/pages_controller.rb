@@ -12,4 +12,9 @@ class PagesController < ApplicationController
   def sc24
     @og_image = "SC24-01.jpeg"
   end
+
+  def sc23
+    @og_image = "SC23-06.jpeg"
+  end
+
 end
