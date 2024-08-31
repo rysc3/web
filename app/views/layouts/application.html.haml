@@ -17,7 +17,7 @@
     = csp_meta_tag
     %meta{:content => "Ryan Scherbarth's Website", :property => "og:title"}
     %meta{:content => "My resume, courses, and other stuff.", :property => "og:description"}
-    %meta{:content => "#{asset_url('Profile-02.jpeg')}", :property => "og:image"}
+    %meta{:content => asset_url(@og_image), :property => "og:image"}
     %meta{:content => "Ryan Scherbarth", :name => "author"}
     %meta{:content => "website", :property => "og:type"}
     %meta{:content => "ryan, ryan scherbarth, scherbarth, ry, UNM, University of New Mexico, New Mexico, Sandia Labs, Center for Advanced Research Computing, student, computer science, cs, intern, internship", :name => "keywords"}
