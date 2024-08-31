@@ -13,6 +13,7 @@
     %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
 
+    %title= @page_title
     = csrf_meta_tags
     = csp_meta_tag
     %meta{:content => "Ryan Scherbarth's Website", :property => "og:title"}
