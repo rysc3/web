@@ -29,21 +29,83 @@
 
 %div.mt-5
   %div.text-center
-    %h3 Photos
+    %h3 Team Photos
 
   %div.d-flex.justify-content-center
-    #carouselSC24.carousel.slide{style: "width: 95%; max-width: 1500px;"}
+    #carouselSC24Photos.carousel.slide{style: "width: 95%; max-width: 1500px;"}
       .carousel-indicators
-        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC24", :type => "button"}
-        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC24", :type => "button"}
+        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC24Photos", :type => "button"}
+        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC24Photos", :type => "button"}
       .carousel-inner
         .carousel-item.active
-          %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('SC24-01.jpeg')}
+          %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('SC24-03.jpeg')}
         .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC24-02.jpeg')}
-      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC24", :type => "button"}
+          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC24-01.jpeg')}
+      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC24Photos", :type => "button"}
         %span.carousel-control-prev-icon{"aria-hidden" => "true"}
         %span.visually-hidden Previous
-      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSC24", :type => "button"}
+      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSC24Photos", :type => "button"}
         %span.carousel-control-next-icon{"aria-hidden" => "true"}
         %span.visually-hidden Next
+
+%hr
+
+%div.mt-5
+  %div.text-center
+    %h3 Cluster Build
+
+  %div.d-flex.justify-content-center
+    #carouselSC24ClusterBuild.carousel.slide{style: "width: 95%; max-width: 1500px;"}
+      .carousel-indicators
+        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
+        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
+        %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
+        %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
+        %button{"aria-label" => "Slide 5", "data-bs-slide-to" => "4", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
+        %button{"aria-label" => "Slide 6", "data-bs-slide-to" => "5", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
+        %button{"aria-label" => "Slide 7", "data-bs-slide-to" => "6", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
+        %button{"aria-label" => "Slide 8", "data-bs-slide-to" => "7", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
+        %button{"aria-label" => "Slide 9", "data-bs-slide-to" => "8", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
+        %button{"aria-label" => "Slide 10", "data-bs-slide-to" => "9", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
+        %button{"aria-label" => "Slide 11", "data-bs-slide-to" => "10", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
+      .carousel-inner
+        .carousel-item.active
+          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC24-16.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC24-07.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC24-04.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC24-08.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC24-09.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC24-10.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC24-11.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC24-12.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC24-13.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC24-14.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC24-15.jpeg')}
+      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
+        %span.carousel-control-prev-icon{"aria-hidden" => "true"}
+        %span.visually-hidden Previous
+      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
+        %span.carousel-control-next-icon{"aria-hidden" => "true"}
+        %span.visually-hidden Next
+
+%hr
+
+%div
+  %div.d-flex.flex-column.align-items-center
+    %button.custom-dark-button{type: "button", "data-bs-toggle" => "collapse", "data-bs-target" => "#collapsePoster", "aria-expanded" => "false", "aria-controls" => "collapsePoster", style: "width: 95%;"}
+      Team Poster
+    %div#collapsePoster.collapse.text-center
+      %img.sc-poster{src: asset_path('SC24Poster.jpeg'), alt: 'SC23'}
+      %div.mt-3
+        %p
+          %a{href: "https://www.dropbox.com/scl/fi/aa3yegenjlusvvb7qwnkv/UNM-SC24-Poster.pdf?rlkey=9aqbfl3zqcrft5zzcs73az4af&st=vkg4ll5x&dl=0"} view pdf
