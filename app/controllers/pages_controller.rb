@@ -10,7 +10,7 @@ class PagesController < ApplicationController
   end
 
   def sc24
-    @og_image = "SC24-01.jpeg"
+    @og_image = "SC24-14.jpeg"
     @page_title = "Ryan @ SC24"
   end
 
