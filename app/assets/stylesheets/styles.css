@@ -353,9 +353,3 @@ p {
 .custom-dark-button:hover {
   background-color: #444; /* Slightly lighter grey on hover */
 }
-
-.H100-carousel-size {
-  width: 100%;
-  max-width: 1000px;
-  height: auto;
-}

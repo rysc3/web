@@ -32,26 +32,27 @@
   %div.text-center
     %h3.p-3 H100 Power Performance Results
   %div.row
-    %div.col-md-6.justify-content-center
-      #carouselSC24H100.carousel.slide.H100-carousel-size{"data-bs-ride" => "carousel", "data-bs-interval" => "45000", style: "width: 95%; max-width: 1500px;"}
+    %div.d-flex.justify-content-center
+      #carouselSC24H100.carousel.slide{"data-bs-ride" => "carousel", "data-bs-interval" => "45000", style: "width: 95%; max-width: 1500px;"}
         .carousel-indicators
           %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC24H100", :type => "button"}
           %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC24H100", :type => "button"}
           %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselSC24H100", :type => "button"}
         .carousel-inner
           .carousel-item.active
-            %img.custom-carousel-img.d-block{alt: "img 1", src: asset_path('H100-01.png'), style: "width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain;"}
+            %img.custom-carousel-img.d-block{alt: "img 1", src: asset_path('H100-01.png'), style: "width: 95%; height: auto; max-width: 100%; max-height: 100%; object-fit: contain;"}
           .carousel-item
-            %img.custom-carousel-img.d-block{alt: "img 2", src: asset_path('H100-02.png'), style: "width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain;"}
+            %img.custom-carousel-img.d-block{alt: "img 2", src: asset_path('H100-02.png'), style: "width: 95%; height: auto; max-width: 100%; max-height: 100%; object-fit: contain;"}
           .carousel-item
-            %img.custom-carousel-img.d-block{alt: "img 3", src: asset_path('H100-03.png'), style: "width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain;"}
+            %img.custom-carousel-img.d-block{alt: "img 3", src: asset_path('H100-03.png'), style: "width: 95%; height: auto; max-width: 100%; max-height: 100%; object-fit: contain;"}
         %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC24H100", :type => "button"}
           %span.carousel-control-prev-icon{"aria-hidden" => "true"}
           %span.visually-hidden Previous
         %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSC24H100", :type => "button"}
           %span.carousel-control-next-icon{"aria-hidden" => "true"}
           %span.visually-hidden Next
-    %div.col-md-6.d-flex.flex-column.align-items-center
+
+    %div.row.pt-4
       %p
         &nbsp;&nbsp;&nbsp;&nbsp; Over the summer leading up to the competition I ran a number of tests benchmarking the per-watt performance of H100 GPUs. This was particularly important in designing our cluster for this year as the results ended up being a key factor in the decision to over-spec our machine.
       %p
@@ -61,11 +62,10 @@
         %strong most inefficent
         power use case. I further hypothesized that we would increase in efficiency up to around the 75-80% TDP mark, but was surprised to find the efficiency continue to linearly increase all the way up to the point of using only
         %strong 50% of the TDP.
-  %div.row.pt-4
-    %p
-      &nbsp;&nbsp;&nbsp;&nbsp; The results here played a role in choosing our final cluster configuration. A rough estimate would show our cluster should be using 350W * 2 sockets * 3 nodes = 2100W in CPU power, and 400W * 4 GPUs * 3 nodes = 4800W in GPU power, for a total of 6900W in power usage, ignoring all other components (The large amount of DDR5 memory, for example, uses a significant amount of power just to keep running).
-    %p
-      &nbsp;&nbsp;&nbsp;&nbsp; Based off of the applications for this years competition we have the room to dynamically allocate resources as we need for the differnet applicaitons while staying below the power draw. For HPL, for example, we may end up using only 2 nodes, while for ICON we may use all 3 with the GPU TDP limited. We chose a configuration enabled with iDRAC chips which gives us the ability to completely power off and on nodes as needed without physically touching the cluster (A requirement for the compeititon after the benchmarking phase has concluded).
+      %p
+        &nbsp;&nbsp;&nbsp;&nbsp; The results here played a role in choosing our final cluster configuration. A rough estimate would show our cluster should be using 350W * 2 sockets * 3 nodes = 2100W in CPU power, and 400W * 4 GPUs * 3 nodes = 4800W in GPU power, for a total of 6900W in power usage, ignoring all other components (The large amount of DDR5 memory, for example, uses a significant amount of power just to keep running).
+      %p
+        &nbsp;&nbsp;&nbsp;&nbsp; Based off of the applications for this years competition we have the room to dynamically allocate resources as we need for the differnet applicaitons while staying below the power draw. For HPL, for example, we may end up using only 2 nodes, while for ICON we may use all 3 with the GPU TDP limited. We chose a configuration enabled with iDRAC chips which gives us the ability to completely power off and on nodes as needed without physically touching the cluster (A requirement for the compeititon after the benchmarking phase has concluded).
 
 %hr
 
