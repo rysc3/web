@@ -151,27 +151,27 @@
 %hr
 
 %div.text-center
-%h3.p-3 H100 Power Performance Results
+  %h3.p-3 H100 Power Performance Results
 %div.row
-%div.d-flex.justify-content-center
-  #carouselSC24H100.carousel.slide{"data-bs-ride" => "carousel", "data-bs-interval" => "45000", style: "width: 95%; max-width: 1500px;"}
-    .carousel-indicators
-      %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC24H100", :type => "button"}
-      %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC24H100", :type => "button"}
-      %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselSC24H100", :type => "button"}
-    .carousel-inner
-      .carousel-item.active
-        %img.custom-carousel-img.d-block{alt: "img 1", src: asset_path('H100-01.png'), style: "width: 95%; height: auto; max-width: 100%; max-height: 100%; object-fit: contain;"}
-      .carousel-item
-        %img.custom-carousel-img.d-block{alt: "img 2", src: asset_path('H100-02.png'), style: "width: 95%; height: auto; max-width: 100%; max-height: 100%; object-fit: contain;"}
-      .carousel-item
-        %img.custom-carousel-img.d-block{alt: "img 3", src: asset_path('H100-03.png'), style: "width: 95%; height: auto; max-width: 100%; max-height: 100%; object-fit: contain;"}
-    %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC24H100", :type => "button"}
-      %span.carousel-control-prev-icon{"aria-hidden" => "true"}
-      %span.visually-hidden Previous
-    %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSC24H100", :type => "button"}
-      %span.carousel-control-next-icon{"aria-hidden" => "true"}
-      %span.visually-hidden Next
+  %div.d-flex.justify-content-center
+    #carouselSC24H100.carousel.slide{"data-bs-ride" => "carousel", "data-bs-interval" => "45000", style: "width: 95%; max-width: 1500px;"}
+      .carousel-indicators
+        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC24H100", :type => "button"}
+        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC24H100", :type => "button"}
+        %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselSC24H100", :type => "button"}
+      .carousel-inner
+        .carousel-item.active
+          %img.custom-carousel-img.d-block{alt: "img 1", src: asset_path('H100-01.png'), style: "width: 95%; height: auto; max-width: 100%; max-height: 100%; object-fit: contain;"}
+        .carousel-item
+          %img.custom-carousel-img.d-block{alt: "img 2", src: asset_path('H100-02.png'), style: "width: 95%; height: auto; max-width: 100%; max-height: 100%; object-fit: contain;"}
+        .carousel-item
+          %img.custom-carousel-img.d-block{alt: "img 3", src: asset_path('H100-03.png'), style: "width: 95%; height: auto; max-width: 100%; max-height: 100%; object-fit: contain;"}
+      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC24H100", :type => "button"}
+        %span.carousel-control-prev-icon{"aria-hidden" => "true"}
+        %span.visually-hidden Previous
+      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSC24H100", :type => "button"}
+        %span.carousel-control-next-icon{"aria-hidden" => "true"}
+        %span.visually-hidden Next
 
 %div.row.pt-4
   %p
