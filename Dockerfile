@@ -16,7 +16,8 @@ RUN gem install bundler:2.4.22
 RUN bundle install --jobs 4 --retry 3
 
 # Copy package.json and yarn.lock
-COPY package.json yarn.lock ./
+COPY package.json ./
+COPY yarn.lock ./
 
 # Install JS dependencies
 RUN yarn install
