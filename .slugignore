@@ -1,2 +1,2 @@
 # Ignoring large files so I can actually deploy
-.git/*
+# .git/*
