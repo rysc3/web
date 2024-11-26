@@ -7,7 +7,11 @@ class ApplicationController < ActionController::Base
   private
 
   def set_default_og_image
-    @og_image = 'Profile-01.jpg'
+    # Original
+    # @og_image = 'Profile-01.jpg'
+
+    # New one
+    @og_image = 'Profile-05.jpg'
   end
 
   def set_default_page_title
