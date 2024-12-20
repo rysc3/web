@@ -1,0 +1,36 @@
+%h1 Website Setup
+%div
+  %p
+    My website is made from scratch in Ruby on Rails. The repo for the site can be found
+    %a{href: "https://github.com/rysc3/web", target: "_blank"} here.
+
+  %p
+    The site is using Ruby 3.2.0 and rails 6.1.4. The majority of the styling is using
+    %a{href: "https://getbootstrap.com/docs/5.3/getting-started/introduction/", target: "_blank"} bootstrap 5,
+    and then has a few customizations thrown on top using the
+    %a{href: "https://github.com/rysc3/web/tree/main/app/assets/stylesheets/styles.css", target: "_blank"} CSS Stylesheets.
+
+  %p
+    The site is hosted on
+    %a{href: "https://www.heroku.com/", target: "_blank"} Heroku,
+    which makes it convenient to create git pipelines for deployment, as well as manage the SSL certificates. The domain is managed through
+    %a{href: "https://domains.google/", target: "_blank"} google domains.
+
+%div.container-fluid.pb-2
+  %div.row.g-0
+    %div.col-auto
+      %img{src: asset_path('server-01.JPG'), alt: "First Image", class: "img-fluid aspect-ratio-image"}
+    %div.col.px-3
+      %div.text-content
+        %p
+          In 2020 apple switched to "M" series CPUs, which use an ARM architecture. For this reason I chose a 2019 macbook pro so that I could still have an x86 based processor and have more freedom with choosing a linux distribution for my server.
+        %p
+          All of the development for my website, as well as most of my coures are done through this server running Ubuntu 20.04. Generally, booting from MacOS to Linux is relatively straightforward.
+
+%div
+  %p
+    One notable issue arose because after installing Ubuntu from a boot drive, you lack many of the drivers necessary for the typical use of a laptop. You then have to connect all of your peripherals and manually install the drivers for your keyboard, trackpad, and wifi card.
+  %p
+    Specifically for my implementation, the necessary wifi card drivers had been depricated in the linux kernel, so I ended up opting to just rely on an ethernet connection at all times.
+  %p
+    %b I still need to finish this
