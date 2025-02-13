@@ -353,3 +353,19 @@ p {
 .custom-dark-button:hover {
   background-color: #444; /* Slightly lighter grey on hover */
 }
+
+.show-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 60%);
+  width: calc(100vw - 50px);
+  margin-left: 0px;
+  margin-right: 25px;
+}
+.show-cont img {
+  width: 100vw;
+  max-width: 100%;
+  max-height: 82vh;
+  object-fit: contain;
+}

@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get 'meet', to: 'pages#meet'
   get 'web', to: 'pages#web'
 
+  # Route to show /app/assets/images/tesla-battery.png
+  get 'tesla-battery', to: 'images#show'
+
   # route for dropbox resume pdf
   # get '/resume', to: redirect('https://www.dropbox.com/scl/fi/gvtppgbtwmum74o1j5a88/Ryan-Scherbarth-Resume.pdf?rlkey=vyygimwhisrypxhrwl948aey5&st=cx3tp0ls&dl=0')
   get '/resume', to: 'pages#resume'
