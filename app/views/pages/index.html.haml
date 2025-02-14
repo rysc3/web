@@ -54,8 +54,8 @@
   %div
     %ul
       %li
-        (2/12/2025)
-        %a{href: "/tesla-battery"} 2018 Tesla Model S P100D sentry mode battery drain.
+        (2/1/2025)
+        %a{href: "https://sc25.supercomputing.org/planning-committee/"} SC25 Student Cluster Competition Committee
       %li
         (12/11/2024)
         %a{href: "https://engineering.unm.edu/news/2024/12/partnering-for-success-computer-science-students-represent-unm-in-nasa-and-supercomputing-competitions.html", target: "_blank"} UNM HPC Team Article
@@ -71,6 +71,9 @@
       %li
         (9/7/2024)
         %a{href: "https://sc24.supercomputing.org/2024/09/teams-compete-in-the-ultimate-hpc-challenge-at-sc24/", target: "_blank"} SC24 Meet the Teams
+      %li
+        (5/31/2024)
+        %a{href: "/tesla-battery"} 2018 Tesla Model S P100D sentry mode battery drain
       %li
         (5/15/2024)
         %a{href: "https://www.winterclassicinvitational.com/team/university-of-new-mexico-lobo24/", target: "_blank"} 2024 Winter Classic Invitational HPC Competition
@@ -135,6 +138,49 @@
 
 %h2.pt-5 Images
 %hr
+
+%div.mt-5
+  %div.text-center
+    %h3
+      %a{href: "/sc24"} SC24 HPC Competition (11/2024)
+
+  %div.d-flex.justify-content-center
+    #carouselSC24.carousel.slide{style: "width: 95%; max-width: 1500px;"}
+      .carousel-indicators
+        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC24", :type => "button"}
+        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC24", :type => "button"}
+        %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselSC24", :type => "button"}
+        %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselSC24", :type => "button"}
+        %button{"aria-label" => "Slide 5", "data-bs-slide-to" => "4", "data-bs-target" => "#carouselSC24", :type => "button"}
+        %button{"aria-label" => "Slide 6", "data-bs-slide-to" => "5", "data-bs-target" => "#carouselSC24", :type => "button"}
+        %button{"aria-label" => "Slide 7", "data-bs-slide-to" => "6", "data-bs-target" => "#carouselSC24", :type => "button"}
+        %button{"aria-label" => "Slide 8", "data-bs-slide-to" => "7", "data-bs-target" => "#carouselSC24", :type => "button"}
+        %button{"aria-label" => "Slide 9", "data-bs-slide-to" => "8", "data-bs-target" => "#carouselSC24", :type => "button"}
+      .carousel-inner
+        .carousel-item.active
+          %img.custom-carousel-img.d-block.w-100{alt: "img 9", src: asset_path('SC24-35.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 7", src: asset_path('SC24-33.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 8", src: asset_path('SC24-34.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('SC24-27.jpg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 5", src: asset_path('SC24-28.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 6", src: asset_path('SC24-29.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC24-08.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('SC24-14.jpeg')}
+        .carousel-item
+          %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('SC24-07.jpeg')}
+      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC24", :type => "button"}
+        %span.carousel-control-prev-icon{"aria-hidden" => "true"}
+        %span.visually-hidden Previous
+      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSC24", :type => "button"}
+        %span.carousel-control-next-icon{"aria-hidden" => "true"}
+        %span.visually-hidden Next
 
 %div.mt-5
   %div.text-center
