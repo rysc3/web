@@ -73,7 +73,7 @@
         %a{href: "https://sc24.supercomputing.org/2024/09/teams-compete-in-the-ultimate-hpc-challenge-at-sc24/", target: "_blank"} SC24 Meet the Teams
       %li
         (5/31/2024)
-        %a{href: "/tesla-battery"} 2018 Tesla Model S P100D sentry mode battery drain
+        %a{href: "/tesla_battery"} 2018 Tesla Model S P100D sentry mode battery drain
       %li
         (5/15/2024)
         %a{href: "https://www.winterclassicinvitational.com/team/university-of-new-mexico-lobo24/", target: "_blank"} 2024 Winter Classic Invitational HPC Competition
@@ -366,3 +366,21 @@
       %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselDukeHalf", :type => "button"}
         %span.carousel-control-next-icon{"aria-hidden" => "true"}
         %span.visually-hidden Next
+
+%h2.pt-5 Referral Links
+%hr
+
+%div.d-flex.flex-wrap
+  - @referrals.each do |ref|
+    - domain = URI.parse(ref[:url]).host rescue ref[:url]
+    %a.btn.m-2{
+      href: ref[:url],
+      target: "_blank",
+      style: "background-color: #555555; color: #fff; border-color: #555555; white-space: nowrap;"
+    }
+      %img{
+        src: "https://logo.clearbit.com/#{domain}",
+        alt: ref[:title],
+        style: "width:20px; height:20px; margin-right:5px; border-radius: 4px;"
+      }
+      = ref[:title]

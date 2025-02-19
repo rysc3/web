@@ -3,10 +3,28 @@ class PagesController < ApplicationController
 
   def index
     # logic for index
+
+    raw_referrals = [
+      { title: "Amex Platinum", url: "https://americanexpress.com/en-us/referral/all-cards?ref=RYANS49Yg&xl=cp01" },
+      { title: "Amex Gold", url: "https://americanexpress.com/en-us/referral/all-cards?ref=RYANS49Yg&xl=cp01" },
+      { title: "Amex Blue Business Plus", url: "https://americanexpress.com/en-us/referral/bluebusinessplus-credit-card?ref=RYANSHIde&xl=cp01" },
+      { title: "Amex Amazon Business Prime", url: "https://americanexpress.com/en-us/referral/cobrand/RYANSgM2B?xl=cp01" },
+      { title: "Rakuten", url: "https://www.rakuten.com/r/RYSCHE6?eeid=28187" },
+      { title: "Tesla", url: "https://ts.la/ryan389904" },
+      { title: "Discover IT chrome", url: "https://refer.discover.com/s/mppdhv" },
+      { title: "Charles Schwab", url: "https://www.schwab.com/client-referral?refrid=REFERAEFCQQHP" },
+      { title: "Robinhood", url: "https://join.robinhood.com/ryans-b88a99c8" },
+      { title: "Chase", url: "https://accounts.chase.com/raf/share/3038128043" },
+      # { title: "Capital One", url: "https://i.capitalone.com/GnbszHlhH" },
+      { title: "Monarch", url: "https://www.monarchmoney.com/referral/jaegm89sj1" }
+    ]
+
+    @referrals = raw_referrals.group_by { |ref| ref[:title][0].upcase }
+                                .sort
+                                .flat_map { |letter, refs| refs.sort_by { |ref| ref[:title].length } }
   end
 
   def show
-    # logic for show
   end
 
   def sc24
@@ -25,6 +43,11 @@ class PagesController < ApplicationController
 
   def web
     @page_title = "Ryan's Site Info"
+  end
+
+  def tesla_battery
+    @og_image = "tesla-battery.png"
+    @page_title = "Ryan's sentry graph"
   end
 
 end
