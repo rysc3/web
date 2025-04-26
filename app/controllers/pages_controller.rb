@@ -14,7 +14,8 @@ class PagesController < ApplicationController
       { title: "Discover IT chrome", url: "https://refer.discover.com/s/mppdhv" },
       { title: "Charles Schwab", url: "https://www.schwab.com/client-referral?refrid=REFERAEFCQQHP" },
       { title: "Robinhood", url: "https://join.robinhood.com/ryans-b88a99c8" },
-      { title: "Chase", url: "https://accounts.chase.com/raf/share/3038128043" },
+      { title: "Chase Checking", url: "https://accounts.chase.com/raf/share/3038128043" },
+      { title: "Chase Freedom Unlimited", url: "https://www.referyourchasecard.com/18M/ZZLNKA0Z3V" },
       # { title: "Capital One", url: "https://i.capitalone.com/GnbszHlhH" },
       { title: "Monarch", url: "https://www.monarchmoney.com/referral/jaegm89sj1" }
     ]
