@@ -17,7 +17,8 @@ class PagesController < ApplicationController
       { title: "Chase Checking", url: "https://accounts.chase.com/raf/share/3038128043" },
       { title: "Chase Freedom Unlimited", url: "https://www.referyourchasecard.com/18M/ZZLNKA0Z3V" },
       # { title: "Capital One", url: "https://i.capitalone.com/GnbszHlhH" },
-      { title: "Monarch", url: "https://www.monarchmoney.com/referral/jaegm89sj1" }
+      { title: "Monarch", url: "https://www.monarchmoney.com/referral/jaegm89sj1" },
+      { title: "Lemonade", url: "https://lemonade.com/r/ryanscherbarth" }
     ]
 
     @referrals = raw_referrals.group_by { |ref| ref[:title][0].upcase }
