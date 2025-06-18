@@ -51,11 +51,14 @@ class PagesController < ApplicationController
   end
 
   def tesla_battery
-    @og_image = "tesla-battery.png"
+    @og_image = "tesla-battery.jpg"
     @page_title = "Ryan's sentry graph"
   end
 
   def stock
+    @og_image = "stock.jpg"
+    @page_title = "Ryan's Epic Stock Calculator"
+
     @current_price = fetch_price
     @end = params[:end].present? ? params[:end].to_f : @current_price
     @start = params[:start].present? ? params[:start].to_f : 308.0
