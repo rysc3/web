@@ -1,0 +1,40 @@
+#tv_chart_container{ style: "height: 350px; width: 100%; margin-bottom: 1rem;" }
+
+:javascript
+  document.addEventListener('DOMContentLoaded', () => {
+    const grantPrice = #{@start.to_f};
+
+    const script = document.createElement('script');
+    script.src = "https://s3.tradingview.com/tv.js";
+    script.onload = () => {
+      const widget = new TradingView.widget({
+        container_id: "tv_chart_container",
+        autosize: true,
+        symbol: "NASDAQ:TSLA",
+        interval: "1D",
+        theme: "dark",
+        isTransparent: true,
+        range: "1M",
+        style: "1",
+        toolbar_bg: "#000000",
+        allow_symbol_change: false,
+        loading_screen: { backgroundColor: "#000" },
+        overrides: {
+          "paneProperties.background": "#000",
+          "paneProperties.vertGridProperties.color": "#444",
+          "paneProperties.horzGridProperties.color": "#444",
+          "mainSeriesProperties.priceLineVisible": true
+        }
+      });
+
+      widget.onChartReady(() => {
+        const chart = widget.activeChart();
+        chart.createShape({ price: grantPrice }, {
+          shape: "horizontal_line",
+          overrides: { linecolor: "#ff0000", linewidth: 2 },
+          text: `Start $${grantPrice}`
+        });
+      });
+    };
+    document.head.appendChild(script);
+  });

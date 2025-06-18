@@ -1,0 +1,37 @@
+= form_with url: stock_path, method: :get, local: true do |f|
+  .row.mb-2
+    .col-md-6
+      = f.label :start, "Start Price", class: "form-label"
+      = f.number_field :start, value: @start, class: "form-control form-control-lg", min: 0, step: :any
+    .col-md-6
+      = f.label :end, "Current Price", class: "form-label"
+      = f.number_field :end, value: @end, class: "form-control form-control-lg", min: 0, step: :any
+
+  .row.mb-2
+    .col-md-6
+      = f.label :package, "Package Value", class: "form-label"
+      = f.number_field :package, value: params[:package], class: "form-control form-control-lg", min: 0, step: :any
+    .col-md-6
+      = f.label :opt_pct, "Options %", class: "form-label"
+      = f.number_field :opt_pct, value: (params[:opt_pct] || 0), class: "form-control form-control-lg", min: 0, step: :any
+
+  .row
+    .col-md-9.d-grid.w-75.mx-auto
+      = f.submit "Calculate", class: "btn btn-primary btn-lg"
+
+- if defined?(@gain_pct)
+  .row.mt-3
+    .col-md-9.w-75.mx-auto
+      - css_class = @gain_pct >= 0 ? "alert-success" : "alert-danger"
+      .alert{ class: "#{css_class} text-center mb-0" }
+        Change:
+        %strong #{number_to_percentage(@gain_pct, precision: 1)}
+        - if @new_pkg_value
+          %br/
+          Value:
+          %strong #{number_to_currency(@new_pkg_value, precision: 2)}
+- elsif params[:start].present? || params[:end].present?
+  .row.mt-3
+    .col-md-9.w-75.mx-auto
+      .alert.alert-warning.text-center.mb-0
+        Enter valid positive numbers.
