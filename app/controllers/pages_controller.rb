@@ -52,4 +52,22 @@ class PagesController < ApplicationController
     @page_title = "Ryan's sentry graph"
   end
 
+  def stock
+    @start     = params[:start].to_f
+    @end       = params[:end].to_f
+    @opt_pct   = params[:opt_pct].to_f / 100.0
+    @pkg_value = params[:package].to_f
+
+    if @start.positive? && @end.positive?
+      rsu_pct = 1.0 - @opt_pct
+      delta = [@end - @start, 0].max
+
+      initial_value = @start
+      current_value = rsu_pct * @end + @opt_pct * 3 * delta
+      @gain_pct = ((current_value - initial_value) / initial_value * 100).round(1)
+
+      @new_pkg_value = @pkg_value.positive? ? (@pkg_value * current_value / initial_value) : nil
+    end
+  end
+
 end

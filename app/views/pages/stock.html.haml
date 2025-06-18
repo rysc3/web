@@ -1,0 +1,29 @@
+.container-sm.d-flex.flex-column.justify-content-center.align-items-center.h-75.mx-auto
+  = form_with url: stock_path, method: :get, local: true do |f|
+    .row.w-100.justify-content-center.mb-2
+      .col
+        = f.number_field :start, value: params[:start], class: "form-control form-control-lg", placeholder: "Start Price"
+      .col
+        = f.number_field :end, value: params[:end], class: "form-control form-control-lg", placeholder: "Current Price"
+    .row.w-100.justify-content-center.mb-2
+      .col
+        = f.number_field :package, value: params[:package], class: "form-control form-control-lg", placeholder: "Package Value (optional)"
+      .col
+        = f.number_field :opt_pct, value: params[:opt_pct] || 15, class: "form-control form-control-lg", placeholder: "Options %"
+    .row.w-100.justify-content-center
+      .col
+        = f.submit "Calculate", class: "btn btn-primary btn-lg w-100"
+
+  - if defined?(@gain_pct)
+    - css_class = @gain_pct >= 0 ? "alert-success" : "alert-danger"
+    .row.w-100.justify-content-center.mt-3
+      .col
+        .alert{class: "#{css_class} text-center mb-0"}
+          %strong= number_to_percentage(@gain_pct, precision: 1)
+          - if @new_pkg_value
+            %br/
+            = "New Package Value: #{number_to_currency(@new_pkg_value, precision: 2)}"
+  - elsif params[:start].present? || params[:end].present?
+    .row.w-100.justify-content-center.mt-3
+      .col
+        .alert.alert-warning.text-center.mb-0 Enter valid positive numbers.

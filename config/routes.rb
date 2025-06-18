@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'courses', to: 'pages#courses'
   get 'meet', to: 'pages#meet'
   get 'web', to: 'pages#web'
+  get 'stock', to: 'pages#stock'
 
   # Route to show /app/assets/images/tesla-battery.png
   get 'tesla_battery', to: 'pages#tesla_battery'
