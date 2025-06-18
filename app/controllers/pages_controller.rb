@@ -66,17 +66,15 @@ class PagesController < ApplicationController
       delta_pct = (@end - @start) / @start
 
       option_gain = delta_pct * 3 * @opt_pct
-
       rsu_gain = delta_pct * (1 - @opt_pct)
+      total_gain_pct = option_gain + rsu_gain
 
-      total_gain = option_gain + rsu_gain
+      @gain_pct = (total_gain_pct * 100).round(1)
 
-      current_value = @start * (1 + total_gain)
-
-      @gain_pct = (total_gain * 100).round(1)
-      @new_pkg_value = if @pkg_value.positive?
-        (@pkg_value * current_value / @start).round(2)
+      if @pkg_value.positive?
+        @total_gain = (@pkg_value * total_gain_pct).round(2)
       end
+
       @break_even = @start
     end
   end

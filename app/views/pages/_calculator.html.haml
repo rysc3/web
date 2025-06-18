@@ -26,10 +26,10 @@
       .alert{ class: "#{css_class} text-center mb-0" }
         Change:
         %strong #{number_to_percentage(@gain_pct, precision: 1)}
-        - if @new_pkg_value
+        - if @total_gain
           %br/
-          Value:
-          %strong #{number_to_currency(@new_pkg_value, precision: 2)}
+          Profit:
+          %strong #{number_to_currency(@total_gain, precision: 2)}
 - elsif params[:start].present? || params[:end].present?
   .row.mt-3
     .col-md-9.w-75.mx-auto
