@@ -51,7 +51,7 @@ class PagesController < ApplicationController
   end
 
   def tesla_battery
-    @og_image = "tesla-battery.jpg"
+    @og_image = "tesla-battery.png"
     @page_title = "Ryan's sentry graph"
   end
 
