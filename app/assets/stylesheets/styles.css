@@ -1156,7 +1156,10 @@ hr {
 /* ── Career Filter Buttons ───────────────────────────────────── */
 
 .career-filter-wrap {
+  max-width: 1100px;
   margin-top: 0.25rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .career-filter-btn {
@@ -1228,4 +1231,95 @@ hr {
   width: 32px;
   height: 32px;
   opacity: 0.5;
+}
+
+/* ── Scroll progress bar ─────────────────────────────────────── */
+
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.45);
+  z-index: 10000;
+  transition: width 0.06s linear;
+  pointer-events: none;
+}
+
+/* ── Starfield canvas ────────────────────────────────────────── */
+
+#starfield {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Career timeline fade-in on scroll ───────────────────────── */
+
+.career-event {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.career-event.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── 404 page ────────────────────────────────────────────────── */
+
+.not-found-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.not-found-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+  opacity: 0.7;
+  margin-bottom: 2rem;
+  border: 1px solid #1e1e1e;
+}
+
+.not-found-code {
+  font-size: 5rem;
+  font-weight: 700;
+  color: #1c1c1c;
+  letter-spacing: -4px;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.not-found-msg {
+  font-size: 0.85rem;
+  color: #4a4a4a;
+  margin-bottom: 2rem;
+  letter-spacing: 0.04em;
+}
+
+.not-found-link {
+  font-size: 0.78rem;
+  color: #555;
+  text-decoration: none;
+  border: 1px solid #222;
+  padding: 0.5rem 1.25rem;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.not-found-link:hover {
+  color: #aaa;
+  border-color: #444;
 }

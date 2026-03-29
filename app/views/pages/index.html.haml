@@ -279,6 +279,7 @@
 
 :javascript
   document.addEventListener('DOMContentLoaded', function() {
+    // Career filter buttons
     var btns = document.querySelectorAll('.career-filter-btn');
     btns.forEach(function(btn) {
       btn.addEventListener('click', function() {
@@ -290,6 +291,21 @@
           ev.style.display = (filter === 'all' || filter === type) ? '' : 'none';
         });
       });
+    });
+
+    // Scroll fade-in for career timeline events
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.career-event').forEach(function(ev, i) {
+      ev.style.transitionDelay = (i * 0.04) + 's';
+      observer.observe(ev);
     });
   });
 

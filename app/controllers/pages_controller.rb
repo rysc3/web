@@ -71,4 +71,10 @@ class PagesController < ApplicationController
     @page_title = "Ryan's sentry graph"
   end
 
+  def not_found
+    @og_image   = "Profile-05.jpg"
+    @page_title = "404 — Ryan Scherbarth"
+    render status: 404
+  end
+
 end

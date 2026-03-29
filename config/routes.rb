@@ -18,4 +18,7 @@ Rails.application.routes.draw do
   # route for zoom meeting link
   # https://unm.zoom.us/my/ryans
   get '/zoom', to: redirect('https://unm.zoom.us/my/ryans')
+
+  # catch-all 404
+  match '*path', to: 'pages#not_found', via: :all
 end
