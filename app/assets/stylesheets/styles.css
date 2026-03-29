@@ -751,6 +751,239 @@ hr {
 
 /* ── End Modern / Apple-style ───────────────────────────────── */
 
+/* ── SC Competition Pages ────────────────────────────────────── */
+
+.sc-hero {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 1.5rem;
+  background: #0a0a0a;
+  border: 1px solid #161616;
+  border-radius: 12px;
+  margin-bottom: 2.5rem;
+}
+
+.sc-hero-logo {
+  flex-shrink: 0;
+  width: 130px;
+}
+
+.sc-hero-logo img {
+  width: 100%;
+  height: auto;
+}
+
+.sc-hero-body {
+  flex: 1;
+  padding-top: 0.1rem;
+}
+
+.sc-hero-sub {
+  font-size: 0.95rem;
+  color: #bbb;
+  margin-bottom: 0.2rem;
+}
+
+.sc-hero-meta {
+  font-size: 0.7rem;
+  letter-spacing: 0.5px;
+  color: #3a3a3a;
+  margin-bottom: 1.25rem;
+}
+
+.sc-hero-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.sc-hero-link {
+  font-size: 0.76rem;
+  color: #4a4a4a;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.sc-hero-link:hover {
+  color: #888;
+}
+
+.sc-hero-link i {
+  font-size: 0.58rem;
+  margin-right: 7px;
+  vertical-align: middle;
+  opacity: 0.6;
+}
+
+.sc-section {
+  margin-bottom: 2.5rem;
+}
+
+.sc-section-label {
+  font-size: 0.67rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #444;
+  margin-bottom: 0.75rem;
+  padding: 0 2px;
+}
+
+.sc-carousel-wrap {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #161616;
+  background: #080808;
+}
+
+.sc-chart-wrap .custom-carousel-img {
+  object-fit: contain;
+  background: #080808;
+}
+
+.sc-cluster-card {
+  display: flex;
+  background: #0a0a0a;
+  border: 1px solid #161616;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.sc-cluster-img {
+  flex: 1.6;
+}
+
+.sc-cluster-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sc-cluster-specs {
+  flex: 1;
+  padding: 1.5rem;
+  border-left: 1px solid #111;
+}
+
+.sc-cluster-spec-title {
+  font-size: 0.66rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #3a3a3a;
+  margin-bottom: 0.75rem;
+}
+
+.sc-spec-row {
+  display: flex;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #0f0f0f;
+  font-size: 0.76rem;
+  color: #888;
+}
+
+.sc-spec-row:last-child {
+  border-bottom: none;
+}
+
+.sc-spec-label {
+  color: #3a3a3a;
+  font-size: 0.68rem;
+  min-width: 60px;
+  flex-shrink: 0;
+  padding-top: 1px;
+}
+
+.sc-poster-btn {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 1px solid #1a1a1a;
+  color: #555;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 0.76rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.sc-poster-btn:hover {
+  border-color: #2e2e2e;
+  color: #888;
+}
+
+.sc-poster-btn i {
+  font-size: 0.6rem;
+  opacity: 0.5;
+}
+
+.sc-poster-collapse {
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.sc-poster-collapse img {
+  max-width: 100%;
+  border-radius: 8px;
+  border: 1px solid #161616;
+}
+
+.sc-poster-pdf-link {
+  font-size: 0.72rem;
+  color: #4a4a4a;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.sc-poster-pdf-link:hover {
+  color: #888;
+}
+
+.sc-analysis {
+  margin-top: 1.25rem;
+  font-size: 0.8rem;
+  color: #666;
+  line-height: 1.75;
+  max-width: 860px;
+}
+
+.sc-analysis p {
+  margin-bottom: 0.9rem;
+}
+
+.sc-analysis p:last-child {
+  margin-bottom: 0;
+}
+
+.sc-analysis strong {
+  color: #999;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .sc-hero {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .sc-hero-logo {
+    width: 90px;
+  }
+
+  .sc-cluster-card {
+    flex-direction: column;
+  }
+
+  .sc-cluster-specs {
+    border-left: none;
+    border-top: 1px solid #111;
+  }
+}
+
 /* ── Courses ─────────────────────────────────────────────────── */
 
 .courses-wrap {

@@ -1,24 +1,36 @@
-%div.mt-5.container
-  %div.row
-    %div.col-md-4.col-12
-      %img{src: asset_path('sc23_logo_2.png'), alt: 'Image description', style: "width: 100%; height: auto; object-fit: cover;"}
+.sc-hero
+  .sc-hero-logo
+    %img{src: asset_path('sc23_logo_2.png'), alt: 'SC23'}
+  .sc-hero-body
+    %p.sc-hero-sub HPC Student Cluster Competition
+    %p.sc-hero-meta Denver, CO · November 2023
+    .sc-hero-links
+      %a.sc-hero-link{href: "https://www.studentclustercompetition.us/2023/Teams/NewMexico/index.html", target: "_blank"}
+        %i.fas.fa-external-link-alt
+        SCC23 Conference Team Site
+      %a.sc-hero-link{href: "https://www.studentclustercompetition.us/2023/index.html", target: "_blank"}
+        %i.fas.fa-external-link-alt
+        SCC23 Competition Site
+      %a.sc-hero-link{href: "https://roadrunners.cs.unm.edu/", target: "_blank"}
+        %i.fas.fa-external-link-alt
+        UNM Roadrunners Team Site
 
-    %div.col-md-8.col-12.p-5
-      %p
-        %a{href: "https://www.studentclustercompetition.us/2023/Teams/NewMexico/index.html", target: "_blank"} SCC23 conference team site.
-      %p
-        %a{href: "https://www.studentclustercompetition.us/2023/index.html", target: "_blank"} SCC23 competition site.
-      %p
-        %a{href: "https://roadrunners.cs.unm.edu/", target: "_blank"} UNM Roadrunners team site.
+.sc-section
+  %p.sc-section-label Team Poster
+  %button.sc-poster-btn{"data-bs-toggle" => "collapse", "data-bs-target" => "#collapsePoster", "aria-expanded" => "false", "aria-controls" => "collapsePoster", :type => "button"}
+    View Team Poster
+    %i.fas.fa-chevron-down.ms-2
+  .collapse#collapsePoster
+    .sc-poster-collapse
+      %img{src: asset_path('SC23Poster.jpg'), alt: 'SC23 Poster'}
+      %a.sc-poster-pdf-link{href: "https://www.dropbox.com/scl/fi/yl7cvamao76y4biv2hiky/SC23Poster.pdf?rlkey=wefdxtu024bplxmh1uxn12ihy&st=1dh4posj&dl=0", target: "_blank"}
+        %i.fas.fa-file-pdf.me-1
+        View PDF
 
-%hr
-
-%div.mt-5
-  %div.text-center
-    %h3 Photos
-
-  %div.d-flex.justify-content-center
-    #carouselSC23.carousel.slide{style: "width: 95%; max-width: 1500px;"}
+.sc-section
+  %p.sc-section-label Photos
+  .sc-carousel-wrap
+    #carouselSC23.carousel.slide
       .carousel-indicators
         %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC23", :type => "button"}
         %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC23", :type => "button"}
@@ -31,7 +43,7 @@
         %button{"aria-label" => "Slide 9", "data-bs-slide-to" => "8", "data-bs-target" => "#carouselSC23", :type => "button"}
       .carousel-inner
         .carousel-item.active
-          %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('SC23-04.jpg')}
+          %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('SC23-06.jpeg')}
         .carousel-item
           %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC23-01.jpeg')}
         .carousel-item
@@ -39,7 +51,7 @@
         .carousel-item
           %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('SC23-03.jpeg')}
         .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 5", src: asset_path('SC23-06.jpeg')}
+          %img.custom-carousel-img.d-block.w-100{alt: "img 5", src: asset_path('SC23-04.jpg')}
         .carousel-item
           %img.custom-carousel-img.d-block.w-100{alt: "img 6", src: asset_path('SC23-05.jpeg')}
         .carousel-item
@@ -54,15 +66,3 @@
       %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSC23", :type => "button"}
         %span.carousel-control-next-icon{"aria-hidden" => "true"}
         %span.visually-hidden Next
-
-%hr
-
-%div
-  %div.d-flex.flex-column.align-items-center
-    %button.custom-dark-button{type: "button", "data-bs-toggle" => "collapse", "data-bs-target" => "#collapsePoster", "aria-expanded" => "false", "aria-controls" => "collapsePoster", style: "width: 95%;"}
-      Team Poster
-    %div#collapsePoster.collapse.text-center
-      %img.sc-poster{src: asset_path('SC23Poster.jpg'), alt: 'SC23'}
-      %div.mt-3
-        %p
-          %a{href: "https://www.dropbox.com/scl/fi/yl7cvamao76y4biv2hiky/SC23Poster.pdf?rlkey=wefdxtu024bplxmh1uxn12ihy&st=1dh4posj&dl=0", target: "_blank"} view pdf
