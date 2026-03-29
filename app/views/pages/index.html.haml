@@ -51,8 +51,13 @@
 
 %hr.mt-3
 
+.career-filter-wrap.d-flex.justify-content-start.align-items-center.gap-2.mb-4.ps-2
+  %button.career-filter-btn.active{"data-filter" => "all"} Both
+  %button.career-filter-btn{"data-filter" => "professional"} Professional
+  %button.career-filter-btn{"data-filter" => "extracurricular"} Extracurricular
+
 .career-timeline.career-timeline-left
-  .career-event
+  .career-event{data: {career_type: "professional"}}
     .career-event-dot
     .career-event-card
       .event-card-inner
@@ -64,7 +69,18 @@
           %p.event-dates December 2025 — Present
           %p.event-desc Machine Learning & HPC Infrastructure for Tesla Autopilot.
 
-  .career-event
+  .career-event{data: {career_type: "extracurricular"}}
+    .career-event-dot
+    .career-event-card.event-extra
+      .event-card-inner
+        .event-body
+          %h6.event-title Committee Member
+          %p.event-org SC25 HPC Student Cluster Competition
+          %p.event-dates January 2025 — November 2025
+          %p.event-desc
+            %a{href: "https://sc25.supercomputing.org/planning-committee/", target: "_blank"} SC25 Planning Committee.
+
+  .career-event{data: {career_type: "professional"}}
     .career-event-dot
     .career-event-card
       .event-card-inner
@@ -79,7 +95,7 @@
   .career-year-marker
     %span 2024
 
-  .career-event
+  .career-event{data: {career_type: "professional"}}
     .career-event-dot
     .career-event-card
       .event-card-inner
@@ -91,7 +107,19 @@
           %p.event-dates October 2022 — December 2024
           %p.event-desc Design, acquisition, deployment, and optimization of large-scale scientific HPC clusters. Full stack web in Ruby on Rails.
 
-  .career-event
+  .career-event{data: {career_type: "extracurricular"}}
+    .career-event-dot
+    .career-event-card.event-extra
+      .event-card-inner
+        .event-body
+          %h6.event-title Team Manager
+          %p.event-org SC24 HPC Student Cluster Competition
+          %p.event-dates June 2024 — December 2024
+          %p.event-desc
+            Student teams design HPC clusters and compete in a 48-hour challenge. More info
+            %a{href: "/sc24"} here.
+
+  .career-event{data: {career_type: "professional"}}
     .career-event-dot
     .career-event-card
       .event-card-inner
@@ -103,7 +131,18 @@
           %p.event-dates May 2023 — December 2024
           %p.event-desc Supporting users on UNM HPC clusters, benchmarking, profiling, and reporting.
 
-  .career-event
+  .career-event{data: {career_type: "extracurricular"}}
+    .career-event-dot
+    .career-event-card.event-extra
+      .event-card-inner
+        .event-body
+          %h6.event-title Student Volunteer
+          %p.event-org PEARC24 Conference
+          %p.event-dates July 2024
+          %p.event-desc
+            %a{href: "https://pearc.acm.org/", target: "_blank"} PEARC conference series.
+
+  .career-event{data: {career_type: "professional"}}
     .career-event-dot
     .career-event-card
       .event-card-inner
@@ -115,10 +154,113 @@
           %p.event-dates Spring & Fall 2024
           %p.event-desc Teaching Assistant for CS491: High Performance Computing.
 
+  .career-event{data: {career_type: "extracurricular"}}
+    .career-event-dot
+    .career-event-card.event-extra
+      .event-card-inner
+        .event-body
+          %h6.event-title Peer Mentor
+          %p.event-org UNM School of Engineering
+          %p.event-dates January 2023 — December 2024
+          %p.event-desc
+            %a{href: "https://ess.unm.edu/about-us/index.html", target: "_blank"} UNM Engineering Student Success Center (ESS).
+
+  .career-event{data: {career_type: "extracurricular"}}
+    .career-event-dot
+    .career-event-card.event-extra
+      .event-card-inner
+        .event-body
+          %h6.event-title Team Manager
+          %p.event-org Winter Classic Invitational HPC 2024
+          %p.event-dates January 2024 — May 2024
+          %p.event-desc
+            %a{href: "https://www.winterclassicinvitational.com/team/university-of-new-mexico-lobo24/", target: "_blank"} View team site.
+
+  .career-event{data: {career_type: "extracurricular"}}
+    .career-event-dot
+    .career-event-card.event-extra
+      .event-card-inner
+        .event-body
+          %h6.event-title Team Manager
+          %p.event-org ISC24 Virtual HPC Student Cluster Competition
+          %p.event-dates January 2024 — April 2024
+          %p.event-desc
+            %a{href: "https://www.isc-hpc.com/student-cluster-competition-2024.html", target: "_blank"} View competition site.
+
+  .career-event{data: {career_type: "extracurricular"}}
+    .career-event-dot
+    .career-event-card.event-extra
+      .event-card-inner
+        .event-body
+          %h6.event-title Member of Artifact Evaluation Committee
+          %p.event-org International Conference for Performance Engineering (ICPE)
+          %p.event-dates January 2024 — May 2024
+          %p.event-desc
+            %a{href: "https://icpe2024.spec.org/program-committee/", target: "_blank"} 2024 ICPE committee.
+
+  .career-event{data: {career_type: "extracurricular"}}
+    .career-event-dot
+    .career-event-card.event-extra
+      .event-card-inner
+        .event-body
+          %h6.event-title Project Evaluation Committee Member
+          %p.event-org NM Supercomputing Challenge
+          %p.event-dates February 2024
+          %p.event-desc
+            %a{href: "https://supercomputingchallenge.org/23-24/evaluations-schedule", target: "_blank"} Supercomputing Challenge website.
+
+  .career-year-marker
+    %span 2023
+
+  .career-event{data: {career_type: "extracurricular"}}
+    .career-event-dot
+    .career-event-card.event-extra
+      .event-card-inner
+        .event-body
+          %h6.event-title Team Manager
+          %p.event-org SC23 HPC Student Cluster Competition
+          %p.event-dates August 2023 — December 2023
+          %p.event-desc
+            More info
+            %a{href: "/sc23"} here.
+
+  .career-event{data: {career_type: "extracurricular"}}
+    .career-event-dot
+    .career-event-card.event-extra
+      .event-card-inner
+        .event-body
+          %h6.event-title Team Manager
+          %p.event-org Winter Classic Invitational HPC 2023
+          %p.event-dates January 2023 — May 2023
+          %p.event-desc
+            %a{href: "https://www.winterclassicinvitational.com/team/university-of-new-mexico/", target: "_blank"} View team site.
+
+  .career-event{data: {career_type: "extracurricular"}}
+    .career-event-dot
+    .career-event-card.event-extra
+      .event-card-inner
+        .event-body
+          %h6.event-title Machine Learning Team
+          %p.event-org NASA Minds Team Chili House
+          %p.event-dates November 2022 — May 2023
+          %p.event-desc
+            %a{href: "https://drive.google.com/file/d/1lyjeK7hHzxfpkWrZFMXKVdWN3r56dOvG/view", target: "_blank"} View PDR.
+
   .career-year-marker
     %span 2022
 
-  .career-event
+  .career-event{data: {career_type: "extracurricular"}}
+    .career-event-dot
+    .career-event-card.event-extra
+      .event-card-inner
+        .event-logo
+          %img{src: asset_path('unm_logo.png'), alt: "UNM"}
+        .event-body
+          %h6.event-title B.S. Computer Science w/ Minor in Mathematics
+          %p.event-org The University of New Mexico
+          %p.event-dates August 2022 — December 2024
+
+  .career-event{data: {career_type: "professional"}}
     .career-event-dot
     .career-event-card
       .event-card-inner
@@ -129,6 +271,22 @@
           %p.event-org Air Force Research Laboratory
           %p.event-dates August 2022 — December 2022
           %p.event-desc Cyber Resilience Team, Space Vehicles Directorate at Kirtland Air Force Base.
+
+:javascript
+  document.addEventListener('DOMContentLoaded', function() {
+    var btns = document.querySelectorAll('.career-filter-btn');
+    btns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        btns.forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        var filter = btn.dataset.filter;
+        document.querySelectorAll('.career-event').forEach(function(ev) {
+          var type = ev.dataset.careerType;
+          ev.style.display = (filter === 'all' || filter === type) ? '' : 'none';
+        });
+      });
+    });
+  });
 
 .apps-scroll-container.mt-4.mb-2
   %a.app-panel.app-panel-wide{href: "/sc24"}

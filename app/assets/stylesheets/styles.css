@@ -766,3 +766,80 @@ hr {
   max-height: 82vh;
   object-fit: contain;
 }
+
+/* ── Career Filter Buttons ───────────────────────────────────── */
+
+.career-filter-wrap {
+  margin-top: 0.25rem;
+}
+
+.career-filter-btn {
+  background: transparent;
+  border: 1px solid #222;
+  color: #555;
+  border-radius: 20px;
+  padding: 4px 16px;
+  font-size: 0.72rem;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.career-filter-btn:hover {
+  border-color: #3a3a3a;
+  color: #888;
+}
+
+.career-filter-btn.active {
+  background: #141414;
+  border-color: #3a3a3a;
+  color: #bbb;
+}
+
+/* ── Extracurricular / secondary event cards ─────────────────── */
+
+.event-extra {
+  background: #080808 !important;
+  border-color: #111 !important;
+}
+
+.event-extra:hover {
+  border-color: #222 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+  transform: translateY(-1px) !important;
+}
+
+.event-extra .event-title {
+  font-size: 0.77rem;
+  color: #777;
+}
+
+.event-extra .event-org {
+  font-size: 0.69rem;
+  color: #444;
+}
+
+.event-extra .event-dates {
+  font-size: 0.66rem;
+  color: #383838;
+}
+
+.event-extra .event-desc {
+  font-size: 0.69rem;
+  color: #4a4a4a;
+}
+
+.event-extra .event-desc a {
+  color: #4a4a4a;
+}
+
+.event-extra .event-desc a:hover {
+  color: #777;
+}
+
+.event-extra .event-logo img {
+  width: 32px;
+  height: 32px;
+  opacity: 0.5;
+}
