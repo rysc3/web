@@ -354,6 +354,235 @@ p {
   background-color: #444; /* Slightly lighter grey on hover */
 }
 
+/* ── Career Timeline ─────────────────────────────────────────── */
+
+.career-subtitle {
+  color: #555;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+}
+
+.career-timeline {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 10px 0 60px;
+}
+
+/* Vertical center line */
+.career-timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, #222 40px, #222 calc(100% - 40px), transparent);
+  transform: translateX(-50%);
+}
+
+/* Year markers */
+.career-year-marker {
+  position: relative;
+  text-align: center;
+  margin: 50px 0 24px;
+  z-index: 2;
+}
+
+.career-year-marker span {
+  display: inline-block;
+  background: #000;
+  border: 1px solid #2a2a2a;
+  color: #555;
+  padding: 3px 14px;
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* Event row */
+.career-event {
+  position: relative;
+  margin-bottom: 24px;
+  min-height: 50px;
+}
+
+/* Center dot */
+.career-event-dot {
+  position: absolute;
+  left: 50%;
+  top: 16px;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #000;
+  border: 2px solid #444;
+  z-index: 2;
+}
+
+/* Card base */
+.career-event-card {
+  position: relative;
+  width: calc(50% - 32px);
+  background: #070707;
+  border: 1px solid #1c1c1c;
+  border-radius: 3px;
+  padding: 14px 18px;
+  transition: border-color 0.2s ease;
+}
+
+.career-event-card:hover {
+  border-color: #2e2e2e;
+}
+
+/* Right side card */
+.career-event.event-right .career-event-card {
+  margin-left: calc(50% + 32px);
+}
+
+/* Left side card (default left, no extra margin) */
+.career-event.event-left .career-event-card {
+  margin-left: 0;
+}
+
+/* Tags */
+.event-tag {
+  display: inline-block;
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 1px 7px;
+  border-radius: 2px;
+  margin-bottom: 8px;
+  border: 1px solid;
+}
+
+.tag-work         { border-color: #224; color: #88a; }
+.tag-education    { border-color: #242; color: #8a8; }
+.tag-competition  { border-color: #422; color: #a88; }
+.tag-volunteering { border-color: #244; color: #8aa; }
+
+/* Card text */
+.event-title {
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #ddd;
+  margin: 0 0 3px;
+}
+
+.event-org {
+  font-size: 0.78rem;
+  color: #555;
+  margin: 0 0 3px;
+}
+
+.event-dates {
+  font-style: italic;
+  font-size: 0.75rem;
+  color: #444;
+  margin: 0 0 8px;
+}
+
+.event-desc {
+  font-size: 0.78rem;
+  color: #777;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.event-desc a {
+  color: #666;
+  text-decoration: underline;
+}
+
+.event-desc a:hover {
+  color: #999;
+}
+
+/* Left-rail variant (index page — all cards on right) */
+.career-timeline.career-timeline-left::before {
+  left: 16px;
+  transform: none;
+}
+
+.career-timeline.career-timeline-left .career-year-marker {
+  text-align: left;
+  padding-left: 38px;
+}
+
+.career-timeline.career-timeline-left .career-event-dot {
+  left: 16px;
+  transform: translateX(-50%);
+}
+
+.career-timeline.career-timeline-left .career-event-card {
+  width: calc(100% - 48px);
+  max-width: 820px;
+  margin-left: 48px;
+}
+
+/* Card inner layout: logo + text */
+.event-card-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.event-logo {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-logo img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  opacity: 0.7;
+}
+
+.event-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.event-body .event-title { margin-bottom: 2px; }
+.event-body .event-org   { margin-bottom: 2px; }
+.event-body .event-dates { margin-bottom: 6px; }
+.event-body .event-desc  { margin-bottom: 0; }
+
+/* Mobile: collapse to left-rail layout */
+@media (max-width: 768px) {
+  .career-timeline::before {
+    left: 14px;
+    transform: none;
+  }
+
+  .career-year-marker {
+    text-align: left;
+    padding-left: 36px;
+  }
+
+  .career-event-dot {
+    left: 14px;
+    transform: translateX(-50%);
+  }
+
+  .career-event-card,
+  .career-event.event-right .career-event-card,
+  .career-event.event-left .career-event-card {
+    width: calc(100% - 46px);
+    margin-left: 46px !important;
+  }
+}
+
+/* ── End Career Timeline ─────────────────────────────────────── */
+
 .show-cont {
   display: flex;
   justify-content: center;

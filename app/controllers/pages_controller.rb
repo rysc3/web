@@ -46,6 +46,10 @@ class PagesController < ApplicationController
     @page_title = "Ryan's Resume"
   end
 
+  def career
+    @page_title = "Ryan's Career"
+  end
+
   def web
     @page_title = "Ryan's Site Info"
   end

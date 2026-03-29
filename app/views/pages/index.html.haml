@@ -49,6 +49,86 @@
         %b.underline
           %a{href: "/meet"} Schedule a meeting
 
+%hr.mt-3
+.career-timeline.career-timeline-left
+  .career-event
+    .career-event-dot
+    .career-event-card
+      .event-card-inner
+        .event-logo
+          %img{src: asset_path('tesla_logo_2.png'), alt: "Tesla"}
+        .event-body
+          %h6.event-title Sr. Software Engineer
+          %p.event-org Tesla
+          %p.event-dates December 2025 — Present
+          %p.event-desc Machine Learning & HPC Infrastructure for Tesla Autopilot.
+
+  .career-event
+    .career-event-dot
+    .career-event-card
+      .event-card-inner
+        .event-logo
+          %img{src: asset_path('tesla_logo_2.png'), alt: "Tesla"}
+        .event-body
+          %h6.event-title Software Engineer
+          %p.event-org Tesla
+          %p.event-dates January 2025 — December 2025
+          %p.event-desc Machine Learning & HPC Infrastructure for Tesla Autopilot.
+
+  .career-year-marker
+    %span 2024
+
+  .career-event
+    .career-event-dot
+    .career-event-card
+      .event-card-inner
+        .event-logo
+          %img{src: asset_path('sandia_labs_logo.png'), alt: "Sandia"}
+        .event-body
+          %h6.event-title Software Engineer, HPC
+          %p.event-org Sandia National Laboratories
+          %p.event-dates October 2022 — December 2024
+          %p.event-desc Design, acquisition, deployment, and optimization of large-scale scientific HPC clusters. Full stack web in Ruby on Rails.
+
+  .career-event
+    .career-event-dot
+    .career-event-card
+      .event-card-inner
+        .event-logo
+          %img{src: asset_path('carc_logo_transparent.png'), alt: "CARC"}
+        .event-body
+          %h6.event-title HPC Systems Specialist
+          %p.event-org Center for Advanced Research Computing — UNM
+          %p.event-dates May 2023 — December 2024
+          %p.event-desc Supporting users on UNM HPC clusters, benchmarking, profiling, and reporting.
+
+  .career-event
+    .career-event-dot
+    .career-event-card
+      .event-card-inner
+        .event-logo
+          %img{src: asset_path('unm_logo.png'), alt: "UNM"}
+        .event-body
+          %h6.event-title Teaching Assistant — CS491
+          %p.event-org The University of New Mexico
+          %p.event-dates Spring & Fall 2024
+          %p.event-desc Teaching Assistant for CS491: High Performance Computing.
+
+  .career-year-marker
+    %span 2022
+
+  .career-event
+    .career-event-dot
+    .career-event-card
+      .event-card-inner
+        .event-logo
+          %img{src: asset_path('afrl_logo.png'), alt: "AFRL"}
+        .event-body
+          %h6.event-title Software Engineer Intern
+          %p.event-org Air Force Research Laboratory
+          %p.event-dates August 2022 — December 2022
+          %p.event-desc Cyber Resilience Team, Space Vehicles Directorate at Kirtland Air Force Base.
+
 %h2.pt-5 Recent Events
 %hr
   %div
@@ -174,252 +254,236 @@
 
 %h2.pt-5 Images
 %hr
+.mb-3
+  %button.btn.custom-dark-button{"data-bs-toggle" => "collapse", "data-bs-target" => "#imagesCollapse", "aria-expanded" => "false", "aria-controls" => "imagesCollapse"} show / hide
+#imagesCollapse.collapse
+  %div.mt-5
+    %div.text-center
+      %h3
+        %a{href: "/sc24"} SC24 HPC Competition (11/2024)
 
-%div.mt-5
-  %div.text-center
-    %h3
-      %a{href: "/sc24"} SC24 HPC Competition (11/2024)
+    %div.d-flex.justify-content-center
+      #carouselSC24.carousel.slide{style: "width: 95%; max-width: 1500px;"}
+        .carousel-indicators
+          %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC24", :type => "button"}
+          %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC24", :type => "button"}
+          %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselSC24", :type => "button"}
+          %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselSC24", :type => "button"}
+          %button{"aria-label" => "Slide 5", "data-bs-slide-to" => "4", "data-bs-target" => "#carouselSC24", :type => "button"}
+          %button{"aria-label" => "Slide 6", "data-bs-slide-to" => "5", "data-bs-target" => "#carouselSC24", :type => "button"}
+          %button{"aria-label" => "Slide 7", "data-bs-slide-to" => "6", "data-bs-target" => "#carouselSC24", :type => "button"}
+          %button{"aria-label" => "Slide 8", "data-bs-slide-to" => "7", "data-bs-target" => "#carouselSC24", :type => "button"}
+          %button{"aria-label" => "Slide 9", "data-bs-slide-to" => "8", "data-bs-target" => "#carouselSC24", :type => "button"}
+        .carousel-inner
+          .carousel-item.active
+            %img.custom-carousel-img.d-block.w-100{alt: "img 9", src: asset_path('SC24-35.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 7", src: asset_path('SC24-33.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 8", src: asset_path('SC24-34.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('SC24-27.jpg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 5", src: asset_path('SC24-28.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 6", src: asset_path('SC24-29.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC24-08.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('SC24-14.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('SC24-07.jpeg')}
+        %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC24", :type => "button"}
+          %span.carousel-control-prev-icon{"aria-hidden" => "true"}
+          %span.visually-hidden Previous
+        %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSC24", :type => "button"}
+          %span.carousel-control-next-icon{"aria-hidden" => "true"}
+          %span.visually-hidden Next
 
-  %div.d-flex.justify-content-center
-    #carouselSC24.carousel.slide{style: "width: 95%; max-width: 1500px;"}
-      .carousel-indicators
-        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC24", :type => "button"}
-        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC24", :type => "button"}
-        %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselSC24", :type => "button"}
-        %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselSC24", :type => "button"}
-        %button{"aria-label" => "Slide 5", "data-bs-slide-to" => "4", "data-bs-target" => "#carouselSC24", :type => "button"}
-        %button{"aria-label" => "Slide 6", "data-bs-slide-to" => "5", "data-bs-target" => "#carouselSC24", :type => "button"}
-        %button{"aria-label" => "Slide 7", "data-bs-slide-to" => "6", "data-bs-target" => "#carouselSC24", :type => "button"}
-        %button{"aria-label" => "Slide 8", "data-bs-slide-to" => "7", "data-bs-target" => "#carouselSC24", :type => "button"}
-        %button{"aria-label" => "Slide 9", "data-bs-slide-to" => "8", "data-bs-target" => "#carouselSC24", :type => "button"}
-      .carousel-inner
-        .carousel-item.active
-          %img.custom-carousel-img.d-block.w-100{alt: "img 9", src: asset_path('SC24-35.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 7", src: asset_path('SC24-33.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 8", src: asset_path('SC24-34.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('SC24-27.jpg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 5", src: asset_path('SC24-28.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 6", src: asset_path('SC24-29.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC24-08.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('SC24-14.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('SC24-07.jpeg')}
-      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC24", :type => "button"}
-        %span.carousel-control-prev-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Previous
-      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSC24", :type => "button"}
-        %span.carousel-control-next-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Next
+  %div.mt-5
+    %div.text-center
+      %h3
+        %a{href: "https://pearc.acm.org/"} PEARC24 HPC Conference (7/2024)
 
-%div.mt-5
-  %div.text-center
-    %h3
-      %a{href: "https://pearc.acm.org/"} PEARC24 HPC Conference (7/2024)
+    %div.d-flex.justify-content-center
+      #carouselPEARC24.carousel.slide{style: "width: 95%; max-width: 1500px;"}
+        .carousel-indicators
+          %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselPEARC24", :type => "button"}
+          %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselPEARC24", :type => "button"}
+          %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselPEARC24", :type => "button"}
+          %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselPEARC24", :type => "button"}
+          %button{"aria-label" => "Slide 5", "data-bs-slide-to" => "4", "data-bs-target" => "#carouselPEARC24", :type => "button"}
+          %button{"aria-label" => "Slide 6", "data-bs-slide-to" => "5", "data-bs-target" => "#carouselPEARC24", :type => "button"}
+        .carousel-inner
+          .carousel-item.active
+            %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('PEARC24-06.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('PEARC24-01.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('PEARC24-02.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('PEARC24-03.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 5", src: asset_path('PEARC24-04.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 6", src: asset_path('PEARC24-05.jpeg')}
+        %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselPEARC24", :type => "button"}
+          %span.carousel-control-prev-icon{"aria-hidden" => "true"}
+          %span.visually-hidden Previous
+        %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselPEARC24", :type => "button"}
+          %span.carousel-control-next-icon{"aria-hidden" => "true"}
+          %span.visually-hidden Next
 
-  %div.d-flex.justify-content-center
-    #carouselPEARC24.carousel.slide{style: "width: 95%; max-width: 1500px;"}
-      .carousel-indicators
-        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselPEARC24", :type => "button"}
-        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselPEARC24", :type => "button"}
-        %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselPEARC24", :type => "button"}
-        %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselPEARC24", :type => "button"}
-        %button{"aria-label" => "Slide 5", "data-bs-slide-to" => "4", "data-bs-target" => "#carouselPEARC24", :type => "button"}
-        %button{"aria-label" => "Slide 6", "data-bs-slide-to" => "5", "data-bs-target" => "#carouselPEARC24", :type => "button"}
-      .carousel-inner
-        .carousel-item.active
-          %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('PEARC24-06.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('PEARC24-01.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('PEARC24-02.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('PEARC24-03.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 5", src: asset_path('PEARC24-04.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 6", src: asset_path('PEARC24-05.jpeg')}
-      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselPEARC24", :type => "button"}
-        %span.carousel-control-prev-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Previous
-      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselPEARC24", :type => "button"}
-        %span.carousel-control-next-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Next
+  %div.mt-5
+    %div.text-center
+      %h3
+        %a{href: "https://rmacc.org/about-us"} RMACC HPC Conference (5/2024)
 
-%div.mt-5
-  %div.text-center
-    %h3
-      %a{href: "https://rmacc.org/about-us"} RMACC HPC Conference (5/2024)
+    %div.d-flex.justify-content-center
+      #carouselRMACC24.carousel.slide{style: "width: 95%; max-width: 1500px;"}
+        .carousel-indicators
+          %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselRMACC24", :type => "button"}
+          %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselRMACC24", :type => "button"}
+          %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselRMACC24", :type => "button"}
+        .carousel-inner
+          .carousel-item.active
+            %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('RMACC24-01.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('RMACC24-02.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('RMACC24-03.jpeg')}
+        %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselRMACC24", :type => "button"}
+          %span.carousel-control-prev-icon{"aria-hidden" => "true"}
+          %span.visually-hidden Previous
+        %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselRMACC24", :type => "button"}
+          %span.carousel-control-next-icon{"aria-hidden" => "true"}
+          %span.visually-hidden Next
 
-  %div.d-flex.justify-content-center
-    #carouselRMACC24.carousel.slide{style: "width: 95%; max-width: 1500px;"}
-      .carousel-indicators
-        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselRMACC24", :type => "button"}
-        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselRMACC24", :type => "button"}
-        %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselRMACC24", :type => "button"}
-      .carousel-inner
-        .carousel-item.active
-          %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('RMACC24-01.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('RMACC24-02.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('RMACC24-03.jpeg')}
-      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselRMACC24", :type => "button"}
-        %span.carousel-control-prev-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Previous
-      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselRMACC24", :type => "button"}
-        %span.carousel-control-next-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Next
+  %div.mt-5
+    %div.text-center
+      %h3
+        %a{href: "/sc23"} SC23 HPC Competition (11/2023)
 
-%div.mt-5
-  %div.text-center
-    %h3
-      %a{href: "/sc23"} SC23 HPC Competition (11/2023)
+    %div.d-flex.justify-content-center
+      #carouselSC23.carousel.slide{style: "width: 95%; max-width: 1500px;"}
+        .carousel-indicators
+          %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC23", :type => "button"}
+          %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC23", :type => "button"}
+          %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselSC23", :type => "button"}
+          %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselSC23", :type => "button"}
+          %button{"aria-label" => "Slide 5", "data-bs-slide-to" => "4", "data-bs-target" => "#carouselSC23", :type => "button"}
+          %button{"aria-label" => "Slide 6", "data-bs-slide-to" => "5", "data-bs-target" => "#carouselSC23", :type => "button"}
+          %button{"aria-label" => "Slide 7", "data-bs-slide-to" => "6", "data-bs-target" => "#carouselSC23", :type => "button"}
+          %button{"aria-label" => "Slide 8", "data-bs-slide-to" => "7", "data-bs-target" => "#carouselSC23", :type => "button"}
+          %button{"aria-label" => "Slide 9", "data-bs-slide-to" => "8", "data-bs-target" => "#carouselSC23", :type => "button"}
+        .carousel-inner
+          .carousel-item.active
+            %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('SC23-04.jpg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC23-01.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('SC23-02.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('SC23-03.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 5", src: asset_path('SC23-06.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 6", src: asset_path('SC23-05.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 7", src: asset_path('SC23-07.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 8", src: asset_path('SC23-08.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 9", src: asset_path('SC23-09.jpeg')}
+        %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC23", :type => "button"}
+          %span.carousel-control-prev-icon{"aria-hidden" => "true"}
+          %span.visually-hidden Previous
+        %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSC23", :type => "button"}
+          %span.carousel-control-next-icon{"aria-hidden" => "true"}
+          %span.visually-hidden Next
 
-  %div.d-flex.justify-content-center
-    #carouselSC23.carousel.slide{style: "width: 95%; max-width: 1500px;"}
-      .carousel-indicators
-        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC23", :type => "button"}
-        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC23", :type => "button"}
-        %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselSC23", :type => "button"}
-        %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselSC23", :type => "button"}
-        %button{"aria-label" => "Slide 5", "data-bs-slide-to" => "4", "data-bs-target" => "#carouselSC23", :type => "button"}
-        %button{"aria-label" => "Slide 6", "data-bs-slide-to" => "5", "data-bs-target" => "#carouselSC23", :type => "button"}
-        %button{"aria-label" => "Slide 7", "data-bs-slide-to" => "6", "data-bs-target" => "#carouselSC23", :type => "button"}
-        %button{"aria-label" => "Slide 8", "data-bs-slide-to" => "7", "data-bs-target" => "#carouselSC23", :type => "button"}
-        %button{"aria-label" => "Slide 9", "data-bs-slide-to" => "8", "data-bs-target" => "#carouselSC23", :type => "button"}
-      .carousel-inner
-        .carousel-item.active
-          %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('SC23-04.jpg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC23-01.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('SC23-02.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('SC23-03.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 5", src: asset_path('SC23-06.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 6", src: asset_path('SC23-05.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 7", src: asset_path('SC23-07.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 8", src: asset_path('SC23-08.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 9", src: asset_path('SC23-09.jpeg')}
-      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC23", :type => "button"}
-        %span.carousel-control-prev-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Previous
-      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSC23", :type => "button"}
-        %span.carousel-control-next-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Next
+  %div.mt-5
+    %div.text-center
+      %h3 Setup Photos
 
-%div.mt-5
-  %div.text-center
-    %h3 Setup Photos
+    %div.d-flex.justify-content-center
+      #carouselSetup.carousel.slide{style: "width: 95%; max-width: 1500px;"}
+        .carousel-indicators
+          %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSetup", :type => "button"}
+          %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSetup", :type => "button"}
+          %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselSetup", :type => "button"}
+          %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselSetup", :type => "button"}
+          %button{"aria-label" => "Slide 5", "data-bs-slide-to" => "4", "data-bs-target" => "#carouselSetup", :type => "button"}
+          %button{"aria-label" => "Slide 6", "data-bs-slide-to" => "5", "data-bs-target" => "#carouselSetup", :type => "button"}
+          %button{"aria-label" => "Slide 7", "data-bs-slide-to" => "6", "data-bs-target" => "#carouselSetup", :type => "button"}
+        .carousel-inner
+          .carousel-item.active
+            %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('Setup-10.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('Setup-01.jpg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('Setup-05.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('Setup-06.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('Setup-08.jpg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 5", src: asset_path('Setup-09.jpg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 6", src: asset_path('Setup-07.jpg')}
+        %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSetup", :type => "button"}
+          %span.carousel-control-prev-icon{"aria-hidden" => "true"}
+          %span.visually-hidden Previous
+        %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSetup", :type => "button"}
+          %span.carousel-control-next-icon{"aria-hidden" => "true"}
+          %span.visually-hidden Next
 
-  %div.d-flex.justify-content-center
-    #carouselSetup.carousel.slide{style: "width: 95%; max-width: 1500px;"}
-      .carousel-indicators
-        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSetup", :type => "button"}
-        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSetup", :type => "button"}
-        %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselSetup", :type => "button"}
-        %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselSetup", :type => "button"}
-        %button{"aria-label" => "Slide 5", "data-bs-slide-to" => "4", "data-bs-target" => "#carouselSetup", :type => "button"}
-        %button{"aria-label" => "Slide 6", "data-bs-slide-to" => "5", "data-bs-target" => "#carouselSetup", :type => "button"}
-        %button{"aria-label" => "Slide 7", "data-bs-slide-to" => "6", "data-bs-target" => "#carouselSetup", :type => "button"}
-      .carousel-inner
-        .carousel-item.active
-          %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('Setup-10.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('Setup-01.jpg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('Setup-05.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('Setup-06.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('Setup-08.jpg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 5", src: asset_path('Setup-09.jpg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 6", src: asset_path('Setup-07.jpg')}
-      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSetup", :type => "button"}
-        %span.carousel-control-prev-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Previous
-      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSetup", :type => "button"}
-        %span.carousel-control-next-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Next
+  %div.mt-5
+    %div.text-center
+      %h3
+        %a{href: "https://www.athlinks.com/event/35398/results/Event/1063165/Course/2408972/Bib/54", :target => "_blank"} Duke City Marathon (10/2023)
 
-%div.mt-5
-  %div.text-center
-    %h3
-      %a{href: "https://www.athlinks.com/event/35398/results/Event/1063165/Course/2408972/Bib/54", :target => "_blank"} Duke City Marathon (10/2023)
+    %div.d-flex.justify-content-center
+      #carouseldukeFull.carousel.slide{style: "width: 95%; max-width: 1500px;"}
+        .carousel-indicators
+          %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouseldukeFull", :type => "button"}
+          %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouseldukeFull", :type => "button"}
+          %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouseldukeFull", :type => "button"}
+        .carousel-inner
+          .carousel-item.active
+            %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('DukeFull-01.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('DukeFull-03.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('DukeFull-02.png')}
+        %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouseldukeFull", :type => "button"}
+          %span.carousel-control-prev-icon{"aria-hidden" => "true"}
+          %span.visually-hidden Previous
+        %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouseldukeFull", :type => "button"}
+          %span.carousel-control-next-icon{"aria-hidden" => "true"}
+          %span.visually-hidden Next
 
-  %div.d-flex.justify-content-center
-    #carouseldukeFull.carousel.slide{style: "width: 95%; max-width: 1500px;"}
-      .carousel-indicators
-        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouseldukeFull", :type => "button"}
-        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouseldukeFull", :type => "button"}
-        %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouseldukeFull", :type => "button"}
-      .carousel-inner
-        .carousel-item.active
-          %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('DukeFull-01.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('DukeFull-03.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('DukeFull-02.png')}
-      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouseldukeFull", :type => "button"}
-        %span.carousel-control-prev-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Previous
-      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouseldukeFull", :type => "button"}
-        %span.carousel-control-next-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Next
+  %div.mt-5
+    %div.text-center
+      %h3
+        %a{href: "https://www.athlinks.com/event/35398/results/Event/1032202/Course/2296577/Bib/1417", :target => "_blank"} Duke City Half Marathon (10/2022)
 
-%div.mt-5
-  %div.text-center
-    %h3
-      %a{href: "https://www.athlinks.com/event/35398/results/Event/1032202/Course/2296577/Bib/1417", :target => "_blank"} Duke City Half Marathon (10/2022)
-
-  %div.d-flex.justify-content-center
-    #carouselDukeHalf.carousel.slide{style: "width: 95%; max-width: 1500px;"}
-      .carousel-indicators
-        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselDukeHalf", :type => "button"}
-        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselDukeHalf", :type => "button"}
-        %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselDukeHalf", :type => "button"}
-      .carousel-inner
-        .carousel-item.active
-          %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('DukeHalf-02.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('DukeHalf-03.jpg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('DukeHalf-01.png')}
-      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselDukeHalf", :type => "button"}
-        %span.carousel-control-prev-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Previous
-      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselDukeHalf", :type => "button"}
-        %span.carousel-control-next-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Next
-
-%h2.pt-5 Referral Links
-%hr
-
-%div.d-flex.flex-wrap
-  - @referrals.each do |ref|
-    - domain = URI.parse(ref[:url]).host rescue ref[:url]
-    %a.btn.m-2{
-      href: ref[:url],
-      target: "_blank",
-      style: "background-color: #555555; color: #fff; border-color: #555555; white-space: nowrap;"
-    }
-      %img{
-        src: "https://logo.clearbit.com/#{domain}",
-        alt: ref[:title],
-        style: "width:20px; height:20px; margin-right:5px; border-radius: 4px;"
-      }
-      = ref[:title]
+    %div.d-flex.justify-content-center
+      #carouselDukeHalf.carousel.slide{style: "width: 95%; max-width: 1500px;"}
+        .carousel-indicators
+          %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselDukeHalf", :type => "button"}
+          %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselDukeHalf", :type => "button"}
+          %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselDukeHalf", :type => "button"}
+        .carousel-inner
+          .carousel-item.active
+            %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('DukeHalf-02.jpeg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('DukeHalf-03.jpg')}
+          .carousel-item
+            %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('DukeHalf-01.png')}
+        %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselDukeHalf", :type => "button"}
+          %span.carousel-control-prev-icon{"aria-hidden" => "true"}
+          %span.visually-hidden Previous
+        %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselDukeHalf", :type => "button"}
+          %span.carousel-control-next-icon{"aria-hidden" => "true"}
+          %span.visually-hidden Next

@@ -1,12 +1,6 @@
 !!!
 %html
   %head
-    %script{async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-7VD1T7W41S"}
-    :javascript
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-7VD1T7W41S');
 
 
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
@@ -48,6 +42,8 @@
                 %a.nav-link.active{"aria-current" => "page", :href => "/"} Home
               %li.nav-item
                 %a.nav-link{:href => "/resume"} Resume
+              %li.nav-item
+                %a.nav-link{:href => "/career"} Career
               %li.nav-item
                 %a.nav-link{:href => "/sc24"} SC24
               %li.nav-item
