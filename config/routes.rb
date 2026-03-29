@@ -8,8 +8,6 @@ Rails.application.routes.draw do
   get 'courses', to: 'pages#courses'
   get 'meet', to: 'pages#meet'
   get 'web', to: 'pages#web'
-  get 'stock', to: 'pages#stock'
-
   # Route to show /app/assets/images/tesla-battery.png
   get 'tesla_battery', to: 'pages#tesla_battery'
 
@@ -20,4 +18,7 @@ Rails.application.routes.draw do
   # route for zoom meeting link
   # https://unm.zoom.us/my/ryans
   get '/zoom', to: redirect('https://unm.zoom.us/my/ryans')
+
+  # catch-all 404
+  match '*path', to: 'pages#not_found', via: :all
 end

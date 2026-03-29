@@ -1,53 +1,59 @@
-%div.mt-5.container{style: "width: 97%; max-width: 1500px;"}
-  %div.row
-    %div.col-md-4.col-12
-      %img{src: asset_path('sc24_logo_2.png'), alt: 'Image description', style: "width: 100%; height: auto; object-fit: cover;"}
+.sc-hero
+  .sc-hero-logo
+    %img{src: asset_path('sc24_logo_2.png'), alt: 'SC24'}
+  .sc-hero-body
+    %p.sc-hero-sub HPC Student Cluster Competition
+    %p.sc-hero-meta Atlanta, GA · November 2024
+    .sc-hero-links
+      %a.sc-hero-link{href: "https://carc.unm.edu/news--events/News/sc24.html", target: "_blank"}
+        %i.fas.fa-external-link-alt
+        SC24 CARC Team Article
+      %a.sc-hero-link{href: "https://sc24.supercomputing.org/2024/09/teams-compete-in-the-ultimate-hpc-challenge-at-sc24/", target: "_blank"}
+        %i.fas.fa-external-link-alt
+        SCC24 Meet the Teams
+      %a.sc-hero-link{href: "https://sc24.supercomputing.org/students/student-cluster-competition/", target: "_blank"}
+        %i.fas.fa-external-link-alt
+        SCC24 Conference Team Site
 
-    %div.col-md-8.col-12.p-5
-      %p
-        %a{href: "https://carc.unm.edu/news--events/News/sc24.html", target: "_blank"} SC24 CARC Team Article
-      %p
-        %a{href: "https://sc24.supercomputing.org/2024/09/teams-compete-in-the-ultimate-hpc-challenge-at-sc24/", target: "_blank"} SCC24 Meet the Teams.
-      %p
-        %a{href: "https://sc24.supercomputing.org/students/student-cluster-competition/", target: "_blank"} SCC24 conference team site.
+.sc-section
+  %p.sc-section-label Cluster Configuration
+  .sc-cluster-card
+    .sc-cluster-img
+      %img{src: asset_path('SC24-03.png'), alt: 'Cluster diagram'}
+    .sc-cluster-specs
+      %p.sc-cluster-spec-title Per Node
+      .sc-spec-row
+        %span.sc-spec-label Nodes
+        %span 3×
+      .sc-spec-row
+        %span.sc-spec-label CPU
+        %span 2× Intel Xeon Platinum 8580
+      .sc-spec-row
+        %span.sc-spec-label Memory
+        %span 64 GB × 32 DDR5-5600
+      .sc-spec-row
+        %span.sc-spec-label GPU
+        %span 4× Nvidia H100 NVL
+      .sc-spec-row
+        %span.sc-spec-label Network
+        %span 4× Nvidia ConnectX-7 NIC
 
-%hr
+.sc-section
+  %p.sc-section-label Team Poster
+  %button.sc-poster-btn{"data-bs-toggle" => "collapse", "data-bs-target" => "#collapsePoster", "aria-expanded" => "false", "aria-controls" => "collapsePoster", :type => "button"}
+    View Team Poster
+    %i.fas.fa-chevron-down.ms-2
+  .collapse#collapsePoster
+    .sc-poster-collapse
+      %img{src: asset_path('SC24Poster.jpg'), alt: 'SC24 Poster'}
+      %a.sc-poster-pdf-link{href: "https://www.dropbox.com/scl/fi/aa3yegenjlusvvb7qwnkv/UNM-SC24-Poster.pdf?rlkey=9aqbfl3zqcrft5zzcs73az4af&st=vkg4ll5x&dl=0", target: "_blank"}
+        %i.fas.fa-file-pdf.me-1
+        View PDF
 
-%div.m5-5.container{style: "width: 97%; max-width: 1500px;"}
-  %div.text-center
-    %h3.p-3 Cluster Configuration
-  %div.row
-    %div.col-md-8
-      %img{src: asset_path('SC24-03.png'), style: "width: 100%; height: auto; object-fit: cover;"}
-    %div.col-md-4
-      %p.text-center 3x Nodes
-      %p
-      %p - 2x Intel Xeon Platinum 8580
-      %p - 64GB x 32 DDR5-5600 Memory
-      %p - 4x Nvidia H100 NVL
-      %p - 4x Nvidia ConnectX-7 NIC
-
-
-%hr
-
-%div
-  %div.d-flex.flex-column.align-items-center
-    %button.custom-dark-button{type: "button", "data-bs-toggle" => "collapse", "data-bs-target" => "#collapsePoster", "aria-expanded" => "false", "aria-controls" => "collapsePoster", style: "width: 95%;"}
-      Team Poster
-    %div#collapsePoster.collapse.text-center
-      %img.sc-poster{src: asset_path('SC24Poster.jpg'), alt: 'SC23'}
-      %div.mt-3
-        %p
-          %a{href: "https://www.dropbox.com/scl/fi/aa3yegenjlusvvb7qwnkv/UNM-SC24-Poster.pdf?rlkey=9aqbfl3zqcrft5zzcs73az4af&st=vkg4ll5x&dl=0"} view pdf
-
-%hr
-
-%div.mt-5
-  %div.text-center
-    %h3 Competition Photos
-
-  %div.d-flex.justify-content-center
-    #carouselSC24Photos2.carousel.slide{style: "width: 95%; max-width: 1500px;"}
+.sc-section
+  %p.sc-section-label Competition Photos
+  .sc-carousel-wrap
+    #carouselSC24Photos2.carousel.slide
       .carousel-indicators
         %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC24Photos2", :type => "button"}
         %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC24Photos2", :type => "button"}
@@ -61,19 +67,19 @@
         .carousel-item.active
           %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('SC24-25.jpg')}
         .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 1", src: asset_path('SC24-35.jpeg')}
+          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC24-35.jpeg')}
         .carousel-item
           %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('SC24-28.jpeg')}
         .carousel-item
           %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('SC24-29.jpeg')}
         .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('SC24-33.jpeg')}
+          %img.custom-carousel-img.d-block.w-100{alt: "img 5", src: asset_path('SC24-33.jpeg')}
         .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('SC24-34.jpeg')}
+          %img.custom-carousel-img.d-block.w-100{alt: "img 6", src: asset_path('SC24-34.jpeg')}
         .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('SC24-30.jpeg')}
+          %img.custom-carousel-img.d-block.w-100{alt: "img 7", src: asset_path('SC24-30.jpeg')}
         .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('SC24-31.jpeg')}
+          %img.custom-carousel-img.d-block.w-100{alt: "img 8", src: asset_path('SC24-31.jpeg')}
       %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC24Photos2", :type => "button"}
         %span.carousel-control-prev-icon{"aria-hidden" => "true"}
         %span.visually-hidden Previous
@@ -81,14 +87,10 @@
         %span.carousel-control-next-icon{"aria-hidden" => "true"}
         %span.visually-hidden Next
 
-%hr
-
-%div.mt-5
-  %div.text-center
-    %h3 Team Photos
-
-  %div.d-flex.justify-content-center
-    #carouselSC24Photos.carousel.slide{style: "width: 95%; max-width: 1500px;"}
+.sc-section
+  %p.sc-section-label Team Photos
+  .sc-carousel-wrap
+    #carouselSC24Photos.carousel.slide
       .carousel-indicators
         %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC24Photos", :type => "button"}
         %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC24Photos", :type => "button"}
@@ -103,15 +105,15 @@
         .carousel-item
           %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC24-23.jpg')}
         .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC24-24.jpg')}
+          %img.custom-carousel-img.d-block.w-100{alt: "img 3", src: asset_path('SC24-24.jpg')}
         .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC24-27.jpg')}
+          %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('SC24-27.jpg')}
         .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC24-32.jpeg')}
+          %img.custom-carousel-img.d-block.w-100{alt: "img 5", src: asset_path('SC24-32.jpeg')}
         .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC24-01.jpeg')}
+          %img.custom-carousel-img.d-block.w-100{alt: "img 6", src: asset_path('SC24-01.jpeg')}
         .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "img 2", src: asset_path('SC24-03.jpeg')}
+          %img.custom-carousel-img.d-block.w-100{alt: "img 7", src: asset_path('SC24-03.jpeg')}
       %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC24Photos", :type => "button"}
         %span.carousel-control-prev-icon{"aria-hidden" => "true"}
         %span.visually-hidden Previous
@@ -119,14 +121,10 @@
         %span.carousel-control-next-icon{"aria-hidden" => "true"}
         %span.visually-hidden Next
 
-%hr
-
-%div.mt-5
-  %div.text-center
-    %h3 Shipping Cluster
-
-  %div.d-flex.justify-content-center
-    #carouselSC24ShippingCluster.carousel.slide{style: "width: 95%; max-width: 1500px;"}
+.sc-section
+  %p.sc-section-label Shipping Cluster
+  .sc-carousel-wrap
+    #carouselSC24ShippingCluster.carousel.slide
       .carousel-indicators
         %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC24ShippingCluster", :type => "button"}
         %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC24ShippingCluster", :type => "button"}
@@ -143,7 +141,7 @@
         .carousel-item
           %img.custom-carousel-img.d-block.w-100{alt: "img 4", src: asset_path('SC24-21.png')}
         .carousel-item
-          %video.custom-carousel-video.d-block.w-100{controls: true, alt: "video 1", src: asset_path('SC24-22.MOV')}
+          %video.custom-carousel-video.d-block.w-100{controls: true, src: asset_path('SC24-22.MOV')}
       %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC24ShippingCluster", :type => "button"}
         %span.carousel-control-prev-icon{"aria-hidden" => "true"}
         %span.visually-hidden Previous
@@ -151,14 +149,10 @@
         %span.carousel-control-next-icon{"aria-hidden" => "true"}
         %span.visually-hidden Next
 
-%hr
-
-%div.mt-5
-  %div.text-center
-    %h3 Cluster Build
-
-  %div.d-flex.justify-content-center
-    #carouselSC24ClusterBuild.carousel.slide{style: "width: 95%; max-width: 1500px;"}
+.sc-section
+  %p.sc-section-label Cluster Build
+  .sc-carousel-wrap
+    #carouselSC24ClusterBuild.carousel.slide
       .carousel-indicators
         %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
         %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
@@ -194,9 +188,9 @@
         .carousel-item
           %img.custom-carousel-img.d-block.w-100{alt: "img 10", src: asset_path('SC24-14.jpeg')}
         .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "vid 1", src: asset_path('SC24-15.jpeg')}
+          %img.custom-carousel-img.d-block.w-100{alt: "img 11", src: asset_path('SC24-15.jpeg')}
         .carousel-item
-          %video.custom-carousel-video.d-block.w-100{controls: true, alt: "video 1", src: asset_path('SC24-17.MOV')}
+          %video.custom-carousel-video.d-block.w-100{controls: true, src: asset_path('SC24-17.MOV')}
       %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
         %span.carousel-control-prev-icon{"aria-hidden" => "true"}
         %span.visually-hidden Previous
@@ -204,42 +198,34 @@
         %span.carousel-control-next-icon{"aria-hidden" => "true"}
         %span.visually-hidden Next
 
-%hr
-
-%div.text-center
-  %h3.p-3 H100 Power Performance Results
-%div.row
-  %div.d-flex.justify-content-center
-    #carouselSC24H100.carousel.slide{"data-bs-ride" => "carousel", "data-bs-interval" => "45000", style: "width: 95%; max-width: 1500px;"}
+.sc-section
+  %p.sc-section-label H100 Power Performance Results
+  .sc-carousel-wrap.sc-chart-wrap
+    #carouselSC24H100.carousel.slide{"data-bs-ride" => "carousel", "data-bs-interval" => "45000"}
       .carousel-indicators
         %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC24H100", :type => "button"}
         %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC24H100", :type => "button"}
         %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselSC24H100", :type => "button"}
       .carousel-inner
         .carousel-item.active
-          %img.custom-carousel-img.d-block{alt: "img 1", src: asset_path('H100-01.png'), style: "width: 95%; height: auto; max-width: 100%; max-height: 100%; object-fit: contain;"}
+          %img.custom-carousel-img.d-block.w-100{alt: "H100 chart 1", src: asset_path('H100-01.png')}
         .carousel-item
-          %img.custom-carousel-img.d-block{alt: "img 2", src: asset_path('H100-02.png'), style: "width: 95%; height: auto; max-width: 100%; max-height: 100%; object-fit: contain;"}
+          %img.custom-carousel-img.d-block.w-100{alt: "H100 chart 2", src: asset_path('H100-02.png')}
         .carousel-item
-          %img.custom-carousel-img.d-block{alt: "img 3", src: asset_path('H100-03.png'), style: "width: 95%; height: auto; max-width: 100%; max-height: 100%; object-fit: contain;"}
+          %img.custom-carousel-img.d-block.w-100{alt: "H100 chart 3", src: asset_path('H100-03.png')}
       %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC24H100", :type => "button"}
         %span.carousel-control-prev-icon{"aria-hidden" => "true"}
         %span.visually-hidden Previous
       %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSC24H100", :type => "button"}
         %span.carousel-control-next-icon{"aria-hidden" => "true"}
         %span.visually-hidden Next
-
-%div.row.pt-4
-  %p
-    &nbsp;&nbsp;&nbsp;&nbsp; Over the summer leading up to the competition I ran a number of tests benchmarking the per-watt performance of H100 GPUs. This was particularly important in designing our cluster for this year as the results ended up being a key factor in the decision to over-spec our machine.
-  %p
-    &nbsp;&nbsp;&nbsp;&nbsp; I ran benchmarks on a single H100 GPU, specifically running the HPL benchmark, which was using the Nvidia optimized benchmarks container and also my own pre-optimized HPL parameter set. This was intentional to mirror the environment that we planned to use in the competition.
-  %p
-    &nbsp;&nbsp;&nbsp;&nbsp; My hypothesis that setting the TDP to 100% would be inefficent was correct, I found this to be the
-    %strong most inefficent
-    power use case. I further hypothesized that we would increase in efficiency up to around the 75-80% TDP mark, but was surprised to find the efficiency continue to linearly increase all the way up to the point of using only
-    %strong 50% of the TDP.
-  %p
-    &nbsp;&nbsp;&nbsp;&nbsp; The results here played a role in choosing our final cluster configuration. A rough estimate would show our cluster should be using 350W * 2 sockets * 3 nodes = 2100W in CPU power, and 400W * 4 GPUs * 3 nodes = 4800W in GPU power, for a total of 6900W in power usage, ignoring all other components (The large amount of DDR5 memory, for example, uses a significant amount of power just to keep running).
-  %p
-    &nbsp;&nbsp;&nbsp;&nbsp; Based off of the applications for this years competition we have the room to dynamically allocate resources as we need for the differnet applicaitons while staying below the power draw. For HPL, for example, we may end up using only 2 nodes, while for ICON we may use all 3 with the GPU TDP limited. We chose a configuration enabled with iDRAC chips which gives us the ability to completely power off and on nodes as needed without physically touching the cluster (A requirement for the compeititon after the benchmarking phase has concluded).
+  .sc-analysis
+    %p
+      Over the summer leading up to the competition I ran benchmarks on a single H100 GPU using the HPL benchmark — both the Nvidia optimized benchmarks container and my own pre-optimized HPL parameter set — to mirror the environment we planned to use in competition.
+    %p
+      Setting the TDP to 100% proved to be the
+      %strong most inefficient
+      power use case. I expected efficiency to peak around 75–80% TDP, but was surprised to find it continue to increase linearly all the way down to
+      %strong 50% TDP.
+    %p
+      A rough estimate placed our cluster at 350W × 2 sockets × 3 nodes = 2,100W CPU, and 400W × 4 GPUs × 3 nodes = 4,800W GPU — ~6,900W total ignoring memory and other components. Based on the applications for this year's competition, we had room to dynamically allocate resources per workload while staying under the power cap. We chose a configuration with iDRAC chips, enabling us to power nodes on and off remotely without physically touching the cluster — a competition requirement after the benchmarking phase.
