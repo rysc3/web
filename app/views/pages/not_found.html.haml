@@ -3,3 +3,21 @@
   %p.not-found-code 404
   %p.not-found-msg page not found
   %a.not-found-link{href: "/"} back to home
+
+:javascript
+  (function() {
+    var canvas = document.getElementById('starfield');
+    if (!canvas) return;
+    canvas.classList.add('parallax-active');
+    var cx = window.innerWidth / 2;
+    var cy = window.innerHeight / 2;
+    window.addEventListener('resize', function() {
+      cx = window.innerWidth / 2;
+      cy = window.innerHeight / 2;
+    }, { passive: true });
+    document.addEventListener('mousemove', function(e) {
+      var dx = (e.clientX - cx) / cx;
+      var dy = (e.clientY - cy) / cy;
+      canvas.style.transform = 'translate(' + (-dx * 20) + 'px, ' + (-dy * 14) + 'px)';
+    }, { passive: true });
+  })();

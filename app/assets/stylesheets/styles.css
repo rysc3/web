@@ -1256,6 +1256,42 @@ hr {
   z-index: 0;
 }
 
+#starfield.parallax-active {
+  transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ── Cursor glow ─────────────────────────────────────────────── */
+
+#cursor-glow {
+  position: fixed;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9997;
+  background: radial-gradient(circle, rgba(255,255,255,0.027) 0%, rgba(255,255,255,0) 70%);
+  transform: translate(-50%, -50%);
+  transition: opacity 0.4s ease;
+  opacity: 0;
+}
+
+/* ── Page transitions ────────────────────────────────────────── */
+
+.content {
+  animation: pageFadeIn 0.35s ease both;
+}
+
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+.content.page-leaving {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
 /* ── Career timeline fade-in on scroll ───────────────────────── */
 
 .career-event {

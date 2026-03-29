@@ -25,6 +25,7 @@
 
   %body
     #scroll-progress
+    #cursor-glow
     %canvas#starfield
     %nav.navbar.fixed-top.navbar-glass
       .container-fluid
@@ -58,6 +59,36 @@
 = javascript_include_tag 'application1', 'data-turbo-track': 'reload'
 = javascript_include_tag 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js', defer: true
 :javascript
+  // Cursor glow
+  (function() {
+    var glow = document.getElementById('cursor-glow');
+    if (!glow) return;
+    document.addEventListener('mousemove', function(e) {
+      glow.style.left = e.clientX + 'px';
+      glow.style.top  = e.clientY + 'px';
+      glow.style.opacity = '1';
+    }, { passive: true });
+    document.addEventListener('mouseleave', function() {
+      glow.style.opacity = '0';
+    });
+  })();
+
+  // Page transitions
+  (function() {
+    var content = document.querySelector('.content');
+    document.addEventListener('click', function(e) {
+      var link = e.target.closest('a[href]');
+      if (!link) return;
+      var href = link.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('http') ||
+          href.startsWith('mailto') || href.startsWith('//') ||
+          link.target === '_blank' || link.hasAttribute('download')) return;
+      e.preventDefault();
+      if (content) content.classList.add('page-leaving');
+      setTimeout(function() { window.location = href; }, 210);
+    });
+  })();
+
   // Scroll progress bar
   (function() {
     var bar = document.getElementById('scroll-progress');
