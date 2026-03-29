@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   # https://unm.zoom.us/my/ryans
   get '/zoom', to: redirect('https://unm.zoom.us/my/ryans')
 
+  get '/sitemap.xml', to: 'pages#sitemap', defaults: { format: 'xml' }
+
   # catch-all 404
   match '*path', to: 'pages#not_found', via: :all
 end

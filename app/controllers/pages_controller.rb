@@ -71,6 +71,10 @@ class PagesController < ApplicationController
     @page_title = "Ryan's sentry graph"
   end
 
+  def sitemap
+    render layout: false
+  end
+
   def not_found
     @og_image   = "Profile-05.jpg"
     @page_title = "404 — Ryan Scherbarth"

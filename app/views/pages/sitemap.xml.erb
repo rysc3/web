@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <url>
+    <loc>https://ryanscherbarth.com/</loc>
+    <image:image>
+      <image:loc><%= asset_url('Profile-05.jpg') %></image:loc>
+      <image:title>Ryan Scherbarth</image:title>
+      <image:caption>Ryan Scherbarth — Sr. Software Engineer, ML &amp; HPC Infrastructure at Tesla</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc><%= asset_url('Profile-01.jpg') %></image:loc>
+      <image:title>Ryan Scherbarth</image:title>
+      <image:caption>Ryan Scherbarth — software engineer and HPC researcher</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc><%= asset_url('Profile-02.jpeg') %></image:loc>
+      <image:title>Ryan Scherbarth</image:title>
+      <image:caption>Ryan Scherbarth — University of New Mexico Computer Science</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc><%= asset_url('Profile-03.jpeg') %></image:loc>
+      <image:title>Ryan Scherbarth</image:title>
+      <image:caption>Ryan Scherbarth — HPC and machine learning engineer</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc><%= asset_url('tesla_logo.png') %></image:loc>
+      <image:title>Tesla logo</image:title>
+      <image:caption>Tesla — Ryan Scherbarth Sr. Software Engineer, ML &amp; HPC Infra</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc><%= asset_url('unm_logo.png') %></image:loc>
+      <image:title>University of New Mexico logo</image:title>
+      <image:caption>University of New Mexico — Ryan Scherbarth B.S. Computer Science</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc><%= asset_url('carc_logo.png') %></image:loc>
+      <image:title>CARC logo</image:title>
+      <image:caption>UNM Center for Advanced Research Computing — Ryan Scherbarth</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc><%= asset_url('sandia_labs_logo.png') %></image:loc>
+      <image:title>Sandia National Laboratories logo</image:title>
+      <image:caption>Sandia National Laboratories — Ryan Scherbarth intern</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://ryanscherbarth.com/sc24</loc>
+    <image:image>
+      <image:loc><%= asset_url('SC24-33.jpeg') %></image:loc>
+      <image:title>Ryan Scherbarth at SC24</image:title>
+      <image:caption>Ryan Scherbarth — SC24 HPC Student Cluster Competition, Atlanta 2024</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc><%= asset_url('SC24Poster.jpg') %></image:loc>
+      <image:title>SC24 Team UNM Poster</image:title>
+      <image:caption>University of New Mexico SC24 Student Cluster Competition team poster, Atlanta 2024</image:caption>
+    </image:image>
+    <% (1..16).each do |n| %>
+    <image:image>
+      <image:loc><%= asset_url("SC24-#{n.to_s.rjust(2,'0')}.jpeg") %></image:loc>
+      <image:title>SC24 HPC Student Cluster Competition photo <%= n %></image:title>
+      <image:caption>Ryan Scherbarth — SC24 Student Cluster Competition, Atlanta 2024, Team UNM</image:caption>
+    </image:image>
+    <% end %>
+    <% [23,24,25,26,27].each do |n| %>
+    <image:image>
+      <image:loc><%= asset_url("SC24-#{n}.jpg") %></image:loc>
+      <image:title>SC24 cluster build photo <%= n %></image:title>
+      <image:caption>Ryan Scherbarth — SC24 cluster build and setup, Team UNM</image:caption>
+    </image:image>
+    <% end %>
+    <% [28,29,30,31,32,33,34,35].each do |n| %>
+    <image:image>
+      <image:loc><%= asset_url("SC24-#{n}.jpeg") %></image:loc>
+      <image:title>SC24 competition photo <%= n %></image:title>
+      <image:caption>Ryan Scherbarth — SC24 HPC Student Cluster Competition, Atlanta 2024</image:caption>
+    </image:image>
+    <% end %>
+    <image:image>
+      <image:loc><%= asset_url('H100-01.png') %></image:loc>
+      <image:title>Nvidia H100 NVL benchmark results — SC24</image:title>
+      <image:caption>H100 NVL GPU benchmark results from SC24 Student Cluster Competition, Team UNM</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc><%= asset_url('H100-02.png') %></image:loc>
+      <image:title>Nvidia H100 NVL benchmark graph — SC24</image:title>
+      <image:caption>H100 NVL performance graph from SC24, University of New Mexico team</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc><%= asset_url('H100-03.png') %></image:loc>
+      <image:title>Nvidia H100 NVL results detail — SC24</image:title>
+      <image:caption>H100 NVL detailed results from SC24 Student Cluster Competition</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://ryanscherbarth.com/sc23</loc>
+    <image:image>
+      <image:loc><%= asset_url('SC23-06.jpeg') %></image:loc>
+      <image:title>Ryan Scherbarth at SC23</image:title>
+      <image:caption>Ryan Scherbarth — SC23 HPC Student Cluster Competition, Denver 2023</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc><%= asset_url('SC23Poster.jpg') %></image:loc>
+      <image:title>SC23 Team UNM Poster</image:title>
+      <image:caption>University of New Mexico SC23 Student Cluster Competition team poster, Denver 2023</image:caption>
+    </image:image>
+    <% %w[01 02 03 05 07 08 09].each do |n| %>
+    <image:image>
+      <image:loc><%= asset_url("SC23-#{n}.jpeg") %></image:loc>
+      <image:title>SC23 HPC Student Cluster Competition photo <%= n %></image:title>
+      <image:caption>Ryan Scherbarth — SC23 Student Cluster Competition, Denver 2023, Team UNM</image:caption>
+    </image:image>
+    <% end %>
+    <image:image>
+      <image:loc><%= asset_url('SC23-04.jpg') %></image:loc>
+      <image:title>SC23 competition photo 4</image:title>
+      <image:caption>Ryan Scherbarth — SC23 HPC Student Cluster Competition, Denver 2023</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://ryanscherbarth.com/resume</loc>
+    <image:image>
+      <image:loc><%= asset_url('Profile-01.jpg') %></image:loc>
+      <image:title>Ryan Scherbarth resume</image:title>
+      <image:caption>Ryan Scherbarth — Sr. Software Engineer resume and experience</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://ryanscherbarth.com/meet</loc>
+    <image:image>
+      <image:loc><%= asset_url('SC24-14.jpeg') %></image:loc>
+      <image:title>Schedule a meeting with Ryan Scherbarth</image:title>
+      <image:caption>Ryan Scherbarth — schedule a meeting</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://ryanscherbarth.com/courses</loc>
+    <image:image>
+      <image:loc><%= asset_url('Profile-03.jpeg') %></image:loc>
+      <image:title>Ryan Scherbarth course history</image:title>
+      <image:caption>Ryan Scherbarth — B.S. Computer Science coursework, University of New Mexico</image:caption>
+    </image:image>
+  </url>
+
+</urlset>
