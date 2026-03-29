@@ -192,53 +192,61 @@ p {
   line-height: 1.6;
 }
 
-/* Meeting container */
-/* Default styles for larger screens */
-.google-calendar {
-  width: 70%;
-  border-top-left-radius: 12px;
-  border-bottom-left-radius: 12px;
+/* ── Meet page ───────────────────────────────────────────────── */
+
+.meet-toolbar {
+  padding: 0 2px;
 }
 
-.koalendar {
-  width: 30%;
-  border-top-right-radius: 12px;
-  border-bottom-right-radius: 12px;
+.meet-label {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #444;
 }
 
-.meeting-content {
+.meet-tz {
+  font-size: 0.66rem;
+  color: #333;
+  letter-spacing: 0.3px;
+}
+
+.meet-wrap {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  border: 1px solid #161616;
+  border-radius: 10px;
+  overflow: hidden;
+  height: calc(100vh - 120px);
+  min-height: 500px;
 }
 
-/* Mobile-specific styles */
+.meet-calendar {
+  flex: 7;
+  border: none;
+  border-right: 1px solid #111;
+  display: block;
+}
+
+.meet-booking {
+  flex: 3;
+  border: none;
+  display: block;
+}
+
 @media (max-width: 768px) {
-  .meeting-content {
+  .meet-wrap {
     flex-direction: column;
-    align-items: center;
+    height: auto;
   }
 
-  .google-calendar{
-    width: 100%;
-    height: 750px;
+  .meet-calendar {
+    height: 500px;
+    border-right: none;
+    border-bottom: 1px solid #111;
   }
 
-  .koalendar {
-    width: 100%;
+  .meet-booking {
     height: 600px;
-  }
-
-  .calendar-wrapper {
-    margin-bottom: 20px; /* Add some space between calendar and Koalendar */
-  }
-
-  .google-calendar {
-    border-radius: 12px 12px 0 0; /* Top rounded corners */
-  }
-
-  .koalendar {
-    border-radius: 0 0 12px 12px; /* Bottom rounded corners */
   }
 }
 
