@@ -11,9 +11,9 @@
     %title= @page_title
     = csrf_meta_tags
     = csp_meta_tag
-    %meta{:content => "Ryan Scherbarth's Website", :property => "og:title"}
-    %meta{:content => "My resume, courses, and other stuff.", :property => "og:description"}
-    %meta{:content => asset_url(@og_image), :property => "og:image"}
+    %meta{:content => @page_title || "Ryan Scherbarth", :property => "og:title"}
+    %meta{:content => @og_description || "Ryan Scherbarth — Sr. Software Engineer, ML & HPC Infra at Tesla.", :property => "og:description"}
+    %meta{:content => asset_url(@og_image || 'Profile-05.jpg'), :property => "og:image"}
     %meta{:content => "Ryan Scherbarth", :name => "author"}
     %meta{:content => "website", :property => "og:type"}
     %meta{:content => "ryan, ryan scherbarth, scherbarth, ry, UNM, University of New Mexico, New Mexico, Sandia Labs, Sandia, SNL, National Lab, National Labs, Center for Advanced Research Computing, student, computer science, cs, intern, internship, software engineer, SWE, Solutions Architect, engineer, bachelors, masters, cyber security, HPC, high performance computing, super computers, super computer, supercomputer, supercomputing, ML, machine learning, tesla, FSD, full self driving, tesla full self driving, tesla auto pilot, tesla autopilot, autopilot", :name => "keywords"}

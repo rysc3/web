@@ -33,17 +33,33 @@ class PagesController < ApplicationController
   end
 
   def sc24
-    @og_image = "SC24-27.jpg"
-    @page_title = "Ryan @ SC24"
+    @og_image       = "SC24-33.jpeg"
+    @page_title     = "Ryan @ SC24"
+    @og_description = "SC24 HPC Student Cluster Competition — Team UNM, Atlanta 2024."
   end
 
   def sc23
-    @og_image = "SC23-06.jpeg"
-    @page_title = "Ryan @ SC23"
+    @og_image       = "SC23-06.jpeg"
+    @page_title     = "Ryan @ SC23"
+    @og_description = "SC23 HPC Student Cluster Competition — Team UNM, Denver 2023."
   end
 
   def resume
-    @page_title = "Ryan's Resume"
+    @og_image       = "Profile-01.jpg"
+    @page_title     = "Ryan Scherbarth — Resume"
+    @og_description = "Resume and experience — Sr. Software Engineer, ML & HPC Infra at Tesla."
+  end
+
+  def meet
+    @og_image       = "SC24-14.jpeg"
+    @page_title     = "Meet with Ryan"
+    @og_description = "Schedule a meeting with Ryan Scherbarth."
+  end
+
+  def courses
+    @og_image       = "Profile-03.jpeg"
+    @page_title     = "Ryan Scherbarth — Courses"
+    @og_description = "Course history — B.S. Computer Science, University of New Mexico, Dec 2024."
   end
 
   def web

@@ -751,6 +751,105 @@ hr {
 
 /* ── End Modern / Apple-style ───────────────────────────────── */
 
+/* ── Courses ─────────────────────────────────────────────────── */
+
+.courses-wrap {
+  width: 100%;
+}
+
+.courses-semester {
+  margin-bottom: 1.75rem;
+}
+
+.courses-semester-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4px;
+  margin-bottom: 0.4rem;
+}
+
+.courses-semester-name {
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #555;
+}
+
+.courses-semester-credits {
+  font-size: 0.66rem;
+  color: #333;
+  letter-spacing: 0.5px;
+}
+
+.courses-card {
+  border: 1px solid #161616;
+  border-radius: 10px;
+  background: #0a0a0a;
+  overflow: hidden;
+}
+
+.courses-row {
+  display: flex;
+  align-items: center;
+  padding: 9px 16px;
+  gap: 14px;
+  border-bottom: 1px solid #0f0f0f;
+  transition: background 0.15s ease;
+}
+
+.courses-row:last-child {
+  border-bottom: none;
+}
+
+.courses-row:hover {
+  background: #111;
+}
+
+.course-code {
+  font-family: monospace;
+  font-size: 0.7rem;
+  color: #444;
+  min-width: 76px;
+  flex-shrink: 0;
+}
+
+.course-title {
+  font-size: 0.78rem;
+  color: #999;
+  flex: 1;
+}
+
+.course-credits {
+  font-size: 0.68rem;
+  color: #333;
+  flex-shrink: 0;
+  text-align: right;
+  min-width: 24px;
+}
+
+.courses-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4px 10px;
+  border-bottom: 1px solid #161616;
+  margin-bottom: 1.75rem;
+}
+
+.courses-total-label {
+  font-size: 0.68rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #444;
+}
+
+.courses-total-credits {
+  font-size: 0.68rem;
+  color: #555;
+  letter-spacing: 0.5px;
+}
+
 /* ── Resume Embed ────────────────────────────────────────────── */
 
 .resume-toolbar {
