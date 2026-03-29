@@ -43,9 +43,6 @@
         View my resume
         %a{href: "/resume"} here
       %p.pt-2
-        My website is made in Ruby on Rails, More info
-        %a{href: "https://github.com/rysc3/web"} here
-      %p.pt-2
         %b.underline
           %a{href: "/meet"} Schedule a meeting
 
@@ -301,12 +298,6 @@
       %span.app-panel-label competition
       %p.app-panel-title SC23
       %p.app-panel-sub HPC Student Cluster Competition
-  %a.app-panel{href: "/career"}
-    .app-panel-bg{style: "background-image: url(#{asset_path('Profile-05.jpg')})"}
-    .app-panel-content
-      %span.app-panel-label timeline
-      %p.app-panel-title Career
-      %p.app-panel-sub Full overview
   %a.app-panel{href: "/resume"}
     .app-panel-bg
     .app-panel-content
@@ -314,23 +305,17 @@
       %p.app-panel-title Resume
       %p.app-panel-sub Experience & education
   %a.app-panel{href: "/meet"}
-    .app-panel-bg
+    .app-panel-bg{style: "background-image: url(#{asset_path('PEARC24-03.jpeg')})"}
     .app-panel-content
       %span.app-panel-label schedule
       %p.app-panel-title Meet
       %p.app-panel-sub Book a meeting
   %a.app-panel{href: "/courses"}
-    .app-panel-bg
+    .app-panel-bg{style: "background-image: url(#{asset_path('H100-01.png')})"}
     .app-panel-content
       %span.app-panel-label academics
       %p.app-panel-title Courses
       %p.app-panel-sub Course history
-  %a.app-panel{href: "/stock"}
-    .app-panel-bg
-    .app-panel-content
-      %span.app-panel-label tools
-      %p.app-panel-title Stock
-      %p.app-panel-sub TSLA calculator
 
 %h2.pt-5 Recent Events
 %hr
