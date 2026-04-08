@@ -24,6 +24,8 @@
     %meta{:content => "website", :property => "og:type"}
     %meta{:content => "ryan, ryan scherbarth, scherbarth, ry, UNM, University of New Mexico, New Mexico, Sandia Labs, Sandia, SNL, National Lab, National Labs, Center for Advanced Research Computing, student, computer science, cs, intern, internship, software engineer, SWE, Solutions Architect, engineer, bachelors, masters, cyber security, HPC, high performance computing, super computers, super computer, supercomputer, supercomputing, ML, machine learning, tesla, FSD, full self driving, tesla full self driving, tesla auto pilot, tesla autopilot, autopilot", :name => "keywords"}
     %link{rel: "icon", type: "image/png", href: asset_path("WORLD-fav.png")}
+    %script{type: "application/ld+json"}
+      = raw({"@context" => "https://schema.org", "@type" => "Person", "name" => "Ryan Scherbarth", "url" => "https://ryanscherbarth.com", "image" => asset_url("Profile-05.jpg"), "jobTitle" => "Sr. Software Engineer, ML & HPC Infrastructure", "worksFor" => {"@type" => "Organization", "name" => "Tesla"}, "alumniOf" => {"@type" => "CollegeOrUniversity", "name" => "University of New Mexico"}, "sameAs" => ["https://www.linkedin.com/in/ryanscherbarth/", "https://github.com/rysc3"]}.to_json)
 
     = stylesheet_link_tag 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css', media: 'all'
     = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css', media: 'all'
