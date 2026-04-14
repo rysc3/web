@@ -1260,20 +1260,6 @@ hr {
   transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* ── Cursor glow ─────────────────────────────────────────────── */
-
-#cursor-glow {
-  position: fixed;
-  width: 380px;
-  height: 380px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9997;
-  background: radial-gradient(circle, rgba(255,255,255,0.027) 0%, rgba(255,255,255,0) 70%);
-  transform: translate(-50%, -50%);
-  transition: opacity 0.4s ease;
-  opacity: 0;
-}
 
 /* ── Page transitions ────────────────────────────────────────── */
 

@@ -1,0 +1,393 @@
+.nvl72-page
+
+  .nvl72-header
+    %h1.nvl72-h1 NVL72
+    %p.nvl72-tagline Blackwell &middot; NVLink 5 Switch Fabric &middot; Topology Explorer
+    %p.nvl72-desc
+      72 Blackwell GPUs connected through 36 NVSwitches in a full-mesh non-blocking fabric.
+      Each GPU peers with every NVSwitch via NVLink 5.0 &mdash; 1.8&thinsp;TB/s bidirectional per GPU,
+      130&thinsp;TB/s aggregate across the rack. The same fabric backing large-scale distributed
+      ML training at Tesla and across the industry.
+
+  .nvl72-stats-strip
+    .nvl72-stat
+      .nvl72-stat-n 72
+      .nvl72-stat-k GPUs
+    .nvl72-stat
+      .nvl72-stat-n 36
+      .nvl72-stat-k NVSwitches
+    .nvl72-stat
+      .nvl72-stat-n 2,592
+      .nvl72-stat-k NVLink Connections
+    .nvl72-stat
+      .nvl72-stat-n 1.8&thinsp;TB/s
+      .nvl72-stat-k per GPU
+    .nvl72-stat
+      .nvl72-stat-n 130&thinsp;TB/s
+      .nvl72-stat-k aggregate
+
+  .nvl72-canvas-wrap
+    %canvas#nvl72-canvas
+
+  .nvl72-controls
+    %button#nvl72-ar.nvl72-btn Simulate All-Reduce
+    %button#nvl72-reset.nvl72-btn.nvl72-btn-dim Reset
+    %span#nvl72-hint.nvl72-hint Hover or click a GPU / NVSwitch to explore connections
+
+  .nvl72-legend
+    .nvl72-lg-item
+      .nvl72-lg-sq.c-gpu
+      %span B300 GPU &times;72 (color = tray)
+    .nvl72-lg-item
+      .nvl72-lg-dot.c-sw
+      %span NVSwitch 5 &times;36
+    .nvl72-lg-item
+      .nvl72-lg-line.c-link
+      %span NVLink 5.0
+
+:javascript
+  (function () {
+    var canvas = document.getElementById('nvl72-canvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+
+    var G   = 72;   // GPUs
+    var S   = 36;   // NVSwitches
+    var GPT = 8;    // GPUs per tray
+
+    // 9 tray colors — bright NVIDIA green fading toward dark
+    var trayColors = [
+      '#76b900','#6dac00','#64a000','#5b9400',
+      '#528800','#497c00','#407000','#376400','#2e5800'
+    ];
+
+    var gpus = [], nvs = [];
+    var hov = null, pinned = null;
+    var particles = [];
+    var arState = null;
+    var lastTs  = 0;
+
+    // ── Layout ────────────────────────────────────────────────────────────
+    function layout() {
+      var wrap = canvas.parentElement;
+      var W    = wrap.clientWidth;
+      var H    = Math.min(W * 0.65, 560);
+      canvas.width  = W;
+      canvas.height = H;
+
+      var cx = W / 2, cy = H / 2;
+      var OR = Math.min(W, H) * 0.41;   // outer ring radius (GPUs)
+      var IR = Math.min(W, H) * 0.195;  // inner ring radius (NVSwitches)
+      canvas._cx = cx; canvas._cy = cy;
+      canvas._OR = OR; canvas._IR = IR;
+
+      gpus = [];
+      for (var i = 0; i < G; i++) {
+        var a = (i / G) * Math.PI * 2 - Math.PI / 2;
+        gpus.push({
+          x: cx + OR * Math.cos(a),
+          y: cy + OR * Math.sin(a),
+          id: i, tray: Math.floor(i / GPT), a: a
+        });
+      }
+
+      nvs = [];
+      for (var j = 0; j < S; j++) {
+        var b = (j / S) * Math.PI * 2 - Math.PI / 2;
+        nvs.push({
+          x: cx + IR * Math.cos(b),
+          y: cy + IR * Math.sin(b),
+          id: j, a: b
+        });
+      }
+    }
+
+    // ── Helpers ───────────────────────────────────────────────────────────
+    function active() { return pinned || hov; }
+
+    function hitTest(mx, my) {
+      var i, d;
+      for (i = 0; i < gpus.length; i++) {
+        d = Math.hypot(mx - gpus[i].x, my - gpus[i].y);
+        if (d < 10) return { type: 'gpu', id: i };
+      }
+      for (i = 0; i < nvs.length; i++) {
+        d = Math.hypot(mx - nvs[i].x, my - nvs[i].y);
+        if (d < 10) return { type: 'switch', id: i };
+      }
+      return null;
+    }
+
+    function setHint(txt) {
+      var el = document.getElementById('nvl72-hint');
+      if (el) el.textContent = txt;
+    }
+
+    function updateHint(node) {
+      if (!node) {
+        setHint('Hover or click a GPU / NVSwitch to explore connections');
+      } else if (node.type === 'gpu') {
+        var g = gpus[node.id];
+        setHint('GPU ' + node.id + '  \u00b7  Tray ' + (g.tray + 1) + '/9  \u00b7  36 NVLink connections  \u00b7  1.8 TB/s bidirectional');
+      } else {
+        setHint('NVSwitch ' + node.id + '  \u00b7  72 NVLink connections  \u00b7  3.6 TB/s aggregate throughput');
+      }
+    }
+
+    // ── Draw ──────────────────────────────────────────────────────────────
+    function drawTrayArcs() {
+      var cx = canvas._cx, cy = canvas._cy, OR = canvas._OR;
+      var slotA = (Math.PI * 2) / G;
+      var gap   = slotA * 0.45;
+
+      for (var t = 0; t < 9; t++) {
+        var s0 = gpus[t * GPT].a     - slotA * 0.5 + gap;
+        var s1 = gpus[t * GPT + GPT - 1].a + slotA * 0.5 - gap;
+        ctx.beginPath();
+        ctx.arc(cx, cy, OR - 14, s0, s1);
+        ctx.arc(cx, cy, OR + 14, s1, s0, true);
+        ctx.closePath();
+        ctx.fillStyle   = 'rgba(16,30,0,0.55)';
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(50,90,0,0.18)';
+        ctx.lineWidth   = 0.5;
+        ctx.stroke();
+      }
+    }
+
+    function drawCenterLabel() {
+      var cx = canvas._cx, cy = canvas._cy;
+      ctx.save();
+      ctx.textAlign    = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.font         = 'bold 22px FiraCode, monospace';
+      ctx.fillStyle    = 'rgba(50,85,0,0.55)';
+      ctx.fillText('NVL72', cx, cy - 8);
+      ctx.font         = '8px FiraCode, monospace';
+      ctx.fillStyle    = 'rgba(40,65,0,0.4)';
+      ctx.letterSpacing = '2px';
+      ctx.fillText('BLACKWELL  \u00b7  NVLINK 5', cx, cy + 10);
+      ctx.restore();
+    }
+
+    function drawConnections(node) {
+      var i;
+      if (node.type === 'gpu') {
+        var g = gpus[node.id];
+        ctx.lineWidth = 0.75;
+        for (i = 0; i < nvs.length; i++) {
+          ctx.beginPath();
+          ctx.moveTo(g.x, g.y);
+          ctx.lineTo(nvs[i].x, nvs[i].y);
+          ctx.strokeStyle = 'rgba(118,185,0,0.55)';
+          ctx.stroke();
+        }
+      } else {
+        var sw = nvs[node.id];
+        ctx.lineWidth = 0.5;
+        for (i = 0; i < gpus.length; i++) {
+          ctx.beginPath();
+          ctx.moveTo(sw.x, sw.y);
+          ctx.lineTo(gpus[i].x, gpus[i].y);
+          ctx.strokeStyle = 'rgba(232,125,13,0.38)';
+          ctx.stroke();
+        }
+      }
+    }
+
+    // ── Main render loop ──────────────────────────────────────────────────
+    function draw(ts) {
+      var dt = Math.min((ts - lastTs) / 1000, 0.05);
+      lastTs = ts;
+
+      var W = canvas.width, H = canvas.height;
+      ctx.clearRect(0, 0, W, H);
+
+      drawTrayArcs();
+      drawCenterLabel();
+
+      var act = active();
+      if (act) drawConnections(act);
+
+      // Particles
+      var live = [];
+      for (var pi = 0; pi < particles.length; pi++) {
+        var p = particles[pi];
+        p.t    += p.speed * dt;
+        p.life -= dt * 0.42;
+        if (p.life <= 0 || p.t >= 1) continue;
+        var px = p.x0 + (p.x1 - p.x0) * p.t;
+        var py = p.y0 + (p.y1 - p.y0) * p.t;
+        var alpha = Math.min(p.life * 2.2, 1) * 0.88;
+        ctx.beginPath();
+        ctx.arc(px, py, 1.8, 0, Math.PI * 2);
+        ctx.fillStyle = p.ret
+          ? 'rgba(232,125,13,' + alpha.toFixed(2) + ')'
+          : 'rgba(140,218,0,'  + alpha.toFixed(2) + ')';
+        ctx.fill();
+        live.push(p);
+      }
+      particles = live;
+
+      // Tick all-reduce spawner
+      if (arState) tickAR(dt);
+
+      // NVSwitches
+      for (var si = 0; si < nvs.length; si++) {
+        var sw = nvs[si];
+        var swActive = act && (
+          (act.type === 'switch' && act.id === sw.id) ||
+          act.type === 'gpu'
+        );
+        var swPinned = act && act.type === 'switch' && act.id === sw.id;
+
+        ctx.beginPath();
+        ctx.arc(sw.x, sw.y, swActive ? 5.5 : 3.5, 0, Math.PI * 2);
+        ctx.fillStyle = swActive ? '#ffb347' : '#e87d0d';
+        ctx.fill();
+
+        if (swPinned) {
+          ctx.beginPath();
+          ctx.arc(sw.x, sw.y, 9.5, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(232,125,13,0.35)';
+          ctx.lineWidth   = 1.5;
+          ctx.stroke();
+        }
+      }
+
+      // GPUs (squares — visually distinct from switch circles)
+      for (var gi = 0; gi < gpus.length; gi++) {
+        var gpu = gpus[gi];
+        var isAct   = act && act.type === 'gpu' && act.id === gpu.id;
+        var isTray  = act && act.type === 'gpu' && gpus[act.id].tray === gpu.tray && !isAct;
+        var sz      = isAct ? 7.5 : isTray ? 6 : 4.5;
+
+        ctx.beginPath();
+        ctx.rect(gpu.x - sz / 2, gpu.y - sz / 2, sz, sz);
+        ctx.fillStyle = isAct ? '#d4ff44' : trayColors[gpu.tray];
+        ctx.fill();
+
+        if (isAct) {
+          ctx.beginPath();
+          ctx.arc(gpu.x, gpu.y, 13, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(118,185,0,0.5)';
+          ctx.lineWidth   = 1.5;
+          ctx.stroke();
+        }
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    // ── All-Reduce State Machine ──────────────────────────────────────────
+    // Phase 1: reduce-scatter — each GPU sends to all 36 NVSwitches
+    // Phase 2: all-gather    — each NVSwitch sends back to all 72 GPUs
+
+    function spawnP(from, to, ret) {
+      particles.push({
+        x0: from.x, y0: from.y,
+        x1: to.x,   y1: to.y,
+        t: 0,
+        speed: 0.5 + Math.random() * 0.4,
+        life: 1.0,
+        ret: ret
+      });
+    }
+
+    function startAR() {
+      if (arState) return;
+      particles = [];
+      arState = { phase: 1, gi: 0, si: 0, wait: 0 };
+      setHint('Phase 1: Reduce-Scatter \u2014 all GPUs \u2192 NVSwitches');
+    }
+
+    function tickAR(dt) {
+      arState.wait -= dt;
+      if (arState.wait > 0) return;
+
+      var BATCH = 5, spawned = 0;
+
+      if (arState.phase === 1) {
+        // Spawn GPU[gi] → NVS[si], stepping through all combos
+        while (spawned < BATCH && arState.gi < G) {
+          spawnP(gpus[arState.gi], nvs[arState.si], false);
+          arState.si++;
+          if (arState.si >= S) {
+            arState.si = 0;
+            arState.gi++;
+            arState.wait = 0.01; // tiny stagger per GPU
+          }
+          spawned++;
+        }
+        if (arState.gi >= G) {
+          arState.phase = 1.5;
+          arState.wait  = 1.8; // let phase-1 particles settle
+          setHint('Aggregating at NVSwitches\u2026');
+        }
+
+      } else if (arState.phase === 1.5) {
+        // Transition to phase 2
+        arState.phase = 2;
+        arState.si    = 0;
+        arState.gi    = 0;
+        setHint('Phase 2: All-Gather \u2014 NVSwitches \u2192 all GPUs');
+
+      } else if (arState.phase === 2) {
+        while (spawned < BATCH && arState.si < S) {
+          spawnP(nvs[arState.si], gpus[arState.gi], true);
+          arState.gi++;
+          if (arState.gi >= G) {
+            arState.gi = 0;
+            arState.si++;
+            arState.wait = 0.01;
+          }
+          spawned++;
+        }
+        if (arState.si >= S && particles.length === 0) {
+          arState = null;
+          setHint('All-Reduce complete \u2014 130 TB/s across 2,592 NVLinks');
+          setTimeout(function () { updateHint(active()); }, 3500);
+        }
+      }
+    }
+
+    // ── Events ────────────────────────────────────────────────────────────
+    canvas.addEventListener('mousemove', function (e) {
+      var r = canvas.getBoundingClientRect();
+      var n = hitTest(e.clientX - r.left, e.clientY - r.top);
+      if (!pinned) {
+        hov = n;
+        if (!arState) updateHint(n);
+      }
+      canvas.style.cursor = n ? 'pointer' : 'default';
+    }, { passive: true });
+
+    canvas.addEventListener('mouseleave', function () {
+      if (!pinned) { hov = null; if (!arState) updateHint(null); }
+      canvas.style.cursor = 'default';
+    });
+
+    canvas.addEventListener('click', function (e) {
+      var r = canvas.getBoundingClientRect();
+      var n = hitTest(e.clientX - r.left, e.clientY - r.top);
+      if (n && pinned && pinned.type === n.type && pinned.id === n.id) {
+        pinned = null;
+        if (!arState) updateHint(hov);
+      } else {
+        pinned = n;
+        if (!arState) updateHint(n);
+      }
+    });
+
+    document.getElementById('nvl72-ar').addEventListener('click', startAR);
+    document.getElementById('nvl72-reset').addEventListener('click', function () {
+      particles = [];
+      arState   = null;
+      updateHint(active());
+    });
+
+    window.addEventListener('resize', layout, { passive: true });
+
+    layout();
+    requestAnimationFrame(draw);
+  })();
