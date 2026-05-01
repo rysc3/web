@@ -45,6 +45,38 @@
 
 %hr.mt-3
 
+.apps-scroll-container.mt-4.mb-2
+  %a.app-panel{href: "/sc26"}
+    .app-panel-bg{style: "background-image: url(#{asset_path('SC26-01.png')})"}
+    .app-panel-content
+      %p.app-panel-title SC26
+      %p.app-panel-sub HPC Student Cluster Competition
+  %a.app-panel.app-panel-wide{href: "/sc24"}
+    .app-panel-bg{style: "background-image: url(#{asset_path('SC24-33.jpeg')})"}
+    .app-panel-content
+      %p.app-panel-title SC24
+      %p.app-panel-sub HPC Student Cluster Competition
+  %a.app-panel.app-panel-wide{href: "/sc23"}
+    .app-panel-bg{style: "background-image: url(#{asset_path('SC23-06.jpeg')})"}
+    .app-panel-content
+      %p.app-panel-title SC23
+      %p.app-panel-sub HPC Student Cluster Competition
+  %a.app-panel{href: "/resume"}
+    .app-panel-bg{style: "background-image: url(#{asset_path('Profile-01.jpg')})"}
+    .app-panel-content
+      %p.app-panel-title Resume
+      %p.app-panel-sub Experience & education
+  %a.app-panel{href: "/meet"}
+    .app-panel-bg{style: "background-image: url(#{asset_path('SC24-14.jpeg')})"}
+    .app-panel-content
+      %p.app-panel-title Meet
+      %p.app-panel-sub Book a meeting
+  %a.app-panel{href: "/courses"}
+    .app-panel-bg{style: "background-image: url(#{asset_path('Profile-03.jpeg')})"}
+    .app-panel-content
+      %p.app-panel-title Courses
+      %p.app-panel-sub Course history
+
 .career-filter-wrap.d-flex.justify-content-start.align-items-center.gap-2.mb-4.ps-2
   %button.career-filter-btn.active{"data-filter" => "all"} Both
   %button.career-filter-btn{"data-filter" => "professional"} Professional
@@ -308,38 +340,6 @@
       observer.observe(ev);
     });
   });
-
-.apps-scroll-container.mt-4.mb-2
-  %a.app-panel.app-panel-wide{href: "/sc24"}
-    .app-panel-bg{style: "background-image: url(#{asset_path('SC24-33.jpeg')})"}
-    .app-panel-content
-      %span.app-panel-label competition
-      %p.app-panel-title SC24
-      %p.app-panel-sub HPC Student Cluster Competition
-  %a.app-panel.app-panel-wide{href: "/sc23"}
-    .app-panel-bg{style: "background-image: url(#{asset_path('SC23-06.jpeg')})"}
-    .app-panel-content
-      %span.app-panel-label competition
-      %p.app-panel-title SC23
-      %p.app-panel-sub HPC Student Cluster Competition
-  %a.app-panel{href: "/resume"}
-    .app-panel-bg{style: "background-image: url(#{asset_path('Profile-01.jpg')})"}
-    .app-panel-content
-      %span.app-panel-label document
-      %p.app-panel-title Resume
-      %p.app-panel-sub Experience & education
-  %a.app-panel{href: "/meet"}
-    .app-panel-bg{style: "background-image: url(#{asset_path('SC24-14.jpeg')})"}
-    .app-panel-content
-      %span.app-panel-label schedule
-      %p.app-panel-title Meet
-      %p.app-panel-sub Book a meeting
-  %a.app-panel{href: "/courses"}
-    .app-panel-bg{style: "background-image: url(#{asset_path('Profile-03.jpeg')})"}
-    .app-panel-content
-      %span.app-panel-label academics
-      %p.app-panel-title Courses
-      %p.app-panel-sub Course history
 
 %h2.pt-5 Recent Events
 %hr

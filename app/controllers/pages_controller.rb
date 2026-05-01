@@ -32,6 +32,12 @@ class PagesController < ApplicationController
   def show
   end
 
+  def sc26
+    @og_image       = "SC26-01.png"
+    @page_title     = "SC26 — Team UNM"
+    @og_description = "SC26 HPC Student Cluster Competition — Team UNM."
+  end
+
   def sc24
     @og_image       = "SC24-33.jpeg"
     @page_title     = "Ryan @ SC24"

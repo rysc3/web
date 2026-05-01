@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'pages#index'
 
   get 'about', to: 'pages#about'
+  get 'sc26', to: 'pages#sc26'
   get 'sc24', to: 'pages#sc24'
   get 'sc23', to: 'pages#sc23'
   get 'courses', to: 'pages#courses'
