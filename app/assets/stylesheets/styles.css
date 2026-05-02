@@ -92,12 +92,9 @@ body {
 .footer {
   width: 100%;
   margin: 0;
-  padding: 5px 0 5px 0; /* Minimize padding to give a smaller gap */
-  display: flex;
-  justify-content: center; /* Center the content horizontally */
-  align-items: center; /* Center the content vertically */
-  background-color: #000000; /* Jet black background for the footer */
-  height: 20px;
+  padding: 0;
+  background-color: #000000;
+  height: 3rem;
 }
 
 /* Logo styles */
@@ -951,13 +948,17 @@ hr {
 
 .sc-hero-link {
   font-size: 0.76rem;
-  color: #4a4a4a;
+  color: #888;
   text-decoration: none;
-  transition: color 0.2s ease;
+  border-bottom: 1px solid #333;
+  padding-bottom: 1px;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .sc-hero-link:hover {
-  color: #888;
+  color: #ccc;
+  border-color: #666;
+  text-decoration: none;
 }
 
 .sc-hero-link i {
@@ -972,10 +973,10 @@ hr {
 }
 
 .sc-section-label {
-  font-size: 0.67rem;
+  font-size: 0.75rem;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #444;
+  color: #aaa;
   margin-bottom: 0.75rem;
   padding: 0 2px;
 }
@@ -1031,7 +1032,7 @@ hr {
   padding: 8px 0;
   border-bottom: 1px solid #0f0f0f;
   font-size: 0.76rem;
-  color: #888;
+  color: #bbb;
 }
 
 .sc-spec-row:last-child {
@@ -1039,7 +1040,7 @@ hr {
 }
 
 .sc-spec-label {
-  color: #3a3a3a;
+  color: #666;
   font-size: 0.68rem;
   min-width: 60px;
   flex-shrink: 0;
@@ -1096,8 +1097,9 @@ hr {
 
 .sc-analysis {
   margin-top: 1.25rem;
-  font-size: 0.8rem;
-  color: #666;
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: #ddd;
   line-height: 1.75;
   max-width: 860px;
 }
@@ -1133,6 +1135,314 @@ hr {
     border-left: none;
     border-top: 1px solid #111;
   }
+}
+
+/* ── SC26 Timeline ───────────────────────────────────────────── */
+
+.sc26-timeline {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  position: relative;
+  padding-left: 3rem;
+}
+
+.sc26-timeline::before {
+  content: '';
+  position: absolute;
+  top: 9px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #1a1a1a;
+}
+
+.sc26-timeline-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding-top: 24px;
+  position: relative;
+}
+
+.sc26-timeline-item::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #000;
+  border: 1px solid #333;
+}
+
+.sc26-tl-active::before {
+  border-color: #c44;
+  background: #1a0505;
+}
+
+.sc26-tl-date {
+  font-size: 0.66rem;
+  letter-spacing: 1px;
+  color: #bbb;
+  white-space: nowrap;
+}
+
+.sc26-tl-label {
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: #bbb;
+  line-height: 1.3;
+  padding-right: 1rem;
+}
+
+.sc26-tl-active .sc26-tl-date { color: #c44; font-weight: 600; }
+.sc26-tl-active .sc26-tl-label { color: #c44; font-weight: 600; }
+
+@media (max-width: 600px) {
+  .sc26-timeline {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .sc26-timeline::before {
+    top: 0;
+    bottom: 0;
+    left: 4px;
+    right: auto;
+    width: 1px;
+    height: auto;
+  }
+  .sc26-timeline-item {
+    flex-direction: row;
+    align-items: center;
+    padding-top: 0;
+    padding-left: 24px;
+    gap: 0.75rem;
+  }
+  .sc26-timeline-item::before {
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+  .sc26-tl-date { min-width: 52px; }
+}
+
+/* ── SC26 Network & Power ────────────────────────────────────── */
+
+.sc26-net-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.sc26-net-diagram {
+  flex: 1 1 500px;
+  max-width: 640px;
+  min-width: 0;
+}
+
+.sc26-rack-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.sc26-rack-legend {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.4rem;
+}
+
+.sc26-rack-rail {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: monospace;
+  font-size: 0.7rem;
+  color: #666;
+}
+
+.sc26-rail-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.sc26-net-note {
+  flex: 1 1 260px;
+  min-width: 0;
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: #bbb;
+  line-height: 1.75;
+}
+
+.sc26-net-note p { margin-bottom: 0.6rem; }
+.sc26-net-note p:last-child { margin-bottom: 0; }
+
+.sc26-power-table {
+  border: 1px solid #161616;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.sc26-power-row {
+  display: grid;
+  grid-template-columns: 1fr 5rem 6rem;
+  gap: 0;
+  padding: 7px 14px;
+  border-bottom: 1px solid #0f0f0f;
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: #bbb;
+}
+
+.sc26-power-row span:first-child { white-space: normal; }
+.sc26-power-row span:nth-child(2) { text-align: right; white-space: nowrap; }
+.sc26-power-row span:nth-child(3) { text-align: right; white-space: nowrap; }
+.sc26-power-row:last-child { border-bottom: none; }
+
+.sc26-power-head {
+  color: #3a3a3a;
+  font-size: 0.66rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: #060606;
+}
+
+.sc26-power-over { color: #966; }
+.sc26-power-ok   { color: #696; }
+
+.sc26-power-over-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  white-space: nowrap;
+}
+
+.sc26-power-over-note {
+  font-size: 0.75rem;
+  letter-spacing: 0px;
+  color: #733;
+  margin-top: 1px;
+}
+
+.sc26-power-note {
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: #bbb;
+  line-height: 1.75;
+}
+
+.sc26-power-note p { margin-bottom: 0.6rem; }
+
+@media (max-width: 700px) {
+  .sc26-power-row { grid-template-columns: 1fr auto; gap: 1rem; }
+  .sc26-power-row span:nth-child(2) { display: none; }
+}
+
+/* ── SC26 Member Cards ───────────────────────────────────────── */
+
+.sc26-overview {
+  max-width: 720px;
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: #ddd;
+  line-height: 1.8;
+}
+
+.sc26-overview p { margin-bottom: 0.75rem; }
+.sc26-overview p:last-child { margin-bottom: 0; }
+
+.sc26-member-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 0.75rem;
+}
+
+.sc26-member-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: #0a0a0a;
+  border: 1px solid #161616;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sc26-member-card:hover {
+  border-color: #2a2a2a;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  color: inherit;
+}
+
+.sc26-member-photo {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: #111;
+  border: 1px solid #1e1e1e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sc26-member-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.sc26-member-photo i {
+  font-size: 1.8rem;
+  color: #2a2a2a;
+}
+
+.sc26-member-info {
+  flex: 1;
+  min-width: 0;
+  padding-top: 2px;
+}
+
+.sc26-member-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #ddd;
+  margin: 0 0 3px;
+}
+
+.sc26-member-role {
+  font-size: 0.58rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #3a3a3a;
+  margin: 0 0 0.5rem;
+}
+
+.sc26-member-bio {
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: #bbb;
+  margin: 0;
+  line-height: 1.65;
+}
+
+@media (max-width: 600px) {
+  .sc26-member-grid { grid-template-columns: 1fr; }
 }
 
 /* ── SC Team ─────────────────────────────────────────────────── */
