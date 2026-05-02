@@ -1,0 +1,226 @@
+.sc-hero
+  .sc-hero-logo
+    %img{src: asset_path('SC26-01.png'), alt: 'SC26'}
+  .sc-hero-body
+    %h1.sc-hero-title Team UNM · SC26
+    %p.sc-hero-sub HPC Student Cluster Competition
+    %p.sc-hero-meta Atlanta, GA · June – November 2026
+    .sc-hero-links
+      %a.sc-hero-link{href: "https://sc26.supercomputing.org/students/student-cluster-competition/", target: "_blank"}
+        %i.fas.fa-external-link-alt
+        Competition Overview
+
+.sc-section
+  %p.sc-section-label Timeline
+  .sc26-timeline
+    .sc26-timeline-item.sc26-tl-active
+      %span.sc26-tl-date May 15
+      %span.sc26-tl-label Application Deadline
+    .sc26-timeline-item
+      %span.sc26-tl-date Jun 19
+      %span.sc26-tl-label SC26 Teams Announced
+      %span.sc26-tl-label Cluster stand-up at UNM
+    .sc26-timeline-item
+      %span.sc26-tl-date Nov 6
+      %span.sc26-tl-label Ship Cluster to Atlanta
+    .sc26-timeline-item
+      %span.sc26-tl-date Nov 14
+      %span.sc26-tl-label Cluster Setup in Atlanta
+    .sc26-timeline-item
+      %span.sc26-tl-date Nov 16–18
+      %span.sc26-tl-label Competition
+
+.sc-section
+  %p.sc-section-label Team Manager
+  .sc26-member-grid
+    %a.sc26-member-card{href: "https://www.linkedin.com/in/beckettd/", target: "_blank"}
+      .sc26-member-photo
+        %img{src: asset_path('SC26-beckett-dunlavy-headshot.jpeg'), alt: 'Beckett Dunlavy'}
+      .sc26-member-info
+        %p.sc26-member-name Beckett Dunlavy
+        %p.sc26-member-role Team Manager
+        %p.sc26-member-bio Senior - Computer Science, incoming Software Engineer Intern at Tesla (ML & HPC Infra). Competed in indy-SC25 last year.
+
+.sc-section
+  %p.sc-section-label Team
+  .sc26-member-grid
+    %a.sc26-member-card{href: "https://www.linkedin.com/in/kiana-m-t/", target: "_blank"}
+      .sc26-member-photo
+        %img{src: asset_path('SC26-kianara-tarter.JPG'), alt: 'Kiana Tarter'}
+      .sc26-member-info
+        %p.sc26-member-name Kiana Tarter
+        %p.sc26-member-role Team Member
+        %p.sc26-member-bio
+    %a.sc26-member-card{href: "https://www.linkedin.com/in/ethanhoover15/", target: "_blank"}
+      .sc26-member-photo
+        %img{src: asset_path('SC26-ethan-hoover-headshot.jpg'), alt: 'Ethan Hoover'}
+      .sc26-member-info
+        %p.sc26-member-name Ethan Hoover
+        %p.sc26-member-role Team Member
+        %p.sc26-member-bio
+    %a.sc26-member-card{href: "#"}
+      .sc26-member-photo
+        %i.fas.fa-user
+      .sc26-member-info
+        %p.sc26-member-name Nevaeh Martinez
+        %p.sc26-member-role Team Member
+        %p.sc26-member-bio
+    %a.sc26-member-card{href: "#"}
+      .sc26-member-photo
+        %i.fas.fa-user
+      .sc26-member-info
+        %p.sc26-member-name Amber Smith
+        %p.sc26-member-role Team Member
+        %p.sc26-member-bio
+    %a.sc26-member-card{href: "#"}
+      .sc26-member-photo
+        %i.fas.fa-user
+      .sc26-member-info
+        %p.sc26-member-name Abdullah Ismail
+        %p.sc26-member-role Team Member
+        %p.sc26-member-bio
+
+.sc-section
+  %p.sc-section-label Coaches
+  .sc26-member-grid
+    %a.sc26-member-card{href: "/"}
+      .sc26-member-photo
+        %img{src: asset_path('Profile-05.jpg'), alt: 'Ryan Scherbarth'}
+      .sc26-member-info
+        %p.sc26-member-name Ryan Scherbarth
+        %p.sc26-member-role Coach
+        %p.sc26-member-bio Sr. Software Engineer at Tesla (ML & HPC Infra). Led UNM's team at SC23 and SC24, and multiple other HPC competitions.
+    %a.sc26-member-card{href: "https://www.linkedin.com/in/alex-knigge/", target: "_blank"}
+      .sc26-member-photo
+        %i.fas.fa-user
+      .sc26-member-info
+        %p.sc26-member-name Alex Knigge
+        %p.sc26-member-role Coach
+        %p.sc26-member-bio Software Engineer at Sandia National Laboratories (HPC monitoring & perf). Led UNM's team at SC25 and multiple other HPC competitions.
+    %a.sc26-member-card{href: "https://fricke.uk/", target: "_blank"}
+      .sc26-member-photo
+        %img{src: asset_path('SC26-matthew-fricke-headshot.jpeg'), alt: 'Matthew Fricke'}
+      .sc26-member-info
+        %p.sc26-member-name Dr. Matthew Fricke
+        %p.sc26-member-role Faculty Advisor
+        %p.sc26-member-bio Research Associate Professor at the University of New Mexico, and faculty sponsor of UNM's HPC team since it's founding in 2023.
+
+.sc-section
+  %p.sc-section-label Cluster Configuration (Tentative)
+  .sc-cluster-card
+    .sc-cluster-specs
+      %p.sc-cluster-spec-title 3× Nodes
+      .sc-spec-row
+        %span.sc-spec-label GPU
+        %span 4× H200 NVL
+      .sc-spec-row
+        %span.sc-spec-label CPU
+        %span 2× AMD EPYC 9455
+      .sc-spec-row
+        %span.sc-spec-label Memory
+        %span 12× 48GB DDR5 / socket · 1.15TB / node
+      .sc-spec-row
+        %span.sc-spec-label Network
+        %span 4× ConnectX-7 · 2-port · 400Gb/s / port
+      .sc-spec-row
+        %span.sc-spec-label Topology
+        %span Switchless full mesh · direct P2P
+
+.sc-section
+  %p.sc-section-label Network Architecture
+  .sc26-net-wrap
+    .sc26-net-diagram
+      = render "pages/sc26_network_diagram"
+      .sc26-rack-legend
+        .sc26-rack-rail
+          %span.sc26-rail-dot{style: "background:#3b82f6"}
+          %span Rail 0 · CX7-0 · GPU 0
+        .sc26-rack-rail
+          %span.sc26-rail-dot{style: "background:#4ade80"}
+          %span Rail 1 · CX7-1 · GPU 1
+        .sc26-rack-rail
+          %span.sc26-rail-dot{style: "background:#fbbf24"}
+          %span Rail 2 · CX7-2 · GPU 2
+        .sc26-rack-rail
+          %span.sc26-rail-dot{style: "background:#c084fc"}
+          %span Rail 3 · CX7-3 · GPU 3
+
+    .sc26-net-note
+      %p
+        With only 3 nodes, every pair connects directly via 4× 400Gb/s cables — 2 ConnectX-7 NICs with both ports populated per link — giving 1.6Tb/s bidirectional bandwidth per pair with zero switch hops. A 400G InfiniBand switch draws an estimated 2–4kW and adds one hop of latency; eliminating it returns that power directly to the GPU budget.
+      %p
+        We configure as to have a rail optimized network topology as well; each NIC by slot index (CX7-0 through CX7-3) forms an independent IB rail connecting GPU N of each node. NCCL AllReduce traffic stays within a single rail, which is the condition that makes rail optmimzation meaningful. Note that this can only work here because the 2-port NIC can reach both other ports with one port each, completing the loop without a switch.
+      %p
+        This doesn't generalize — a 4th node would exhaust all NIC ports and require a switch. But within the fixed 3-node competition constraint, it's a straightforward perf-per-watt gain worth taking.
+      %p
+        In further pursuit of optimal power-per-watt efficiency, we plan to run IP over IB rather than maintaining a dedicated front end network. The latter is not strictly necessary, and saves the power for an additional switch as well.
+
+.sc-section
+  %p.sc-section-label Power Budget
+  .sc26-power-table
+    .sc26-power-row.sc26-power-head
+      %span Component
+      %span Per Node
+      %span ×3 Total
+    .sc26-power-row
+      %span GPU · 4× H200 NVL @ rated TDP
+      %span 2,800W
+      %span 8,400W
+    .sc26-power-row
+      %span CPU · 2× EPYC 9455
+      %span 580W
+      %span 1,740W
+    .sc26-power-row
+      %span Memory · 24× 48GB DDR5
+      %span 360W
+      %span 1,080W
+    .sc26-power-row
+      %span Network · 4× ConnectX-7
+      %span 100W
+      %span 300W
+    .sc26-power-row
+      %span Board + misc
+      %span 150W
+      %span 450W
+    .sc26-power-row.sc26-power-over
+      %span Total (uncapped)
+      %span 3,990W
+      .sc26-power-over-cell
+        %span 11,970W
+        %span.sc26-power-over-note over limit
+  .sc26-power-note
+    %p
+      Running uncapped exceeds the 10kW limit by ~2kW. The plan: throttle each H200 NVL to ~535W (76% TDP), holding all other components at full draw.
+    .sc26-power-table{style: "margin-top: 0.75rem"}
+      .sc26-power-row.sc26-power-head
+        %span
+        %span GPU cap
+        %span Total
+      .sc26-power-row
+        %span Non-GPU baseline (3 nodes)
+        %span —
+        %span 3,570W
+      .sc26-power-row
+        %span GPU · 12× @ 535W
+        %span 535W each
+        %span 6,420W
+      .sc26-power-row.sc26-power-ok
+        %span Target (throttled)
+        %span
+        %span 9,990W ✓
+    %p{style: "margin-top: 0.75rem"}
+      H200 NVL (and GPU's in general) efficiency doesn't scale linearly with power — HBM3e bandwidth and tensor throughput retain roughly 85–90% at 76% TDP. Running uncapped recovers ~10–15% raw compute but immediately blows the budget. The throttled configuration achieves better FLOPS/W overall, which is what matters under competition scoring. The no-switch topology partially offsets this by returning 2–4kW of switch power back to the GPU headroom, giving us a wider throttle margin than a conventional switched design would allow.
+    %p{style: "margin-top: 0.75rem"}
+      The H200 NVL was chosen over the H200 SXM for this competition specifically because of its efficiency characteristics at reduced TDP. Both are rated at 700W with 4.8TB/s HBM3e bandwidth at 100% TDP, but the SXM form factor requires a dedicated server tray/baseboard that draws an additional ~50–100W per GPU equivalent regardless of GPU throttle level — power that doesn't scale down when you cap the GPU. At our 535W target, an H200 SXM node effectively draws ~585–635W per GPU once baseboard overhead is included, compared to 535W flat for NVL. Across 12 GPUs that difference is roughly 600–1,200W — close to two full GPUs' worth of headroom. From SC24's H100 NVL benchmarking, efficiency continued improving linearly all the way down to 50% TDP; we expect similar behavior here, meaning the 535W cap is conservative and may be dropped further once we have the hardware to benchmark against competition workloads.
+    %p{style: "margin-top: 0.75rem"}
+      We also evaluated the H100 NVL, B200, and B300. The H100 NVL fits the power budget comfortably but gives up 2.4× memory bandwidth for no meaningful cost benefit at competition scale. The B200 and B300 have a number of performance improvements, but their TDP would require throttling to a sub-optimal threshold to meet the power budget.
+    %p{style: "margin-top: 0.75rem"}
+      The HPL benchmark quickly becomes a bandwidth benchmark after optimizing parameters, which is where we see a meaningful performance improvement in the rail optimized network topology & removing of the network switch.
+    %p{style: "margin-top: 0.75rem"}
+      HPCG, despite involving an entirely different dataset, still is most optimal in a throughput-maximized configuration. In this case, providing 4.8TB/s per GPU.
+    %p{style: "margin-top: 0.75rem"}
+      GROMACS multi-node runs GPU-accelerated PME where p2p latency is the primary limiter; also benefiting from the 0 hop network architecture.
+    %p{style: "margin-top: 0.75rem"}
+      WRF domains can be partuclarly large, as we've seen from past competitions. This further contributes to the justification of the slightly over 1TB of DDR5 memory.
+    %p{style: "margin-top: 0.75rem"}
+      MLPerf training throughput maps directly to BF16 tensor core utilization across all gpus, again benefitting from our bandwidth-maximized configuration.

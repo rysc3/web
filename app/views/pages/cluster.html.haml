@@ -1,0 +1,1014 @@
+.cluster-page
+
+  .cluster-header
+    %h1.cluster-h1 GB300 Cluster Network
+    %p.cluster-tagline
+      NVL72 &middot; ConnectX-8 &middot; Spine-Leaf &middot; NCCL Traffic Visualization
+
+  .cluster-breadcrumb
+    %button.cluster-crumb.active{"data-scene" => "0"} Intra-rack
+    %span.cluster-crumb-sep ›
+    %button.cluster-crumb{"data-scene" => "1"} Inter-rack
+    %span.cluster-crumb-sep ›
+    %button.cluster-crumb{"data-scene" => "2"} Inter-SU
+    %span.cluster-crumb-sep ›
+    %button.cluster-crumb{"data-scene" => "3"} Inter-DH
+
+  .cluster-canvas-outer
+    %canvas#cluster-canvas
+
+  .cluster-hint-row
+    %span#cluster-hint
+      72 B300 GPUs &middot; 36 NVSwitches &middot; 1.8 TB/s per GPU &middot; 130 TB/s aggregate NVLink fabric
+
+  .cluster-op-bar
+    %span.cluster-op-label NCCL:
+    %button.cluster-op-btn#op-ar AllReduce
+    %button.cluster-op-btn#op-a2a AllToAll
+    %button.cluster-op-btn#op-ag AllGather
+    %button.cluster-op-btn#op-bcast Broadcast
+    %button.cluster-op-btn.cluster-op-reset#op-reset Reset
+
+  .cluster-stats-strip
+    .cluster-stat
+      .cluster-stat-n 1.8 TB/s
+      .cluster-stat-k NVLink / GPU
+    .cluster-stat
+      .cluster-stat-n 400 Gb/s
+      .cluster-stat-k NIC / GPU (CX8)
+    .cluster-stat
+      .cluster-stat-n 28.8 Tb/s
+      .cluster-stat-k rack NIC total
+    .cluster-stat
+      .cluster-stat-n 88.6 Tb/s
+      .cluster-stat-k leaf uplink (1:1.3)
+    .cluster-stat
+      .cluster-stat-n 29.5 Tb/s
+      .cluster-stat-k superspine (1:3)
+    .cluster-stat
+      .cluster-stat-n 35×
+      .cluster-stat-k NVLink vs superspine
+
+  .cluster-legend
+    .cluster-lg
+      .cluster-lg-sq{style: "background:#76b900"}
+      %span NVLink 5 &mdash; 1.8 TB/s/GPU
+    .cluster-lg
+      .cluster-lg-sq{style: "background:#e8c840"}
+      %span ConnectX-8 NIC &mdash; 400 Gb/s
+    .cluster-lg
+      .cluster-lg-sq{style: "background:#ff8c00"}
+      %span Spine &mdash; 308 Gb/s/GPU eff.
+    .cluster-lg
+      .cluster-lg-sq{style: "background:#ff3f3f"}
+      %span Superspine &mdash; 51 Gb/s/GPU eff.
+    .cluster-lg
+      .cluster-lg-line
+      %span Bottleneck
+
+:javascript
+  (function () {
+
+    /* ── Architecture constants ─────────────────────────── */
+    var CHASSIS    = 18;   // compute chassis per rack
+    var NVSW       = 8;    // NVSwitches per rack (NVLink fabric)
+    var NIC_CH     = 4;    // ConnectX-8 NICs per chassis
+    var RACKS_SU   = 4;    // racks per scalable unit
+    var BLK1       = 1.3;  // leaf→spine oversubscription
+    var BLK2       = 3.0;  // spine→superspine oversubscription
+
+    /* Bandwidth per GPU at each tier (Gb/s) */
+    var BW_NVLINK  = 1800;                                          // NVLink 5 per GPU
+    var BW_NIC     = 400;                                           // ConnectX-8 per GPU (1 NIC / GPU)
+    var BW_RACK    = CHASSIS * NIC_CH * BW_NIC;                    // 28,800 Gb/s rack aggregate
+    var BW_LEAF    = Math.round((BW_RACK * RACKS_SU) / BLK1);      // 88,615 Gb/s leaf uplink per SU
+    var BW_SUPER   = Math.round(BW_LEAF / BLK2);                   // 29,538 Gb/s superspine
+
+    /* Per-GPU effective bandwidth at each tier */
+    var GPU_LEAF   = Math.round(BW_LEAF  / (RACKS_SU * CHASSIS * NIC_CH));   // ~308 Gb/s
+    var GPU_SUPER  = Math.round(BW_SUPER / (RACKS_SU * 2 * CHASSIS * NIC_CH)); // ~51 Gb/s
+
+    function fmtBW(g) { return g >= 1000 ? (g / 1000).toFixed(1) + ' Tb/s' : g + ' Gb/s'; }
+
+    /* ── Speed tiers ────────────────────────────────────── */
+    var T = {
+      nvlink: { col: '#76b900', speed: 2.2,  sz: 2.5, lw: 2.5,
+                label: 'NVLink 5',    bw: '1,800 Gb/s', gbps: BW_NVLINK },
+      nic:    { col: '#e8c840', speed: 0.72, sz: 2.0, lw: 1.6,
+                label: 'ConnectX-8', bw: '400 Gb/s',   gbps: BW_NIC    },
+      spine:  { col: '#ff8c00', speed: 0.44, sz: 1.7, lw: 1.1,
+                label: 'Leaf → Spine', bw: '308 Gb/s', gbps: GPU_LEAF  },
+      ss:     { col: '#ff3f3f', speed: 0.27, sz: 1.4, lw: 0.9,
+                label: 'Superspine', bw: '51 Gb/s',    gbps: GPU_SUPER },
+    };
+
+    /* ── Canvas ─────────────────────────────────────────── */
+    var canvas = document.getElementById('cluster-canvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+
+    if (!ctx.roundRect) {
+      ctx.roundRect = function (x, y, w, h, r) {
+        this.beginPath();
+        this.moveTo(x + r, y); this.lineTo(x + w - r, y);
+        this.quadraticCurveTo(x + w, y, x + w, y + r);
+        this.lineTo(x + w, y + h - r);
+        this.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+        this.lineTo(x + r, y + h);
+        this.quadraticCurveTo(x, y + h, x, y + h - r);
+        this.lineTo(x, y + r);
+        this.quadraticCurveTo(x, y, x + r, y);
+        this.closePath();
+      };
+    }
+
+    /* ── State ──────────────────────────────────────────── */
+    var scene     = 0;
+    var opActive  = null;
+    var opState   = null;   // { op, phase, phaseAge, phases[] }
+    var particles = [];
+    var NODES     = [];
+    var EDGES     = [];
+    var lastTs    = 0;
+
+    /* ring scene state (scene 0) */
+    var RING_GPUS = [], RING_NVS = [];
+    var ringHov = null, ringPin = null;
+
+    /* ── Tray colors ────────────────────────────────────── */
+    var TRAY_COL = [
+      '#76b900','#6dac00','#64a000','#5b9400',
+      '#528800','#497c00','#407000','#376400','#2e5800'
+    ];
+
+    /* ── Node helpers ───────────────────────────────────── */
+    function mkNode(id, type, label, sub, x, y, w, h, extra) {
+      return Object.assign({ id:id, type:type, label:label, sub:sub,
+        x:x, y:y, w:w, h:h }, extra || {});
+    }
+    function mkEdge(from, to, tier, bottleneck) {
+      return { from:from, to:to, tier:tier, bottleneck:!!bottleneck };
+    }
+    function findNode(id) {
+      for (var i = 0; i < NODES.length; i++) if (NODES[i].id === id) return NODES[i];
+      return null;
+    }
+
+    /* ── Drawing primitives ─────────────────────────────── */
+    function fillRR(x, y, w, h, r, col) {
+      ctx.beginPath(); ctx.roundRect(x, y, w, h, r);
+      ctx.fillStyle = col; ctx.fill();
+    }
+    function strokeRR(x, y, w, h, r, col, lw) {
+      ctx.beginPath(); ctx.roundRect(x, y, w, h, r);
+      ctx.strokeStyle = col; ctx.lineWidth = lw || 1; ctx.stroke();
+    }
+    function labelBg(txt, cx, cy, font, fg, bg) {
+      ctx.save();
+      ctx.font = font; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      var m = ctx.measureText(txt), ph = parseInt(font) || 12;
+      var pw = m.width + 8;
+      ctx.fillStyle = bg || 'rgba(0,0,0,0.75)';
+      ctx.fillRect(cx - pw / 2, cy - ph / 2 - 2, pw, ph + 4);
+      ctx.fillStyle = fg || '#eee';
+      ctx.fillText(txt, cx, cy);
+      ctx.restore();
+    }
+
+    /* ── Bandwidth meter (drawn every frame, top-right) ─── */
+    function drawBWMeter(W) {
+      var tList = [
+        { key: 'nvlink', t: T.nvlink },
+        { key: 'nic',    t: T.nic    },
+        { key: 'spine',  t: T.spine  },
+        { key: 'ss',     t: T.ss     },
+      ];
+      /* which tiers are "relevant" for current scene */
+      var active = { 0:['nvlink'], 1:['nvlink','nic'],
+                     2:['nvlink','nic','spine'], 3:['nvlink','nic','spine','ss'] }[scene] || ['nvlink'];
+      var botKey = active[active.length - 1];
+
+      var pw = 200, rowH = 14, rowGap = 3;
+      var ph = 22 + tList.length * (rowH + rowGap);
+      var px = W - pw - 14, py = 14;
+      var barX = px + 76, barMaxW = 72, bwX = px + pw - 6;
+
+      /* panel background */
+      fillRR(px - 6, py - 6, pw + 12, ph + 10, 8, 'rgba(5,5,5,0.86)');
+      strokeRR(px - 6, py - 6, pw + 12, ph + 10, 8, '#1a1a1a', 1);
+
+      /* title */
+      ctx.save();
+      ctx.font = 'bold 8px FiraCode, monospace';
+      ctx.fillStyle = '#333'; ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+      ctx.fillText('PER-GPU BANDWIDTH', px, py + 2);
+      ctx.restore();
+
+      tList.forEach(function (item, i) {
+        var isAct = active.indexOf(item.key) >= 0;
+        var isBot = item.key === botKey && scene > 0;
+        var ry = py + 18 + i * (rowH + rowGap);
+        var barW = Math.max(2, Math.round((item.t.gbps / BW_NVLINK) * barMaxW));
+
+        /* label */
+        ctx.save();
+        ctx.font         = (isBot ? 'bold ' : '') + '8px FiraCode, monospace';
+        ctx.fillStyle    = isAct ? (isBot ? item.t.col : '#888') : '#252525';
+        ctx.textAlign    = 'left'; ctx.textBaseline = 'middle';
+        ctx.fillText(item.t.label, px, ry + rowH / 2);
+        ctx.restore();
+
+        /* track */
+        ctx.fillStyle = '#111'; ctx.fillRect(barX, ry + 2, barMaxW, rowH - 4);
+
+        /* fill */
+        if (isAct) {
+          ctx.fillStyle = isBot ? item.t.col : item.t.col + '55';
+          ctx.fillRect(barX, ry + 2, barW, rowH - 4);
+        }
+
+        /* bottleneck outline glow */
+        if (isBot) {
+          ctx.strokeStyle = item.t.col + '88';
+          ctx.lineWidth = 1;
+          ctx.strokeRect(barX, ry + 2, barMaxW, rowH - 4);
+        }
+
+        /* bw value */
+        ctx.save();
+        ctx.font      = '8px FiraCode, monospace';
+        ctx.fillStyle = isAct ? (isBot ? item.t.col : '#555') : '#1e1e1e';
+        ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+        ctx.fillText(item.t.bw, bwX, ry + rowH / 2);
+        ctx.restore();
+
+        /* bottleneck tag */
+        if (isBot) {
+          ctx.save();
+          ctx.font = 'bold 7px FiraCode, monospace';
+          ctx.fillStyle = item.t.col;
+          ctx.textAlign = 'right'; ctx.textBaseline = 'top';
+          ctx.fillText('▲ BOTTLENECK', bwX, ry + rowH + 1);
+          ctx.restore();
+        }
+      });
+    }
+
+    /* ── Scene 0: Intra-rack (NVLink ring) ──────────────── */
+    function buildRing(W, H) {
+      NODES = []; EDGES = [];
+      RING_GPUS = []; RING_NVS = [];
+      var cx = W / 2, cy = H / 2;
+      var OR = Math.min(W, H) * 0.40;
+      var IR = Math.min(W, H) * 0.185;
+      for (var i = 0; i < 72; i++) {
+        var a = (i / 72) * Math.PI * 2 - Math.PI / 2;
+        RING_GPUS.push({ x: cx + OR * Math.cos(a), y: cy + OR * Math.sin(a),
+          id: i, tray: Math.floor(i / 8), a: a });
+      }
+      for (var j = 0; j < 36; j++) {
+        var b = (j / 36) * Math.PI * 2 - Math.PI / 2;
+        RING_NVS.push({ x: cx + IR * Math.cos(b), y: cy + IR * Math.sin(b), id: j, a: b });
+      }
+    }
+
+    function drawRing(W, H) {
+      var cx = W / 2, cy = H / 2;
+      var OR = Math.min(W, H) * 0.40;
+      var slotA = (Math.PI * 2) / 72, gap = slotA * 0.42;
+
+      /* tray arcs */
+      for (var t = 0; t < 9; t++) {
+        var s0 = RING_GPUS[t * 8].a     - slotA * 0.5 + gap;
+        var s1 = RING_GPUS[t * 8 + 7].a + slotA * 0.5 - gap;
+        ctx.beginPath();
+        ctx.arc(cx, cy, OR - 13, s0, s1);
+        ctx.arc(cx, cy, OR + 13, s1, s0, true);
+        ctx.closePath();
+        ctx.fillStyle   = 'rgba(16,30,0,0.50)';
+        ctx.strokeStyle = 'rgba(50,90,0,0.15)'; ctx.lineWidth = 0.5;
+        ctx.fill(); ctx.stroke();
+      }
+
+      /* connection lines for hovered/pinned */
+      var act = ringPin || ringHov;
+      if (act) {
+        var col = act.type === 'gpu' ? 'rgba(118,185,0,0.60)' : 'rgba(232,125,13,0.45)';
+        ctx.lineWidth = 0.8;
+        if (act.type === 'gpu') {
+          var g = RING_GPUS[act.id];
+          for (var k = 0; k < RING_NVS.length; k++) {
+            ctx.beginPath(); ctx.moveTo(g.x, g.y); ctx.lineTo(RING_NVS[k].x, RING_NVS[k].y);
+            ctx.strokeStyle = col; ctx.stroke();
+          }
+        } else {
+          var sw = RING_NVS[act.id];
+          for (var k = 0; k < RING_GPUS.length; k++) {
+            ctx.beginPath(); ctx.moveTo(sw.x, sw.y); ctx.lineTo(RING_GPUS[k].x, RING_GPUS[k].y);
+            ctx.strokeStyle = col; ctx.stroke();
+          }
+        }
+      }
+
+      /* center label */
+      ctx.save();
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.font = 'bold 20px FiraCode, monospace';
+      ctx.fillStyle = 'rgba(118,185,0,0.30)'; ctx.fillText('NVL72', cx, cy - 8);
+      ctx.font = '8px FiraCode, monospace'; ctx.fillStyle = 'rgba(118,185,0,0.18)';
+      ctx.fillText('NVLINK 5  ·  1.8 TB/s / GPU', cx, cy + 8);
+      ctx.restore();
+
+      /* NVSwitches */
+      for (var j = 0; j < RING_NVS.length; j++) {
+        var sw = RING_NVS[j];
+        var isAct = act && (act.type === 'nvs' && act.id === j || act.type === 'gpu');
+        ctx.beginPath(); ctx.arc(sw.x, sw.y, isAct ? 5.5 : 3.5, 0, Math.PI * 2);
+        ctx.fillStyle = isAct ? '#ffb347' : '#e87d0d'; ctx.fill();
+      }
+
+      /* GPUs */
+      for (var i = 0; i < RING_GPUS.length; i++) {
+        var g = RING_GPUS[i];
+        var isActG = act && act.type === 'gpu' && act.id === i;
+        var isTray = act && act.type === 'gpu' && RING_GPUS[act.id].tray === g.tray && !isActG;
+        var sz = isActG ? 7.5 : isTray ? 5.5 : 4;
+        ctx.fillStyle = isActG ? '#d4ff44' : TRAY_COL[g.tray];
+        ctx.fillRect(g.x - sz / 2, g.y - sz / 2, sz, sz);
+      }
+
+      /* speed annotation */
+      var annotY = H - 28;
+      labelBg('NVLink 5  ·  130 TB/s aggregate', W / 2, annotY,
+        'bold 10px FiraCode, monospace', '#76b900', 'rgba(0,0,0,0.70)');
+    }
+
+    /* ── Scene 1: Inter-rack (4 racks → leaf) ───────────── */
+    function buildInterRack(W, H) {
+      NODES = []; EDGES = [];
+      var lw = Math.min(Math.round(W * 0.48), 300), lh = 52;
+      var rw = Math.min(Math.round((W - 80) / 4 - 16), 135), rh = Math.round(H * 0.48);
+      var leafY = Math.round(H * 0.07);
+      var rackY = Math.round(H * 0.36);
+      var total = 4 * rw + 3 * 18, x0 = (W - total) / 2;
+
+      NODES.push(mkNode('leaf', 'leaf', 'Leaf Switch',
+        fmtBW(BW_RACK * RACKS_SU) + ' ↓ · ' + fmtBW(BW_LEAF) + ' ↑ (1:' + BLK1 + ')',
+        W / 2 - lw / 2, leafY, lw, lh));
+
+      for (var i = 0; i < RACKS_SU; i++) {
+        var rx = x0 + i * (rw + 18);
+        NODES.push(mkNode('rack' + i, 'rack', 'NVL72 Rack ' + (i + 1),
+          '72 GPUs · 130 Tb/s NVLink · ' + fmtBW(BW_RACK) + ' NIC',
+          rx, rackY, rw, rh, { drillTo: 0 }));
+        EDGES.push(mkEdge('rack' + i, 'leaf', 'nic', false));
+      }
+    }
+
+    /* ── Scene 2: Inter-SU (2 SUs → spine) ─────────────── */
+    function buildInterSU(W, H) {
+      NODES = []; EDGES = [];
+      var spW = Math.min(Math.round(W * 0.30), 230), spH = 52;
+      var lw  = Math.min(Math.round(W * 0.22), 170), lh  = 44;
+      var suW = Math.min(Math.round(W * 0.30), 220), suH = Math.round(H * 0.28);
+      var spY = Math.round(H * 0.06), leafY = Math.round(H * 0.36), suY = Math.round(H * 0.60);
+
+      NODES.push(mkNode('spine', 'spine', 'Spine Switch',
+        '2× ' + fmtBW(BW_LEAF) + ' ↓ · 1:' + BLK2 + ' blocking',
+        W / 2 - spW / 2, spY, spW, spH));
+
+      [0, 1].forEach(function (i) {
+        var cx = i === 0 ? W * 0.27 : W * 0.73;
+        NODES.push(mkNode('leaf' + i, 'leaf', 'Leaf ' + (i + 1),
+          fmtBW(BW_RACK * RACKS_SU) + ' ↓ · ' + fmtBW(BW_LEAF) + ' ↑',
+          cx - lw / 2, leafY, lw, lh));
+        EDGES.push(mkEdge('leaf' + i, 'spine', 'spine', true));
+
+        NODES.push(mkNode('su' + i, 'su', 'SU ' + (i + 1),
+          '4 × NVL72 racks · ' + fmtBW(BW_RACK * RACKS_SU) + ' NIC aggregate',
+          cx - suW / 2, suY, suW, suH, { drillTo: 1 }));
+        EDGES.push(mkEdge('su' + i, 'leaf' + i, 'nic', false));
+      });
+    }
+
+    /* ── Scene 3: Inter-DH (2 data halls → superspine) ──── */
+    function buildInterDH(W, H) {
+      NODES = []; EDGES = [];
+      var ssW = Math.min(Math.round(W * 0.28), 220), ssH = 52;
+      var spW = Math.min(Math.round(W * 0.21), 165), spH = 44;
+      var dhW = Math.min(Math.round(W * 0.30), 225), dhH = Math.round(H * 0.24);
+      var ssY = Math.round(H * 0.06), spY = Math.round(H * 0.35), dhY = Math.round(H * 0.60);
+
+      NODES.push(mkNode('ss', 'ss', 'Superspine',
+        '2× ' + fmtBW(BW_SUPER) + ' ↓ · 1:' + BLK2 + ' blocking',
+        W / 2 - ssW / 2, ssY, ssW, ssH));
+
+      [0, 1].forEach(function (i) {
+        var cx = i === 0 ? W * 0.27 : W * 0.73;
+        NODES.push(mkNode('sp' + i, 'spine', 'Spine ' + (i + 1),
+          fmtBW(BW_LEAF) + ' ↓ · ' + fmtBW(BW_SUPER) + ' ↑',
+          cx - spW / 2, spY, spW, spH));
+        EDGES.push(mkEdge('sp' + i, 'ss', 'ss', true));
+
+        NODES.push(mkNode('dh' + i, 'dh', 'Data Hall ' + (i + 1),
+          '2 SUs · 8 NVL72 racks · ' + fmtBW(BW_LEAF) + ' uplink',
+          cx - dhW / 2, dhY, dhW, dhH, { drillTo: 2 }));
+        EDGES.push(mkEdge('dh' + i, 'sp' + i, 'nic', false));
+      });
+    }
+
+    function layout() {
+      var W = canvas.width, H = canvas.height;
+      switch (scene) {
+        case 0: buildRing(W, H);       break;
+        case 1: buildInterRack(W, H);  break;
+        case 2: buildInterSU(W, H);    break;
+        case 3: buildInterDH(W, H);    break;
+      }
+      particles = [];
+    }
+
+    /* ── Node drawing (tree scenes) ─────────────────────── */
+    var NODE_COL = {
+      leaf:  '#006d7e', spine: '#004d7a', ss:   '#1a1a5a',
+      rack:  '#0f1f0f', su:    '#0d0d1d', dh:   '#1a0d1f',
+    };
+    var NODE_BORDER = {
+      leaf:  '#00b4d8', spine: '#0077b6', ss:   '#2244cc',
+      rack:  '#76b900', su:    '#6060ff', dh:   '#8844aa',
+    };
+
+    function drawNode(n) {
+      var bg  = NODE_COL[n.type]    || '#1a1a1a';
+      var brd = NODE_BORDER[n.type] || '#333';
+      var r   = 8;
+
+      fillRR(n.x, n.y, n.w, n.h, r, bg);
+      strokeRR(n.x, n.y, n.w, n.h, r, brd, 1.5);
+
+      /* For rack nodes: draw internal NVLink micro-dots */
+      if (n.type === 'rack' && n.h > 60) {
+        var cols = 8, rows = 4;
+        var szG = Math.min((n.w - 28) / (cols + 1), 7);
+        var gapG = szG + 2;
+        var startX = n.x + (n.w - cols * gapG) / 2;
+        var startY = n.y + 14;
+        for (var row = 0; row < rows; row++) {
+          for (var col = 0; col < cols; col++) {
+            if (row * cols + col >= 28) break;
+            ctx.fillStyle = TRAY_COL[Math.floor((row * cols + col) / 8) % 9];
+            ctx.fillRect(startX + col * gapG, startY + row * (gapG + 1), szG, szG);
+          }
+        }
+      }
+
+      /* For SU/DH nodes: draw mini rack blocks */
+      if ((n.type === 'su' || n.type === 'dh') && n.h > 50) {
+        var count = n.type === 'su' ? 4 : 4;
+        var bw = Math.round((n.w - 20) / count) - 4;
+        var bh = Math.min(n.h - 34, 28);
+        var bxOff = (n.w - count * (bw + 4)) / 2;
+        for (var b = 0; b < count; b++) {
+          var bx = n.x + bxOff + b * (bw + 4);
+          var by = n.y + 14;
+          fillRR(bx, by, bw, bh, 3, '#1a3a1a');
+          strokeRR(bx, by, bw, bh, 3, '#76b900' + '44', 1);
+        }
+      }
+
+      var cx = n.x + n.w / 2, cy = n.y + n.h / 2;
+      var hasGfx = (n.type === 'rack' && n.h > 60) || ((n.type === 'su' || n.type === 'dh') && n.h > 50);
+      var labelY = hasGfx ? n.y + n.h - (n.sub && n.h > 50 ? 22 : 13) : (n.sub && n.h > 40 ? cy - 8 : cy);
+      var fsz = n.w < 120 ? 10 : 12;
+
+      ctx.save();
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.font = 'bold ' + fsz + 'px FiraCode, monospace';
+      ctx.fillStyle = '#ddd';
+      ctx.fillText(n.label, cx, labelY);
+
+      if (n.sub && n.h > 40) {
+        ctx.font = (fsz - 2) + 'px FiraCode, monospace';
+        ctx.fillStyle = 'rgba(180,180,180,0.50)';
+        ctx.fillText(n.sub, cx, labelY + fsz + 2);
+      }
+      if (n.drillTo !== undefined && n.h > 50) {
+        ctx.font = '8px FiraCode, monospace';
+        ctx.fillStyle = 'rgba(255,255,255,0.18)';
+        ctx.fillText('zoom in ›', cx, n.y + n.h - 8);
+      }
+      ctx.restore();
+    }
+
+    function drawEdge(e) {
+      var a = findNode(e.from), b = findNode(e.to);
+      if (!a || !b) return;
+      var tier = T[e.tier] || T.nic;
+      var ax = a.x + a.w / 2, ay = a.y < b.y ? a.y + a.h : a.y;
+      var bx = b.x + b.w / 2, by = b.y < a.y ? b.y + b.h : b.y;
+      var mx = (ax + bx) / 2, my = (ay + by) / 2;
+
+      ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(bx, by);
+      ctx.strokeStyle = e.bottleneck ? tier.col : tier.col + '55';
+      ctx.lineWidth   = e.bottleneck ? tier.lw + 0.5 : tier.lw;
+      ctx.setLineDash(e.bottleneck ? [5, 4] : []);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      /* BW label with readable background */
+      var bwStr = e.bottleneck ? (tier.bw + ' ← bottleneck') : tier.bw;
+      ctx.save();
+      ctx.font = '9px FiraCode, monospace';
+      ctx.textBaseline = 'middle'; ctx.textAlign = 'center';
+      var tw = ctx.measureText(bwStr).width;
+      ctx.fillStyle = 'rgba(0,0,0,0.72)';
+      ctx.fillRect(mx - tw / 2 - 4, my - 7, tw + 8, 14);
+      ctx.fillStyle = e.bottleneck ? tier.col : 'rgba(180,180,180,0.65)';
+      ctx.fillText(bwStr, mx, my);
+      ctx.restore();
+    }
+
+    /* ── Particles ─────────────────────────────────────── */
+    function spawnP(fromId, toId, tierKey) {
+      var a = findNode(fromId) || ringNodePos(fromId);
+      var b = findNode(toId)   || ringNodePos(toId);
+      if (!a || !b) return;
+      var tier = T[tierKey] || T.nic;
+      var ay = a.y !== undefined ? (a.y < b.y ? a.y + (a.h || 0) : a.y) : a.py;
+      var by = b.y !== undefined ? (b.y < a.y ? b.y + (b.h || 0) : b.y) : b.py;
+      particles.push({
+        x0: a.x + (a.w !== undefined ? a.w / 2 : 0),
+        y0: ay,
+        x1: b.x + (b.w !== undefined ? b.w / 2 : 0),
+        y1: by,
+        t: 0,
+        speed: tier.speed * (0.8 + Math.random() * 0.4),
+        life:  1.0,
+        col:   tier.col,
+        sz:    tier.sz,
+      });
+    }
+
+    function ringNodePos(id) {
+      if (id.slice(0, 3) === 'rg_') {
+        var g = RING_GPUS[parseInt(id.slice(3))];
+        return g ? { x: g.x, y: g.y, py: g.y, w: 0, h: 0 } : null;
+      }
+      if (id.slice(0, 4) === 'rns_') {
+        var s = RING_NVS[parseInt(id.slice(4))];
+        return s ? { x: s.x, y: s.y, py: s.y, w: 0, h: 0 } : null;
+      }
+      return null;
+    }
+
+    function tickParticles(dt) {
+      var live = [];
+      particles.forEach(function (p) {
+        p.t    += p.speed * dt;
+        p.life -= dt * 0.30;
+        if (p.life <= 0 || p.t >= 1) return;
+        var px = p.x0 + (p.x1 - p.x0) * p.t;
+        var py = p.y0 + (p.y1 - p.y0) * p.t;
+        ctx.beginPath(); ctx.arc(px, py, p.sz, 0, Math.PI * 2);
+        ctx.fillStyle   = p.col;
+        ctx.globalAlpha = Math.min(p.life * 2.8, 1) * 0.92;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+        live.push(p);
+      });
+      particles = live;
+    }
+
+    /* ── NCCL phase-based operations ───────────────────── */
+
+    /* Ring-scene helpers: spawn GPU→NVS or NVS→GPU */
+    function rSpawn(gi, ni, tierKey) {
+      var g = RING_GPUS[gi], s = RING_NVS[ni];
+      if (!g || !s) return;
+      var tier = T[tierKey] || T.nvlink;
+      particles.push({ x0: g.x, y0: g.y, x1: s.x, y1: s.y,
+        t: 0, speed: tier.speed * (0.8 + Math.random() * 0.4),
+        life: 1.0, col: tier.col, sz: tier.sz });
+    }
+    function rSpawnRev(ni, gi, tierKey) {
+      var s = RING_NVS[ni], g = RING_GPUS[gi];
+      if (!g || !s) return;
+      var tier = T[tierKey] || T.nvlink;
+      particles.push({ x0: s.x, y0: s.y, x1: g.x, y1: g.y,
+        t: 0, speed: tier.speed * (0.8 + Math.random() * 0.4),
+        life: 1.0, col: tier.col, sz: tier.sz });
+    }
+
+    /* --- Per-scene tick functions, one per op phase --- */
+
+    /* Scene 0: AllReduce Reduce-Scatter — GPUs converge inward to NVSwitches */
+    function s0_AR_RS() {
+      for (var gi = 0; gi < 72; gi += 4) {
+        if (Math.random() < 0.55) rSpawn(gi, gi % 36, 'nvlink');
+        if (Math.random() < 0.35) rSpawn(gi, (gi + 6) % 36, 'nvlink');
+      }
+    }
+    /* Scene 0: AllReduce All-Gather — NVSwitches broadcast result back out */
+    function s0_AR_AG() {
+      for (var ni = 0; ni < 36; ni += 2) {
+        if (Math.random() < 0.55) rSpawnRev(ni, (ni * 2) % 72, 'nvlink');
+        if (Math.random() < 0.45) rSpawnRev(ni, (ni * 2 + 1) % 72, 'nvlink');
+        if (Math.random() < 0.35) rSpawnRev(ni, (ni * 2 + 36) % 72, 'nvlink');
+      }
+    }
+    /* Scene 0: AllToAll — dense simultaneous bidirectional through every NVSwitch */
+    function s0_A2A() {
+      for (var gi = 0; gi < 72; gi += 3) {
+        var ni = gi % 36;
+        if (Math.random() < 0.75) rSpawn(gi, ni, 'nvlink');
+        if (Math.random() < 0.75) rSpawnRev(ni, (gi + 8) % 72, 'nvlink');
+        if (Math.random() < 0.55) rSpawn((gi + 2) % 72, (ni + 4) % 36, 'nvlink');
+        if (Math.random() < 0.55) rSpawnRev((ni + 4) % 36, (gi + 5) % 72, 'nvlink');
+        if (Math.random() < 0.40) rSpawn((gi + 1) % 72, (ni + 18) % 36, 'nvlink');
+      }
+    }
+    /* Scene 0: AllGather gather — each GPU shard moves inward */
+    function s0_AG_gather() {
+      for (var gi = 0; gi < 72; gi += 4) {
+        if (Math.random() < 0.62) rSpawn(gi, gi % 36, 'nvlink');
+        if (Math.random() < 0.40) rSpawn((gi + 2) % 72, (gi / 4 + 9) % 36, 'nvlink');
+      }
+    }
+    /* Scene 0: AllGather scatter — NVSwitches fan complete data to ALL GPUs (heavy) */
+    function s0_AG_scatter() {
+      for (var ni = 0; ni < 36; ni++) {
+        if (Math.random() < 0.45) rSpawnRev(ni, (ni * 2) % 72, 'nvlink');
+        if (Math.random() < 0.45) rSpawnRev(ni, (ni * 2 + 1) % 72, 'nvlink');
+        if (Math.random() < 0.35) rSpawnRev(ni, (ni * 2 + 2) % 72, 'nvlink');
+        if (Math.random() < 0.30) rSpawnRev(ni, (ni * 2 + 36) % 72, 'nvlink');
+      }
+    }
+    /* Scene 0: Broadcast — GPU 0 fans through NVSwitches outward */
+    function s0_Bcast() {
+      if (Math.random() < 0.90) rSpawn(0,  0, 'nvlink');
+      if (Math.random() < 0.85) rSpawn(0,  9, 'nvlink');
+      if (Math.random() < 0.80) rSpawn(0, 18, 'nvlink');
+      if (Math.random() < 0.75) rSpawn(0, 27, 'nvlink');
+      for (var ni = 0; ni < 36; ni += 2) {
+        if (Math.random() < 0.55) rSpawnRev(ni, (ni * 2 + 12) % 72, 'nvlink');
+        if (Math.random() < 0.40) rSpawnRev(ni, (ni * 2 + 24) % 72, 'nvlink');
+      }
+    }
+
+    /* Scene 1 */
+    function s1_AR_RS() {
+      for (var i = 0; i < 4; i++) if (Math.random() < 0.65) spawnP('rack' + i, 'leaf', 'nic');
+    }
+    function s1_AR_AG() {
+      for (var i = 0; i < 4; i++) if (Math.random() < 0.65) spawnP('leaf', 'rack' + i, 'nic');
+    }
+    function s1_A2A() {
+      for (var i = 0; i < 4; i++) {
+        spawnP('rack' + i, 'leaf', 'nic');
+        spawnP('leaf', 'rack' + i, 'nic');
+        if (Math.random() < 0.75) spawnP('rack' + i, 'leaf', 'nic');
+        if (Math.random() < 0.75) spawnP('leaf', 'rack' + i, 'nic');
+      }
+    }
+    function s1_AG_gather() {
+      for (var i = 0; i < 4; i++) if (Math.random() < 0.52) spawnP('rack' + i, 'leaf', 'nic');
+    }
+    function s1_AG_scatter() {
+      for (var i = 0; i < 4; i++) {
+        if (Math.random() < 0.80) spawnP('leaf', 'rack' + i, 'nic');
+        if (Math.random() < 0.60) spawnP('leaf', 'rack' + i, 'nic');
+      }
+    }
+    function s1_Bcast() {
+      if (Math.random() < 0.80) spawnP('rack0', 'leaf', 'nic');
+      for (var i = 1; i < 4; i++) if (Math.random() < 0.70) spawnP('leaf', 'rack' + i, 'nic');
+    }
+
+    /* Scene 2 */
+    function s2_AR_RS() {
+      if (Math.random() < 0.60) spawnP('su0', 'leaf0', 'nic');
+      if (Math.random() < 0.60) spawnP('su1', 'leaf1', 'nic');
+      if (Math.random() < 0.52) spawnP('leaf0', 'spine', 'spine');
+      if (Math.random() < 0.52) spawnP('leaf1', 'spine', 'spine');
+    }
+    function s2_AR_AG() {
+      if (Math.random() < 0.60) spawnP('spine', 'leaf0', 'spine');
+      if (Math.random() < 0.60) spawnP('spine', 'leaf1', 'spine');
+      if (Math.random() < 0.55) spawnP('leaf0', 'su0', 'nic');
+      if (Math.random() < 0.55) spawnP('leaf1', 'su1', 'nic');
+    }
+    function s2_A2A() {
+      spawnP('su0', 'leaf0', 'nic');   spawnP('su1', 'leaf1', 'nic');
+      spawnP('leaf0', 'su0', 'nic');   spawnP('leaf1', 'su1', 'nic');
+      spawnP('leaf0', 'spine', 'spine'); spawnP('leaf1', 'spine', 'spine');
+      spawnP('spine', 'leaf0', 'spine'); spawnP('spine', 'leaf1', 'spine');
+      if (Math.random() < 0.72) { spawnP('su0','leaf0','nic'); spawnP('su1','leaf1','nic'); }
+    }
+    function s2_AG_gather() {
+      if (Math.random() < 0.57) spawnP('su0', 'leaf0', 'nic');
+      if (Math.random() < 0.57) spawnP('su1', 'leaf1', 'nic');
+      if (Math.random() < 0.47) spawnP('leaf0', 'spine', 'spine');
+      if (Math.random() < 0.47) spawnP('leaf1', 'spine', 'spine');
+    }
+    function s2_AG_scatter() {
+      if (Math.random() < 0.72) spawnP('spine', 'leaf0', 'spine');
+      if (Math.random() < 0.72) spawnP('spine', 'leaf1', 'spine');
+      if (Math.random() < 0.68) spawnP('leaf0', 'su0', 'nic');
+      if (Math.random() < 0.68) spawnP('leaf1', 'su1', 'nic');
+      if (Math.random() < 0.52) spawnP('leaf0', 'su0', 'nic');
+      if (Math.random() < 0.52) spawnP('leaf1', 'su1', 'nic');
+    }
+    function s2_Bcast() {
+      if (Math.random() < 0.75) spawnP('su0', 'leaf0', 'nic');
+      if (Math.random() < 0.68) spawnP('leaf0', 'spine', 'spine');
+      if (Math.random() < 0.62) spawnP('spine', 'leaf1', 'spine');
+      if (Math.random() < 0.62) spawnP('leaf1', 'su1', 'nic');
+    }
+
+    /* Scene 3 */
+    function s3_AR_RS() {
+      if (Math.random() < 0.58) spawnP('dh0', 'sp0', 'nic');
+      if (Math.random() < 0.58) spawnP('dh1', 'sp1', 'nic');
+      if (Math.random() < 0.47) spawnP('sp0', 'ss', 'ss');
+      if (Math.random() < 0.47) spawnP('sp1', 'ss', 'ss');
+    }
+    function s3_AR_AG() {
+      if (Math.random() < 0.58) spawnP('ss', 'sp0', 'ss');
+      if (Math.random() < 0.58) spawnP('ss', 'sp1', 'ss');
+      if (Math.random() < 0.52) spawnP('sp0', 'dh0', 'nic');
+      if (Math.random() < 0.52) spawnP('sp1', 'dh1', 'nic');
+    }
+    function s3_A2A() {
+      spawnP('dh0', 'sp0', 'nic');  spawnP('dh1', 'sp1', 'nic');
+      spawnP('sp0', 'dh0', 'nic');  spawnP('sp1', 'dh1', 'nic');
+      spawnP('sp0', 'ss', 'ss');    spawnP('sp1', 'ss', 'ss');
+      spawnP('ss', 'sp0', 'ss');    spawnP('ss', 'sp1', 'ss');
+      if (Math.random() < 0.72) { spawnP('dh0','sp0','nic'); spawnP('dh1','sp1','nic'); }
+    }
+    function s3_AG_gather() {
+      if (Math.random() < 0.57) spawnP('dh0', 'sp0', 'nic');
+      if (Math.random() < 0.57) spawnP('dh1', 'sp1', 'nic');
+      if (Math.random() < 0.47) spawnP('sp0', 'ss', 'ss');
+      if (Math.random() < 0.47) spawnP('sp1', 'ss', 'ss');
+    }
+    function s3_AG_scatter() {
+      if (Math.random() < 0.72) spawnP('ss', 'sp0', 'ss');
+      if (Math.random() < 0.72) spawnP('ss', 'sp1', 'ss');
+      if (Math.random() < 0.68) spawnP('sp0', 'dh0', 'nic');
+      if (Math.random() < 0.68) spawnP('sp1', 'dh1', 'nic');
+      if (Math.random() < 0.52) spawnP('sp0', 'dh0', 'nic');
+      if (Math.random() < 0.52) spawnP('sp1', 'dh1', 'nic');
+    }
+    function s3_Bcast() {
+      if (Math.random() < 0.75) spawnP('dh0', 'sp0', 'nic');
+      if (Math.random() < 0.68) spawnP('sp0', 'ss', 'ss');
+      if (Math.random() < 0.62) spawnP('ss', 'sp1', 'ss');
+      if (Math.random() < 0.62) spawnP('sp1', 'dh1', 'nic');
+    }
+
+    /* Build phases array for an op — each phase has a tick fn, label, color, duration */
+    function buildPhases(op) {
+      var s = scene;
+      var RS   = [s0_AR_RS,    s1_AR_RS,    s2_AR_RS,    s3_AR_RS   ];
+      var AG_  = [s0_AR_AG,    s1_AR_AG,    s2_AR_AG,    s3_AR_AG   ];
+      var A2A_ = [s0_A2A,      s1_A2A,      s2_A2A,      s3_A2A     ];
+      var AGg  = [s0_AG_gather,s1_AG_gather,s2_AG_gather,s3_AG_gather];
+      var AGs  = [s0_AG_scatter,s1_AG_scatter,s2_AG_scatter,s3_AG_scatter];
+      var BC_  = [s0_Bcast,    s1_Bcast,    s2_Bcast,    s3_Bcast   ];
+      var defs = {
+        ar:    [ { label: 'Reduce-Scatter',      col: T.nic.col,    dur: 2.4, tick: RS[s]   },
+                 { label: 'All-Gather',          col: T.nvlink.col, dur: 2.4, tick: AG_[s]  } ],
+        a2a:   [ { label: 'Full-Mesh Send/Recv', col: T.spine.col,  dur: 5.0, tick: A2A_[s] } ],
+        ag:    [ { label: 'Gather (shards in)',  col: T.nic.col,    dur: 1.8, tick: AGg[s]  },
+                 { label: 'Scatter (all data out)', col: T.nvlink.col, dur: 3.2, tick: AGs[s] } ],
+        bcast: [ { label: 'Source → All',        col: '#8888ff',    dur: 4.0, tick: BC_[s]  } ],
+      };
+      return defs[op] || [];
+    }
+
+    /* Called from draw loop — advances phase and fires current tick fn */
+    function tickOpState(dt) {
+      if (!opState) return;
+      var ph = opState.phases[opState.phase];
+      if (!ph) return;
+      opState.phaseAge += dt;
+      if (opState.phaseAge >= ph.dur) {
+        opState.phase    = (opState.phase + 1) % opState.phases.length;
+        opState.phaseAge = 0;
+        particles = [];   // flush between phases so direction change is clear
+      }
+      ph = opState.phases[opState.phase];
+      if (ph && ph.tick) ph.tick();
+    }
+
+    /* Phase label + progress bar drawn at canvas bottom */
+    function drawPhaseLabel(W, H) {
+      if (!opState) return;
+      var ph = opState.phases[opState.phase];
+      if (!ph) return;
+      var prog = Math.min(opState.phaseAge / ph.dur, 1);
+      var bw = 220, bh = 5, bx = (W - bw) / 2, by = H - 22;
+      ctx.fillStyle = '#1a1a1a';
+      ctx.fillRect(bx, by, bw, bh);
+      ctx.fillStyle = ph.col;
+      ctx.fillRect(bx, by, Math.round(bw * prog), bh);
+      ctx.save();
+      ctx.font = 'bold 9px FiraCode, monospace';
+      ctx.fillStyle = ph.col;
+      ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
+      ctx.fillText(ph.label.toUpperCase(), W / 2, by - 4);
+      ctx.restore();
+    }
+
+    /* Highlight broadcast source node */
+    function drawBcastSource(W, H) {
+      if (!opState || opState.op !== 'bcast') return;
+      var pulse = 0.5 + 0.5 * Math.sin(Date.now() / 220);
+      if (scene === 0) {
+        var g0 = RING_GPUS[0];
+        if (!g0) return;
+        ctx.beginPath(); ctx.arc(g0.x, g0.y, 10 + pulse * 4, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(136,136,255,' + (0.55 + 0.35 * pulse) + ')';
+        ctx.lineWidth = 1.5; ctx.stroke();
+        labelBg('SRC', g0.x, g0.y - 16, '7px FiraCode, monospace', '#8888ff', 'rgba(0,0,0,0.75)');
+      } else {
+        var srcId = { 1: 'rack0', 2: 'su0', 3: 'dh0' }[scene];
+        var sn = findNode(srcId);
+        if (!sn) return;
+        var sx = sn.x - 3, sy = sn.y - 3, sw = sn.w + 6, sh = sn.h + 6;
+        ctx.beginPath(); ctx.roundRect(sx, sy, sw, sh, 10);
+        ctx.strokeStyle = 'rgba(136,136,255,' + (0.50 + 0.40 * pulse) + ')';
+        ctx.lineWidth = 1.5 + pulse; ctx.stroke();
+        labelBg('SOURCE', sn.x + sn.w / 2, sn.y - 10, '7px FiraCode, monospace', '#8888ff', 'rgba(0,0,0,0.75)');
+      }
+    }
+
+    /* ── Main render loop ───────────────────────────────── */
+    function draw(ts) {
+      var dt = Math.min((ts - lastTs) / 1000, 0.05);
+      lastTs = ts;
+      var W = canvas.width, H = canvas.height;
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = '#070707'; ctx.fillRect(0, 0, W, H);
+
+      if (scene === 0) {
+        drawRing(W, H);
+      } else {
+        EDGES.forEach(drawEdge);
+        NODES.forEach(drawNode);
+      }
+
+      drawBcastSource(W, H);
+      tickOpState(dt);
+      tickParticles(dt);
+      drawBWMeter(W);
+      if (opState) drawPhaseLabel(W, H);
+      requestAnimationFrame(draw);
+    }
+
+    /* ── Scene navigation ───────────────────────────────── */
+    var SCENE_HINTS = [
+      '72 B300 GPUs · 36 NVSwitches · 1.8 TB/s per GPU · 130 TB/s aggregate NVLink fabric — hover/click a node',
+      '4 NVL72 racks share one leaf switch · 28.8 Tb/s NIC per rack · 88.6 Tb/s uplink after 1:' + BLK1 + ' blocking — click a rack to zoom in',
+      '2 SUs share one spine switch · 1:' + BLK2 + ' blocking at spine · ' + GPU_LEAF + ' Gb/s effective per GPU — click an SU to zoom in',
+      '2 data halls share superspine · 1:' + BLK2 + ' blocking · ' + GPU_SUPER + ' Gb/s effective per GPU — 35× slower than NVLink',
+    ];
+    var OP_HINTS = {
+      ar:    'AllReduce — reduce-scatter then all-gather. Intra-rack uses NVLink (1,800 Gb/s/GPU). Cross-rack limited by NIC (400 Gb/s). Cross-DH limited to 51 Gb/s/GPU.',
+      a2a:   'AllToAll — every rank sends unique data to every other. 4× more cross-fabric traffic than AllReduce. NICs fully saturated for cross-rack pairs. Note the slower particles vs AllReduce.',
+      ag:    'AllGather — each rank holds one shard; all collect all shards. Fan-in then fan-out. Bandwidth limited by uplink tier at each level.',
+      bcast: 'Broadcast — one source rank fans to all others. Bottleneck is the first uplink leaving the source rack.',
+    };
+
+    function setHint(txt) {
+      var el = document.getElementById('cluster-hint');
+      if (el) el.textContent = txt;
+    }
+
+    function updateCrumbs() {
+      document.querySelectorAll('.cluster-crumb').forEach(function (b) {
+        b.classList.toggle('active', parseInt(b.dataset.scene) === scene);
+      });
+    }
+
+    function clearOp() {
+      particles = [];
+      opState   = null;
+      opActive  = null;
+      document.querySelectorAll('.cluster-op-btn').forEach(function (b) { b.classList.remove('active'); });
+    }
+
+    function goScene(s) {
+      var prevOp = opActive;
+      clearOp(); scene = s; layout(); updateCrumbs(); setHint(SCENE_HINTS[s]);
+      if (prevOp) startOp(prevOp);   // rebuild phases for new scene
+    }
+
+    function startOp(op) {
+      clearOp(); opActive = op;
+      opState = { op: op, phase: 0, phaseAge: 0, phases: buildPhases(op) };
+      var btn = document.getElementById('op-' + op);
+      if (btn) btn.classList.add('active');
+      setHint(OP_HINTS[op] || '');
+    }
+
+    /* ── Canvas events ──────────────────────────────────── */
+    canvas.addEventListener('mousemove', function (e) {
+      var r  = canvas.getBoundingClientRect();
+      var mx = (e.clientX - r.left) * (canvas.width  / r.width);
+      var my = (e.clientY - r.top)  * (canvas.height / r.height);
+      var hit = false;
+
+      if (scene === 0) {
+        var hov = null;
+        for (var i = 0; i < RING_GPUS.length; i++) {
+          if (Math.hypot(mx - RING_GPUS[i].x, my - RING_GPUS[i].y) < 9) {
+            hov = { type: 'gpu', id: i }; hit = true; break;
+          }
+        }
+        if (!hov) for (var j = 0; j < RING_NVS.length; j++) {
+          if (Math.hypot(mx - RING_NVS[j].x, my - RING_NVS[j].y) < 9) {
+            hov = { type: 'nvs', id: j }; hit = true; break;
+          }
+        }
+        if (!ringPin) ringHov = hov;
+      } else {
+        for (var k = 0; k < NODES.length; k++) {
+          var n = NODES[k];
+          if (n.drillTo !== undefined && mx >= n.x && mx <= n.x + n.w && my >= n.y && my <= n.y + n.h) {
+            hit = true; break;
+          }
+        }
+      }
+      canvas.style.cursor = hit ? 'pointer' : 'default';
+    }, { passive: true });
+
+    canvas.addEventListener('click', function (e) {
+      var r  = canvas.getBoundingClientRect();
+      var mx = (e.clientX - r.left) * (canvas.width  / r.width);
+      var my = (e.clientY - r.top)  * (canvas.height / r.height);
+
+      if (scene === 0) {
+        for (var i = 0; i < RING_GPUS.length; i++) {
+          if (Math.hypot(mx - RING_GPUS[i].x, my - RING_GPUS[i].y) < 9) {
+            var hit0 = { type: 'gpu', id: i };
+            ringPin = (ringPin && ringPin.type === 'gpu' && ringPin.id === i) ? null : hit0;
+            return;
+          }
+        }
+        for (var j = 0; j < RING_NVS.length; j++) {
+          if (Math.hypot(mx - RING_NVS[j].x, my - RING_NVS[j].y) < 9) {
+            var hit1 = { type: 'nvs', id: j };
+            ringPin = (ringPin && ringPin.type === 'nvs' && ringPin.id === j) ? null : hit1;
+            return;
+          }
+        }
+        ringPin = null;
+      } else {
+        for (var k = 0; k < NODES.length; k++) {
+          var n = NODES[k];
+          if (n.drillTo !== undefined && mx >= n.x && mx <= n.x + n.w && my >= n.y && my <= n.y + n.h) {
+            goScene(n.drillTo); return;
+          }
+        }
+      }
+    }, { passive: true });
+
+    canvas.addEventListener('mouseleave', function () {
+      if (!ringPin) ringHov = null;
+      canvas.style.cursor = 'default';
+    });
+
+    document.querySelectorAll('.cluster-crumb').forEach(function (b) {
+      b.addEventListener('click', function () { goScene(parseInt(b.dataset.scene)); });
+    });
+
+    ['ar', 'a2a', 'ag', 'bcast'].forEach(function (op) {
+      var btn = document.getElementById('op-' + op);
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        if (opActive === op) { clearOp(); setHint(SCENE_HINTS[scene]); }
+        else startOp(op);
+      });
+    });
+
+    var resetBtn = document.getElementById('op-reset');
+    if (resetBtn) resetBtn.addEventListener('click', function () {
+      clearOp(); setHint(SCENE_HINTS[scene]);
+    });
+
+    window.addEventListener('resize', function () {
+      var wrap = canvas.parentElement;
+      canvas.width  = wrap.clientWidth;
+      canvas.height = Math.max(Math.round(wrap.clientWidth * 0.60), 400);
+      layout();
+    }, { passive: true });
+
+    /* ── Boot ────────────────────────────────────────────── */
+    var wrap = canvas.parentElement;
+    canvas.width  = wrap.clientWidth;
+    canvas.height = Math.max(Math.round(wrap.clientWidth * 0.60), 400);
+    goScene(0);
+    requestAnimationFrame(draw);
+
+  })();
