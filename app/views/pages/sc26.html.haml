@@ -39,7 +39,7 @@
       .sc26-member-info
         %p.sc26-member-name Beckett Dunlavy
         %p.sc26-member-role Team Manager
-        %p.sc26-member-bio Senior, Computer Science, incoming Software Engineer Intern at Tesla (ML & HPC Infra). Competed in indy-SC25 last year.
+        %p.sc26-member-bio Senior - Computer Science, incoming Software Engineer Intern at Tesla (ML & HPC Infra). Competed in indy-SC25 last year.
 
 .sc-section
   %p.sc-section-label Team
@@ -149,7 +149,7 @@
       %p
         With only 3 nodes, every pair connects directly via 4× 400Gb/s cables — 2 ConnectX-7 NICs with both ports populated per link — giving 1.6Tb/s bidirectional bandwidth per pair with zero switch hops. A 400G InfiniBand switch draws an estimated 2–4kW and adds one hop of latency; eliminating it returns that power directly to the GPU budget.
       %p
-        Rail optimization is functional in this configuration. Each NIC by slot index (CX7-0 through CX7-3) forms an independent InfiniBand rail connecting all three nodes — GPU N on every node shares a dedicated rail with GPU N on every other node. NCCL AllReduce traffic stays within a single rail and never crosses rails, which is the condition that makes rail optimization meaningful. This works here because a 2-port NIC can reach both other nodes with one port each, completing the triangle without a switch.
+        We configure as to have a rail optimized network topology as well; each NIC by slot index (CX7-0 through CX7-3) forms an independent IB rail connecting GPU N of each node. NCCL AllReduce traffic stays within a single rail, which is the condition that makes rail optmimzation meaningful. Note that this can only work here because the 2-port NIC can reach both other ports with one port each, completing the loop without a switch.
       %p
         This doesn't generalize — a 4th node would exhaust all NIC ports and require a switch. But within the fixed 3-node competition constraint, it's a straightforward perf-per-watt gain worth taking.
       %p
