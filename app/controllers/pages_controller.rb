@@ -5,7 +5,9 @@ class PagesController < ApplicationController
   layout "application"
 
   def index
-    # logic for index
+    @og_image       = 'Profile-05.jpg'
+    @page_title     = 'Ryan Scherbarth'
+    @og_description = 'Ryan Scherbarth — Sr. Software Engineer, ML & HPC Infra at Tesla.'
 
     raw_referrals = [
       { title: "Amex Platinum", url: "https://americanexpress.com/en-us/referral/all-cards?ref=RYANS49Yg&xl=cp01" },
