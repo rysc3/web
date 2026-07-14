@@ -7,7 +7,7 @@ class PagesController < ApplicationController
   def index
     @og_image       = 'Profile-05.jpg'
     @page_title     = 'Ryan Scherbarth'
-    @og_description = 'Ryan Scherbarth — Sr. Software Engineer, ML & HPC Infra at Tesla.'
+    @og_description = 'Ryan Scherbarth — Senior Software Engineer, AI/ML at NVIDIA.'
 
     raw_referrals = [
       { title: "Amex Platinum", url: "https://americanexpress.com/en-us/referral/all-cards?ref=RYANS49Yg&xl=cp01" },
@@ -55,7 +55,7 @@ class PagesController < ApplicationController
   def resume
     @og_image       = "Profile-01.jpg"
     @page_title     = "Ryan Scherbarth — Resume"
-    @og_description = "Resume and experience — Sr. Software Engineer, ML & HPC Infra at Tesla."
+    @og_description = "Resume and experience — Senior Software Engineer, AI/ML at NVIDIA."
   end
 
   def meet
