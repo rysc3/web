@@ -9,7 +9,7 @@
           %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselProfile", :type => "button"}
         .carousel-inner
           .carousel-item.active
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth — Sr. Software Engineer, ML & HPC Infrastructure at Tesla", src: asset_path('Profile-05.jpg')}
+            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth — Sr. Software Engineer at NVIDIA", src: asset_path('Profile-05.jpg')}
           .carousel-item
             %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth — software engineer and HPC researcher", src: asset_path('Profile-01.jpg')}
           .carousel-item
@@ -35,7 +35,7 @@
   %div.col-md-8.d-flex.align-items-center
     %div.text-center
       %p.pt-2
-        Sr. Software Engineer, Machine Learning & HPC Infra at Tesla
+        Sr. Software Engineer, ML & HPC Infra at NVIDIA
       %p.pt-2
         View my resume
         %a{href: "/resume"} here
@@ -51,17 +51,31 @@
   %button.career-filter-btn{"data-filter" => "extracurricular"} Extracurricular
 
 .career-timeline.career-timeline-left
+  .career-year-marker
+    %span 2026
+
   .career-event{data: {career_type: "professional"}}
     .career-event-dot
     .career-event-card
       .event-card-inner
         .event-logo
-          %img{src: asset_path('tesla_logo_2.png'), alt: "Tesla"}
+          %img{src: asset_path('nvidia_logo.png'), alt: "NVIDIA"}
         .event-body
           %h6.event-title Sr. Software Engineer
-          %p.event-org Tesla
-          %p.event-dates December 2025 — Present
-          %p.event-desc More ml & more hpc infra for tesla ap.
+          %p.event-org NVIDIA
+          %p.event-dates July 2026 — Present
+          %p.event-desc New cluster builds & performance optimization for next-generation hyperscale deployments.
+
+  .career-event{data: {career_type: "extracurricular"}}
+    .career-event-dot
+    .career-event-card.event-extra
+      .event-card-inner
+        .event-body
+          %h6.event-title Team Coach
+          %p.event-org SC26 Student Cluster Competition
+          %p.event-dates April 2026 — Present
+          %p.event-desc
+            %a{href: "/sc26"} SC26 Team Site.
 
   .career-event{data: {career_type: "extracurricular"}}
     .career-event-dot
@@ -74,16 +88,20 @@
           %p.event-desc
             %a{href: "https://hoti.org/2026/committees.html", target: "_blank"} HotI 2026 Committees.
 
-  .career-event{data: {career_type: "extracurricular"}}
+  .career-year-marker
+    %span 2025
+
+  .career-event{data: {career_type: "professional"}}
     .career-event-dot
-    .career-event-card.event-extra
+    .career-event-card
       .event-card-inner
+        .event-logo
+          %img{src: asset_path('tesla_logo_2.png'), alt: "Tesla"}
         .event-body
-          %h6.event-title Committee Member
-          %p.event-org SC25 HPC Student Cluster Competition
-          %p.event-dates January 2025 — November 2025
-          %p.event-desc
-            %a{href: "https://sc25.supercomputing.org/planning-committee/", target: "_blank"} SC25 Planning Committee.
+          %h6.event-title Sr. Software Engineer
+          %p.event-org Tesla
+          %p.event-dates December 2025 — July 2026
+          %p.event-desc More ml & more hpc infra for tesla ap.
 
   .career-event{data: {career_type: "professional"}}
     .career-event-dot
@@ -97,20 +115,30 @@
           %p.event-dates January 2025 — December 2025
           %p.event-desc Machine Learning & HPC Infrastructure for Tesla Autopilot.
 
+  .career-event{data: {career_type: "extracurricular"}}
+    .career-event-dot
+    .career-event-card.event-extra
+      .event-card-inner
+        .event-body
+          %h6.event-title Committee Member
+          %p.event-org SC25 HPC Student Cluster Competition
+          %p.event-dates January 2025 — November 2025
+          %p.event-desc
+            %a{href: "https://sc25.supercomputing.org/planning-committee/", target: "_blank"} SC25 Planning Committee.
+
   .career-year-marker
     %span 2024
 
-  .career-event{data: {career_type: "professional"}}
+  .career-event{data: {career_type: "extracurricular"}}
     .career-event-dot
-    .career-event-card
+    .career-event-card.event-extra
       .event-card-inner
-        .event-logo
-          %img{src: asset_path('sandia_labs_logo.png'), alt: "Sandia"}
         .event-body
-          %h6.event-title Software Engineer, HPC
-          %p.event-org Sandia National Laboratories
-          %p.event-dates October 2022 — December 2024
-          %p.event-desc Design, acquisition, deployment, and optimization of large-scale scientific HPC clusters. Full stack web in Ruby on Rails.
+          %h6.event-title Student Volunteer
+          %p.event-org PEARC24 Conference
+          %p.event-dates July 2024
+          %p.event-desc
+            %a{href: "https://pearc.acm.org/", target: "_blank"} PEARC conference series.
 
   .career-event{data: {career_type: "extracurricular"}}
     .career-event-dot
@@ -124,28 +152,16 @@
             Student teams design HPC clusters and compete in a 48-hour challenge. More info
             %a{href: "/sc24"} here.
 
-  .career-event{data: {career_type: "professional"}}
-    .career-event-dot
-    .career-event-card
-      .event-card-inner
-        .event-logo
-          %img{src: asset_path('carc_logo_transparent.png'), alt: "CARC"}
-        .event-body
-          %h6.event-title HPC Systems Specialist
-          %p.event-org Center for Advanced Research Computing — UNM
-          %p.event-dates May 2023 — December 2024
-          %p.event-desc Supporting users on UNM HPC clusters, benchmarking, profiling, and reporting.
-
   .career-event{data: {career_type: "extracurricular"}}
     .career-event-dot
     .career-event-card.event-extra
       .event-card-inner
         .event-body
-          %h6.event-title Student Volunteer
-          %p.event-org PEARC24 Conference
-          %p.event-dates July 2024
+          %h6.event-title Project Evaluation Committee Member
+          %p.event-org NM Supercomputing Challenge
+          %p.event-dates February 2024
           %p.event-desc
-            %a{href: "https://pearc.acm.org/", target: "_blank"} PEARC conference series.
+            %a{href: "https://supercomputingchallenge.org/23-24/evaluations-schedule", target: "_blank"} Supercomputing Challenge website.
 
   .career-event{data: {career_type: "professional"}}
     .career-event-dot
@@ -164,33 +180,11 @@
     .career-event-card.event-extra
       .event-card-inner
         .event-body
-          %h6.event-title Peer Mentor
-          %p.event-org UNM School of Engineering
-          %p.event-dates January 2023 — December 2024
-          %p.event-desc
-            %a{href: "https://ess.unm.edu/about-us/index.html", target: "_blank"} UNM Engineering Student Success Center (ESS).
-
-  .career-event{data: {career_type: "extracurricular"}}
-    .career-event-dot
-    .career-event-card.event-extra
-      .event-card-inner
-        .event-body
           %h6.event-title Team Manager
           %p.event-org Winter Classic Invitational HPC 2024
           %p.event-dates January 2024 — May 2024
           %p.event-desc
             %a{href: "https://www.winterclassicinvitational.com/team/university-of-new-mexico-lobo24/", target: "_blank"} View team site.
-
-  .career-event{data: {career_type: "extracurricular"}}
-    .career-event-dot
-    .career-event-card.event-extra
-      .event-card-inner
-        .event-body
-          %h6.event-title Team Manager
-          %p.event-org ISC24 Virtual HPC Student Cluster Competition
-          %p.event-dates January 2024 — April 2024
-          %p.event-desc
-            %a{href: "https://www.isc-hpc.com/student-cluster-competition-2024.html", target: "_blank"} View competition site.
 
   .career-event{data: {career_type: "extracurricular"}}
     .career-event-dot
@@ -208,11 +202,11 @@
     .career-event-card.event-extra
       .event-card-inner
         .event-body
-          %h6.event-title Project Evaluation Committee Member
-          %p.event-org NM Supercomputing Challenge
-          %p.event-dates February 2024
+          %h6.event-title Team Manager
+          %p.event-org ISC24 Virtual HPC Student Cluster Competition
+          %p.event-dates January 2024 — April 2024
           %p.event-desc
-            %a{href: "https://supercomputingchallenge.org/23-24/evaluations-schedule", target: "_blank"} Supercomputing Challenge website.
+            %a{href: "https://www.isc-hpc.com/student-cluster-competition-2024.html", target: "_blank"} View competition site.
 
   .career-year-marker
     %span 2023
@@ -229,6 +223,29 @@
             More info
             %a{href: "/sc23"} here.
 
+  .career-event{data: {career_type: "professional"}}
+    .career-event-dot
+    .career-event-card
+      .event-card-inner
+        .event-logo
+          %img{src: asset_path('carc_logo_transparent.png'), alt: "CARC"}
+        .event-body
+          %h6.event-title HPC Systems Specialist
+          %p.event-org Center for Advanced Research Computing — UNM
+          %p.event-dates May 2023 — December 2024
+          %p.event-desc Supporting users on UNM HPC clusters, benchmarking, profiling, and reporting.
+
+  .career-event{data: {career_type: "extracurricular"}}
+    .career-event-dot
+    .career-event-card.event-extra
+      .event-card-inner
+        .event-body
+          %h6.event-title Peer Mentor
+          %p.event-org UNM School of Engineering
+          %p.event-dates January 2023 — December 2024
+          %p.event-desc
+            %a{href: "https://ess.unm.edu/about-us/index.html", target: "_blank"} UNM Engineering Student Success Center (ESS).
+
   .career-event{data: {career_type: "extracurricular"}}
     .career-event-dot
     .career-event-card.event-extra
@@ -239,6 +256,9 @@
           %p.event-dates January 2023 — May 2023
           %p.event-desc
             %a{href: "https://www.winterclassicinvitational.com/team/university-of-new-mexico/", target: "_blank"} View team site.
+
+  .career-year-marker
+    %span 2022
 
   .career-event{data: {career_type: "extracurricular"}}
     .career-event-dot
@@ -251,8 +271,17 @@
           %p.event-desc
             %a{href: "https://drive.google.com/file/d/1lyjeK7hHzxfpkWrZFMXKVdWN3r56dOvG/view", target: "_blank"} View PDR.
 
-  .career-year-marker
-    %span 2022
+  .career-event{data: {career_type: "professional"}}
+    .career-event-dot
+    .career-event-card
+      .event-card-inner
+        .event-logo
+          %img{src: asset_path('sandia_labs_logo.png'), alt: "Sandia"}
+        .event-body
+          %h6.event-title Software Engineer, HPC
+          %p.event-org Sandia National Laboratories
+          %p.event-dates October 2022 — December 2024
+          %p.event-desc Design, acquisition, deployment, and optimization of large-scale scientific HPC clusters. Full stack web in Ruby on Rails.
 
   .career-event{data: {career_type: "extracurricular"}}
     .career-event-dot

@@ -17,14 +17,14 @@
     = csrf_meta_tags
     = csp_meta_tag
     %meta{:content => @page_title || "Ryan Scherbarth", :property => "og:title"}
-    %meta{:content => @og_description || "Ryan Scherbarth — Sr. Software Engineer, ML & HPC Infra at Tesla.", :property => "og:description"}
+    %meta{:content => @og_description || "Ryan Scherbarth — Senior Software Engineer at NVIDIA.", :property => "og:description"}
     %meta{:content => asset_url(@og_image || 'Profile-05.jpg'), :property => "og:image"}
     %meta{:content => "Ryan Scherbarth", :name => "author"}
     %meta{:content => "website", :property => "og:type"}
-    %meta{:content => "ryan, ryan scherbarth, scherbarth, ry, UNM, University of New Mexico, New Mexico, Sandia Labs, Sandia, SNL, National Lab, National Labs, Center for Advanced Research Computing, student, computer science, cs, intern, internship, software engineer, SWE, Solutions Architect, engineer, bachelors, masters, cyber security, HPC, high performance computing, super computers, super computer, supercomputer, supercomputing, ML, machine learning, tesla, FSD, full self driving, tesla full self driving, tesla auto pilot, tesla autopilot, autopilot", :name => "keywords"}
+    %meta{:content => "ryan, ryan scherbarth, scherbarth, ry, UNM, University of New Mexico, New Mexico, Sandia Labs, Sandia, SNL, National Lab, National Labs, Center for Advanced Research Computing, student, computer science, cs, intern, internship, software engineer, SWE, Solutions Architect, engineer, bachelors, masters, cyber security, HPC, high performance computing, super computers, super computer, supercomputer, supercomputing, ML, machine learning, tesla, FSD, full self driving, tesla full self driving, tesla auto pilot, tesla autopilot, autopilot, nvidia, NVIDIA, GPU, AI, artificial intelligence, AI/ML, deep learning, CUDA, accelerated computing", :name => "keywords"}
     %link{rel: "icon", type: "image/png", href: asset_path("WORLD-fav.png")}
     %script{type: "application/ld+json"}
-      - schema = {"@context" => "https://schema.org", "@type" => "Person", "name" => "Ryan Scherbarth", "url" => "https://ryanscherbarth.com", "image" => asset_url("Profile-05.jpg"), "jobTitle" => "Sr. Software Engineer, ML & HPC Infrastructure", "worksFor" => {"@type" => "Organization", "name" => "Tesla"}, "alumniOf" => {"@type" => "CollegeOrUniversity", "name" => "University of New Mexico"}, "sameAs" => ["https://www.linkedin.com/in/ryanscherbarth/", "https://github.com/rysc3"]}
+      - schema = {"@context" => "https://schema.org", "@type" => "Person", "name" => "Ryan Scherbarth", "url" => "https://ryanscherbarth.com", "image" => asset_url("Profile-05.jpg"), "jobTitle" => "Senior Software Engineer, AI/ML", "worksFor" => {"@type" => "Organization", "name" => "NVIDIA"}, "alumniOf" => {"@type" => "CollegeOrUniversity", "name" => "University of New Mexico"}, "sameAs" => ["https://www.linkedin.com/in/ryanscherbarth/", "https://github.com/rysc3"]}
       = raw(schema.to_json)
     - if @og_image.present?
       %script{type: "application/ld+json"}
