@@ -1,0 +1,210 @@
+// ─────────────────────────────────────────────────────────────
+//  Texture
+//
+//  The grain belongs to the PAPER, not to the page. It is painted
+//  into the canvas background and everything printed on top of it —
+//  photographs above all — stays clean. No animation: paper does
+//  not shimmer.
+// ─────────────────────────────────────────────────────────────
+
+// Paper tooth. feComponentTransfer compresses the noise into the top
+// ~14% of the range, so multiplying it into the stock darkens by a
+// hair instead of dirtying it.
+//
+// Base64, not percent-encoded: sass-rails rewrites any literal `url(`
+// it finds — including the `url(#filter)` reference INSIDE an inline
+// SVG — into `url(/#filter)`. That silently breaks the filter lookup
+// and the <rect> falls back to solid black, which multiply then paints
+// over the entire page. Encoding leaves no `url(` for it to find.
+$tooth: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyMjAnIGhlaWdodD0nMjIwJz48ZmlsdGVyIGlkPSd0Jz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMC44MicgbnVtT2N0YXZlcz0nNCcgc3RpdGNoVGlsZXM9J3N0aXRjaCcvPjxmZUNvbG9yTWF0cml4IHR5cGU9J3NhdHVyYXRlJyB2YWx1ZXM9JzAnLz48ZmVDb21wb25lbnRUcmFuc2Zlcj48ZmVGdW5jUiB0eXBlPSdsaW5lYXInIHNsb3BlPScwLjE0JyBpbnRlcmNlcHQ9JzAuODYnLz48ZmVGdW5jRyB0eXBlPSdsaW5lYXInIHNsb3BlPScwLjE0JyBpbnRlcmNlcHQ9JzAuODYnLz48ZmVGdW5jQiB0eXBlPSdsaW5lYXInIHNsb3BlPScwLjE0JyBpbnRlcmNlcHQ9JzAuODYnLz48L2ZlQ29tcG9uZW50VHJhbnNmZXI+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9JzIyMCcgaGVpZ2h0PScyMjAnIGZpbHRlcj0ndXJsKCN0KScvPjwvc3ZnPg==");
+
+// Lithograph grit — coarser, higher contrast. Used only where an
+// image is being pressed into the sheet.
+$grit: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxODAnIGhlaWdodD0nMTgwJz48ZmlsdGVyIGlkPSdnJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMC42MicgbnVtT2N0YXZlcz0nNScgc3RpdGNoVGlsZXM9J3N0aXRjaCcvPjxmZUNvbG9yTWF0cml4IHR5cGU9J3NhdHVyYXRlJyB2YWx1ZXM9JzAnLz48ZmVDb21wb25lbnRUcmFuc2Zlcj48ZmVGdW5jUiB0eXBlPSdsaW5lYXInIHNsb3BlPScwLjU1JyBpbnRlcmNlcHQ9JzAuNDInLz48ZmVGdW5jRyB0eXBlPSdsaW5lYXInIHNsb3BlPScwLjU1JyBpbnRlcmNlcHQ9JzAuNDInLz48ZmVGdW5jQiB0eXBlPSdsaW5lYXInIHNsb3BlPScwLjU1JyBpbnRlcmNlcHQ9JzAuNDInLz48L2ZlQ29tcG9uZW50VHJhbnNmZXI+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9JzE4MCcgaGVpZ2h0PScxODAnIGZpbHRlcj0ndXJsKCNnKScvPjwvc3ZnPg==");
+
+// ── The sheet ───────────────────────────────────────────────
+
+body {
+  background-color: var(--bg);
+  background-image: $tooth;
+  background-repeat: repeat;
+  background-blend-mode: multiply;
+}
+
+// Recessed bands keep the tooth but sit a shade deeper.
+.band {
+  position: relative;
+  background-color: var(--bg-sunk);
+  background-image: $tooth;
+  background-blend-mode: multiply;
+  border-block: 1px solid var(--line-faint);
+}
+
+// ── Pressing an image into the sheet ────────────────────────
+//
+// One wrapper, used ONLY on the masthead portrait. Everywhere else
+// photographs are reproduced clean.
+
+.press {
+  position: relative;
+  isolation: isolate;
+}
+
+.press__grit {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image: $grit;
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}
+
+// Second pass in overlay lifts the highlights back out so the grit
+// reads as ink texture rather than a grey wash.
+.press__grit--lift {
+  mix-blend-mode: overlay;
+  opacity: 0.34;
+}
+
+// ── Hand-drawn inclusions ───────────────────────────────────
+//
+// Rough, human marks set against the precise type. Drawn as SVG so
+// they scale and take currentColor.
+
+.mark {
+  display: block;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+// Scribbled underline that sits under a word.
+.mark--rule {
+  position: absolute;
+  left: -2%;
+  bottom: -0.42em;
+  width: 104%;
+  height: 0.34em;
+  color: var(--clay);
+  stroke-width: 5;
+  opacity: 0.85;
+}
+
+.scribbled {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+// Rough ring, drawn around a section index.
+.mark--ring {
+  position: absolute;
+  inset: -52% -34%;
+  width: auto;
+  height: auto;
+  color: var(--clay);
+  stroke-width: 3.5;
+  opacity: 0.7;
+}
+
+.ringed {
+  position: relative;
+  display: inline-block;
+}
+
+// A hand arrow, used as a pointer next to small labels.
+.mark--arrow {
+  width: 2.6em;
+  height: 1.2em;
+  color: var(--fg-4);
+  stroke-width: 4;
+}
+
+// ── Halftone / dither field ─────────────────────────────────
+//
+// A dot screen for surfaces that want to read as printed rather
+// than rendered. Never placed over a photograph.
+
+.dither {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(20, 20, 15, 0.13) 0.9px, transparent 1px);
+  background-size: 4px 4px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent 78%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent 78%);
+}
+
+// ── Progressive blur ────────────────────────────────────────
+//
+// Stacked backdrop-filters, each masked to a narrower band, so blur
+// ramps up smoothly instead of switching on at a hard edge.
+
+.pblur {
+  position: absolute;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 3;
+
+  > span {
+    position: absolute;
+    inset: 0;
+    display: block;
+  }
+
+  > span:nth-child(1) {
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+    mask-image: linear-gradient(to top, #000 0%, #000 25%, transparent 50%);
+    -webkit-mask-image: linear-gradient(to top, #000 0%, #000 25%, transparent 50%);
+  }
+
+  > span:nth-child(2) {
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    mask-image: linear-gradient(to top, #000 0%, #000 15%, transparent 38%);
+    -webkit-mask-image: linear-gradient(to top, #000 0%, #000 15%, transparent 38%);
+  }
+
+  > span:nth-child(3) {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    mask-image: linear-gradient(to top, #000 0%, #000 7%, transparent 24%);
+    -webkit-mask-image: linear-gradient(to top, #000 0%, #000 7%, transparent 24%);
+  }
+
+  > span:nth-child(4) {
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    mask-image: linear-gradient(to top, #000 0%, transparent 12%);
+    -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 12%);
+  }
+}
+
+// Four stacked backdrop-filters is a real GPU cost on phones.
+// Collapse to one pass there.
+@media (max-width: 700px) {
+  .pblur > span:nth-child(1),
+  .pblur > span:nth-child(2),
+  .pblur > span:nth-child(3) { display: none; }
+
+  .pblur > span:nth-child(4) {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    mask-image: linear-gradient(to top, #000 0%, #000 20%, transparent 70%);
+    -webkit-mask-image: linear-gradient(to top, #000 0%, #000 20%, transparent 70%);
+  }
+}
+
+// Legacy no-ops — page partials from the first pass still emit these
+// wrappers over photographs. Photographs stay clean now.
+.grain-layer,
+.static-sheet,
+.scanlines { display: none !important; }

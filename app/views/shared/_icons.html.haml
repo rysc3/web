@@ -1,0 +1,43 @@
+-# Inline SVG sprite. Replaces the Font Awesome CDN entirely —
+-# ~70KB of CSS plus a webfont round-trip, for the eight glyphs
+-# this site actually draws.
+%svg.visually-hidden{xmlns: "http://www.w3.org/2000/svg", "aria-hidden" => "true", focusable: "false"}
+  %defs
+    %symbol#i-linkedin{viewBox: "0 0 24 24"}
+      %path{d: "M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM2.9 21.5h4.16V9.4H2.9v12.1zM9.6 9.4h3.99v1.66h.06c.56-1.05 1.92-2.16 3.95-2.16 4.22 0 5 2.78 5 6.4v6.2h-4.16v-5.5c0-1.31-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9v5.6H9.6V9.4z", fill: "currentColor", stroke: "none"}
+    %symbol#i-github{viewBox: "0 0 24 24"}
+      %path{d: "M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.22-3.37-1.22-.46-1.19-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.85.09-.66.35-1.12.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.82c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z", fill: "currentColor", stroke: "none"}
+    %symbol#i-instagram{viewBox: "0 0 24 24"}
+      %rect{x: "3", y: "3", width: "18", height: "18", rx: "5"}
+      %circle{cx: "12", cy: "12", r: "4.1"}
+      %circle{cx: "17.3", cy: "6.7", r: "1.1", fill: "currentColor", stroke: "none"}
+    %symbol#i-mail{viewBox: "0 0 24 24"}
+      %rect{x: "2.5", y: "4.5", width: "19", height: "15", rx: "2"}
+      %path{d: "M3 6.5l9 6.5 9-6.5"}
+    %symbol#i-arrow-out{viewBox: "0 0 24 24"}
+      %path{d: "M8 16.5L16.5 8"}
+      %path{d: "M9.5 8H16.5V15"}
+    %symbol#i-arrow-right{viewBox: "0 0 24 24"}
+      %path{d: "M5 12h14"}
+      %path{d: "M13 6l6 6-6 6"}
+    %symbol#i-arrow-left{viewBox: "0 0 24 24"}
+      %path{d: "M19 12H5"}
+      %path{d: "M11 6l-6 6 6 6"}
+    %symbol#i-arrow-down{viewBox: "0 0 24 24"}
+      %path{d: "M12 5v14"}
+      %path{d: "M6 13l6 6 6-6"}
+    %symbol#i-chevron-down{viewBox: "0 0 24 24"}
+      %path{d: "M5 9l7 7 7-7"}
+    %symbol#i-download{viewBox: "0 0 24 24"}
+      %path{d: "M12 3v12"}
+      %path{d: "M7 11l5 5 5-5"}
+      %path{d: "M4 20h16"}
+    %symbol#i-pdf{viewBox: "0 0 24 24"}
+      %path{d: "M14 2.5H7A1.5 1.5 0 0 0 5.5 4v16A1.5 1.5 0 0 0 7 21.5h10a1.5 1.5 0 0 0 1.5-1.5V7L14 2.5z"}
+      %path{d: "M14 2.5V7h4.5"}
+    %symbol#i-user{viewBox: "0 0 24 24"}
+      %circle{cx: "12", cy: "8", r: "3.75"}
+      %path{d: "M4.5 20.5a7.5 7.5 0 0 1 15 0"}
+    %symbol#i-clock{viewBox: "0 0 24 24"}
+      %circle{cx: "12", cy: "12", r: "9"}
+      %path{d: "M12 7v5.2l3.4 2"}

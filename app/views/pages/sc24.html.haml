@@ -1,231 +1,96 @@
-.sc-hero
-  .sc-hero-logo
-    %img{src: asset_path('sc24_logo_2.png'), alt: 'SC24'}
-  .sc-hero-body
-    %p.sc-hero-sub HPC Student Cluster Competition
-    %p.sc-hero-meta Atlanta, GA · November 2024
-    .sc-hero-links
-      %a.sc-hero-link{href: "https://carc.unm.edu/news--events/News/sc24.html", target: "_blank"}
-        %i.fas.fa-external-link-alt
-        SC24 CARC Team Article
-      %a.sc-hero-link{href: "https://sc24.supercomputing.org/2024/09/teams-compete-in-the-ultimate-hpc-challenge-at-sc24/", target: "_blank"}
-        %i.fas.fa-external-link-alt
-        SCC24 Meet the Teams
-      %a.sc-hero-link{href: "https://sc24.supercomputing.org/students/student-cluster-competition/", target: "_blank"}
-        %i.fas.fa-external-link-alt
-        SCC24 Conference Team Site
+.shell
+  .page-hero.reveal
+    .page-hero__mark.sc-mark
+      %img{src: asset_path('sc24_logo_2.png'), alt: 'SC24', fetchpriority: "high", decoding: "async"}
+    .page-hero__body
+      %h1.page-hero__title Team UNM · SC24
+      %p.page-hero__sub HPC Student Cluster Competition
+      %p.page-hero__meta Atlanta, GA · November 2024
+      .page-hero__links
+        - sc24_links.each do |label, href|
+          %a.page-hero__link{href: href, target: "_blank", rel: "noopener"}
+            = icon("arrow-out")
+            = label
 
-.sc-section
-  %p.sc-section-label Cluster Configuration
-  .sc-cluster-card
-    .sc-cluster-img
-      %img{src: asset_path('SC24-03.png'), alt: 'Cluster diagram'}
-    .sc-cluster-specs
-      %p.sc-cluster-spec-title Per Node
-      .sc-spec-row
-        %span.sc-spec-label Nodes
-        %span 3×
-      .sc-spec-row
-        %span.sc-spec-label CPU
-        %span 2× Intel Xeon Platinum 8580
-      .sc-spec-row
-        %span.sc-spec-label Memory
-        %span 64 GB × 32 DDR5-5600
-      .sc-spec-row
-        %span.sc-spec-label GPU
-        %span 4× Nvidia H100 NVL
-      .sc-spec-row
-        %span.sc-spec-label Network
-        %span 4× Nvidia ConnectX-7 NIC
+-# ── 01 · Cluster configuration ────────────────────────────────
+.shell.section
 
-.sc-section
-  %p.sc-section-label Team Poster
-  %button.sc-poster-btn{"data-bs-toggle" => "collapse", "data-bs-target" => "#collapsePoster", "aria-expanded" => "false", "aria-controls" => "collapsePoster", :type => "button"}
-    View Team Poster
-    %i.fas.fa-chevron-down.ms-2
-  .collapse#collapsePoster
-    .sc-poster-collapse
-      %img{src: asset_path('SC24Poster.jpg'), alt: 'SC24 Poster'}
-      %a.sc-poster-pdf-link{href: "https://www.dropbox.com/scl/fi/aa3yegenjlusvvb7qwnkv/UNM-SC24-Poster.pdf?rlkey=9aqbfl3zqcrft5zzcs73az4af&st=vkg4ll5x&dl=0", target: "_blank"}
-        %i.fas.fa-file-pdf.me-1
-        View PDF
+  .sc-duo
+    .sc-figure.reveal
+      %img{src: asset_path('SC24-03.png'), alt: 'Cluster diagram', loading: "lazy", decoding: "async"}
 
-.sc-section
-  %p.sc-section-label Competition Photos
-  .sc-carousel-wrap
-    #carouselSC24Photos2.carousel.slide
-      .carousel-indicators
-        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC24Photos2", :type => "button"}
-        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC24Photos2", :type => "button"}
-        %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselSC24Photos2", :type => "button"}
-        %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselSC24Photos2", :type => "button"}
-        %button{"aria-label" => "Slide 5", "data-bs-slide-to" => "4", "data-bs-target" => "#carouselSC24Photos2", :type => "button"}
-        %button{"aria-label" => "Slide 6", "data-bs-slide-to" => "5", "data-bs-target" => "#carouselSC24Photos2", :type => "button"}
-        %button{"aria-label" => "Slide 7", "data-bs-slide-to" => "6", "data-bs-target" => "#carouselSC24Photos2", :type => "button"}
-        %button{"aria-label" => "Slide 8", "data-bs-slide-to" => "7", "data-bs-target" => "#carouselSC24Photos2", :type => "button"}
-      .carousel-inner
-        .carousel-item.active
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC24 HPC Student Cluster Competition, Atlanta 2024", src: asset_path('SC24-25.jpg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC24 HPC Student Cluster Competition, Atlanta 2024", src: asset_path('SC24-35.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC24 HPC Student Cluster Competition, Atlanta 2024", src: asset_path('SC24-28.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC24 HPC Student Cluster Competition, Atlanta 2024", src: asset_path('SC24-29.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC24 HPC Student Cluster Competition, Atlanta 2024", src: asset_path('SC24-33.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC24 HPC Student Cluster Competition, Atlanta 2024", src: asset_path('SC24-34.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC24 HPC Student Cluster Competition, Atlanta 2024", src: asset_path('SC24-30.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC24 HPC Student Cluster Competition, Atlanta 2024", src: asset_path('SC24-31.jpeg')}
-      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC24Photos2", :type => "button"}
-        %span.carousel-control-prev-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Previous
-      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSC24Photos2", :type => "button"}
-        %span.carousel-control-next-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Next
+    .spec.reveal
+      .spec__head
+        %span Per Node
+      - sc24_cluster.each do |label, value|
+        .spec__row
+          %span.spec__label= label
+          %span.spec__value= value
 
-.sc-section
-  %p.sc-section-label Team Photos
-  .sc-carousel-wrap
-    #carouselSC24Photos.carousel.slide
-      .carousel-indicators
-        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC24Photos", :type => "button"}
-        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC24Photos", :type => "button"}
-        %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselSC24Photos", :type => "button"}
-        %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselSC24Photos", :type => "button"}
-        %button{"aria-label" => "Slide 5", "data-bs-slide-to" => "4", "data-bs-target" => "#carouselSC24Photos", :type => "button"}
-        %button{"aria-label" => "Slide 6", "data-bs-slide-to" => "5", "data-bs-target" => "#carouselSC24Photos", :type => "button"}
-        %button{"aria-label" => "Slide 7", "data-bs-slide-to" => "6", "data-bs-target" => "#carouselSC24Photos", :type => "button"}
-      .carousel-inner
-        .carousel-item.active
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth Team UNM SC24 HPC Student Cluster Competition", src: asset_path('SC24-26.jpg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth Team UNM SC24 HPC Student Cluster Competition", src: asset_path('SC24-23.jpg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth Team UNM SC24 HPC Student Cluster Competition", src: asset_path('SC24-24.jpg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth Team UNM SC24 HPC Student Cluster Competition", src: asset_path('SC24-27.jpg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth Team UNM SC24 HPC Student Cluster Competition", src: asset_path('SC24-32.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth Team UNM SC24 HPC Student Cluster Competition", src: asset_path('SC24-01.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth Team UNM SC24 HPC Student Cluster Competition", src: asset_path('SC24-03.jpeg')}
-      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC24Photos", :type => "button"}
-        %span.carousel-control-prev-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Previous
-      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSC24Photos", :type => "button"}
-        %span.carousel-control-next-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Next
+-# ── 02 · H100 power performance ───────────────────────────────
+-# The measured argument for the configuration above, so it sits directly
+-# under it. These are diagrams, not photographs: the axis labels have to
+-# read at rest, so the carousel takes the whole content column at the
+-# charts' own 3:2 rather than a half-width slot, and the commentary
+-# stacks underneath instead of beside.
+.shell.section
 
-.sc-section
-  %p.sc-section-label Shipping Cluster
-  .sc-carousel-wrap
-    #carouselSC24ShippingCluster.carousel.slide
-      .carousel-indicators
-        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC24ShippingCluster", :type => "button"}
-        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC24ShippingCluster", :type => "button"}
-        %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselSC24ShippingCluster", :type => "button"}
-        %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselSC24ShippingCluster", :type => "button"}
-        %button{"aria-label" => "Slide 5", "data-bs-slide-to" => "4", "data-bs-target" => "#carouselSC24ShippingCluster", :type => "button"}
-      .carousel-inner
-        .carousel-item.active
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth SC24 HPC cluster shipping, Team UNM", src: asset_path('SC24-19.png')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth SC24 HPC cluster shipping, Team UNM", src: asset_path('SC24-18.png')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth SC24 HPC cluster shipping, Team UNM", src: asset_path('SC24-20.png')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth SC24 HPC cluster shipping, Team UNM", src: asset_path('SC24-21.png')}
-        .carousel-item
-          %video.custom-carousel-video.d-block.w-100{controls: true, src: asset_path('SC24-22.MOV')}
-      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC24ShippingCluster", :type => "button"}
-        %span.carousel-control-prev-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Previous
-      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSC24ShippingCluster", :type => "button"}
-        %span.carousel-control-next-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Next
+  .sc-charts
+    .reveal
+      -# --contain letterboxes them so no axis is ever cropped away, which
+      -# is exactly why these stay a carousel rather than joining the
+      -# mosaic below. They still open in the viewer.
+      .gallery.gallery--contain.gallery--chart{data: {autoplay: 45000, frames: true, plate: "H100 power performance"}, "data-frame-key" => "h100", role: "region", "aria-roledescription" => "carousel", "aria-label" => "H100 power performance charts"}
+        .gallery__bar
+          - sc24_charts.each_with_index do |_, n|
+            %button.gallery__seg{type: "button", "aria-label" => "Chart #{n + 1}"}
+              %span.gallery__seg-fill
+        .gallery__viewport{tabindex: "0"}
+          - sc24_charts.each do |file, alt|
+            .gallery__slide{data: {frame: true, full: viewer_src(file)}, "data-frame-id" => File.basename(file, ".*")}
+              %img{src: asset_path(file), alt: alt, loading: "lazy", decoding: "async"}
+        %button.gallery__arrow.gallery__arrow--prev{type: "button", "aria-label" => "Previous"}
+          = icon("arrow-left")
+        %button.gallery__arrow.gallery__arrow--next{type: "button", "aria-label" => "Next"}
+          = icon("arrow-right")
+        %span.gallery__count
 
-.sc-section
-  %p.sc-section-label Cluster Build
-  .sc-carousel-wrap
-    #carouselSC24ClusterBuild.carousel.slide
-      .carousel-indicators
-        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
-        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
-        %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
-        %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
-        %button{"aria-label" => "Slide 5", "data-bs-slide-to" => "4", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
-        %button{"aria-label" => "Slide 6", "data-bs-slide-to" => "5", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
-        %button{"aria-label" => "Slide 7", "data-bs-slide-to" => "6", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
-        %button{"aria-label" => "Slide 8", "data-bs-slide-to" => "7", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
-        %button{"aria-label" => "Slide 9", "data-bs-slide-to" => "8", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
-        %button{"aria-label" => "Slide 10", "data-bs-slide-to" => "9", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
-        %button{"aria-label" => "Slide 11", "data-bs-slide-to" => "10", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
-        %button{"aria-label" => "Slide 12", "data-bs-slide-to" => "11", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
-      .carousel-inner
-        .carousel-item.active
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth SC24 HPC cluster build, Team UNM", src: asset_path('SC24-16.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth SC24 HPC cluster build, Team UNM", src: asset_path('SC24-07.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth SC24 HPC cluster build, Team UNM", src: asset_path('SC24-04.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth SC24 HPC cluster build, Team UNM", src: asset_path('SC24-08.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth SC24 HPC cluster build, Team UNM", src: asset_path('SC24-09.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth SC24 HPC cluster build, Team UNM", src: asset_path('SC24-10.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth SC24 HPC cluster build, Team UNM", src: asset_path('SC24-11.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth SC24 HPC cluster build, Team UNM", src: asset_path('SC24-12.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth SC24 HPC cluster build, Team UNM", src: asset_path('SC24-13.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth SC24 HPC cluster build, Team UNM", src: asset_path('SC24-14.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth SC24 HPC cluster build, Team UNM", src: asset_path('SC24-15.jpeg')}
-        .carousel-item
-          %video.custom-carousel-video.d-block.w-100{controls: true, src: asset_path('SC24-17.MOV')}
-      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
-        %span.carousel-control-prev-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Previous
-      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSC24ClusterBuild", :type => "button"}
-        %span.carousel-control-next-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Next
+    .prose.reveal
+      %p
+        Over the summer leading up to the competition I ran benchmarks on a single H100 GPU using the HPL benchmark — both the Nvidia optimized benchmarks container and my own pre-optimized HPL parameter set — to mirror the environment we planned to use in competition.
+      %p
+        Setting the TDP to 100% proved to be the
+        %strong most inefficient
+        power use case. I expected efficiency to peak around 75–80% TDP, but was surprised to find it continue to increase linearly all the way down to
+        %strong 50% TDP.
+      %p
+        A rough estimate placed our cluster at 350W × 2 sockets × 3 nodes = 2,100W CPU, and 400W × 4 GPUs × 3 nodes = 4,800W GPU — ~6,900W total ignoring memory and other components. Based on the applications for this year's competition, we had room to dynamically allocate resources per workload while staying under the power cap. We chose a configuration with iDRAC chips, enabling us to power nodes on and off remotely without physically touching the cluster — a competition requirement after the benchmarking phase.
 
-.sc-section
-  %p.sc-section-label H100 Power Performance Results
-  .sc-carousel-wrap.sc-chart-wrap
-    #carouselSC24H100.carousel.slide{"data-bs-ride" => "carousel", "data-bs-interval" => "45000"}
-      .carousel-indicators
-        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC24H100", :type => "button"}
-        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC24H100", :type => "button"}
-        %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselSC24H100", :type => "button"}
-      .carousel-inner
-        .carousel-item.active
-          %img.custom-carousel-img.d-block.w-100{alt: "H100 chart 1", src: asset_path('H100-01.png')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "H100 chart 2", src: asset_path('H100-02.png')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "H100 chart 3", src: asset_path('H100-03.png')}
-      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC24H100", :type => "button"}
-        %span.carousel-control-prev-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Previous
-      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSC24H100", :type => "button"}
-        %span.carousel-control-next-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Next
-  .sc-analysis
-    %p
-      Over the summer leading up to the competition I ran benchmarks on a single H100 GPU using the HPL benchmark — both the Nvidia optimized benchmarks container and my own pre-optimized HPL parameter set — to mirror the environment we planned to use in competition.
-    %p
-      Setting the TDP to 100% proved to be the
-      %strong most inefficient
-      power use case. I expected efficiency to peak around 75–80% TDP, but was surprised to find it continue to increase linearly all the way down to
-      %strong 50% TDP.
-    %p
-      A rough estimate placed our cluster at 350W × 2 sockets × 3 nodes = 2,100W CPU, and 400W × 4 GPUs × 3 nodes = 4,800W GPU — ~6,900W total ignoring memory and other components. Based on the applications for this year's competition, we had room to dynamically allocate resources per workload while staying under the power cap. We chose a configuration with iDRAC chips, enabling us to power nodes on and off remotely without physically touching the cluster — a competition requirement after the benchmarking phase.
+-# ── 03 · Team poster ──────────────────────────────────────────
+.shell.section
+
+  .sc-plate.sc-plate--wide.reveal
+    %button.disclosure__trigger.sc-toggle{type: "button", data: {disclosure: true}, "aria-expanded" => "false", "aria-controls" => "sc24-poster"}
+      View Team Poster
+      = icon("chevron-down")
+    #sc24-poster.disclosure__panel
+      %div
+        .sc-poster
+          .sc-poster__sheet
+            %img{src: asset_path('SC24Poster.jpg'), alt: 'SC24 Poster', loading: "lazy", decoding: "async"}
+          %a.btn{href: sc24_poster_pdf, target: "_blank", rel: "noopener"}
+            = icon("pdf")
+            View PDF
+
+-# ── 04 · Photographs ──────────────────────────────────────────
+-# One pool, not four labelled sets: every frame of the competition, the
+-# team, the shipping and the build is on the page at once, cut by the
+-# same packer the home page uses. .bleed rather than .shell — an
+-# unlabelled sheet has nothing to align to a text column, so it takes the
+-# whole width and keeps only the gutter, exactly as the home page's own
+-# sheets do.
+.bleed.section.reveal
+
+  = render "mosaic", plate: sc24_pool, key: "sc24"
+
+= render "viewer"

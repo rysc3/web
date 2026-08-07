@@ -1,0 +1,24 @@
+# Build context hygiene. Without this, `COPY . .` drags in the git history,
+# the host's tmp/ (including a Sprockets cache built by a different Ruby) and
+# every compiled asset — slow, and a source of stale-state bugs.
+.git
+.gitignore
+.dockerignore
+
+tmp/
+log/
+node_modules/
+
+# Regenerated inside the image by assets:precompile.
+public/assets/
+public/packs/
+
+# Local database and secrets never belong in an image.
+db/*.sqlite3
+db/*.sqlite3-*
+.env
+.env.*
+config/master.key
+
+.DS_Store
+**/.DS_Store

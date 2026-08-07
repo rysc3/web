@@ -1,0 +1,18 @@
+#!/bin/bash
+set -e
+
+# The source tree is bind-mounted over /app, so anything the host left in
+# tmp/ arrives with it. A server.pid from a previous run — or from a
+# different container entirely — makes Rails refuse to boot with
+# "A server is already running", which is the usual reason a fresh
+# `docker compose up` dies on the first try.
+rm -f /app/tmp/pids/server.pid
+
+# SQLite, and the database file is not in the image. db:prepare creates and
+# migrates it on first boot and is a no-op afterwards, so `docker compose up`
+# works on a clean clone with no extra step.
+if [ "${SKIP_DB_PREPARE}" != "1" ]; then
+  bundle exec rails db:prepare
+fi
+
+exec "$@"

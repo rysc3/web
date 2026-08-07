@@ -1,0 +1,429 @@
+// ─────────────────────────────────────────────────────────────
+//  The five small pages
+//
+//  /resume · /meet · /web · /tesla_battery · 404
+//
+//  Four of them are really one problem: surfaces this site does not
+//  control — a PDF reader, two booking embeds, a matplotlib plot —
+//  have to sit on cream stock without looking pasted on. Nothing
+//  here fights the foreign chrome. Each one is mounted instead:
+//  an oat mat around the reader, a head rail above the embeds, and
+//  the plot multiplied straight into the sheet so its white ground
+//  disappears and only the ink prints.
+//
+//  All four pages share .page-hero for their head, so the type and
+//  spacing come from the system rather than from here.
+// ─────────────────────────────────────────────────────────────
+
+// ── /resume ─────────────────────────────────────────────────
+
+// The download sits opposite the title on the hero rule.
+.resume-action {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+@media (max-width: 700px) {
+  .resume-action { margin-left: 0; }
+}
+
+.resume-stage {
+  display: flex;
+  justify-content: center;
+}
+
+// The PDF viewer paints its own dark chrome and takes no styling
+// from outside, so the plate frames it like a mounted print: an oat
+// mat, a hairline, and a well the reader fills edge to edge.
+//
+// The height is set and the width follows from it, which keeps the
+// plate close to the proportion of the page being fitted inside —
+// the viewer's own gutters stay narrow instead of swallowing the
+// sheet. (Width comes from aspect-ratio only because the plate is a
+// flex item; a block box would resolve `width: auto` to the full
+// container and ignore the ratio.)
+.resume-plate {
+  height: clamp(520px, 84vh, 1040px);
+  aspect-ratio: 0.9;
+  max-width: 100%;
+  padding: clamp(6px, 0.7vw, 10px);
+  background: var(--bg-sunk);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: 0 28px 56px -46px rgba(20, 20, 15, 0.5);
+}
+
+.resume-plate__well {
+  height: 100%;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  background: var(--bg-ink);
+}
+
+.resume-plate__frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+// Phones: a page-proportioned plate would run off the bottom of the
+// screen, so the reader takes the full column and a capped height.
+@media (max-width: 700px) {
+  .resume-plate {
+    width: 100%;
+    aspect-ratio: auto;
+    height: clamp(440px, 66vh, 620px);
+  }
+}
+
+// ── /meet ───────────────────────────────────────────────────
+
+.meet-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 2.4vw, 1.75rem);
+}
+
+// The calendar carries a week; the booking form carries one column.
+// Weight the split to match.
+@media (min-width: 980px) {
+  .meet-grid {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: start;
+  }
+}
+
+// Both embeds render on white. The pane leans into that: an oat head
+// rail names the surface, and below it the ivory ground meets the
+// embed's own white almost seamlessly.
+.meet-pane {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--bg-raise);
+}
+
+.meet-pane__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: 0.72rem 1.05rem;
+  background: var(--bg-sunk);
+  border-bottom: 1px solid var(--line);
+}
+
+.meet-pane__title {
+  font-family: var(--font-sans);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: var(--tr-label);
+  color: var(--fg);
+  line-height: var(--lh-ui);
+}
+
+.meet-pane__note {
+  font-family: var(--font-sans);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tr-12);
+  color: var(--fg-3);
+}
+
+.meet-pane__iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: var(--bg-raise);
+}
+
+.meet-pane--calendar .meet-pane__iframe { height: clamp(480px, 70vh, 780px); }
+.meet-pane--booking  .meet-pane__iframe { height: clamp(620px, 76vh, 880px); }
+
+// ── /web · colophon ─────────────────────────────────────────
+
+.colophon-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(0.9rem, 2vw, 1.5rem);
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .colophon-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+// Version strings and paths are long and unbreakable; let them wrap
+// rather than push the row wide.
+.colophon-grid .spec__value { overflow-wrap: anywhere; }
+
+// The one unfinished note on the site. A marginal aside in the body
+// serif, clay rule at the left, rather than a shouted micro-cap.
+.colophon-note {
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+  padding-left: var(--sp-4);
+  border-left: 2px solid var(--clay);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--fg-2);
+
+  b { font-weight: 600; font-style: italic; color: var(--fg); }
+}
+
+// ── /tesla_battery ──────────────────────────────────────────
+
+.chart {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--bg-raise);
+  isolation: isolate;
+}
+
+.chart__print {
+  position: relative;
+  padding-block: clamp(0.75rem, 2vw, 1.5rem);
+  border-bottom: 1px solid var(--line-faint);
+}
+
+.chart__scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+// The plot is line art on a white ground. Multiplying it into the
+// plate drops that ground entirely and prints the ink onto the
+// stock — the same treatment the mark panels get on the home page.
+// It is drawn art, not a photograph, so this is composition, not
+// texture laid over a picture.
+.chart__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
+}
+
+// Below ~760px the axis labels collapse into mush at full width, so
+// the chart keeps a legible size and pans inside its own container.
+// The page itself never scrolls sideways.
+@media (max-width: 760px) {
+  .chart__img { width: 700px; max-width: none; }
+}
+
+.chart__hint {
+  display: none;
+  padding: 0 1.05rem 0.4rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tr-12);
+  color: var(--fg-3);
+}
+
+@media (max-width: 760px) {
+  .chart__hint { display: block; }
+}
+
+.chart__caption {
+  padding: 0.85rem 1.05rem 1rem;
+  max-width: 68ch;
+  font-family: var(--font-serif);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-body);
+  color: var(--fg-2);
+}
+
+// ── 404 ─────────────────────────────────────────────────────
+
+// .page already pays for the nav and its own top gap; subtract both
+// so the block lands on the optical centre of the viewport.
+.nf {
+  min-height: calc(100vh - var(--nav-h) - 14rem);
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.nf__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.9rem, 2.2vw, 1.35rem);
+}
+
+.nf__frame {
+  width: clamp(96px, 15vw, 140px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--bg-raise);
+}
+
+// Reproduced clean: no grain, no greyscale. Texture belongs to the
+// paper, never to a photograph printed on it.
+.nf__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.nf__code {
+  font-family: var(--font-serif);
+  font-size: var(--fs-display);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: var(--tr-display);
+  font-variant-numeric: lining-nums;
+  color: var(--fg);
+}
+
+.nf__msg {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 400;
+  letter-spacing: var(--tr-16);
+  color: var(--fg-3);
+}
+
+.nf__link { margin-top: var(--sp-3); }
+
+
+// ── Meet ────────────────────────────────────────────────────
+//
+// Two third-party embeds that cannot be restyled. Give them the whole
+// screen, weight the calendar over the form, and keep the page's own
+// voice to one quiet line.
+
+.meet {
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--nav-h) + 0.75rem) var(--gutter) clamp(0.75rem, 2vh, 1.5rem);
+  gap: clamp(0.6rem, 1.6vh, 1rem);
+}
+
+.meet__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem 1.25rem;
+  flex-shrink: 0;
+}
+
+.meet__title {
+  font-family: var(--font-serif);
+  font-size: var(--fs-h3);
+  font-weight: 400;
+  letter-spacing: var(--tr-head);
+  color: var(--fg);
+}
+
+.meet__note {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  letter-spacing: var(--tr-16);
+  color: var(--fg-3);
+}
+
+.meet__grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  gap: clamp(0.6rem, 1.4vw, 1rem);
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 3fr) minmax(0, 2fr);
+}
+
+.meet__frame {
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--bg-raise);
+  display: block;
+}
+
+@media (min-width: 900px) {
+  // The calendar is the thing you read; the form is the thing you fill
+  // in. Weight them accordingly.
+  .meet__grid {
+    grid-template-columns: minmax(0, 3.4fr) minmax(0, 1.35fr);
+    grid-template-rows: minmax(0, 1fr);
+  }
+}
+
+// A phone cannot usefully show both at once — let the page scroll.
+@media (max-width: 620px) {
+  .meet { height: auto; min-height: 100svh; }
+  .meet__grid { grid-template-rows: minmax(520px, 62svh) minmax(560px, 70svh); }
+}
+
+
+// ── Resume ──────────────────────────────────────────────────
+//
+// A real PDF viewer with its edges cropped off. The reader fits the page
+// inside a margin of its own and paints grey around it; --reader-bleed is
+// that margin, the frame is grown by it on every side, and the wrapper
+// clips the result. The page ends up filling the sheet exactly, the grey
+// lands outside the crop, and the text is still the PDF's own — so it
+// selects and copies like any other document.
+
+.resume {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: clamp(1rem, 2.5vh, 1.75rem);
+  padding: calc(var(--nav-h) + clamp(1rem, 3vh, 2rem)) var(--gutter) clamp(2rem, 5vh, 3.5rem);
+}
+
+.resume__get { justify-self: center; }
+
+.resume__sheet {
+  // How far the reader insets the page inside its own frame. MEASURED, not
+  // guessed: at 6px, 252 grey pixels survive along the edges; 10px is the
+  // first value that leaves zero. Every pixel past that starts eating the
+  // document's own top margin (23px left at 10, 16px at 18), so this sits
+  // just above the threshold — enough headroom for rendering differences,
+  // not so much that the page looks cropped. Fixed px, not a percentage:
+  // the reader's inset is a constant, so a percentage would over-crop on a
+  // large screen and under-crop on a small one.
+  --reader-bleed: 10px;
+
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 8.5 / 11;
+  height: calc(100svh - var(--nav-h) - clamp(9rem, 18vh, 13rem));
+  max-width: 100%;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  box-shadow: 0 1px 2px rgba(20, 20, 15, 0.05), 0 12px 40px rgba(20, 20, 15, 0.08);
+}
+
+.resume__doc {
+  position: absolute;
+  top: calc(var(--reader-bleed) * -1);
+  left: calc(var(--reader-bleed) * -1);
+  width: calc(100% + var(--reader-bleed) * 2);
+  height: calc(100% + var(--reader-bleed) * 2);
+  border: 0;
+  display: block;
+}
+
+// A page-shaped sheet is taller than a phone screen, so let it take the
+// width and give it room to be read.
+@media (max-width: 620px) {
+  .resume__sheet {
+    height: auto;
+    width: 100%;
+    aspect-ratio: 8.5 / 11;
+  }
+}

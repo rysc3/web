@@ -1,0 +1,75 @@
+-# Hidden telemetry. Nothing on the site links here.
+- bar = ->(n, max) { max.to_i.zero? ? 0 : ((n.to_f / max) * 100).round(1) }
+
+.bleed
+  .mx-head
+    %h1.mx-title Metrics
+    .mx-windows
+      - { "1h" => "1 hour", "24h" => "24 hours", "7d" => "7 days", "30d" => "30 days", "all" => "All time" }.each do |k, label|
+        %a.mx-window{href: "/metrics?w=#{k}", class: (@window_key == k ? "is-on" : nil)}= label
+
+  .mx-stats
+    .mx-stat
+      %span.mx-stat__n= number_with_delimiter(@total)
+      %span.mx-stat__k Requests
+    .mx-stat.mx-stat--hot
+      %span.mx-stat__n= number_with_delimiter(@ai)
+      %span.mx-stat__k AI crawlers
+    .mx-stat
+      %span.mx-stat__n= number_with_delimiter(@bots)
+      %span.mx-stat__k All bots
+    .mx-stat
+      %span.mx-stat__n= number_with_delimiter(@humans)
+      %span.mx-stat__k Non-bot
+    .mx-stat
+      %span.mx-stat__n= number_with_delimiter(@unique_ips)
+      %span.mx-stat__k Unique IPs
+    .mx-stat
+      %span.mx-stat__n= @avg_ms ? "#{@avg_ms} ms" : "—"
+      %span.mx-stat__k Mean response
+
+  .mx-cols
+    %section.mx-block
+      %h2.mx-h Paths
+      = render "metrics/table", rows: @paths, max: @paths.values.max, hot: false
+    %section.mx-block
+      %h2.mx-h Every agent
+      = render "metrics/table", rows: @all_agents, max: @all_agents.values.max, hot: false
+
+  .mx-cols
+    %section.mx-block
+      %h2.mx-h Status
+      = render "metrics/table", rows: @statuses, max: @statuses.values.max, hot: false
+    %section.mx-block
+      %h2.mx-h Browser
+      = render "metrics/table", rows: @browsers, max: @browsers.values.max, hot: false
+    %section.mx-block
+      %h2.mx-h Device
+      = render "metrics/table", rows: @devices, max: @devices.values.max, hot: false
+
+  - if @referers.any?
+    %section.mx-block
+      %h2.mx-h Referrers
+      = render "metrics/table", rows: @referers, max: @referers.values.max, hot: false
+
+  %section.mx-block
+    %h2.mx-h
+      Live feed
+      %span.mx-h__sub last #{@feed.size}
+    .mx-feed
+      - @feed.each do |hit|
+        %a.mx-row{href: metric_path(hit), class: (hit.ai_bot? ? "is-ai" : (hit.bot? ? "is-bot" : nil))}
+          %span.mx-row__t= hit.occurred_at.strftime("%d %b %H:%M:%S")
+          %span.mx-row__m= hit.method_verb
+          %span.mx-row__p= hit.path
+          %span.mx-row__a= hit.label
+          %span.mx-row__s{class: "is-#{hit.status.to_s[0]}xx"}= hit.status
+          %span.mx-row__d= hit.duration_ms ? "#{hit.duration_ms}ms" : ""
+
+  -# ── Storage ──────────────────────────────────────────────────
+  %footer.mx-storage
+    %span.mx-storage__k Storage
+    %span.mx-storage__v= "#{number_with_delimiter(@buffer_used)} / #{number_with_delimiter(@buffer_cap)}"
+    .mx-gauge
+      %span.mx-gauge__fill{style: "width: #{bar.call(@buffer_used, @buffer_cap)}%"}
+    %span.mx-storage__note= "#{@rollup_days} #{'day'.pluralize(@rollup_days)} of permanent rollups"

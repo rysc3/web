@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ryanscherbarth.com/sitemap.xml
+Sitemap: https://www.ryanscherbarth.com/sitemap.xml
+
+# Hidden telemetry dashboard — not for indexing.
+Disallow: /metrics

@@ -1,0 +1,192 @@
+// ─────────────────────────────────────────────────────────────
+//  Masthead
+//
+//  One photograph, full bleed, with the name laid straight across
+//  it. Nothing else — no kicker, no strapline, no scrim, no box. The bottom of the plate is
+//  masked away so the image dissolves into the cream stock instead
+//  of ending at a seam, and a coat of lithograph grit sits over the
+//  photo so it reads as printed rather than displayed.
+//
+//  This is the ONLY photograph on the site that carries grain.
+// ─────────────────────────────────────────────────────────────
+
+.masthead {
+  position: relative;
+  width: 100%;
+  height: 100vh;   // fallback
+  height: 100svh;  // ignores the mobile URL bar's transient height
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 1fr auto;
+  isolation: isolate;
+  // The ground the plate dissolves into is the PAPER — the same stock
+  // and the same tooth the body is painted with, not an approximation
+  // of it. Anything else lands a shade off and reads as a seam.
+  background-color: var(--bg);
+  background-image: $tooth;
+  background-blend-mode: multiply;
+}
+
+// ── The foot ────────────────────────────────────────────────
+//
+// Measured, not guessed. The bottom band of the plate averages
+// #b7a29a; the stock renders #ebe9e2 once the tooth has multiplied
+// into it. That is ~24 points of L* meeting at a hard edge, which is
+// why the cut was visible at any width.
+//
+// So this band is not a scrim tinted to taste — it is a sheet of the
+// page's own paper, painted exactly as `body` is, drawn over the foot
+// of the photograph and masked out at the top. Where it ends it IS
+// the background, to the value, so there is no arrival to see.
+
+.masthead__dissolve {
+  --dissolve-h: clamp(200px, 30vh, 420px);
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--dissolve-h);
+  // Above the plate and its grit (both live inside .masthead__media,
+  // which isolates), below the name.
+  z-index: 3;
+  pointer-events: none;
+
+  background-color: var(--bg);
+  background-image: $tooth;
+  background-blend-mode: multiply;
+  // Tile the tooth from the document origin rather than from this
+  // band's own top edge, so the noise runs unbroken across the join
+  // instead of restarting on it.
+  background-position: unquote("0 calc(var(--dissolve-h) - 100svh)");
+
+  // Smoothstep, sampled at eighths — NOT a linear ramp. A linear ramp
+  // has a corner in its first derivative at each end, and the eye reads
+  // corners as Mach bands: you get a faint line marking where the fade
+  // begins and another where it stops. Easing flattens the derivative
+  // to zero at both ends, so the band has no onset and no arrival.
+  $ramp: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.043) 12.5%,
+    rgba(0, 0, 0, 0.156) 25%,
+    rgba(0, 0, 0, 0.316) 37.5%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.684) 62.5%,
+    rgba(0, 0, 0, 0.844) 75%,
+    rgba(0, 0, 0, 0.957) 87.5%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  mask-image: $ramp;
+  -webkit-mask-image: $ramp;
+}
+
+// ── Plate ───────────────────────────────────────────────────
+
+.masthead__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+
+  // The bleed. Image and grit fade together because the mask is on
+  // the wrapper, not on either layer.
+  // The bleed is scroll-driven, not fixed. At rest --sp is 0, the stop
+  // sits at 100% and the plate has a hard edge — the whole photograph,
+  // no fade. As the section travels the stop climbs, so the fade rises
+  // from the bottom and dissolves the picture into the stock on the way
+  // out. Kept in a custom property because Sass leaves those alone; the
+  // same arithmetic written inline would be evaluated and rejected.
+  --plate-fade: calc(100% - var(--sp, 0) * 88%);
+  --plate-mid:  calc(100% - var(--sp, 0) * 62%);
+  --plate-soft: calc(100% - var(--sp, 0) * 34%);
+
+  // Four stops, not two. A single linear ramp reads as a hard shoulder
+  // where it meets the stock, because alpha falls off evenly while the
+  // eye does not — an eased curve keeps the last of the picture dissolving
+  // long after the first of it has gone.
+  mask-image: linear-gradient(
+    to bottom,
+    #000 var(--plate-fade),
+    rgba(0, 0, 0, 0.72) var(--plate-mid),
+    rgba(0, 0, 0, 0.24) var(--plate-soft),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 var(--plate-fade),
+    rgba(0, 0, 0, 0.72) var(--plate-mid),
+    rgba(0, 0, 0, 0.24) var(--plate-soft),
+    transparent 100%
+  );
+}
+
+.masthead__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 22%;
+  // Left warm and legible — the reference photograph is not treated,
+  // it is simply well lit. Only enough contrast to hold white type.
+  filter: contrast(1.04) saturate(0.94) brightness(1.02);
+  will-change: transform;
+}
+
+// Just enough darkening behind the name to guarantee contrast on a
+// bright frame, without reading as a scrim.
+.masthead__hold {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    // behind the name
+    radial-gradient(
+      68% 24% at 50% 45%,
+      rgba(20, 20, 15, 0.44) 0%,
+      rgba(20, 20, 15, 0.2) 62%,
+      rgba(20, 20, 15, 0) 100%
+    ),
+    // a whisper across the whole plate so nothing floats unsupported
+    linear-gradient(to bottom, rgba(20, 20, 15, 0.16) 0%, rgba(20, 20, 15, 0) 34%);
+}
+
+// ── Content ─────────────────────────────────────────────────
+
+.masthead__inner {
+  position: relative;
+  z-index: 4;
+  grid-row: 1;
+  align-self: center;
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  min-width: 0;
+  padding-inline: var(--gutter);
+  padding-top: calc(var(--nav-h) + 12vh);
+  text-align: center;
+}
+
+.masthead__title {
+  font-family: var(--font-serif);
+  font-size: var(--fs-display);
+  font-weight: 350;
+  line-height: 0.94;
+  letter-spacing: var(--tr-display);
+  color: var(--fg-photo);
+  text-shadow: 0 2px 40px rgba(20, 20, 15, 0.34);
+  text-wrap: balance;
+  margin-bottom: clamp(1rem, 2.4vw, 1.9rem);
+}
+
+// ── Small screens ───────────────────────────────────────────
+
+@media (max-width: 899px) {
+  // Portrait crops want the face higher on a tall frame.
+  .masthead__img { object-position: 50% 26%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .masthead__media { transform: none !important; }
+}
+

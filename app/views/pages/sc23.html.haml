@@ -1,68 +1,43 @@
-.sc-hero
-  .sc-hero-logo
-    %img{src: asset_path('sc23_logo_2.png'), alt: 'SC23'}
-  .sc-hero-body
-    %p.sc-hero-sub HPC Student Cluster Competition
-    %p.sc-hero-meta Denver, CO · November 2023
-    .sc-hero-links
-      %a.sc-hero-link{href: "https://www.studentclustercompetition.us/2023/Teams/NewMexico/index.html", target: "_blank"}
-        %i.fas.fa-external-link-alt
-        SCC23 Conference Team Site
-      %a.sc-hero-link{href: "https://www.studentclustercompetition.us/2023/index.html", target: "_blank"}
-        %i.fas.fa-external-link-alt
-        SCC23 Competition Site
-      %a.sc-hero-link{href: "https://roadrunners.cs.unm.edu/", target: "_blank"}
-        %i.fas.fa-external-link-alt
-        UNM Roadrunners Team Site
+.shell
+  .page-hero.reveal
+    .page-hero__mark.sc-mark
+      %img{src: asset_path('sc23_logo_2.png'), alt: 'SC23', fetchpriority: "high", decoding: "async"}
+    .page-hero__body
+      %h1.page-hero__title Team UNM · SC23
+      %p.page-hero__sub HPC Student Cluster Competition
+      %p.page-hero__meta Denver, CO · November 2023
+      .page-hero__links
+        - sc23_links.each do |label, href|
+          %a.page-hero__link{href: href, target: "_blank", rel: "noopener"}
+            = icon("arrow-out")
+            = label
 
-.sc-section
-  %p.sc-section-label Team Poster
-  %button.sc-poster-btn{"data-bs-toggle" => "collapse", "data-bs-target" => "#collapsePoster", "aria-expanded" => "false", "aria-controls" => "collapsePoster", :type => "button"}
-    View Team Poster
-    %i.fas.fa-chevron-down.ms-2
-  .collapse#collapsePoster
-    .sc-poster-collapse
-      %img{src: asset_path('SC23Poster.jpg'), alt: 'SC23 Poster'}
-      %a.sc-poster-pdf-link{href: "https://www.dropbox.com/scl/fi/yl7cvamao76y4biv2hiky/SC23Poster.pdf?rlkey=wefdxtu024bplxmh1uxn12ihy&st=1dh4posj&dl=0", target: "_blank"}
-        %i.fas.fa-file-pdf.me-1
-        View PDF
+-# ── 01 · Team poster ──────────────────────────────────────────
+.shell.section
 
-.sc-section
-  %p.sc-section-label Photos
-  .sc-carousel-wrap
-    #carouselSC23.carousel.slide
-      .carousel-indicators
-        %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC23", :type => "button"}
-        %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC23", :type => "button"}
-        %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselSC23", :type => "button"}
-        %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselSC23", :type => "button"}
-        %button{"aria-label" => "Slide 5", "data-bs-slide-to" => "4", "data-bs-target" => "#carouselSC23", :type => "button"}
-        %button{"aria-label" => "Slide 6", "data-bs-slide-to" => "5", "data-bs-target" => "#carouselSC23", :type => "button"}
-        %button{"aria-label" => "Slide 7", "data-bs-slide-to" => "6", "data-bs-target" => "#carouselSC23", :type => "button"}
-        %button{"aria-label" => "Slide 8", "data-bs-slide-to" => "7", "data-bs-target" => "#carouselSC23", :type => "button"}
-        %button{"aria-label" => "Slide 9", "data-bs-slide-to" => "8", "data-bs-target" => "#carouselSC23", :type => "button"}
-      .carousel-inner
-        .carousel-item.active
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC23 HPC Student Cluster Competition, Denver 2023", src: asset_path('SC23-06.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC23 HPC Student Cluster Competition, Denver 2023", src: asset_path('SC23-01.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC23 HPC Student Cluster Competition, Denver 2023", src: asset_path('SC23-02.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC23 HPC Student Cluster Competition, Denver 2023", src: asset_path('SC23-03.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC23 HPC Student Cluster Competition, Denver 2023", src: asset_path('SC23-04.jpg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC23 HPC Student Cluster Competition, Denver 2023", src: asset_path('SC23-05.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC23 HPC Student Cluster Competition, Denver 2023", src: asset_path('SC23-07.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC23 HPC Student Cluster Competition, Denver 2023", src: asset_path('SC23-08.jpeg')}
-        .carousel-item
-          %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC23 HPC Student Cluster Competition, Denver 2023", src: asset_path('SC23-09.jpeg')}
-      %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC23", :type => "button"}
-        %span.carousel-control-prev-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Previous
-      %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSC23", :type => "button"}
-        %span.carousel-control-next-icon{"aria-hidden" => "true"}
-        %span.visually-hidden Next
+  .sc-plate.sc-plate--wide.reveal
+    %button.disclosure__trigger.sc-toggle{type: "button", data: {disclosure: true}, "aria-expanded" => "false", "aria-controls" => "sc23-poster"}
+      View Team Poster
+      = icon("chevron-down")
+    #sc23-poster.disclosure__panel
+      %div
+        .sc-poster
+          .sc-poster__sheet
+            %img{src: asset_path('SC23Poster.jpg'), alt: 'SC23 Poster', loading: "lazy", decoding: "async"}
+          %a.btn{href: sc23_poster_pdf, target: "_blank", rel: "noopener"}
+            = icon("pdf")
+            View PDF
+
+-# ── 02 · Photos ───────────────────────────────────────────────
+-# A contact sheet, cut by the same packer the home page uses.
+- set = sc23_set
+
+.bleed.section
+
+  -# No plate heading: SC23 has one set, so a label above it would only
+  -# repeat the page. The title and meta still ride the sheet for the
+  -# viewer's head.
+  .reveal
+    = render "mosaic", plate: set, key: "sc23"
+
+= render "viewer"

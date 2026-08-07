@@ -14,19 +14,20 @@ gem 'sass-rails', '>= 6'
 
 # JavaScript and asset pipeline
 # gem 'webpacker', '>= 4.0'
-gem 'jsbundling-rails'
-gem 'turbolinks', '~> 5'
 
 # API building and JSON rendering
 gem 'jbuilder', '~> 2.7'
 
-# HAML templating and Bootstrap
+# HAML templating
 gem 'haml-rails'
-gem 'bootstrap', '~> 5.0'
-gem 'jquery-rails'
 
 # Markdown parsing
 gem 'redcarpet'
+
+# Request analytics. ahoy_matey gives visit/event tables keyed to a visitor
+# token; device_detector turns a User-Agent string into browser/OS/device.
+gem 'ahoy_matey'
+gem 'device_detector'
 
 # Optimizes boot time by caching
 gem 'bootsnap', '>= 1.4.4', require: false

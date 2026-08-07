@@ -6,6 +6,8 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+require_relative "../lib/middleware/omniscient_tracker"
+
 module Web
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -14,6 +16,11 @@ module Web
     config.generators do |g|
       g.template_engine :haml
     end
+
+    # Position 0: ahead of routing, ahead of every other middleware, so the
+    # request is seen exactly as it arrived — including requests that never
+    # reach a controller and clients that never run JavaScript.
+    config.middleware.insert_before 0, OmniscientTracker
   end
 end
 

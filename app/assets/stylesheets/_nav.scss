@@ -1,0 +1,335 @@
+// ─────────────────────────────────────────────────────────────
+//  Navigation
+//
+//  The home page opens on nothing but the photograph. The bar — brand,
+//  links, hamburger — arrives as soon as the page moves and then stays.
+//
+//  JS writes one value, --nav-s (0 → 1 over a short run at the top of
+//  the page). Every visual consequence below is CSS interpolation off it.
+// ─────────────────────────────────────────────────────────────
+
+// Pages with no masthead have nothing to travel from: dock immediately.
+// Same for the no-JS case, so links never strand mid-air.
+body:not(.has-masthead),
+.no-js body {
+  --nav-s: 1;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-h);
+  z-index: 900;
+  pointer-events: none;
+
+  // Ink by default; white while it is still sitting on the photograph.
+  --nav-fg: var(--fg);
+  --nav-fg-dim: var(--fg-3);
+}
+
+// Nothing sits on the photograph any more — the bar fades in over it as
+// a tinted band, so its type is always ink on stock.
+
+// ── The bar itself ──────────────────────────────────────────
+
+.nav__bar {
+  position: relative;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding-inline: var(--gutter);
+  pointer-events: auto;
+
+  // Stock tint + hairline fade in with the dock.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(240, 238, 230, 0.88);
+    border-bottom: 1px solid var(--line-faint);
+    opacity: var(--nav-s);
+    transition: opacity 0.15s linear;
+    pointer-events: none;
+  }
+
+  > * { position: relative; z-index: 1; }
+}
+
+// Blur is only mounted once docked — no idle GPU cost over the photo.
+body.is-docked .nav__bar::before {
+  backdrop-filter: blur(16px) saturate(130%);
+  -webkit-backdrop-filter: blur(16px) saturate(130%);
+}
+
+// ── Brand ───────────────────────────────────────────────────
+
+.nav__brand {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: var(--tr-16);
+  color: var(--nav-fg);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65em;
+  transition: color var(--dur) var(--ease-out);
+
+  &:hover { color: var(--clay); }
+}
+
+// A small clay pip — the site's heartbeat.
+.nav__pip {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--clay);
+  flex-shrink: 0;
+  animation: pip 3.4s var(--ease-soft) infinite;
+}
+
+@keyframes pip {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.35; transform: scale(0.8); }
+}
+
+// On the home page the brand is redundant with the giant name behind
+// it, so it only arrives as the name leaves.
+body.has-masthead .nav__brand {
+  opacity: var(--nav-s);
+  transition: opacity 0.2s linear, color var(--dur) var(--ease-out);
+}
+
+body.has-masthead:not(.is-docked) .nav__brand { pointer-events: none; }
+
+// ── The travelling link row ─────────────────────────────────
+
+.nav__links {
+  position: fixed;
+  left: 50%;
+  top: 0;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.85rem;
+  pointer-events: auto;
+  transform: translateX(-50%);
+  opacity: var(--nav-s);
+  transition: opacity 0.2s linear;
+}
+
+.nav__link {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  letter-spacing: var(--tr-16);
+  color: var(--nav-fg);
+  white-space: nowrap;
+  position: relative;
+  padding-block: 0.4em;
+  transition: color var(--dur) var(--ease-out);
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.1em;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--dur) var(--ease-out);
+  }
+
+  &:hover {
+    color: var(--clay);
+
+    &::after { transform: scaleX(1); transform-origin: left; }
+  }
+
+  &[aria-current="page"] {
+    color: var(--clay);
+
+    &::after { transform: scaleX(1); background: var(--clay); }
+  }
+}
+
+// Narrower desktops: shrink the hero-state row before it can collide.
+@media (max-width: 1180px) {
+  .nav__links { gap: 1.35rem; }
+}
+
+// ── Hamburger ───────────────────────────────────────────────
+
+.nav__toggle {
+  display: none;
+  width: 36px;
+  height: 36px;
+  margin-right: -6px;
+  position: relative;
+  color: var(--nav-fg);
+  flex-shrink: 0;
+  transition: color var(--dur) var(--ease-out);
+
+  span {
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    height: 1.5px;
+    border-radius: 2px;
+    background: currentColor;
+    transition: transform var(--dur) var(--ease-out), opacity 0.15s linear;
+  }
+
+  span:nth-child(1) { top: 14px; }
+  span:nth-child(2) { top: 21px; }
+}
+
+body.menu-open .nav__toggle {
+  color: var(--fg);
+
+  span:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
+  span:nth-child(2) { transform: translateY(-3.5px) rotate(-45deg); }
+}
+
+// ── Mobile / tablet ─────────────────────────────────────────
+//
+// The full row cannot fit, so it lives only inside the masthead
+// (wrapped, compact) and dissolves into the hamburger on scroll.
+
+@media (max-width: 899px) {
+  .nav__toggle { display: block; }
+
+  // At the very top of the plate there is no chrome at all — just the
+  // photograph. The hamburger arrives with the bar, on the first scroll.
+  body.has-masthead .nav__toggle {
+    opacity: var(--nav-s);
+    transition: opacity 0.2s linear, color var(--dur) var(--ease-out);
+  }
+
+  body.has-masthead:not(.is-docked) .nav__toggle { pointer-events: none; }
+
+  // The row never appears on a phone: the same links are one tap away in
+  // the menu, and raising them into a 390px frame only crowds the plate.
+  .nav__links { display: none; }
+
+  .nav__links--unused {
+    // Span the viewport and pad inward rather than centring a fixed
+    // width — a centred box can overflow its own edges, a padded
+    // full-width one cannot.
+    left: 0;
+    right: 0;
+    width: auto;
+    max-width: none;
+    padding-inline: var(--gutter);
+  }
+
+  .nav__link {
+    font-size: 1.05rem;
+    letter-spacing: var(--tr-16);
+  }
+
+
+}
+
+// ── Full-screen menu ────────────────────────────────────────
+
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 880;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.1rem, 3.4vw, 2rem);
+  background: rgba(240, 238, 230, 0.78);
+  backdrop-filter: blur(26px) saturate(120%);
+  -webkit-backdrop-filter: blur(26px) saturate(120%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--dur) var(--ease-out), visibility var(--dur);
+}
+
+body.menu-open .menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.menu__link {
+  font-family: var(--font-serif);
+  font-size: clamp(2.1rem, 9vw, 3.75rem);
+  font-weight: 350;
+  letter-spacing: -0.028em;
+  color: var(--fg);
+  line-height: 1;
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.4s var(--ease-out),
+    transform 0.5s var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+
+  &:hover { color: var(--clay); }
+}
+
+body.menu-open .menu__link {
+  opacity: 1;
+  transform: none;
+}
+
+// Stagger the arrival.
+@for $i from 1 through 8 {
+  body.menu-open .menu__link:nth-child(#{$i}) {
+    transition-delay: #{0.04 + $i * 0.035}s;
+  }
+}
+
+.menu__foot {
+  margin-top: clamp(1.5rem, 4vw, 3rem);
+  display: flex;
+  gap: var(--sp-5);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out) 0.34s;
+}
+
+body.menu-open .menu__foot { opacity: 1; }
+
+// Everything behind the menu goes out of focus.
+.blurable {
+  transition: filter var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+}
+
+body.menu-open .blurable {
+  filter: blur(13px);
+  transform: scale(1.012);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.menu-open .blurable { filter: blur(6px); transform: none; }
+  .menu__link { transition-duration: 0.01ms; }
+}
+
+// ── Scroll progress ─────────────────────────────────────────
+
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  z-index: 950;
+  pointer-events: none;
+  transform-origin: left;
+  transform: scaleX(var(--scroll-p, 0));
+  background: var(--clay);
+  opacity: var(--nav-s);
+}
