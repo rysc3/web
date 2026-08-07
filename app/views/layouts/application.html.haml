@@ -55,14 +55,6 @@
         - image_schema = {"@context" => "https://schema.org", "@type" => ["ImageObject", "Thing"], "name" => @page_title || "Ryan Scherbarth", "url" => request.url, "image" => asset_url(@og_image), "author" => {"@type" => "Person", "name" => "Ryan Scherbarth"}, "creator" => {"@type" => "Person", "name" => "Ryan Scherbarth"}, "description" => @og_description || "Image from ryanscherbarth.com"}
         = raw(image_schema.to_json)
 
-    -# Google Analytics, deferred so it never competes with first paint.
-    %script{async: true, src: "https://www.googletagmanager.com/gtag/js?id=G-7VD1T7W41S"}
-    :javascript
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-7VD1T7W41S');
-
   %body
     = render "shared/icons"
 
