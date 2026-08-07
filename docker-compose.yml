@@ -1,21 +1,26 @@
-version: "3.8"
+# `docker compose up` — that is the whole setup.
+#
+# No `version:` key: Compose v2 ignores it and warns.
+#
+# There is no database service. This app is SQLite end to end (see
+# config/database.yml — every environment uses the sqlite3 adapter), so the
+# postgres container that used to live here was started, waited on by
+# depends_on, and never connected to by anything.
 services:
   web:
     build: .
     ports:
       - "3000:3000"
+    environment:
+      RAILS_ENV: development
     volumes:
+      # Source is mounted for live reload.
       - .:/app
-    environment:
-      - RAILS_ENV=development
-    depends_on:
-      - db
-    command: ["rails", "server", "-b", "0.0.0.0"]
-  db:
-    image: postgres:13
-    volumes:
-      - ./tmp/db:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: myapp_development
+      # tmp/ is NOT shared with the host. It carries the pid file and the
+      # Sprockets cache, and letting the host's leak in is what caused
+      # "A server is already running" plus stale-asset behaviour that only
+      # showed up on a cold boot.
+      - tmp:/app/tmp
+
+volumes:
+  tmp:

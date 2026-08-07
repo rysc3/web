@@ -27,7 +27,10 @@
     %meta{property: "og:url", content: request.original_url}
     %meta{name: "twitter:card", content: "summary_large_image"}
 
-    %link{rel: "icon", type: "image/png", href: asset_path("WORLD-fav.png")}
+    -# The same pip that sits beside the brand in the nav. site.js takes this
+    -# over and breathes it; this is the resting frame, and the only frame if
+    -# scripting is off.
+    %link{rel: "icon", type: "image/png", href: asset_path("favicon-dot.png")}
 
     -# Self-hosted variable fonts. Preloading only the two latin faces
     -# that render above the fold; latin-ext and italic stay lazy.

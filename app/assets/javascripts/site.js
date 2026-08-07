@@ -164,18 +164,26 @@
 
     body.classList.add("has-masthead");
 
-    // The plate opens on nothing but the photograph. The bar — brand,
-    // links, hamburger — arrives as soon as the page moves, over a short
-    // fixed run rather than travelling the height of the hero.
-    var RUN = 0;
+    // The plate opens on nothing but the photograph, and the bar stays out
+    // of it for most of the way. It starts arriving a little over halfway
+    // down the hero and is fully in exactly as the hero clears the screen —
+    // so the bar lands at the same moment the profile takes over.
+    //
+    // Measured off the masthead itself rather than innerHeight: the hero is
+    // 100svh, and on mobile svh and innerHeight disagree by the height of
+    // the URL bar, which would leave the fade finishing early or late.
+    var START = 0;
+    var END = 1;
     var docked = false;
 
     registerScroll(
       function () {
-        RUN = Math.max(120, Math.round(window.innerHeight * 0.22));
+        var h = masthead.offsetHeight || window.innerHeight;
+        START = h * 0.55;
+        END = h;
       },
       function (y) {
-        var s = easeInOutCubic(clamp(y / RUN, 0, 1));
+        var s = easeInOutCubic(clamp((y - START) / Math.max(1, END - START), 0, 1));
 
         root.style.setProperty("--nav-s", s.toFixed(4));
 
@@ -186,6 +194,71 @@
         }
       }
     );
+  })();
+
+  /* ══════════════════════════════════════════════════════════
+   *  Favicon
+   *
+   *  A green dot that breathes, matching the pip beside the brand.
+   *  Drawn to a canvas and swapped in as a data URI each frame: SVG
+   *  favicons do not animate outside Firefox, and an APNG cannot be
+   *  paused for reduced-motion. This can.
+   * ══════════════════════════════════════════════════════════ */
+
+  (function () {
+    var link = document.querySelector('link[rel="icon"]');
+    if (!link || !window.HTMLCanvasElement) return;
+
+    var S = 64;
+    var canvas = document.createElement("canvas");
+    canvas.width = canvas.height = S;
+    var ctx = canvas.getContext && canvas.getContext("2d");
+    if (!ctx) return;
+
+    var mid = S / 2;
+    var still =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function draw(t) {
+      // Cosine, so the turn at each end of the cycle is soft — a linear
+      // ramp would tick at the top and bottom of every breath.
+      var pulse = still ? 0.35 : (1 - Math.cos(t * Math.PI * 2)) / 2;
+
+      ctx.clearRect(0, 0, S, S);
+
+      // The halo grows AND brightens together. Brightness alone reads as a
+      // blinking light; adding radius is what makes it radiate.
+      var r = 12 + pulse * 15;
+      var halo = ctx.createRadialGradient(mid, mid, 0, mid, mid, r);
+      halo.addColorStop(0, "rgba(124,195,154," + (0.34 + pulse * 0.3) + ")");
+      halo.addColorStop(0.5, "rgba(124,195,154," + (0.14 + pulse * 0.18) + ")");
+      halo.addColorStop(1, "rgba(124,195,154,0)");
+      ctx.fillStyle = halo;
+      ctx.beginPath();
+      ctx.arc(mid, mid, r, 0, Math.PI * 2);
+      ctx.fill();
+
+      // The core is fixed. A dot that changes size reads as a zoom.
+      ctx.fillStyle = "#5faa80";
+      ctx.beginPath();
+      ctx.arc(mid, mid, 11, 0, Math.PI * 2);
+      ctx.fill();
+
+      link.href = canvas.toDataURL("image/png");
+    }
+
+    draw(0);
+    if (still) return;
+
+    // Slow on purpose. Background tabs throttle timers to roughly 1s, so a
+    // long cycle degrades to a coarser version of the same breath instead
+    // of stuttering.
+    var PERIOD = 5200;
+    var t0 = Date.now();
+    setInterval(function () {
+      draw(((Date.now() - t0) % PERIOD) / PERIOD);
+    }, 140);
   })();
 
   /* ══════════════════════════════════════════════════════════

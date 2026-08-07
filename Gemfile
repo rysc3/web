@@ -14,7 +14,6 @@ gem 'sass-rails', '>= 6'
 
 # JavaScript and asset pipeline
 # gem 'webpacker', '>= 4.0'
-gem 'jsbundling-rails'
 
 # API building and JSON rendering
 gem 'jbuilder', '~> 2.7'

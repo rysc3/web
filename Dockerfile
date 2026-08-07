@@ -1,44 +1,34 @@
-# Base image
 FROM ruby:3.2.0
 
-# Install Node.js 18.x
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
-    apt-get update && apt-get install -y nodejs
+# libsqlite3-dev so the sqlite3 gem builds against a system SQLite rather
+# than relying on whatever the base image happens to ship.
+#
+# No Node and no Yarn: webpacker is commented out of the Gemfile, there is no
+# execjs/uglifier/terser, nothing calls javascript_pack_tag, and no asset
+# reads from node_modules. The JavaScript on this site is one plain Sprockets
+# file. Installing a Node toolchain only added build time and a deprecated
+# apt-key step that will eventually stop working.
+RUN apt-get update -qq && \
+    apt-get install -y --no-install-recommends libsqlite3-dev && \
+    rm -rf /var/lib/apt/lists/*
 
-# Install Yarn
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-    apt-get update && apt-get install -y yarn
-
-# Set working directory
 WORKDIR /app
 
-# Copy Gemfile and Gemfile.lock
+# Gems first, so a source-only change does not reinstall them.
 COPY Gemfile Gemfile.lock ./
+RUN gem install bundler:2.4.22 && \
+    bundle install --jobs 4 --retry 3
 
-# Install Bundler
-RUN gem install bundler:2.4.22
-
-# Install Ruby dependencies
-RUN bundle install --jobs 4 --retry 3
-
-# Copy package.json and yarn.lock
-COPY package.json yarn.lock ./
-
-# Install Node.js dependencies
-RUN yarn install --check-files
-
-# Copy the rest of the application code
 COPY . .
 
-# Precompile assets
-RUN bundle exec rake assets:precompile
+# Baked into the image for production. In development the bind mount shadows
+# this and Sprockets compiles on demand, which is why dev never needed it.
+RUN SECRET_KEY_BASE=dummy bundle exec rake assets:precompile
 
-# Expose port
 EXPOSE 3000
 
-# Command to start the server
-CMD ["rails", "server", "-b", "0.0.0.0", "-p", "${PORT:-3000}"]
+ENTRYPOINT ["/app/bin/docker-entrypoint"]
 
-# Local dev
-# CMD ["rails", "server", "-b", "0.0.0.0"]
+# Shell form on purpose: the exec form does not expand ${PORT}, so the old
+# exec-form CMD passed the literal string "${PORT:-3000}" as the port.
+CMD bundle exec rails server -b 0.0.0.0 -p ${PORT:-3000}

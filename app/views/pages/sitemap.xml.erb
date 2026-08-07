@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <url>
-    <loc>https://ryanscherbarth.com/</loc>
+    <loc><%= request.base_url %>/</loc>
     <image:image>
       <image:loc><%= asset_url('Profile-05.jpg') %></image:loc>
       <image:title>Ryan Scherbarth</image:title>
@@ -28,26 +28,6 @@
       <image:loc><%= asset_url('nvidia_logo.png') %></image:loc>
       <image:title>Nvidia logo</image:title>
       <image:caption>Nvidia — Ryan Scherbarth Senior Software Engineer, AI/ML</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc><%= asset_url('tesla_logo.png') %></image:loc>
-      <image:title>Tesla logo</image:title>
-      <image:caption>Tesla — Ryan Scherbarth Sr. Software Engineer, ML &amp; HPC Infra</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc><%= asset_url('unm_logo.png') %></image:loc>
-      <image:title>University of New Mexico logo</image:title>
-      <image:caption>University of New Mexico — Ryan Scherbarth B.S. Computer Science</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc><%= asset_url('carc_logo.png') %></image:loc>
-      <image:title>CARC logo</image:title>
-      <image:caption>UNM Center for Advanced Research Computing — Ryan Scherbarth</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc><%= asset_url('sandia_labs_logo.png') %></image:loc>
-      <image:title>Sandia National Laboratories logo</image:title>
-      <image:caption>Sandia National Laboratories — Ryan Scherbarth intern</image:caption>
     </image:image>
     <image:image>
       <image:loc><%= asset_url('SC26-01.png') %></image:loc>
@@ -117,21 +97,6 @@
     <image:image>
       <image:loc><%= asset_url('PEARC24-02.jpeg') %></image:loc>
       <image:title>Ryan Scherbarth PEARC24 conference photo 2</image:title>
-      <image:caption>Ryan Scherbarth at PEARC24 HPC Conference 2024</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc><%= asset_url('PEARC24-03.jpeg') %></image:loc>
-      <image:title>Ryan Scherbarth PEARC24 conference photo 3</image:title>
-      <image:caption>Ryan Scherbarth at PEARC24 HPC Conference 2024</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc><%= asset_url('PEARC24-04.jpeg') %></image:loc>
-      <image:title>Ryan Scherbarth PEARC24 conference photo 4</image:title>
-      <image:caption>Ryan Scherbarth at PEARC24 HPC Conference 2024</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc><%= asset_url('PEARC24-05.jpeg') %></image:loc>
-      <image:title>Ryan Scherbarth PEARC24 conference photo 5</image:title>
       <image:caption>Ryan Scherbarth at PEARC24 HPC Conference 2024</image:caption>
     </image:image>
     <image:image>
@@ -214,10 +179,70 @@
       <image:title>Ryan Scherbarth Duke City Half Marathon 2022 results</image:title>
       <image:caption>Ryan Scherbarth Duke City Half Marathon 2022 finishing results</image:caption>
     </image:image>
+
+    <%# Timeline attachments. These are rendered on the home page but were
+        added after this file was last written, so nothing was pointing at them. %>
+    <image:image>
+      <image:loc><%= asset_url('nvidia-1.png') %></image:loc>
+      <image:title>Nvidia Vera Rubin platform</image:title>
+      <image:caption>Nvidia Vera Rubin platform — Ryan Scherbarth, Senior Software Engineer, ML &amp; HPC Infrastructure at Nvidia</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc><%= asset_url('tesla-2.jpeg') %></image:loc>
+      <image:title>Tesla AI training capacity ramp</image:title>
+      <image:caption>Tesla AI training capacity — Ryan Scherbarth, Sr. Software Engineer, ML &amp; HPC Infrastructure at Tesla</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc><%= asset_url('tesla-3.jpeg') %></image:loc>
+      <image:title>Tesla Cortex supercomputer — Nvidia H100</image:title>
+      <image:caption>Tesla Cortex supercomputer built on Nvidia H100 — Ryan Scherbarth, Tesla Autopilot ML and HPC infrastructure</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc><%= asset_url('tesla-1.jpeg') %></image:loc>
+      <image:title>Tesla Cortex 2 supercomputer — Nvidia GB300</image:title>
+      <image:caption>Tesla Cortex 2 supercomputer built on Nvidia GB300 — Ryan Scherbarth, Tesla Autopilot ML and HPC infrastructure</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc><%= asset_url('carc-1.png') %></image:loc>
+      <image:title>UNM CARC high performance computing workshop</image:title>
+      <image:caption>Ryan Scherbarth — UNM Center for Advanced Research Computing HPC workshop with Dr. Matthew Fricke</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc><%= asset_url('carc-2.png') %></image:loc>
+      <image:title>UNM Center for Advanced Research Computing team</image:title>
+      <image:caption>Ryan Scherbarth with the UNM Center for Advanced Research Computing team</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc><%= asset_url('snl-team-photo.jpeg') %></image:loc>
+      <image:title>Sandia National Laboratories HPC and Mission Computing team</image:title>
+      <image:caption>Ryan Scherbarth with Sandia National Laboratories org 9320, HPC &amp; Mission Computing, July 2023</image:caption>
+    </image:image>
+
+    <%# Replaces the retired carc_logo / sandia_labs_logo / unm_logo / tesla_logo marks. %>
+    <image:image>
+      <image:loc><%= asset_url('sandia_mark.png') %></image:loc>
+      <image:title>Sandia National Laboratories</image:title>
+      <image:caption>Sandia National Laboratories — Ryan Scherbarth, HPC intern</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc><%= asset_url('unm_mark.png') %></image:loc>
+      <image:title>University of New Mexico</image:title>
+      <image:caption>University of New Mexico — Ryan Scherbarth, B.S. Computer Science, minor in Mathematics</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc><%= asset_url('carc_logo_transparent.png') %></image:loc>
+      <image:title>UNM Center for Advanced Research Computing</image:title>
+      <image:caption>UNM Center for Advanced Research Computing — Ryan Scherbarth</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc><%= asset_url('tesla_logo_2.png') %></image:loc>
+      <image:title>Tesla</image:title>
+      <image:caption>Tesla — Ryan Scherbarth, Sr. Software Engineer, ML &amp; HPC Infrastructure</image:caption>
+    </image:image>
   </url>
 
   <url>
-    <loc>https://ryanscherbarth.com/sc26</loc>
+    <loc><%= request.base_url %>/sc26</loc>
     <image:image>
       <image:loc><%= asset_url('SC26-01.png') %></image:loc>
       <image:title>SC26 HPC Student Cluster Competition</image:title>
@@ -271,7 +296,7 @@
   </url>
 
   <url>
-    <loc>https://ryanscherbarth.com/sc24</loc>
+    <loc><%= request.base_url %>/sc24</loc>
     <image:image>
       <image:loc><%= asset_url('SC24-33.jpeg') %></image:loc>
       <image:title>Ryan Scherbarth at SC24</image:title>
@@ -282,11 +307,33 @@
       <image:title>SC24 Team UNM Poster</image:title>
       <image:caption>University of New Mexico Roadrunners team poster for SC24 HPC Student Cluster Competition featuring Ryan Scherbarth, Atlanta 2024</image:caption>
     </image:image>
-    <% (1..16).each do |n| %>
+    <%# 02, 05 and 06 are still on disk but no longer appear in the mosaic.
+        An image Google cannot find embedded on a page will not be indexed,
+        so listing them here only produces sitemap entries that go nowhere. %>
+    <% [1,3,4,7,8,9,10,11,12,13,14,15,16].each do |n| %>
     <image:image>
       <image:loc><%= asset_url("SC24-#{n.to_s.rjust(2,'0')}.jpeg") %></image:loc>
       <image:title>SC24 Student Cluster Competition action photo <%= n %></image:title>
       <image:caption>Ryan Scherbarth at SC24 HPC Student Cluster Competition in Atlanta, Georgia, November 2024 - photo <%= n %> from competition</image:caption>
+    </image:image>
+    <% end %>
+
+    <%# 18–21 are on the page but were never covered by the loops above. %>
+    <% (18..21).each do |n| %>
+    <image:image>
+      <image:loc><%= asset_url("SC24-#{n}.png") %></image:loc>
+      <image:title>SC24 competition screenshot <%= n %></image:title>
+      <image:caption>Ryan Scherbarth — SC24 HPC Student Cluster Competition benchmark results, Team UNM, Atlanta 2024</image:caption>
+    </image:image>
+    <% end %>
+
+    <%# Poster frames for the two competition clips. The clips themselves are
+        video and would need a video sitemap; the stills index as images. %>
+    <% [17, 22].each do |n| %>
+    <image:image>
+      <image:loc><%= asset_url("SC24-#{n}-poster.jpg") %></image:loc>
+      <image:title>Ryan Scherbarth at SC24 — competition footage</image:title>
+      <image:caption>Ryan Scherbarth and Team UNM at the SC24 HPC Student Cluster Competition, Atlanta 2024</image:caption>
     </image:image>
     <% end %>
     <% [23,24,25,26,27].each do |n| %>
@@ -321,7 +368,7 @@
   </url>
 
   <url>
-    <loc>https://ryanscherbarth.com/sc23</loc>
+    <loc><%= request.base_url %>/sc23</loc>
     <image:image>
       <image:loc><%= asset_url('SC23-06.jpeg') %></image:loc>
       <image:title>Ryan Scherbarth at SC23</image:title>
@@ -347,7 +394,7 @@
   </url>
 
   <url>
-    <loc>https://ryanscherbarth.com/resume</loc>
+    <loc><%= request.base_url %>/resume</loc>
     <image:image>
       <image:loc><%= asset_url('Profile-01.jpg') %></image:loc>
       <image:title>Ryan Scherbarth resume</image:title>
@@ -356,7 +403,7 @@
   </url>
 
   <url>
-    <loc>https://ryanscherbarth.com/meet</loc>
+    <loc><%= request.base_url %>/meet</loc>
     <image:image>
       <image:loc><%= asset_url('SC24-14.jpeg') %></image:loc>
       <image:title>Schedule a meeting with Ryan Scherbarth</image:title>
@@ -365,7 +412,7 @@
   </url>
 
   <url>
-    <loc>https://ryanscherbarth.com/courses</loc>
+    <loc><%= request.base_url %>/courses</loc>
     <image:image>
       <image:loc><%= asset_url('Profile-03.jpeg') %></image:loc>
       <image:title>Ryan Scherbarth course history</image:title>
