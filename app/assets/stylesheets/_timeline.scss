@@ -464,10 +464,29 @@
 }
 
 // The quieter second voice.
+// ── The two tracks read differently ─────────────────────────
+//
+// A logo means it was a job. Everything on the extracurricular track has
+// no mark and takes a slimmer profile — less height, smaller type, a
+// quieter rule — so the two tiers separate at a glance without needing a
+// label to say which is which.
+
 .tl-entry--extracurricular {
-  .tl-entry__title { font-weight: 400; color: var(--fg-2); }
+  padding-top: clamp(0.55rem, 1vw, 0.85rem);
+  padding-bottom: clamp(0.7rem, 1.4vw, 1.15rem);
+  border-top-color: var(--line-faint);
+
+  .tl-entry__row { margin-top: 0.5rem; }
+
+  .tl-entry__title {
+    font-size: var(--fs-body);
+    font-weight: 400;
+    color: var(--fg-2);
+  }
+
   .tl-entry__org   { color: var(--fg-4); }
-  .tl-entry__desc  { color: var(--fg-3); }
+  .tl-entry__desc  { color: var(--fg-3); margin-top: 0.4em; }
+  .tl-entry__meta  { opacity: 0.85; }
 }
 
 // ── Responsive ──────────────────────────────────────────────
@@ -485,11 +504,18 @@
 
 @media (max-width: 820px) {
 
+  // --tl-plot-h is deliberately NOT reduced here. The axis is sticky and
+  // sized to the viewport, so shrinking it does not save space — it just
+  // ends the rail partway down the screen and leaves the entries running
+  // past it. The gauge narrows on small screens; the height never does.
+  // The year label hangs to the LEFT of its rule, so --tl-lead is the only
+  // thing keeping it on screen — the chart itself starts at x=0. At 1.9rem
+  // the label landed at exactly 0 and lost its leading digit off the
+  // viewport. 2.6rem holds it.
   .tl {
-    --tl-lead: 1.9rem;
+    --tl-lead: 2.6rem;
     --tl-lane: 8px;
     --tl-barw: 5px;
-    --tl-plot-h: clamp(300px, 52vh, 460px);
     column-gap: 1.25rem;
   }
 
@@ -515,11 +541,10 @@
   // Every pixel the chart gives up here goes to the reading measure,
   // so the lanes tighten to the narrowest pitch that still separates
   // nine of them.
+  // --tl-lane is not set here: the ≤760 block below collapses it to 0 and
+  // wins on source order, so any value written here would be inert.
   .tl {
-    --tl-lead: 1.75rem;
-    --tl-lane: 5px;
     --tl-barw: 4px;
-    --tl-plot-h: clamp(300px, 48vh, 420px);
     column-gap: 0.7rem;
   }
 
@@ -691,36 +716,10 @@
 // ── Marks ───────────────────────────────────────────────────
 //
 // A logo where one exists and reads on cream; an ink chip where the
-// artwork is drawn for a dark ground; a set monogram where there is no
-// file at all. Every entry gets a mark — none of them get a white box.
+// artwork is drawn for a dark ground. Only professional entries carry
+// one at all.
 
-.tl-entry__mark--ink {
-  background: var(--bg-ink);
-  border-radius: var(--r-sm);
-  padding: 6px;
 
-  img { width: 100%; height: auto; }
-}
-
-.tl-entry__mark--type {
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: var(--tr-12);
-  color: var(--fg-3);
-  border: 1px solid var(--line);
-  border-radius: var(--r-sm);
-  display: grid;
-  place-items: center;
-  text-align: center;
-  line-height: 1;
-  transition: color var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out);
-}
-
-.tl-entry--professional .tl-entry__mark--type { color: var(--track-pro); border-color: var(--track-pro-soft); }
-.tl-entry--extracurricular .tl-entry__mark--type { color: var(--track-extra); border-color: var(--track-extra-soft); }
-
-.tl-entry.is-read .tl-entry__mark--type { color: var(--fg); border-color: var(--fg); }
 
 // Still running: the date range says so, in ink.
 .tl-entry__dates.is-live {
@@ -738,7 +737,15 @@
 @media (max-width: 760px) {
   // One column, professional only. Overlap is what the lanes were for,
   // and overlap is not legible at this width anyway.
-  .tl { --tl-lane: 0px; }
+  //
+  // Collapsing the lanes hands the chart's whole width back, so the lead
+  // widens rather than narrows. It has to: the year label hangs to the
+  // LEFT of its rule, so the lead is the only thing holding it on screen.
+  // At 1.9rem it was running off the left edge and printing "026".
+  .tl {
+    --tl-lane: 0px;
+    --tl-lead: 3rem;
+  }
 
   .tl-bar--extracurricular { display: none; }
 
@@ -749,7 +756,79 @@
 @media (max-width: 480px) {
   // Narrower still: drop the rail entirely and let the record run full
   // width. The dates and durations already say everything the axis did.
-  .tl { grid-template-columns: minmax(0, 1fr); padding-right: 0; }
+  //
+  // The left edge was the chart's to bleed off; with the chart gone the
+  // entries need the page gutter on BOTH sides, or the dates print flush
+  // against the screen edge.
+  .tl {
+    grid-template-columns: minmax(0, 1fr);
+    padding-inline: var(--gutter);
+  }
 
   .tl__chart { display: none; }
+}
+
+// ── Entry attachments ───────────────────────────────────────
+//
+// A role can carry a strip of small photographs. Small on purpose —
+// these are evidence attached to a job, not a gallery. Each one is a
+// real link to its own file and opens in the full-screen viewer.
+
+.tl-media {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+}
+
+.tl-shot {
+  display: block;
+  width: clamp(84px, 17%, 124px);
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--bg-sunk);
+  transition:
+    border-color var(--dur) var(--ease-out),
+    transform var(--dur) var(--ease-out);
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--line-loud);
+    transform: translateY(-2px);
+  }
+}
+
+
+.tl-shot__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+
+
+// A dot stands in for a logo, so every row reserves the same mark column
+// and the copy keeps one left edge the whole way down. The tier still
+// reads differently — smaller type, tighter row — just not by indent.
+.tl-entry__mark--dot {
+  display: grid;
+  place-items: center;
+
+  &::after {
+    content: "";
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 1.5px solid var(--track-extra);
+    background: transparent;
+  }
+}
+
+.tl-entry.is-read .tl-entry__mark--dot::after {
+  background: var(--track-extra);
+  border-color: var(--track-extra);
 }

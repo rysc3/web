@@ -423,6 +423,14 @@
 // the trigger stopped at the centred column while everything it revealed
 // kept going to both edges — the proposal read as bolted underneath the
 // page rather than as part of it. Same column as .shell, same centring.
+// The element the panel actually collapses. Nothing on it but the clip:
+// padding and borders are not clipped by overflow, so a padded element
+// here would keep the panel a few rem tall even when shut.
+.sc-proposal__clip {
+  overflow: hidden;
+  min-height: 0;
+}
+
 .sc-proposal__body {
   width: 100%;
   max-width: var(--maxw);

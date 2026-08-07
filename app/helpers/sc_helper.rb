@@ -36,7 +36,7 @@ module ScHelper
     { title: "Coaches", members: [
       { name: "Ryan Scherbarth", role: "Coach", photo: "Profile-05.jpg", alt: "Ryan Scherbarth",
         url: "/",
-        bio: "Senior Software Engineer, AI/ML at NVIDIA. Led UNM's team at SC23 and SC24, and multiple other HPC competitions." },
+        bio: "Senior Software Engineer, AI/ML at Nvidia. Led UNM's team at SC23 and SC24, and multiple other HPC competitions." },
       { name: "Alex Knigge", role: "Coach", photo: "SC26-alex-knigge-headshot.png", alt: "Alex Knigge",
         url: "https://www.linkedin.com/in/alex-knigge/",
         bio: "Software Engineer at Sandia National Laboratories (HPC monitoring & perf). Led UNM's team at SC25 and multiple other HPC competitions." },

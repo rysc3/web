@@ -20,7 +20,9 @@
 
 .courses-summary {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  // 'Aug 2022 — Dec 2024' does not fit an 8.5rem cell; the value was
+  // spilling past its box. Give every cell room for the longest one.
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
   gap: 1px;
   margin-top: clamp(1.5rem, 3vw, 2.5rem);
   border: 1px solid var(--line);
@@ -31,6 +33,7 @@
 }
 
 .courses-summary__cell {
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -58,10 +61,15 @@
 .courses-summary__value {
   font-family: var(--font-code);
   font-variant-numeric: tabular-nums lining-nums;
-  font-size: fluid(1.05rem, 0.95rem, 0.62vw, 1.375rem);
+  // Sized for the longest value in the row — the span — rather than
+  // for '7', which is what the old size was flattering.
+  font-size: fluid(0.95rem, 0.88rem, 0.42vw, 1.15rem);
   font-weight: 400;
   letter-spacing: -0.01em;
-  line-height: 1;
+  // The span is the longest value here and has to be allowed to wrap
+  // rather than run out of its cell.
+  line-height: 1.15;
+  overflow-wrap: break-word;
   color: var(--fg);
   margin-top: auto;
   white-space: nowrap;

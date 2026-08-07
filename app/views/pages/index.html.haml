@@ -1,22 +1,22 @@
 -# ── Masthead ──────────────────────────────────────────────────
 - content_for :masthead do
-  -# A taller stage than the plate. The plate sticks to the top through
-  -# the extra height, which buys a stretch of scroll where nothing moves
-  -# except the nav rising into place.
-  .masthead-stage.movement
-    %header.masthead
-      -# The one photograph on the site that carries grain. The mask on
-      -# .masthead__media dissolves image and grit together into the stock.
-      .masthead__media.press
-        = responsive_image_tag "Profile-05.jpg", alt: "Ryan Scherbarth", class: "masthead__img", sizes: "100vw", loading: "eager", fetchpriority: "high"
-        .masthead__hold{"aria-hidden" => "true"}
-        .press__grit{"aria-hidden" => "true"}
-        .press__grit.press__grit--lift{"aria-hidden" => "true"}
+  %header.masthead.movement
+    -# The one photograph on the site that carries grain. The mask on
+    -# .masthead__media dissolves image and grit together into the stock.
+    .masthead__media.press
+      = responsive_image_tag "Profile-05.jpg", alt: "Ryan Scherbarth", class: "masthead__img", sizes: "100vw", loading: "eager", fetchpriority: "high"
+      .masthead__hold{"aria-hidden" => "true"}
+      .press__grit{"aria-hidden" => "true"}
+      .press__grit.press__grit--lift{"aria-hidden" => "true"}
 
-      .masthead__inner
-        %h1.masthead__title Ryan Scherbarth
+    -# A sheet of the page's own paper laid over the foot of the plate,
+    -# so the photograph ends by becoming the background rather than
+    -# stopping against it.
+    .masthead__dissolve{"aria-hidden" => "true"}
 
-      .masthead__nav-anchor{"aria-hidden" => "true"}
+    .masthead__inner
+      %h1.masthead__title Ryan Scherbarth
+
 
 -# ── 01 · Standing ─────────────────────────────────────────────
 #profile.shell.section.section--screen.movement
@@ -38,7 +38,7 @@
 
     .intro__body.reveal
       %p.lede
-        Sr. Software Engineer, ML &amp; HPC Infra at NVIDIA.
+        Sr. Software Engineer, AI Infra at Nvidia.
 
       .intro__actions
         %a.btn.btn--ember{href: "/resume"}
@@ -51,7 +51,7 @@
       %dl.intro__facts
         .intro__fact
           %dt Now
-          %dd Sr. Software Engineer @ NVIDIA
+          %dd Sr. Software Engineer @ Nvidia
         .intro__fact
           %dt Focus
           %dd ML &amp; HPC Infrastructure
@@ -115,13 +115,19 @@
             %span.tl-entry__span{"aria-hidden" => "true", style: "--t: #{r[:top]}; --d: #{r[:d]};"}
               %span.tl-entry__span-fill
           .tl-entry__row
+            -# A logo means it was a job. Everything else takes a dot, so the
+            -# mark column is the same width on every row and the copy keeps
+            -# one left edge down the whole record.
             - if e[:logo]
               -# logo_light marks are drawn for a dark ground, so they get
               -# an ink chip rather than vanishing into the stock.
               %span.tl-entry__mark{class: (e[:logo_light] ? "tl-entry__mark--ink" : nil)}
                 %img{src: asset_path(e[:logo]), alt: e[:alt], loading: "lazy", decoding: "async"}
             - else
-              %span.tl-entry__mark.tl-entry__mark--type{"aria-hidden" => "true"}= e[:mark] || org_monogram(e[:org])
+              %span.tl-entry__mark.tl-entry__mark--dot{"aria-hidden" => "true"}
+            -# Photographs are gathered across every role in the tenure and
+            -# printed once, at the foot of the entry.
+            - extras = r[:roles].select { |x| x[:media].present? }
             .tl-entry__body
               - if r[:roles].size > 1
                 -# One tenure, several titles. The org leads; the roles
@@ -133,12 +139,21 @@
                       %h3.tl-role__title= role[:title]
                       %span.tl-role__dates= role[:dates]
                       - if role[:desc]
-                        %p.tl-entry__desc= raw(role[:desc])
+                        - Array(role[:desc]).each do |line|
+                          %p.tl-entry__desc= raw(line)
               - else
                 %h3.tl-entry__title= e[:title]
                 %p.tl-entry__org= e[:org]
                 - if e[:desc]
-                  %p.tl-entry__desc= raw(e[:desc])
+                  - Array(e[:desc]).each do |line|
+                    %p.tl-entry__desc= raw(line)
+
+              - extras.each do |x|
+                .tl-media{data: {frames: true, plate: "#{e[:org]} — #{x[:title]}", meta: x[:dates]}, "data-frame-key" => "tl-#{i}"}
+                  - x[:media].each do |shot|
+                    %a.tl-shot{href: asset_path(shot[:file]), data: {frame: true}, "data-frame-id" => File.basename(shot[:file], ".*")}
+                      = responsive_image_tag shot[:file], alt: shot[:alt], class: "tl-shot__img", sizes: "140px"
+
 
 -# ── 03 · Elsewhere ────────────────────────────────────────────
 #site-map.bleed.section

@@ -52,16 +52,6 @@
       %h2.mx-h Referrers
       = render "metrics/table", rows: @referers, max: @referers.values.max, hot: false
 
-  - if @by_hour.present?
-    %section.mx-block
-      %h2.mx-h Hour of day · UTC
-      - hpeak = @by_hour.values.max
-      .mx-hours
-        - (0..23).each do |h|
-          - n = @by_hour[format("%02d", h)] || @by_hour[h] || @by_hour[h.to_f] || 0
-          .mx-hour
-            %span.mx-hour__bar{style: "height: #{bar.call(n, hpeak)}%", title: "#{n} at #{h}:00"}
-            %span.mx-hour__k= h
   %section.mx-block
     %h2.mx-h
       Live feed

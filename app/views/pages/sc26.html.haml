@@ -49,100 +49,105 @@
       = icon("chevron-down")
 
   #sc26-proposal.disclosure__panel
-    .sc-proposal__body
-      -# ── 05 · Cluster configuration ────────────────────────────────
-      .sc-proposal__part
-        %h2.section-label Cluster Configuration (Tentative)
+    -# Two elements on purpose: the outer one is what the panel collapses
+    -# and must carry no padding or border of its own, because those are
+    -# not clipped by overflow and leak out of a zero-height row. All the
+    -# spacing lives on the inner one.
+    .sc-proposal__clip
+      .sc-proposal__body
+        -# ── 05 · Cluster configuration ────────────────────────────────
+        .sc-proposal__part
+          %h2.section-label Cluster Configuration (Tentative)
 
-        .sc-plate
-          .spec.reveal
-            .spec__head
-              %span 3× Nodes
-            - sc26_cluster.each do |label, value|
-              .spec__row
-                %span.spec__label= label
-                %span.spec__value= value
+          .sc-plate
+            .spec.reveal
+              .spec__head
+                %span 3× Nodes
+              - sc26_cluster.each do |label, value|
+                .spec__row
+                  %span.spec__label= label
+                  %span.spec__value= value
 
-      -# ── 06 · Network architecture ─────────────────────────────────
-      .sc-proposal__part
-        %h2.section-label Network Architecture
+        -# ── 06 · Network architecture ─────────────────────────────────
+        .sc-proposal__part
+          %h2.section-label Network Architecture
 
-        .sc-duo
-          .reveal
-            .sc-rack-frame
-              = render "pages/sc26_network_diagram"
-            %ul.sc-legend
-              - sc26_rails.each do |i, caption|
-                %li.sc-legend__row
-                  %span.sc-legend__dot{class: "is-rail-#{i}", "aria-hidden" => "true"}
-                  %span= caption
+          .sc-duo
+            .reveal
+              .sc-rack-frame
+                = render "pages/sc26_network_diagram"
+              %ul.sc-legend
+                - sc26_rails.each do |i, caption|
+                  %li.sc-legend__row
+                    %span.sc-legend__dot{class: "is-rail-#{i}", "aria-hidden" => "true"}
+                    %span= caption
 
-          .prose.reveal
-            %p
-              With only 3 nodes, every pair connects directly via 4× 400Gb/s cables — 2 ConnectX-7 NICs with both ports populated per link — giving 1.6Tb/s bidirectional bandwidth per pair with zero switch hops. A 400G InfiniBand switch draws an estimated 2–4kW and adds one hop of latency; eliminating it returns that power directly to the GPU budget.
-            %p
-              We configure as to have a rail optimized network topology as well; each NIC by slot index (CX7-0 through CX7-3) forms an independent IB rail connecting GPU N of each node. NCCL AllReduce traffic stays within a single rail, which is the condition that makes rail optmimzation meaningful. Note that this can only work here because the 2-port NIC can reach both other ports with one port each, completing the loop without a switch.
-            %p
-              This doesn't generalize — a 4th node would exhaust all NIC ports and require a switch. But within the fixed 3-node competition constraint, it's a straightforward perf-per-watt gain worth taking.
-            %p
-              In further pursuit of optimal power-per-watt efficiency, we plan to run IP over IB rather than maintaining a dedicated front end network. The latter is not strictly necessary, and saves the power for an additional switch as well.
-
-      -# ── 07 · Power budget ─────────────────────────────────────────
-      .sc-proposal__part
-        %h2.section-label Power Budget
-
-        .sc-budget-stack
-          .sc-budget.reveal
-            .dtable
-              .dtable__row.dtable__row--head
-                %span Component
-                %span Per Node
-                %span ×3 Total
-              - sc26_power.each do |component, per_node, total|
-                .dtable__row
-                  %span= component
-                  %span= per_node
-                  %span= total
-              .dtable__row.dtable__row--over
-                %span Total (uncapped)
-                %span 3,990W
-                .dtable__cell-stack
-                  %span 11,970W
-                  %span.dtable__note over limit
-
-            .prose
+            .prose.reveal
               %p
-                Running uncapped exceeds the 10kW limit by ~2kW. The plan: throttle each H200 NVL to ~535W (76% TDP), holding all other components at full draw.
+                With only 3 nodes, every pair connects directly via 4× 400Gb/s cables — 2 ConnectX-7 NICs with both ports populated per link — giving 1.6Tb/s bidirectional bandwidth per pair with zero switch hops. A 400G InfiniBand switch draws an estimated 2–4kW and adds one hop of latency; eliminating it returns that power directly to the GPU budget.
+              %p
+                We configure as to have a rail optimized network topology as well; each NIC by slot index (CX7-0 through CX7-3) forms an independent IB rail connecting GPU N of each node. NCCL AllReduce traffic stays within a single rail, which is the condition that makes rail optmimzation meaningful. Note that this can only work here because the 2-port NIC can reach both other ports with one port each, completing the loop without a switch.
+              %p
+                This doesn't generalize — a 4th node would exhaust all NIC ports and require a switch. But within the fixed 3-node competition constraint, it's a straightforward perf-per-watt gain worth taking.
+              %p
+                In further pursuit of optimal power-per-watt efficiency, we plan to run IP over IB rather than maintaining a dedicated front end network. The latter is not strictly necessary, and saves the power for an additional switch as well.
 
-            .dtable
-              .dtable__row.dtable__row--head
-                %span
-                %span GPU cap
-                %span Total
-              - sc26_power_capped.each do |component, cap, total|
-                .dtable__row
-                  %span= component
-                  %span= cap
-                  %span= total
-              .dtable__row.dtable__row--ok
-                %span Target (throttled)
-                %span
-                %span 9,990W ✓
+        -# ── 07 · Power budget ─────────────────────────────────────────
+        .sc-proposal__part
+          %h2.section-label Power Budget
 
-          .prose.reveal
-            %p
-              H200 NVL (and GPU's in general) efficiency doesn't scale linearly with power — HBM3e bandwidth and tensor throughput retain roughly 85–90% at 76% TDP. Running uncapped recovers ~10–15% raw compute but immediately blows the budget. The throttled configuration achieves better FLOPS/W overall, which is what matters under competition scoring. The no-switch topology partially offsets this by returning 2–4kW of switch power back to the GPU headroom, giving us a wider throttle margin than a conventional switched design would allow.
-            %p
-              The H200 NVL was chosen over the H200 SXM for this competition specifically because of its efficiency characteristics at reduced TDP. Both are rated at 700W with 4.8TB/s HBM3e bandwidth at 100% TDP, but the SXM form factor requires a dedicated server tray/baseboard that draws an additional ~50–100W per GPU equivalent regardless of GPU throttle level — power that doesn't scale down when you cap the GPU. At our 535W target, an H200 SXM node effectively draws ~585–635W per GPU once baseboard overhead is included, compared to 535W flat for NVL. Across 12 GPUs that difference is roughly 600–1,200W — close to two full GPUs' worth of headroom. From SC24's H100 NVL benchmarking, efficiency continued improving linearly all the way down to 50% TDP; we expect similar behavior here, meaning the 535W cap is conservative and may be dropped further once we have the hardware to benchmark against competition workloads.
-            %p
-              We also evaluated the H100 NVL, B200, and B300. The H100 NVL fits the power budget comfortably but gives up 2.4× memory bandwidth for no meaningful cost benefit at competition scale. The B200 and B300 have a number of performance improvements, but their TDP would require throttling to a sub-optimal threshold to meet the power budget.
-            %p
-              The HPL benchmark quickly becomes a bandwidth benchmark after optimizing parameters, which is where we see a meaningful performance improvement in the rail optimized network topology & removing of the network switch.
-            %p
-              HPCG, despite involving an entirely different dataset, still is most optimal in a throughput-maximized configuration. In this case, providing 4.8TB/s per GPU.
-            %p
-              GROMACS multi-node runs GPU-accelerated PME where p2p latency is the primary limiter; also benefiting from the 0 hop network architecture.
-            %p
-              WRF domains can be partuclarly large, as we've seen from past competitions. This further contributes to the justification of the slightly over 1TB of DDR5 memory.
-            %p
-              MLPerf training throughput maps directly to BF16 tensor core utilization across all gpus, again benefitting from our bandwidth-maximized configuration.
+          .sc-budget-stack
+            .sc-budget.reveal
+              .dtable
+                .dtable__row.dtable__row--head
+                  %span Component
+                  %span Per Node
+                  %span ×3 Total
+                - sc26_power.each do |component, per_node, total|
+                  .dtable__row
+                    %span= component
+                    %span= per_node
+                    %span= total
+                .dtable__row.dtable__row--over
+                  %span Total (uncapped)
+                  %span 3,990W
+                  .dtable__cell-stack
+                    %span 11,970W
+                    %span.dtable__note over limit
+
+              .prose
+                %p
+                  Running uncapped exceeds the 10kW limit by ~2kW. The plan: throttle each H200 NVL to ~535W (76% TDP), holding all other components at full draw.
+
+              .dtable
+                .dtable__row.dtable__row--head
+                  %span
+                  %span GPU cap
+                  %span Total
+                - sc26_power_capped.each do |component, cap, total|
+                  .dtable__row
+                    %span= component
+                    %span= cap
+                    %span= total
+                .dtable__row.dtable__row--ok
+                  %span Target (throttled)
+                  %span
+                  %span 9,990W ✓
+
+            .prose.reveal
+              %p
+                H200 NVL (and GPU's in general) efficiency doesn't scale linearly with power — HBM3e bandwidth and tensor throughput retain roughly 85–90% at 76% TDP. Running uncapped recovers ~10–15% raw compute but immediately blows the budget. The throttled configuration achieves better FLOPS/W overall, which is what matters under competition scoring. The no-switch topology partially offsets this by returning 2–4kW of switch power back to the GPU headroom, giving us a wider throttle margin than a conventional switched design would allow.
+              %p
+                The H200 NVL was chosen over the H200 SXM for this competition specifically because of its efficiency characteristics at reduced TDP. Both are rated at 700W with 4.8TB/s HBM3e bandwidth at 100% TDP, but the SXM form factor requires a dedicated server tray/baseboard that draws an additional ~50–100W per GPU equivalent regardless of GPU throttle level — power that doesn't scale down when you cap the GPU. At our 535W target, an H200 SXM node effectively draws ~585–635W per GPU once baseboard overhead is included, compared to 535W flat for NVL. Across 12 GPUs that difference is roughly 600–1,200W — close to two full GPUs' worth of headroom. From SC24's H100 NVL benchmarking, efficiency continued improving linearly all the way down to 50% TDP; we expect similar behavior here, meaning the 535W cap is conservative and may be dropped further once we have the hardware to benchmark against competition workloads.
+              %p
+                We also evaluated the H100 NVL, B200, and B300. The H100 NVL fits the power budget comfortably but gives up 2.4× memory bandwidth for no meaningful cost benefit at competition scale. The B200 and B300 have a number of performance improvements, but their TDP would require throttling to a sub-optimal threshold to meet the power budget.
+              %p
+                The HPL benchmark quickly becomes a bandwidth benchmark after optimizing parameters, which is where we see a meaningful performance improvement in the rail optimized network topology & removing of the network switch.
+              %p
+                HPCG, despite involving an entirely different dataset, still is most optimal in a throughput-maximized configuration. In this case, providing 4.8TB/s per GPU.
+              %p
+                GROMACS multi-node runs GPU-accelerated PME where p2p latency is the primary limiter; also benefiting from the 0 hop network architecture.
+              %p
+                WRF domains can be partuclarly large, as we've seen from past competitions. This further contributes to the justification of the slightly over 1TB of DDR5 memory.
+              %p
+                MLPerf training throughput maps directly to BF16 tensor core utilization across all gpus, again benefitting from our bandwidth-maximized configuration.

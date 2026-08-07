@@ -1,24 +1,18 @@
 // ─────────────────────────────────────────────────────────────
 //  Navigation
 //
-//  On the home page the links begin life sitting inside the
-//  masthead photograph, large and widely tracked. As the photo
-//  scrolls away they travel up, tighten, and dock into the top bar.
+//  The home page opens on nothing but the photograph. The bar — brand,
+//  links, hamburger — arrives as soon as the page moves and then stays.
 //
-//  JS writes three values — --nav-p (linear travel), --nav-s (eased,
-//  back-loaded style progress) and --nav-travel (the px gap between
-//  the two homes). Every visual consequence below is pure CSS
-//  interpolation off those three.
+//  JS writes one value, --nav-s (0 → 1 over a short run at the top of
+//  the page). Every visual consequence below is CSS interpolation off it.
 // ─────────────────────────────────────────────────────────────
 
 // Pages with no masthead have nothing to travel from: dock immediately.
 // Same for the no-JS case, so links never strand mid-air.
 body:not(.has-masthead),
 .no-js body {
-  --nav-p: 1;
   --nav-s: 1;
-  --nav-travel: 0px;
-  --nav-offset: 0px;
 }
 
 .nav {
@@ -35,21 +29,8 @@ body:not(.has-masthead),
   --nav-fg-dim: var(--fg-3);
 }
 
-body.has-masthead:not(.is-docked) .nav {
-  --nav-fg: var(--fg-photo);
-  --nav-fg-dim: var(--fg-photo-2);
-}
-
-// White type has to survive whatever is under it — this frame has a
-// bright shirt exactly where the link row rests. A wide, very soft
-// shadow buys the contrast without reading as a box or a scrim.
-body.has-masthead:not(.is-docked) {
-  .nav__link,
-  .nav__brand,
-  .nav__toggle { text-shadow: 0 1px 16px rgba(20, 20, 15, 0.55), 0 0 2px rgba(20, 20, 15, 0.35); }
-
-  .nav__toggle span { box-shadow: 0 1px 12px rgba(20, 20, 15, 0.5); }
-}
+// Nothing sits on the photograph any more — the bar fades in over it as
+// a tinted band, so its type is always ink on stock.
 
 // ── The bar itself ──────────────────────────────────────────
 
@@ -135,19 +116,18 @@ body.has-masthead:not(.is-docked) .nav__brand { pointer-events: none; }
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: calc(2.6rem + (1.85rem - 2.6rem) * var(--nav-s));
+  gap: 1.85rem;
   pointer-events: auto;
-  transform:
-    translateX(-50%)
-    translate3d(0, var(--nav-offset, 0px), 0);
-  will-change: transform;
+  transform: translateX(-50%);
+  opacity: var(--nav-s);
+  transition: opacity 0.2s linear;
 }
 
 .nav__link {
   font-family: var(--font-sans);
   font-weight: 500;
-  font-size: calc(1.5rem + (0.9375rem - 1.5rem) * var(--nav-s));
-  letter-spacing: calc(-0.012em + (-0.005em + 0.012em) * var(--nav-s));
+  font-size: 0.9375rem;
+  letter-spacing: var(--tr-16);
   color: var(--nav-fg);
   white-space: nowrap;
   position: relative;
@@ -182,8 +162,7 @@ body.has-masthead:not(.is-docked) .nav__brand { pointer-events: none; }
 
 // Narrower desktops: shrink the hero-state row before it can collide.
 @media (max-width: 1180px) {
-  .nav__links { gap: calc(1.9rem + (1.35rem - 1.9rem) * var(--nav-s)); }
-  .nav__link  { font-size: calc(1.2rem + (0.9375rem - 1.2rem) * var(--nav-s)); }
+  .nav__links { gap: 1.35rem; }
 }
 
 // ── Hamburger ───────────────────────────────────────────────
@@ -249,14 +228,6 @@ body.menu-open .nav__toggle {
     width: auto;
     max-width: none;
     padding-inline: var(--gutter);
-    flex-wrap: wrap;
-    gap: 0.7rem 1.2rem;
-    height: auto;
-    top: 0;
-    transform: translate3d(0, var(--nav-offset, 0px), 0);
-    // 1.9 makes them fully gone by the time the bar is ~half docked,
-    // well before they could overlap the hamburger.
-    opacity: calc(1 - var(--nav-p) * 1.9);
   }
 
   .nav__link {
@@ -264,11 +235,7 @@ body.menu-open .nav__toggle {
     letter-spacing: var(--tr-16);
   }
 
-  body:not(.has-masthead) .nav__links,
-  body.is-docked .nav__links {
-    pointer-events: none;
-    visibility: hidden;
-  }
+
 }
 
 // ── Full-screen menu ────────────────────────────────────────

@@ -22,55 +22,77 @@ module ContentHelper
   # and "Spring & Fall 2024" is the whole of 2024.
   CAREER_CHAPTERS = [
     { year: 2026, entries: [
-      { track: "professional", title: "Sr. Software Engineer", org: "NVIDIA", dates: "July 2026 — Present", start: "2026-07", end: nil, logo: "nvidia_logo.png", alt: "NVIDIA",
-        desc: "New cluster builds &amp; performance optimization for next-generation hyperscale deployments." },
-      { track: "extracurricular", title: "Team Coach", org: "SC26 Student Cluster Competition", dates: "April 2026 — Present", start: "2026-04", end: nil, logo: "SC26-01.png", alt: "SC26", logo_light: true,
+      { track: "professional", title: "Sr. Software Engineer", org: "Nvidia", dates: "July 2026 — Present", start: "2026-07", end: nil, logo: "nvidia_logo.png", alt: "Nvidia",
+        # `desc` takes either a single string or a list of paragraphs.
+        desc: [
+          "New cluster builds &amp; performance optimization for next-generation hyperscale deployments.",
+          '<a href="https://developer.nvidia.com/blog/inside-the-nvidia-rubin-platform-six-new-chips-one-ai-supercomputer/" target="_blank" rel="noopener">NVIDIA Vera Rubin platform</a>.'
+        ],
+        media: [
+          { file: "nvidia-1.png", alt: "Nvidia Vera Rubin Platform"}
+        ] },
+      { track: "extracurricular", title: "Team Coach", org: "SC26 Student Cluster Competition", dates: "April 2026 — Present", start: "2026-04", end: nil,
         desc: '<a href="/sc26">SC26 Team Site.</a>' },
-      { track: "extracurricular", title: "Online Conference Chair", org: "Hot Interconnects 2026", mark: "HotI", dates: "January 2026 — Present", start: "2026-01", end: nil,
+      { track: "extracurricular", title: "Online Conference Chair", org: "Hot Interconnects 2026", dates: "January 2026 — Present", start: "2026-01", end: nil,
         desc: '<a href="https://hoti.org/2026/committees.html" target="_blank" rel="noopener">HotI 2026 Committees.</a>' }
     ] },
     { year: 2025, entries: [
       { track: "professional", title: "Sr. Software Engineer", org: "Tesla", dates: "December 2025 — July 2026", start: "2025-12", end: "2026-07", logo: "tesla_logo_2.png", alt: "Tesla", tenure: "tesla",
-        desc: "More ml &amp; more hpc infra for tesla ap." },
+        desc: 'More ml &amp; more hpc infra for ' \
+              '<a href="https://www.tesla.com/autopilot" target="_blank" rel="noopener">tesla ap</a>.' },
       { track: "professional", title: "Software Engineer", org: "Tesla", dates: "January 2025 — December 2025", start: "2025-01", end: "2025-12", logo: "tesla_logo_2.png", alt: "Tesla", tenure: "tesla",
-        desc: "Machine Learning &amp; HPC Infrastructure for Tesla Autopilot." },
-      { track: "extracurricular", title: "Committee Member", org: "SC25 HPC Student Cluster Competition", mark: "SC25", dates: "January 2025 — November 2025", start: "2025-01", end: "2025-11",
+        desc: 'Machine learning &amp; HPC infrastructure for Tesla Autopilot.',
+        media: [
+          { file: "tesla-2.jpeg", alt: "Tesla AI Training Capacity Ramp" },
+          { file: "tesla-3.jpeg", alt: "Tesla Cortex - Tesla Supercomputer (Nvidia H100)" },
+          { file: "tesla-1.jpeg", alt: "Tesla Cortex 2 - Tesla Supercomputer (Nvidia GB300)" },
+        ] },
+      { track: "extracurricular", title: "Committee Member", org: "SC25 HPC Student Cluster Competition", dates: "January 2025 — November 2025", start: "2025-01", end: "2025-11",
         desc: '<a href="https://sc25.supercomputing.org/planning-committee/" target="_blank" rel="noopener">SC25 Planning Committee.</a>' }
     ] },
     { year: 2024, entries: [
-      { track: "extracurricular", title: "Student Volunteer", org: "PEARC24 Conference", mark: "PEARC", dates: "July 2024", start: "2024-07", end: "2024-07",
+      { track: "extracurricular", title: "Student Volunteer", org: "PEARC24 Conference", dates: "July 2024", start: "2024-07", end: "2024-07",
         desc: '<a href="https://pearc.acm.org/" target="_blank" rel="noopener">PEARC conference series.</a>' },
-      { track: "extracurricular", title: "Team Manager", org: "SC24 HPC Student Cluster Competition", dates: "June 2024 — December 2024", start: "2024-06", end: "2024-12", logo: "sc24_logo_2.png", alt: "SC24",
+      { track: "extracurricular", title: "Team Manager", org: "SC24 HPC Student Cluster Competition", dates: "June 2024 — December 2024", start: "2024-06", end: "2024-12",
         desc: 'Student teams design HPC clusters and compete in a 48-hour challenge. More info <a href="/sc24">here</a>.' },
-      { track: "extracurricular", title: "Project Evaluation Committee Member", org: "NM Supercomputing Challenge", mark: "NMSC", dates: "February 2024", start: "2024-02", end: "2024-02",
+      { track: "extracurricular", title: "Project Evaluation Committee Member", org: "NM Supercomputing Challenge", dates: "February 2024", start: "2024-02", end: "2024-02",
         desc: '<a href="https://supercomputingchallenge.org/23-24/evaluations-schedule" target="_blank" rel="noopener">Supercomputing Challenge website.</a>' },
-      { track: "professional", title: "Teaching Assistant — CS491", org: "The University of New Mexico", dates: "Spring & Fall 2024", start: "2024-01", end: "2024-12", logo: "unm_logo.png", alt: "UNM",
-        desc: "Teaching Assistant for CS491: High Performance Computing." },
-      { track: "extracurricular", title: "Team Manager", org: "Winter Classic Invitational HPC 2024", mark: "WC24", dates: "January 2024 — May 2024", start: "2024-01", end: "2024-05",
+      { track: "professional", title: "Teaching Assistant — CS491", org: "The University of New Mexico", dates: "Spring & Fall 2024", start: "2024-01", end: "2024-12", logo: "unm_mark.png", alt: "UNM",
+        desc: "Teaching Assistant for CS491: High Performance Computing.",
+        media: [
+          { file: "carc-1.png", alt: "CARC High Performance Computing Workshop (Dr. Fricke)"}
+          ] },
+      { track: "extracurricular", title: "Team Manager", org: "Winter Classic Invitational HPC 2024", dates: "January 2024 — May 2024", start: "2024-01", end: "2024-05",
         desc: '<a href="https://www.winterclassicinvitational.com/team/university-of-new-mexico-lobo24/" target="_blank" rel="noopener">View team site.</a>' },
-      { track: "extracurricular", title: "Member of Artifact Evaluation Committee", org: "International Conference for Performance Engineering (ICPE)", mark: "ICPE", dates: "January 2024 — May 2024", start: "2024-01", end: "2024-05",
+      { track: "extracurricular", title: "Member of Artifact Evaluation Committee", org: "International Conference for Performance Engineering (ICPE)", dates: "January 2024 — May 2024", start: "2024-01", end: "2024-05",
         desc: '<a href="https://icpe2024.spec.org/program-committee/" target="_blank" rel="noopener">2024 ICPE committee.</a>' },
-      { track: "extracurricular", title: "Team Manager", org: "ISC24 Virtual HPC Student Cluster Competition", mark: "ISC24", dates: "January 2024 — April 2024", start: "2024-01", end: "2024-04",
+      { track: "extracurricular", title: "Team Manager", org: "ISC24 Virtual HPC Student Cluster Competition", dates: "January 2024 — April 2024", start: "2024-01", end: "2024-04",
         desc: '<a href="https://www.isc-hpc.com/student-cluster-competition-2024.html" target="_blank" rel="noopener">View competition site.</a>' }
     ] },
     { year: 2023, entries: [
-      { track: "extracurricular", title: "Team Manager", org: "SC23 HPC Student Cluster Competition", dates: "August 2023 — December 2023", start: "2023-08", end: "2023-12", logo: "sc23_logo_2.png", alt: "SC23",
+      { track: "extracurricular", title: "Team Manager", org: "SC23 HPC Student Cluster Competition", dates: "August 2023 — December 2023", start: "2023-08", end: "2023-12",
         desc: 'More info <a href="/sc23">here</a>.' },
       { track: "professional", title: "HPC Systems Specialist", org: "Center for Advanced Research Computing — UNM", dates: "May 2023 — December 2024", start: "2023-05", end: "2024-12", logo: "carc_logo_transparent.png", alt: "CARC",
-        desc: "Supporting users on UNM HPC clusters, benchmarking, profiling, and reporting." },
-      { track: "extracurricular", title: "Peer Mentor", org: "UNM School of Engineering", dates: "January 2023 — December 2024", start: "2023-01", end: "2024-12", logo: "unm_logo.png", alt: "UNM",
+        desc: "Supporting users on UNM HPC clusters, benchmarking, profiling, and reporting.",
+        media: [
+          { file: "carc-2.png", alt: "Center for Advanced Reserach Computing Team"}
+        ] },
+      { track: "extracurricular", title: "Peer Mentor", org: "UNM School of Engineering", dates: "January 2023 — December 2024", start: "2023-01", end: "2024-12",
         desc: '<a href="https://ess.unm.edu/about-us/index.html" target="_blank" rel="noopener">UNM Engineering Student Success Center (ESS).</a>' },
-      { track: "extracurricular", title: "Team Manager", org: "Winter Classic Invitational HPC 2023", mark: "WC23", dates: "January 2023 — May 2023", start: "2023-01", end: "2023-05",
+      { track: "extracurricular", title: "Team Manager", org: "Winter Classic Invitational HPC 2023", dates: "January 2023 — May 2023", start: "2023-01", end: "2023-05",
         desc: '<a href="https://www.winterclassicinvitational.com/team/university-of-new-mexico/" target="_blank" rel="noopener">View team site.</a>' }
     ] },
     { year: 2022, entries: [
-      { track: "extracurricular", title: "Machine Learning Team", org: "NASA Minds Team Chili House", mark: "NASA", dates: "November 2022 — May 2023", start: "2022-11", end: "2023-05",
+      { track: "extracurricular", title: "Machine Learning Team", org: "NASA Minds Team Chili House", dates: "November 2022 — May 2023", start: "2022-11", end: "2023-05",
         desc: '<a href="https://drive.google.com/file/d/1lyjeK7hHzxfpkWrZFMXKVdWN3r56dOvG/view" target="_blank" rel="noopener">View PDR.</a>' },
-      { track: "professional", title: "Software Engineer, HPC", org: "Sandia National Laboratories", dates: "October 2022 — December 2024", start: "2022-10", end: "2024-12", logo: "sandia_labs_logo.png", alt: "Sandia",
-        desc: "Design, acquisition, deployment, and optimization of large-scale scientific HPC clusters. Full stack web in Ruby on Rails." },
+      { track: "professional", title: "Software Engineer, HPC", org: "Sandia National Laboratories", dates: "October 2022 — December 2024", start: "2022-10", end: "2024-12", logo: "sandia_mark.png", alt: "Sandia",
+        desc: "Design, acquisition, deployment, and optimization of large-scale scientific HPC clusters. Full stack web in Ruby on Rails.",
+        media: [
+          { file: "snl-team-photo.jpeg", alt: "Sandia National Laboratories 9320: HPC &amp Mission Computing, July 17 2023"}
+        ] },
       { track: "professional", title: "Software Engineer Intern", org: "Air Force Research Laboratory", dates: "August 2022 — December 2022", start: "2022-08", end: "2022-12", logo: "afrl_logo.png", alt: "AFRL",
         desc: "Cyber Resilience Team, Space Vehicles Directorate at Kirtland Air Force Base." },
-      { track: "extracurricular", title: "B.S. Computer Science w/ Minor in Mathematics", org: "The University of New Mexico", dates: "August 2022 — December 2024", start: "2022-08", end: "2024-12", logo: "unm_logo.png", alt: "UNM",
+      { track: "extracurricular", title: "B.S. Computer Science w/ Minor in Mathematics", org: "The University of New Mexico", dates: "August 2022 — December 2024", start: "2022-08", end: "2024-12",
         desc: nil }
     ] }
   ].freeze
@@ -137,20 +159,25 @@ module ContentHelper
   PHOTO_PLATES = [
     { title: "SC24 HPC Competition", meta: "Atlanta · 11/2024", href: "/sc24",
       alt: "Ryan Scherbarth at SC24 HPC Student Cluster Competition, Atlanta 2024",
-      images: ["SC24-35.jpeg", "SC24-33.jpeg", "SC24-34.jpeg",
-               ["SC24-27.jpg",  "Ryan Scherbarth SC24 cluster build, Team UNM"],
-               ["SC24-28.jpeg", "Ryan Scherbarth SC24 cluster build, Team UNM"],
-               ["SC24-29.jpeg", "Ryan Scherbarth SC24 cluster build, Team UNM"],
-               "SC24-08.jpeg", "SC24-14.jpeg", "SC24-07.jpeg"] },
+      images: ["SC24-35.jpeg",
+               "SC24-33.jpeg",
+               "SC24-34.jpeg",
+               "SC24-27.jpg",
+               "SC24-28.jpeg",
+               "SC24-29.jpeg",
+               "SC24-24.jpg",
+               "SC24-08.jpeg",
+               "SC24-14.jpeg",
+               "SC24-07.jpeg"] },
     { title: "PEARC24 HPC Conference", meta: "07/2024", href: "https://pearc.acm.org/",
       alt: "Ryan Scherbarth at PEARC24 HPC Conference 2024",
-      images: %w[PEARC24-06.jpeg PEARC24-01.jpeg PEARC24-02.jpeg PEARC24-03.jpeg PEARC24-04.jpeg PEARC24-05.jpeg] },
+      images: %w[PEARC24-06.jpeg PEARC24-01.jpeg PEARC24-02.jpeg] },
     { title: "RMACC HPC Conference", meta: "05/2024", href: "https://rmacc.org/about-us",
       alt: "Ryan Scherbarth at RMACC HPC Conference 2024",
       images: %w[RMACC24-01.jpeg RMACC24-02.jpeg RMACC24-03.jpeg] },
     { title: "SC23 HPC Competition", meta: "Denver · 11/2023", href: "/sc23",
       alt: "Ryan Scherbarth at SC23 HPC Student Cluster Competition, Denver 2023",
-      images: %w[SC23-04.jpg SC23-01.jpeg SC23-02.jpeg SC23-03.jpeg SC23-06.jpeg SC23-05.jpeg SC23-07.jpeg SC23-08.jpeg SC23-09.jpeg] },
+      images: %w[SC23-04.jpg SC23-01.jpeg SC23-02.jpeg SC23-03.jpeg SC23-06.jpeg SC23-05.jpeg SC23-09.jpeg] },
     { title: "Setup", meta: "", href: nil,
       alt: "Ryan Scherbarth home server and PC setup",
       images: %w[Setup-10.jpeg Setup-01.jpg Setup-05.jpeg Setup-06.jpeg Setup-08.jpg Setup-09.jpg Setup-07.jpg] },
@@ -182,10 +209,10 @@ module ContentHelper
 
   # 01 · Standing — the portrait carousel. [file, its own alt].
   PORTRAIT_FRAMES = [
-    ["Profile-05.jpg",  "Ryan Scherbarth — Sr. Software Engineer at NVIDIA"],
-    ["Profile-01.jpg",  "Ryan Scherbarth — software engineer and HPC researcher"],
-    ["Profile-02.jpeg", "Ryan Scherbarth — University of New Mexico Computer Science"],
-    ["Profile-03.jpeg", "Ryan Scherbarth — HPC and machine learning engineer"]
+    ["Profile-02.jpeg", "Ryan Scherbarth — SC23 HPC Competition"],
+    ["Profile-01.jpg",  "Ryan Scherbarth — SC23 HPC Student Cluster Competition"],
+    ["Profile-05.jpg",  "Ryan Scherbarth — SC23 HPC Cluster Competition"],
+    ["Profile-03.jpeg", "Ryan Scherbarth — UNM Center for Advanced Reserach Computing"]
   ].freeze
 
   def portrait_frames

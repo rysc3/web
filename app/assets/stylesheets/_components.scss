@@ -876,7 +876,7 @@
 .footer {
   position: relative;
   padding-block: clamp(1.5rem, 3vw, 2.25rem);
-  margin-top: var(--section-gap);
+  margin-top: clamp(2rem, 4vw, 3.5rem);
   background: var(--bg-ink);
   color: var(--fg-invert);
 }

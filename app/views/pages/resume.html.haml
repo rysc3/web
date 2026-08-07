@@ -1,8 +1,13 @@
 -# ── Resume ────────────────────────────────────────────────────
--# The browser's PDF reader paints its own grey field around the page and
--# cannot be styled from outside, so the document is rasterised at build
--# time (rake resume:render) and shown flat. The PDF itself is the
--# download — this is just the reading copy.
+-# A normal PDF viewer, with its edges clipped away.
+-#
+-# The browser's reader cannot be styled from outside — it paints a grey
+-# field around the page and a margin the page is fitted inside. So the
+-# frame is deliberately oversized by exactly that margin and the wrapper
+-# clips it: what is left is the page, edge to edge, with the reader's
+-# chrome outside the crop. Selecting and copying still work, because this
+-# is still the real PDF.
+- pdf = "/Ryan%20Scherbarth%20-%20Resume.pdf#toolbar=0&navpanes=0&scrollbar=0&statusbar=0&view=FitH"
 - content_for :bleed do
   .resume
     %a.btn.btn--ember.resume__get{href: "/Ryan%20Scherbarth%20-%20Resume.pdf", download: "Ryan Scherbarth - Resume.pdf"}
@@ -10,9 +15,4 @@
       = icon("download")
 
     .resume__sheet
-      = responsive_image_tag "resume-page.png",
-                             alt: "Ryan Scherbarth — resume",
-                             class: "resume__page",
-                             sizes: "(min-width: 900px) 62vh, 94vw",
-                             loading: "eager",
-                             fetchpriority: "high"
+      %iframe.resume__doc{src: pdf, title: "Ryan Scherbarth — resume"}

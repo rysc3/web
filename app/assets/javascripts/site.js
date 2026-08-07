@@ -153,99 +153,33 @@
 
   (function () {
     var nav = $(".nav");
-    var links = $(".nav__links");
-    var anchor = $(".masthead__nav-anchor");
+    var masthead = $(".masthead");
     if (!nav) return;
 
-    if (!anchor || !links) {
-      // Interior page: docked from the start, CSS already handles it.
+    if (!masthead) {
+      // Interior page: the bar is simply there.
       body.classList.add("is-docked");
       return;
     }
 
     body.classList.add("has-masthead");
 
-    var travel = 0;
-    var intro = 0;
-    var rise = 0;
+    // The plate opens on nothing but the photograph. The bar — brand,
+    // links, hamburger — arrives as soon as the page moves, over a short
+    // fixed run rather than travelling the height of the hero.
+    var RUN = 0;
     var docked = false;
 
     registerScroll(
       function () {
-        // Measure the docked resting position rather than assuming it is
-        // navH/2. On phones the row wraps to two lines and sits in a
-        // taller box, so any hard-coded assumption puts it on top of the
-        // masthead copy. Force the docked state, read, restore.
-        // Force the docked offset, read, restore. This has to null
-        // --nav-offset, not --nav-p: the transform reads the offset now,
-        // so pinning --nav-p would measure wherever the row happens to be
-        // sitting and hand back a nonsense travel distance.
-        var prev = root.style.getPropertyValue("--nav-offset");
-        root.style.setProperty("--nav-offset", "0px");
-        var lr = links.getBoundingClientRect();
-        // The row is position:fixed, so its docked centre is already in
-        // viewport coordinates and is constant. Adding pageYOffset here —
-        // as this did — inflated it by the current scroll position, so any
-        // re-measure taken while scrolled (a resize, a font load, opening
-        // the archive, changing the timeline filter) collapsed `travel`
-        // toward 1. After that p pinned to 1 at every offset and the links
-        // stayed stuck in the bar instead of dropping back into the photo.
-        var dockedCentre = lr.top + lr.height / 2;
-        root.style.setProperty("--nav-offset", prev || "0px");
-
-        // The anchor is in flow, so it needs the page-absolute position.
-        var anchorTop = anchor.getBoundingClientRect().top + (window.pageYOffset || 0);
-
-        // Centre the row on the anchor, whatever height the row happens to be.
-        travel = anchorTop - dockedCentre;
-
-        // The plate sticks through a stretch of surplus scroll at the top of
-        // the page. That stretch is the intro: the page holds still while the
-        // link row rises from below the fold into the frame. Read the height
-        // off the stage so CSS stays the single source of truth.
-        var stage = $(".masthead-stage");
-        intro = stage ? Math.max(0, stage.offsetHeight - window.innerHeight) : 0;
-        // With no intro (phones), the bar should start tinting the moment
-        // the page moves rather than waiting out a travel it never makes.
-        if (intro === 0) travel = Math.min(travel, Math.round(window.innerHeight * 0.35));
-
-        // How far below the anchor the row parks before it rises.
-        rise = Math.max(0, window.innerHeight + 170 - (dockedCentre + travel));
-
-        // A masthead too short to travel through is treated as no masthead
-        // rather than dividing by a near-zero distance.
-        if (travel < 40) {
-          travel = 0;
-          body.classList.remove("has-masthead");
-          root.style.setProperty("--nav-travel", "0px");
-          return;
-        }
-
-        body.classList.add("has-masthead");
-        root.style.setProperty("--nav-travel", travel + "px");
+        RUN = Math.max(120, Math.round(window.innerHeight * 0.22));
       },
       function (y) {
-        var p, offset;
+        var s = easeInOutCubic(clamp(y / RUN, 0, 1));
 
-        if (y < intro) {
-          // Act one: the plate is pinned and the row climbs into it.
-          var i = easeInOutCubic(intro > 0 ? clamp(y / intro, 0, 1) : 1);
-          p = 0;
-          offset = travel + (1 - i) * rise;
-        } else {
-          // Act two: the row travels from the plate up into the bar.
-          p = travel > 0 ? clamp((y - intro) / travel, 0, 1) : 1;
-          offset = travel * (1 - p);
-        }
-
-        // Hold full size through the first 55% of the travel, then compress.
-        var s = easeInOutCubic(clamp((p - 0.55) / 0.45, 0, 1));
-
-        root.style.setProperty("--nav-offset", offset.toFixed(1) + "px");
-        root.style.setProperty("--nav-p", p.toFixed(4));
         root.style.setProperty("--nav-s", s.toFixed(4));
 
-        var isDocked = p > 0.6;
+        var isDocked = s > 0.5;
         if (isDocked !== docked) {
           docked = isDocked;
           body.classList.toggle("is-docked", isDocked);

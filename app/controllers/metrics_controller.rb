@@ -11,6 +11,11 @@ class MetricsController < ApplicationController
   FEED_LIMIT = 120
   TOP_LIMIT = 12
 
+  # The store is SQLite on an ephemeral dyno disk, so a freshly booted or
+  # freshly deployed dyno can legitimately have no tables yet. That is an
+  # empty dashboard, not a 500.
+  before_action :require_tables
+
   def index
     @page_title = "Metrics"
     @og_description = "Request telemetry."
@@ -31,9 +36,6 @@ class MetricsController < ApplicationController
     @browsers = top(scope, :browser)
     @devices = top(scope, :device_type)
     @referers = top(scope.where.not(referer: [nil, ""]), :referer)
-
-    @by_hour = scope.group("strftime('%H', occurred_at)").count if sqlite?
-    @by_hour ||= scope.group("EXTRACT(HOUR FROM occurred_at)").count
 
     @feed = scope.recent.limit(FEED_LIMIT)
     @buffer_used = Hit.count
@@ -67,6 +69,13 @@ class MetricsController < ApplicationController
   end
 
   private
+
+  def require_tables
+    return if Hit.table_exists? && HitRollup.table_exists?
+
+    @page_title = "Metrics"
+    render "metrics/empty", status: :service_unavailable
+  end
 
   def sqlite?
     ActiveRecord::Base.connection.adapter_name.downcase.include?("sqlite")

@@ -1,0 +1,9 @@
+.shell
+  .mx-head
+    %h1.mx-title Metrics
+  .mx-note
+    %p
+      No telemetry tables yet. This store lives on the dyno's own disk, which Heroku discards on every
+      deploy and restart, so the schema is rebuilt at boot —
+      %b bin/rails db:prepare
+      runs ahead of the server. If you are seeing this, that has not run yet.

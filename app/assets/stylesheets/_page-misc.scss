@@ -363,10 +363,15 @@
   .meet__grid { grid-template-rows: minmax(520px, 62svh) minmax(560px, 70svh); }
 }
 
+
 // ── Resume ──────────────────────────────────────────────────
 //
-// A rasterised page on the sheet. No reader chrome, no grey field, no
-// fade — the document simply fills the screen and stops at its own edge.
+// A real PDF viewer with its edges cropped off. The reader fits the page
+// inside a margin of its own and paints grey around it; --reader-bleed is
+// that margin, the frame is grown by it on every side, and the wrapper
+// clips the result. The page ends up filling the sheet exactly, the grey
+// lands outside the crop, and the text is still the PDF's own — so it
+// selects and copies like any other document.
 
 .resume {
   position: relative;
@@ -379,31 +384,46 @@
   padding: calc(var(--nav-h) + clamp(1rem, 3vh, 2rem)) var(--gutter) clamp(2rem, 5vh, 3.5rem);
 }
 
-.resume__sheet {
-  width: 100%;
-  max-width: 60rem;
-  display: grid;
-  place-items: center;
-}
+.resume__get { justify-self: center; }
 
-.resume__page {
-  display: block;
-  width: auto;
+.resume__sheet {
+  // How far the reader insets the page inside its own frame. MEASURED, not
+  // guessed: at 6px, 252 grey pixels survive along the edges; 10px is the
+  // first value that leaves zero. Every pixel past that starts eating the
+  // document's own top margin (23px left at 10, 16px at 18), so this sits
+  // just above the threshold — enough headroom for rendering differences,
+  // not so much that the page looks cropped. Fixed px, not a percentage:
+  // the reader's inset is a constant, so a percentage would over-crop on a
+  // large screen and under-crop on a small one.
+  --reader-bleed: 10px;
+
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 8.5 / 11;
+  height: calc(100svh - var(--nav-h) - clamp(9rem, 18vh, 13rem));
   max-width: 100%;
-  // Fill the screen vertically; the page is portrait, so height is the
-  // binding dimension on any normal display.
-  max-height: calc(100svh - var(--nav-h) - clamp(9rem, 18vh, 13rem));
+  background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--r-sm);
   box-shadow: 0 1px 2px rgba(20, 20, 15, 0.05), 0 12px 40px rgba(20, 20, 15, 0.08);
 }
 
-// Above the page, centred — the first thing you can act on rather than
-// something floating over the document you are reading.
-.resume__get { justify-self: center; }
+.resume__doc {
+  position: absolute;
+  top: calc(var(--reader-bleed) * -1);
+  left: calc(var(--reader-bleed) * -1);
+  width: calc(100% + var(--reader-bleed) * 2);
+  height: calc(100% + var(--reader-bleed) * 2);
+  border: 0;
+  display: block;
+}
 
-// On a phone the page is taller than the screen, so let it run at full
-// width and let the page scroll rather than shrinking it to illegibility.
+// A page-shaped sheet is taller than a phone screen, so let it take the
+// width and give it room to be read.
 @media (max-width: 620px) {
-  .resume__page { max-height: none; width: 100%; }
+  .resume__sheet {
+    height: auto;
+    width: 100%;
+    aspect-ratio: 8.5 / 11;
+  }
 }

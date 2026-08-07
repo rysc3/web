@@ -13,7 +13,7 @@ module ApplicationHelper
   SOCIAL_ITEMS = [
     { label: "LinkedIn",      icon: "linkedin",      url: "https://www.linkedin.com/in/ryanscherbarth/" },
     { label: "GitHub",        icon: "github",        url: "https://github.com/rysc3" },
-    { label: "Stack Overflow", icon: "stackoverflow", url: "https://stackoverflow.com/users/20306478/ry-sch" },
+    { label: "Instagram",     icon: "instagram",     url: "https://www.instagram.com/ry.sc3/" },
     { label: "Email",         icon: "mail",          url: "mailto:online@ryanscherbarth.com" }
   ].freeze
 
@@ -38,27 +38,4 @@ module ApplicationHelper
     request.path == path
   end
 
-  # Initials for an organisation that has no logo file. Drops the noise
-  # words so "International Conference for Performance Engineering (ICPE)"
-  # reads as ICPE rather than ICFPE.
-  ORG_STOPWORDS = %w[the of for and a an at in on to].freeze
-
-  def org_monogram(org)
-    return "" if org.blank?
-
-    # An explicit acronym in parentheses always wins.
-    if (paren = org[/\(([A-Z0-9]{2,6})\)/, 1])
-      return paren
-    end
-
-    words = org.gsub(/[^A-Za-z0-9 ]/, " ").split
-                .reject { |w| ORG_STOPWORDS.include?(w.downcase) }
-
-    # A word that is already an acronym or a code (SC26, UNM, NASA, ICPE).
-    if (code = words.find { |w| w.match?(/\A[A-Z]{2,}[0-9]*\z/) })
-      return code[0, 4]
-    end
-
-    words.first(3).map { |w| w[0] }.join.upcase
-  end
 end

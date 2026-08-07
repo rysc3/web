@@ -196,7 +196,9 @@ hr {
 // Standard interior page top spacing (pages without a masthead).
 .page {
   padding-top: calc(var(--nav-h) + clamp(2.75rem, 7vw, 6.5rem));
-  padding-bottom: var(--section-gap);
+  // The footer brings its own top padding; a full --section-gap on top of
+  // that left a slab of empty stock above it on every page.
+  padding-bottom: clamp(2rem, 4vw, 3.5rem);
 }
 
 .section { margin-block: var(--section-gap); }

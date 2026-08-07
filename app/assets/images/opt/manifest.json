@@ -708,6 +708,15 @@
     "derivatives": {
     }
   },
+  "carc-1.png": {
+    "width": 5712,
+    "height": 4284,
+    "derivatives": {
+      "640": "opt/carc-1-640w.jpg",
+      "1280": "opt/carc-1-1280w.jpg",
+      "1920": "opt/carc-1-1920w.jpg"
+    }
+  },
   "carc_logo.png": {
     "width": 400,
     "height": 400,
@@ -746,6 +755,12 @@
   },
   "sandia_labs_logo.png": {
     "width": 1983,
+    "height": 779,
+    "derivatives": {
+    }
+  },
+  "sandia_mark.png": {
+    "width": 780,
     "height": 779,
     "derivatives": {
     }
@@ -801,6 +816,30 @@
       "1920": "opt/stock-1920w.jpg"
     }
   },
+  "tesla-1.jpeg": {
+    "width": 1280,
+    "height": 640,
+    "derivatives": {
+    }
+  },
+  "tesla-2.jpeg": {
+    "width": 1280,
+    "height": 624,
+    "derivatives": {
+    }
+  },
+  "tesla-3.jpeg": {
+    "width": 1280,
+    "height": 640,
+    "derivatives": {
+    }
+  },
+  "tesla-4.jpeg": {
+    "width": 1280,
+    "height": 720,
+    "derivatives": {
+    }
+  },
   "tesla-battery.png": {
     "width": 1153,
     "height": 767,
@@ -822,6 +861,12 @@
   "unm_logo.png": {
     "width": 746,
     "height": 558,
+    "derivatives": {
+    }
+  },
+  "unm_mark.png": {
+    "width": 340,
+    "height": 225,
     "derivatives": {
     }
   },

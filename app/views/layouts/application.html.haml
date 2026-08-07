@@ -38,7 +38,7 @@
     = javascript_include_tag 'site', defer: true
 
     %script{type: "application/ld+json"}
-      - schema = {"@context" => "https://schema.org", "@type" => "Person", "name" => "Ryan Scherbarth", "url" => "https://ryanscherbarth.com", "image" => asset_url("Profile-05.jpg"), "jobTitle" => "Senior Software Engineer, AI/ML", "worksFor" => {"@type" => "Organization", "name" => "NVIDIA"}, "alumniOf" => {"@type" => "CollegeOrUniversity", "name" => "University of New Mexico"}, "sameAs" => ["https://www.linkedin.com/in/ryanscherbarth/", "https://github.com/rysc3"]}
+      - schema = {"@context" => "https://schema.org", "@type" => "Person", "name" => "Ryan Scherbarth", "url" => "https://ryanscherbarth.com", "image" => asset_url("Profile-05.jpg"), "jobTitle" => "Senior Software Engineer, AI/ML", "worksFor" => {"@type" => "Organization", "name" => "Nvidia"}, "alumniOf" => {"@type" => "CollegeOrUniversity", "name" => "University of New Mexico"}, "sameAs" => ["https://www.linkedin.com/in/ryanscherbarth/", "https://github.com/rysc3"]}
       = raw(schema.to_json)
     - if @og_image.present?
       %script{type: "application/ld+json"}
