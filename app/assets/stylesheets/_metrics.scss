@@ -1,0 +1,338 @@
+// ─────────────────────────────────────────────────────────────
+//  /metrics — the hidden instrument panel
+//
+//  Same stock and type as the rest of the site, but denser: this is a
+//  readout, not an essay. Numbers are mono and tabular; everything is
+//  bounded so the page cannot get slower as the buffer fills.
+// ─────────────────────────────────────────────────────────────
+
+.mx-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding-bottom: var(--sp-4);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.mx-title {
+  font-family: var(--font-serif);
+  font-size: var(--fs-h2);
+  font-weight: 400;
+  letter-spacing: var(--tr-head);
+}
+
+.mx-windows { display: flex; flex-wrap: wrap; gap: 1.1rem; }
+
+.mx-window {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  letter-spacing: var(--tr-16);
+  color: var(--fg-3);
+  padding-bottom: 0.2em;
+  border-bottom: 2px solid transparent;
+  transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+
+  &:hover { color: var(--fg); }
+  &.is-on { color: var(--fg); border-color: var(--clay); }
+}
+
+// ── Headline figures ────────────────────────────────────────
+
+.mx-stats {
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.mx-stat {
+  background: var(--bg-raise);
+  padding: clamp(0.9rem, 2vw, 1.4rem);
+  display: grid;
+  gap: 0.3rem;
+}
+
+.mx-stat--hot { background: var(--clay-wash); }
+
+.mx-stat__n {
+  font-family: var(--font-code);
+  font-size: fluid(1.4rem, 1.1rem, 1.1vw, 2rem);
+  font-variant-numeric: tabular-nums;
+  color: var(--fg);
+  line-height: 1;
+}
+
+.mx-stat--hot .mx-stat__n { color: var(--clay-ink); }
+
+.mx-stat__k {
+  font-family: var(--font-sans);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tr-12);
+  color: var(--fg-3);
+}
+
+
+.mx-gauge {
+  margin-top: 0.75rem;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(20, 20, 15, 0.12);
+  overflow: hidden;
+}
+
+.mx-gauge__fill { display: block; height: 100%; background: var(--clay); }
+
+// ── Blocks ──────────────────────────────────────────────────
+
+.mx-block { margin-bottom: clamp(1.5rem, 3vw, 2.5rem); }
+.mx-block:last-of-type { margin-bottom: 0; }
+
+.mx-h {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: var(--tr-16);
+  color: var(--fg);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.65em;
+}
+
+.mx-h__sub { font-weight: 400; color: var(--fg-3); font-size: var(--fs-micro); }
+
+.mx-cols {
+  display: grid;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  // A 300px floor would overflow a 360px phone once the gap is counted.
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 760px) {
+  .mx-cols { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+}
+
+.mx-empty { font-size: var(--fs-sm); color: var(--fg-3); }
+
+// ── Ranked table ────────────────────────────────────────────
+
+.mx-table { border-top: 1px solid var(--line-faint); }
+
+.mx-tr {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 34% auto;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.42rem 0;
+  border-bottom: 1px solid var(--line-faint);
+}
+
+.mx-tr__k {
+  font-family: var(--font-code);
+  font-size: var(--fs-micro);
+  color: var(--fg-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mx-tr__bar {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(20, 20, 15, 0.07);
+  overflow: hidden;
+}
+
+.mx-tr__fill {
+  display: block;
+  height: 100%;
+  background: var(--fg-4);
+
+  &.is-hot { background: var(--clay); }
+}
+
+.mx-tr__n {
+  font-family: var(--font-code);
+  font-size: var(--fs-micro);
+  font-variant-numeric: tabular-nums;
+  color: var(--fg);
+  text-align: right;
+}
+
+.mx-table--headers .mx-tr { grid-template-columns: 15rem minmax(0, 1fr); }
+
+.mx-tr__v {
+  font-family: var(--font-code);
+  font-size: var(--fs-micro);
+  color: var(--fg-2);
+  word-break: break-all;
+}
+
+// ── Sparkline + hour histogram ──────────────────────────────
+
+.mx-spark {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 110px;
+  padding: 0 1px;
+  border-bottom: 1px solid var(--line);
+}
+
+.mx-spark__bar {
+  flex: 1;
+  min-width: 2px;
+  min-height: 1px;
+  background: var(--clay);
+  border-radius: 1px 1px 0 0;
+}
+
+.mx-spark__axis {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.4rem;
+  font-family: var(--font-code);
+  font-size: var(--fs-micro);
+  color: var(--fg-3);
+}
+
+.mx-hours {
+  display: grid;
+  grid-template-columns: repeat(24, 1fr);
+  gap: 3px;
+  align-items: end;
+  height: 120px;
+}
+
+.mx-hour { display: grid; align-content: end; gap: 0.3rem; height: 100%; }
+
+.mx-hour__bar {
+  min-height: 1px;
+  background: var(--fg-4);
+  border-radius: 1px 1px 0 0;
+}
+
+.mx-hour__k {
+  font-family: var(--font-code);
+  font-size: 0.6rem;
+  color: var(--fg-4);
+  text-align: center;
+}
+
+// ── Live feed ───────────────────────────────────────────────
+
+.mx-feed { border-top: 1px solid var(--line-faint); }
+
+.mx-row {
+  display: grid;
+  grid-template-columns: 9.5rem 3.2rem minmax(0, 1fr) 9rem 3rem 4rem;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.4rem 0.4rem;
+  border-bottom: 1px solid var(--line-faint);
+  font-family: var(--font-code);
+  font-size: var(--fs-micro);
+  color: var(--fg-2);
+  transition: background var(--dur-fast) var(--ease-out);
+
+  &:hover { background: var(--bg-raise); }
+  &.is-ai { background: var(--clay-wash); }
+  &.is-ai:hover { background: var(--bg-sunk); }
+}
+
+.mx-row__p,
+.mx-row__a { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mx-row__t { color: var(--fg-3); }
+.mx-row__m { color: var(--fg); }
+.mx-row__a { color: var(--fg-3); }
+.mx-row__d,
+.mx-row__s { text-align: right; font-variant-numeric: tabular-nums; }
+
+.mx-row__s.is-2xx { color: var(--ok); }
+.mx-row__s.is-3xx { color: var(--fg-3); }
+.mx-row__s.is-4xx { color: var(--warn); }
+.mx-row__s.is-5xx { color: var(--over); }
+
+@media (max-width: 900px) {
+  .mx-row { grid-template-columns: minmax(0, 1fr) 3rem 4rem; row-gap: 0.15rem; }
+  .mx-row__t { grid-column: 1 / -1; }
+  .mx-row__m,
+  .mx-row__a { display: none; }
+}
+
+// ── Detail ──────────────────────────────────────────────────
+
+.mx-detail { display: grid; gap: clamp(1.5rem, 3vw, 2.5rem); }
+
+.mx-ua {
+  font-family: var(--font-code);
+  font-size: var(--fs-sm);
+  color: var(--fg-2);
+  word-break: break-all;
+  background: var(--bg-raise);
+  border: 1px solid var(--line-faint);
+  border-radius: var(--r-md);
+  padding: 0.8rem 1rem;
+}
+
+// A readout does not need an essay's bottom margin.
+.page:has(.mx-head) { padding-bottom: clamp(1.5rem, 3vw, 2.5rem); }
+
+// ── Storage ─────────────────────────────────────────────────
+
+.mx-storage {
+  display: grid;
+  grid-template-columns: auto auto minmax(80px, 200px) 1fr;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: clamp(1.25rem, 2.5vw, 2rem);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--line);
+  font-family: var(--font-sans);
+  font-size: var(--fs-micro);
+  color: var(--fg-3);
+}
+
+.mx-storage__k { letter-spacing: var(--tr-12); }
+
+.mx-storage__v {
+  font-family: var(--font-code);
+  font-variant-numeric: tabular-nums;
+  color: var(--fg);
+}
+
+.mx-storage__note { text-align: right; }
+
+@media (max-width: 620px) {
+  .mx-storage { grid-template-columns: auto 1fr; }
+  .mx-storage .mx-gauge,
+  .mx-storage__note { grid-column: 1 / -1; }
+  .mx-storage__note { text-align: left; }
+}
+
+// ── How detection works ─────────────────────────────────────
+
+.mx-how {
+  margin-top: 0.9rem;
+  max-width: 82ch;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-body);
+  color: var(--fg-3);
+}
+
+.mx-how__list {
+  display: block;
+  margin-top: 0.5rem;
+  font-family: var(--font-code);
+  font-size: var(--fs-micro);
+  color: var(--fg-2);
+  word-spacing: 0.1em;
+}

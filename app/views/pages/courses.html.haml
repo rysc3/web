@@ -1,195 +1,38 @@
-.courses-wrap
+.shell.shell--wide
+  .page-hero.reveal
+    .page-hero__body
+      %h1.page-hero__title Courses
+      %p.page-hero__sub B.S. Computer Science, Minor in Mathematics · University of New Mexico
+      %p.page-hero__meta.courses-ink December 2024
 
-  .courses-total
-    %span.courses-total-label Total (incl. transfer)
-    %span.courses-total-credits 144 cr
+  %dl.courses-summary.reveal
+    .courses-summary__cell.courses-summary__cell--total
+      %dt.courses-summary__label Total (incl. transfer)
+      %dd.courses-summary__value= course_total_credits
+    .courses-summary__cell
+      %dt.courses-summary__label Semesters
+      %dd.courses-summary__value= course_semesters.size
+    .courses-summary__cell
+      %dt.courses-summary__label Courses
+      %dd.courses-summary__value= course_count
+    .courses-summary__cell
+      %dt.courses-summary__label Span
+      %dd.courses-summary__value= course_year_span
 
-  .courses-semester
-    .courses-semester-header
-      %span.courses-semester-name Fall 2024
-      %span.courses-semester-credits 22 cr
-    .courses-card
-      .courses-row
-        %span.course-code CS 341L
-        %span.course-title Intro to Computer Architecture and Organization
-        %span.course-credits 3
-      .courses-row
-        %span.course-code CS 460
-        %span.course-title Software Engineering
-        %span.course-credits 3
-      .courses-row
-        %span.course-code CS 481
-        %span.course-title Computer Operating Systems
-        %span.course-credits 3
-      .courses-row
-        %span.course-code CS 551
-        %span.course-title SC24 Student Cluster Competition — Grad Level
-        %span.course-credits 3
-      .courses-row
-        %span.course-code CS 561
-        %span.course-title Data Structures and Algorithms — Grad Level
-        %span.course-credits 3
-      .courses-row
-        %span.course-code GEOL 2110C
-        %span.course-title Historical Geology
-        %span.course-credits 4
-      .courses-row
-        %span.course-code MATH 375
-        %span.course-title Introduction to Numerical Computing
-        %span.course-credits 3
+.shell.shell--wide.section
 
-  .courses-semester
-    .courses-semester-header
-      %span.courses-semester-name Summer 2024
-      %span.courses-semester-credits 9 cr
-    .courses-card
-      .courses-row
-        %span.course-code MATH 314
-        %span.course-title Linear Algebra with Applications (ASU)
-        %span.course-credits 3
-      .courses-row
-        %span.course-code STAT 345
-        %span.course-title Elements of Math Statistics and Probability
-        %span.course-credits 3
-      .courses-row
-        %span.course-code PHYS 1310
-        %span.course-title Calculus-Based Physics 1 (ASU)
-        %span.course-credits 3
-
-  .courses-semester
-    .courses-semester-header
-      %span.courses-semester-name Spring 2024
-      %span.courses-semester-credits 20 cr
-    .courses-card
-      .courses-row
-        %span.course-code CS 357L
-        %span.course-title Declarative Programming
-        %span.course-credits 3
-      .courses-row
-        %span.course-code CS 361L
-        %span.course-title Data Structures and Algorithms
-        %span.course-credits 3
-      .courses-row
-        %span.course-code CS 591
-        %span.course-title High Performance Computing — Grad Level
-        %span.course-credits 3
-      .courses-row
-        %span.course-code MATH 2531
-        %span.course-title Calculus 3
-        %span.course-credits 4
-      .courses-row
-        %span.course-code MATH 306
-        %span.course-title College Geometry
-        %span.course-credits 3
-      .courses-row
-        %span.course-code MATH 356
-        %span.course-title Symbolic Logic — Grad Level
-        %span.course-credits 4
-
-  .courses-semester
-    .courses-semester-header
-      %span.courses-semester-name Fall 2023
-      %span.courses-semester-credits 20 cr
-    .courses-card
-      .courses-row
-        %span.course-code CS 261
-        %span.course-title Math Foundations of Computer Science
-        %span.course-credits 3
-      .courses-row
-        %span.course-code CS 351L
-        %span.course-title Design of Large Programs
-        %span.course-credits 4
-      .courses-row
-        %span.course-code CS 499
-        %span.course-title Individual Study — UNM EPICS Program
-        %span.course-credits 3
-      .courses-row
-        %span.course-code CS 499
-        %span.course-title Individual Study — SC23 Student Cluster Competition
-        %span.course-credits 3
-      .courses-row
-        %span.course-code HNRS 1120
-        %span.course-title Legacy of Ancient Greece
-        %span.course-credits 3
-      .courses-row
-        %span.course-code MATH 1522
-        %span.course-title Calculus 2 (CNM)
-        %span.course-credits 4
-
-  .courses-semester
-    .courses-semester-header
-      %span.courses-semester-name Summer 2023
-      %span.courses-semester-credits 6 cr
-    .courses-card
-      .courses-row
-        %span.course-code ARCH 1120
-        %span.course-title Intro to Architecture
-        %span.course-credits 3
-      .courses-row
-        %span.course-code ENVS 1130
-        %span.course-title The Blue Planet
-        %span.course-credits 3
-
-  .courses-semester
-    .courses-semester-header
-      %span.courses-semester-name Spring 2023
-      %span.courses-semester-credits 21 cr
-    .courses-card
-      .courses-row
-        %span.course-code CS 241L
-        %span.course-title Data Organization
-        %span.course-credits 3
-      .courses-row
-        %span.course-code CS 251L
-        %span.course-title Intermediate Programming
-        %span.course-credits 3
-      .courses-row
-        %span.course-code CS 293
-        %span.course-title Social and Ethical Issues in Computing
-        %span.course-credits 1
-      .courses-row
-        %span.course-code ECE 238L
-        %span.course-title Computer Logic Design
-        %span.course-credits 4
-      .courses-row
-        %span.course-code ENGL 2210
-        %span.course-title Professional and Technical Communication
-        %span.course-credits 3
-      .courses-row
-        %span.course-code GEOL 1165
-        %span.course-title People and Place
-        %span.course-credits 3
-      .courses-row
-        %span.course-code MATH 1512
-        %span.course-title Calculus 1
-        %span.course-credits 4
-
-  .courses-semester
-    .courses-semester-header
-      %span.courses-semester-name Fall 2022
-      %span.courses-semester-credits 18 cr
-    .courses-card
-      .courses-row
-        %span.course-code CS 152L
-        %span.course-title Computer Programming Fundamentals
-        %span.course-credits 3
-      .courses-row
-        %span.course-code ENGL 1120
-        %span.course-title Composition 2
-        %span.course-credits 3
-      .courses-row
-        %span.course-code GEOL 1110
-        %span.course-title Physical Geology
-        %span.course-credits 3
-      .courses-row
-        %span.course-code GEOL 1110L
-        %span.course-title Physical Geology Lab
-        %span.course-credits 1
-      .courses-row
-        %span.course-code GRMN 1110
-        %span.course-title German 1
-        %span.course-credits 3
-      .courses-row
-        %span.course-code MATH 1250
-        %span.course-title Trigonometry & Pre-Calculus
-        %span.course-credits 5
+  .courses-sheet
+    - course_semesters.each_with_index do |semester, i|
+      %section.courses-term.reveal{data: {"reveal-i" => [i, 3].min}}
+        %h2.courses-term__head
+          %span.courses-term__name= semester[:name]
+          %span.courses-term__rule{"aria-hidden" => "true"}
+          %span.courses-term__credits= "#{semester[:credits]} cr"
+        .courses-term__rows
+          - semester[:courses].each do |course|
+            .courses-row
+              %span.courses-row__code= course[:code]
+              %span.courses-row__title= course[:title]
+              %span.courses-row__credits
+                = course[:credits]
+                %span.visually-hidden>= course[:credits] == 1 ? "credit" : "credits"

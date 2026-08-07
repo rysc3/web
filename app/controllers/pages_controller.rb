@@ -70,9 +70,6 @@ class PagesController < ApplicationController
     @og_description = "Course history — B.S. Computer Science, University of New Mexico, Dec 2024."
   end
 
-  def web
-    @page_title = "Ryan's Site Info"
-  end
 
   def tesla_battery
     @og_image = "tesla-battery.png"

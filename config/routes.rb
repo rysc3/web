@@ -2,13 +2,11 @@ Rails.application.routes.draw do
 
   root 'pages#index'
 
-  get 'about', to: 'pages#about'
   get 'sc26', to: 'pages#sc26'
   get 'sc24', to: 'pages#sc24'
   get 'sc23', to: 'pages#sc23'
   get 'courses', to: 'pages#courses'
   get 'meet', to: 'pages#meet'
-  get 'web', to: 'pages#web'
   # Route to show /app/assets/images/tesla-battery.png
   get 'tesla_battery', to: 'pages#tesla_battery'
 
@@ -21,6 +19,11 @@ Rails.application.routes.draw do
   get '/zoom', to: redirect('https://unm.zoom.us/my/ryans')
 
   get '/sitemap.xml', to: 'pages#sitemap', defaults: { format: 'xml' }
+
+  # Hidden telemetry dashboard. Deliberately unlinked from anywhere on the
+  # site and excluded from sitemap.xml and robots.txt.
+  get '/metrics', to: 'metrics#index'
+  get '/metrics/:id', to: 'metrics#show', as: :metric, constraints: { id: /\d+/ }
 
   # catch-all 404
   match '*path', to: 'pages#not_found', via: :all

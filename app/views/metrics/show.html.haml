@@ -1,0 +1,27 @@
+-# One request, in full.
+.shell
+  .mx-head
+    %h1.mx-title Request
+    .mx-windows
+      %a.mx-window{href: "/metrics"} ← Back
+
+  .mx-detail
+    .spec
+      .spec__head
+        %span= "#{@hit.method_verb} #{@hit.path}"
+      - @fields.each do |label, value|
+        .spec__row
+          %span.spec__label= label
+          %span.spec__value= value
+
+    %h2.mx-h User agent
+    %p.mx-ua= @hit.user_agent.presence || "—"
+
+    %h2.mx-h
+      Every header
+      %span.mx-h__sub #{@hit.headers_hash.size} sent
+    .mx-table.mx-table--headers
+      - @hit.headers_hash.sort.each do |name, value|
+        .mx-tr
+          %span.mx-tr__k= name
+          %span.mx-tr__v= value

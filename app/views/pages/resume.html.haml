@@ -1,8 +1,18 @@
-.resume-toolbar.d-flex.justify-content-between.align-items-center.mb-3
-  %span.resume-toolbar-label Resume
-  %a.resume-open-btn{href: "/Ryan%20Scherbarth%20-%20Resume.pdf", download: "Ryan Scherbarth - Resume.pdf"}
-    Download PDF
-    %i.fas.fa-download.ms-1
+-# ── Resume ────────────────────────────────────────────────────
+-# The browser's PDF reader paints its own grey field around the page and
+-# cannot be styled from outside, so the document is rasterised at build
+-# time (rake resume:render) and shown flat. The PDF itself is the
+-# download — this is just the reading copy.
+- content_for :bleed do
+  .resume
+    %a.btn.btn--ember.resume__get{href: "/Ryan%20Scherbarth%20-%20Resume.pdf", download: "Ryan Scherbarth - Resume.pdf"}
+      Download PDF
+      = icon("download")
 
-.resume-embed-wrap
-  %iframe.resume-iframe{src: "/Ryan%20Scherbarth%20-%20Resume.pdf#zoom=page-fit&toolbar=0", frameborder: "0"}
+    .resume__sheet
+      = responsive_image_tag "resume-page.png",
+                             alt: "Ryan Scherbarth — resume",
+                             class: "resume__page",
+                             sizes: "(min-width: 900px) 62vh, 94vw",
+                             loading: "eager",
+                             fetchpriority: "high"

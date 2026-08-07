@@ -1,0 +1,450 @@
+// ─────────────────────────────────────────────────────────────
+//  Student Cluster Competition — SC26 / SC24 / SC23
+//
+//  These pages are almost entirely stock components. Only a handful
+//  of things have no equivalent in the library: the conference mark
+//  chip, the SC26 milestone timeline, the rack diagram and its
+//  frame, the rail legend, the poster sheet, and the figure /
+//  commentary split those sit in.
+// ─────────────────────────────────────────────────────────────
+
+// ── Rail semantics ──────────────────────────────────────────
+//
+// One token per InfiniBand rail, carried on `color` so an SVG
+// child picks it up through currentColor as either a fill or a
+// stroke without naming the token twice.
+
+.is-rail-0 { color: var(--rail-0); }
+.is-rail-1 { color: var(--rail-1); }
+.is-rail-2 { color: var(--rail-2); }
+.is-rail-3 { color: var(--rail-3); }
+
+// ── Conference mark ─────────────────────────────────────────
+//
+// All three SC marks are drawn for a dark ground: SC26 sets its
+// wordmark in white on transparency, SC23 and SC24 ship a black
+// plate baked into the file. On cream the first vanishes and the
+// other two read as raw rectangles. Printing each one on a slate
+// chip keeps every mark full colour and at full opacity — no
+// knockout, no filter, no greyscale.
+
+.sc-mark {
+  width: clamp(92px, 12vw, 148px);
+  background: var(--bg-ink);
+  border-radius: var(--r-md);
+  overflow: hidden;
+
+  img { opacity: 1; }
+}
+
+// SC23 and SC24 arrive with their own black field, so the chip is
+// only there to round the corners. SC26 is transparent artwork and
+// needs the margin drawn for it.
+.sc-mark--inset { padding: clamp(0.5rem, 1vw, 0.85rem); }
+
+// ── Figure / commentary split ───────────────────────────────
+//
+// The measured thing leads, the argument about it follows. Stacks
+// under 900px so neither column is ever squeezed below its measure.
+
+.sc-duo {
+  display: grid;
+  align-items: start;
+  gap: clamp(1.5rem, 3.5vw, 3rem);
+}
+
+// Stacked, the single column is an auto track, so a grid item's
+// automatic minimum size is its min-content — which the 430px rack
+// drawing inside blows straight past the viewport. Pin it to zero so
+// the frame, not the page, does the scrolling.
+.sc-duo > * { min-width: 0; }
+
+@media (min-width: 900px) {
+  .sc-duo { grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); }
+
+  // Where the commentary is the substance and the figure is a pair
+  // of small tables, the weighting inverts: the essay takes the
+  // wider column.
+  .sc-duo--essay { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); }
+}
+
+// A lone table has no business spanning 1420px. It is narrower than the
+// column it sits in, so it has to be told where in that column to stand —
+// without the auto margins a 46rem plate hangs off the left edge of a
+// 1460px page, which is what made the poster and the proposal read as
+// mis-set both shut and open.
+.sc-plate {
+  max-width: 46rem;
+  margin-inline: auto;
+}
+
+// Posters want the extra room once they are open.
+.sc-plate--wide { max-width: 62rem; }
+
+// A disclosure is a control, not a bar ruled across the page — so it
+// shrinks to its label, and is then centred over the panel it opens
+// rather than left in the corner of it.
+.sc-toggle {
+  width: auto;
+  margin-inline: auto;
+}
+
+// ── SC26 · milestone timeline ───────────────────────────────
+//
+// A dated rail. Vertical on phones because five ticks across
+// 360px is unreadable; horizontal from 760px, where each cell
+// contributes one segment of the rule the ticks sit on.
+
+.sc-timeline {
+  display: grid;
+  gap: var(--sp-5);
+}
+
+.sc-milestone {
+  position: relative;
+  padding-left: 1.35rem;
+  border-left: 1px solid var(--line);
+}
+
+.sc-milestone__tick {
+  position: absolute;
+  left: -4px;
+  top: 0.3rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--bg-raise);
+  border: 1px solid var(--line-loud);
+}
+
+.sc-milestone.is-active .sc-milestone__tick {
+  background: var(--clay);
+  border-color: var(--clay);
+  box-shadow: 0 0 0 4px var(--clay-wash);
+}
+
+// A date is not code. Sans, sentence case, tight.
+.sc-milestone__date {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: var(--tr-label);
+  font-variant-numeric: tabular-nums lining-nums;
+  color: var(--fg-3);
+  line-height: 1;
+}
+
+.sc-milestone.is-active .sc-milestone__date { color: var(--clay-ink); }
+
+.sc-milestone__label {
+  display: block;
+  margin-top: 0.6em;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-body);
+  color: var(--fg-2);
+  text-wrap: pretty;
+}
+
+// A second label on one milestone is a footnote to the first.
+.sc-milestone__label + .sc-milestone__label {
+  margin-top: 0.3em;
+  color: var(--fg-3);
+}
+
+@media (min-width: 760px) {
+  .sc-timeline {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .sc-milestone {
+    border-left: none;
+    border-top: 1px solid var(--line);
+    padding: 1.15rem var(--sp-5) 0 0;
+  }
+
+  .sc-milestone__tick { left: 0; top: -4px; }
+}
+
+// ── SC26 · rack diagram ─────────────────────────────────────
+//
+// A machinist's elevation drawn on the sheet: pale chassis, one
+// hairline per edge, the four rails the only colour in it. The SVG
+// never overflows the page — below ~490px the frame, not the
+// document, takes the scroll, which keeps the port labels at a
+// legible size instead of dissolving them.
+
+.sc-rack-frame {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  background: var(--bg-raise);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: clamp(0.6rem, 1.6vw, 1.25rem);
+}
+
+.sc-rack {
+  display: block;
+  width: 100%;
+  min-width: 430px;
+  height: auto;
+  // The only genuine code on the page apart from the tables: port
+  // designations and link rates.
+  font-family: var(--font-code);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+// Chassis: front panel catching the light, toned top, stone flank.
+// Every face carries the same hairline so the whole thing reads as
+// drawn rather than rendered.
+.sc-rack__top,
+.sc-rack__side,
+.sc-rack__face {
+  stroke: var(--line-loud);
+  stroke-width: 1;
+}
+
+.sc-rack__top   { fill: var(--bg-sunk); }
+.sc-rack__face  { fill: var(--bg); }
+.sc-rack__side  { fill: var(--fg-5); }
+
+// A NIC is a card seated in the chassis, so it takes the warm stock
+// and steps forward from the pale front panel.
+.sc-rack__nic {
+  fill: var(--bg-sunk);
+  stroke: var(--line-loud);
+}
+
+// Ports are bright cutouts; the bezel is the rail colour.
+.sc-rack__port { fill: var(--bg-raise); }
+
+// Cables are drawn over the chassis, so both sets of type carry a
+// halo in whatever they sit on. Cheaper than reordering the drawing,
+// and it is what a draughtsman would do: break the line at the label.
+.sc-rack__label,
+.sc-rack__rate {
+  paint-order: stroke fill;
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.sc-rack__label {
+  fill: var(--fg);
+  font-weight: 500;
+  stroke: var(--bg-sunk); // the NIC the label is printed on
+}
+
+.sc-rack__rate { stroke: var(--bg-raise); } // the sheet between nodes
+
+.sc-rack__node { fill: var(--fg-2); font-weight: 500; }
+
+// ── SC26 · rail legend ──────────────────────────────────────
+
+.sc-legend {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: var(--sp-4);
+}
+
+.sc-legend__row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: var(--tr-label);
+  color: var(--fg-2);
+}
+
+// The swatch is a length of cable, not a bullet.
+.sc-legend__dot {
+  width: 16px;
+  height: 3px;
+  border-radius: 2px;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+@media (min-width: 520px) {
+  .sc-legend { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+// ── SC26 · power budget ─────────────────────────────────────
+//
+// The two budgets and the sentence that links them are one
+// object: read top to bottom, uncapped → plan → capped. The
+// analysis sits alongside as commentary, not as a footnote.
+
+.sc-budget {
+  display: grid;
+  gap: clamp(1.15rem, 2.4vw, 1.75rem);
+}
+
+// The stock .dtable drops its middle column under 700px. Here that
+// column is the per-node wattage — the number the whole argument
+// turns on — so tighten the tracks instead of losing the data.
+@media (max-width: 700px) {
+  .sc-budget .dtable__row {
+    grid-template-columns: minmax(0, 1fr) 4.8rem 5rem;
+    gap: var(--sp-2);
+    padding-inline: 0.7rem;
+
+    > span:nth-child(2) { display: block; }
+  }
+}
+
+// ── SC24 · cluster diagram plate ────────────────────────────
+
+.sc-figure {
+  position: relative;
+  background: var(--bg-sunk);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  padding: clamp(0.75rem, 2vw, 1.5rem);
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+// ── SC24 · H100 chart plate ─────────────────────────────────
+//
+// The charts are diagrams: three fixed-width PNGs, ~1030px across, with
+// axis labels set at the size the plotting library chose. Half of a
+// .sc-duo rendered them at roughly 550px — barely half their own
+// resolution — and they were simply unreadable. The stage here is the
+// whole content column, capped just above the widest source so nothing
+// is ever upscaled into mush, and cut to 3:2 — the charts' own ratio, so
+// .gallery--contain letterboxes almost nothing away.
+//
+// The commentary stacks underneath at its own measure rather than
+// sitting beside, which is what buys the charts the width.
+
+.sc-charts {
+  display: grid;
+  justify-items: center;
+  gap: clamp(1.5rem, 3.5vw, 2.75rem);
+}
+
+.sc-charts > * {
+  width: 100%;
+  max-width: 68rem;
+}
+
+.gallery--chart .gallery__slide { aspect-ratio: 3 / 2; }
+
+// ── SC24 / SC23 · poster sheet ──────────────────────────────
+
+// Centred, like the trigger that opens it: the sheet is the width of the
+// plate, and the PDF button stands under the middle of it rather than
+// hanging off one corner.
+.sc-poster {
+  display: grid;
+  justify-items: center;
+  gap: var(--sp-4);
+  padding-top: var(--sp-4);
+}
+
+.sc-poster__sheet {
+  position: relative;
+  width: 100%;
+  background: var(--bg-sunk);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+// ── Power budget ────────────────────────────────────────────
+//
+// The analysis runs eight paragraphs; the two tables it used to sit
+// beside are a dozen rows. Side by side that left a tall thin column of
+// prose against a column of white space. Stacked, the tables read as
+// the figure and the essay gets a proper measure underneath them.
+
+// The tables sit to the right; the analysis starts level with them and
+// wraps underneath once it clears them. A float is the only layout that
+// does this — grid and flex both reserve a column the text cannot re-enter.
+.sc-budget-stack::after { content: ""; display: block; clear: both; }
+
+.sc-budget {
+  float: right;
+  width: 42%;
+  max-width: 34rem;
+  margin: 0 0 clamp(1.25rem, 2.5vw, 2rem) clamp(1.5rem, 3.5vw, 3rem);
+  display: grid;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+}
+
+// No measure cap: the whole point is that it runs the full width of the
+// section once it is past the tables.
+.sc-budget-stack > .prose { max-width: none; }
+
+// Floating a block beside body text needs room for both. Below this the
+// tables go back on top and the text runs full width underneath.
+@media (max-width: 860px) {
+  .sc-budget {
+    float: none;
+    width: 100%;
+    max-width: none;
+    margin: 0 0 clamp(1.5rem, 4vw, 2.5rem);
+  }
+}
+
+// ── SC26 · the proposal disclosure ──────────────────────────
+//
+// The trigger sits on the page gutter; the panel beneath runs the full
+// content width so the tables and the rack drawing have room. Open or
+// closed, the block terminates on a rule — without one the expanded
+// panel just ran off the bottom of a phone with nothing closing it.
+
+.sc-proposal {
+  border-top: 1px solid var(--line);
+  padding-top: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.sc-proposal__trigger {
+  width: 100%;
+  justify-content: space-between;
+}
+
+// The trigger is inside a .shell and the panel it opens is not, so the two
+// only agreed as long as the viewport was narrower than --maxw. Past that
+// the trigger stopped at the centred column while everything it revealed
+// kept going to both edges — the proposal read as bolted underneath the
+// page rather than as part of it. Same column as .shell, same centring.
+.sc-proposal__body {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  padding-top: clamp(1.5rem, 4vw, 3rem);
+  padding-bottom: clamp(2rem, 5vw, 3.5rem);
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.sc-proposal__part {
+  min-width: 0;
+  display: grid;
+  gap: clamp(0.9rem, 2vw, 1.35rem);
+}
+
+// The panel animates via grid-template-rows, so its own children must not
+// carry margins that survive the collapse.
+.sc-proposal__part > :last-child { margin-bottom: 0; }
+
+@media (max-width: 620px) {
+  .sc-proposal__body { padding-inline: var(--gutter); }
+}

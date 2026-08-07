@@ -1,23 +1,12 @@
-.not-found-wrap
-  %img.not-found-img{src: asset_path('Profile-05.jpg'), alt: 'Ryan Scherbarth'}
-  %p.not-found-code 404
-  %p.not-found-msg page not found
-  %a.not-found-link{href: "/"} back to home
-
-:javascript
-  (function() {
-    var canvas = document.getElementById('starfield');
-    if (!canvas) return;
-    canvas.classList.add('parallax-active');
-    var cx = window.innerWidth / 2;
-    var cy = window.innerHeight / 2;
-    window.addEventListener('resize', function() {
-      cx = window.innerWidth / 2;
-      cy = window.innerHeight / 2;
-    }, { passive: true });
-    document.addEventListener('mousemove', function(e) {
-      var dx = (e.clientX - cx) / cx;
-      var dy = (e.clientY - cy) / cy;
-      canvas.style.transform = 'translate(' + (-dx * 20) + 'px, ' + (-dy * 14) + 'px)';
-    }, { passive: true });
-  })();
+-# ── 404 ────────────────────────────────────────────────────────
+-# The old parallax script drove #starfield, which the redesign
+-# removed. Big serif, one quiet sans line, paper.
+.shell.nf
+  .nf__inner
+    .nf__frame
+      %img.nf__photo{src: asset_path('Profile-05.jpg'), alt: 'Ryan Scherbarth', decoding: "async"}
+    %h1.nf__code 404
+    %p.nf__msg page not found
+    %a.btn.nf__link{href: "/"}
+      = icon("arrow-left")
+      back to home

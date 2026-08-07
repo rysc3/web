@@ -1,0 +1,834 @@
+{
+  "DukeFull-01.jpeg": {
+    "width": 1588,
+    "height": 1060,
+    "derivatives": {
+      "640": "opt/DukeFull-01-640w.jpg",
+      "1280": "opt/DukeFull-01-1280w.jpg"
+    }
+  },
+  "DukeFull-02.png": {
+    "width": 1200,
+    "height": 630,
+    "derivatives": {
+    }
+  },
+  "DukeFull-03.jpeg": {
+    "width": 1306,
+    "height": 603,
+    "derivatives": {
+    }
+  },
+  "DukeHalf-01.png": {
+    "width": 1200,
+    "height": 630,
+    "derivatives": {
+      "640": "opt/DukeHalf-01-640w.jpg"
+    }
+  },
+  "DukeHalf-02.jpeg": {
+    "width": 1512,
+    "height": 1006,
+    "derivatives": {
+    }
+  },
+  "DukeHalf-03.jpg": {
+    "width": 3024,
+    "height": 2879,
+    "derivatives": {
+      "640": "opt/DukeHalf-03-640w.jpg",
+      "1280": "opt/DukeHalf-03-1280w.jpg",
+      "1920": "opt/DukeHalf-03-1920w.jpg"
+    }
+  },
+  "H100-01.png": {
+    "width": 938,
+    "height": 640,
+    "derivatives": {
+    }
+  },
+  "H100-02.png": {
+    "width": 1025,
+    "height": 687,
+    "derivatives": {
+    }
+  },
+  "H100-03.png": {
+    "width": 1019,
+    "height": 686,
+    "derivatives": {
+    }
+  },
+  "PEARC24-01.jpeg": {
+    "width": 1182,
+    "height": 665,
+    "derivatives": {
+      "640": "opt/PEARC24-01-640w.jpg"
+    }
+  },
+  "PEARC24-02.jpeg": {
+    "width": 1290,
+    "height": 726,
+    "derivatives": {
+      "640": "opt/PEARC24-02-640w.jpg",
+      "1280": "opt/PEARC24-02-1280w.jpg"
+    }
+  },
+  "PEARC24-03.jpeg": {
+    "width": 2048,
+    "height": 1536,
+    "derivatives": {
+      "640": "opt/PEARC24-03-640w.jpg",
+      "1280": "opt/PEARC24-03-1280w.jpg",
+      "1920": "opt/PEARC24-03-1920w.jpg"
+    }
+  },
+  "PEARC24-04.jpeg": {
+    "width": 2048,
+    "height": 1536,
+    "derivatives": {
+      "640": "opt/PEARC24-04-640w.jpg",
+      "1280": "opt/PEARC24-04-1280w.jpg",
+      "1920": "opt/PEARC24-04-1920w.jpg"
+    }
+  },
+  "PEARC24-05.jpeg": {
+    "width": 1024,
+    "height": 768,
+    "derivatives": {
+    }
+  },
+  "PEARC24-06.jpeg": {
+    "width": 2048,
+    "height": 1149,
+    "derivatives": {
+      "640": "opt/PEARC24-06-640w.jpg",
+      "1280": "opt/PEARC24-06-1280w.jpg",
+      "1920": "opt/PEARC24-06-1920w.jpg"
+    }
+  },
+  "Profile-01.jpg": {
+    "width": 2624,
+    "height": 2624,
+    "derivatives": {
+      "640": "opt/Profile-01-640w.jpg",
+      "1280": "opt/Profile-01-1280w.jpg",
+      "1920": "opt/Profile-01-1920w.jpg"
+    }
+  },
+  "Profile-02.jpeg": {
+    "width": 1086,
+    "height": 724,
+    "derivatives": {
+    }
+  },
+  "Profile-03.jpeg": {
+    "width": 1024,
+    "height": 768,
+    "derivatives": {
+    }
+  },
+  "Profile-04.jpeg": {
+    "width": 650,
+    "height": 650,
+    "derivatives": {
+    }
+  },
+  "Profile-05.jpg": {
+    "width": 1574,
+    "height": 1567,
+    "derivatives": {
+      "640": "opt/Profile-05-640w.jpg",
+      "1280": "opt/Profile-05-1280w.jpg"
+    }
+  },
+  "RMACC24-01.jpeg": {
+    "width": 1024,
+    "height": 768,
+    "derivatives": {
+    }
+  },
+  "RMACC24-02.jpeg": {
+    "width": 1024,
+    "height": 768,
+    "derivatives": {
+      "640": "opt/RMACC24-02-640w.jpg"
+    }
+  },
+  "RMACC24-03.jpeg": {
+    "width": 1024,
+    "height": 768,
+    "derivatives": {
+    }
+  },
+  "RMACC24-04.jpeg": {
+    "width": 768,
+    "height": 1024,
+    "derivatives": {
+      "640": "opt/RMACC24-04-640w.jpg"
+    }
+  },
+  "SC23-01.jpeg": {
+    "width": 1086,
+    "height": 724,
+    "derivatives": {
+      "640": "opt/SC23-01-640w.jpg"
+    }
+  },
+  "SC23-02.jpeg": {
+    "width": 1086,
+    "height": 724,
+    "derivatives": {
+      "640": "opt/SC23-02-640w.jpg"
+    }
+  },
+  "SC23-03.jpeg": {
+    "width": 1024,
+    "height": 768,
+    "derivatives": {
+      "640": "opt/SC23-03-640w.jpg"
+    }
+  },
+  "SC23-04.jpg": {
+    "width": 2048,
+    "height": 1365,
+    "derivatives": {
+      "640": "opt/SC23-04-640w.jpg",
+      "1280": "opt/SC23-04-1280w.jpg",
+      "1920": "opt/SC23-04-1920w.jpg"
+    }
+  },
+  "SC23-05.jpeg": {
+    "width": 1086,
+    "height": 724,
+    "derivatives": {
+      "640": "opt/SC23-05-640w.jpg"
+    }
+  },
+  "SC23-06.jpeg": {
+    "width": 4032,
+    "height": 3024,
+    "derivatives": {
+      "640": "opt/SC23-06-640w.jpg",
+      "1280": "opt/SC23-06-1280w.jpg",
+      "1920": "opt/SC23-06-1920w.jpg"
+    }
+  },
+  "SC23-07.jpeg": {
+    "width": 1024,
+    "height": 768,
+    "derivatives": {
+    }
+  },
+  "SC23-08.jpeg": {
+    "width": 768,
+    "height": 1024,
+    "derivatives": {
+    }
+  },
+  "SC23-09.jpeg": {
+    "width": 1024,
+    "height": 768,
+    "derivatives": {
+    }
+  },
+  "SC23Poster.jpg": {
+    "width": 10800,
+    "height": 14400,
+    "derivatives": {
+      "640": "opt/SC23Poster-640w.jpg",
+      "1280": "opt/SC23Poster-1280w.jpg",
+      "1920": "opt/SC23Poster-1920w.jpg"
+    }
+  },
+  "SC24-01.jpeg": {
+    "width": 1242,
+    "height": 634,
+    "derivatives": {
+      "640": "opt/SC24-01-640w.jpg"
+    }
+  },
+  "SC24-02.jpeg": {
+    "width": 1024,
+    "height": 768,
+    "derivatives": {
+      "640": "opt/SC24-02-640w.jpg"
+    }
+  },
+  "SC24-03.jpeg": {
+    "width": 2048,
+    "height": 1215,
+    "derivatives": {
+      "640": "opt/SC24-03-640w.jpg",
+      "1280": "opt/SC24-03-1280w.jpg",
+      "1920": "opt/SC24-03-1920w.jpg"
+    }
+  },
+  "SC24-03.png": {
+    "width": 3037,
+    "height": 2608,
+    "derivatives": {
+    }
+  },
+  "SC24-04.jpeg": {
+    "width": 1024,
+    "height": 768,
+    "derivatives": {
+    }
+  },
+  "SC24-05.jpeg": {
+    "width": 1024,
+    "height": 768,
+    "derivatives": {
+      "640": "opt/SC24-05-640w.jpg"
+    }
+  },
+  "SC24-06.jpeg": {
+    "width": 1024,
+    "height": 768,
+    "derivatives": {
+      "640": "opt/SC24-06-640w.jpg"
+    }
+  },
+  "SC24-07.jpeg": {
+    "width": 4030,
+    "height": 2107,
+    "derivatives": {
+      "640": "opt/SC24-07-640w.jpg",
+      "1280": "opt/SC24-07-1280w.jpg",
+      "1920": "opt/SC24-07-1920w.jpg"
+    }
+  },
+  "SC24-08.jpeg": {
+    "width": 4030,
+    "height": 2266,
+    "derivatives": {
+      "640": "opt/SC24-08-640w.jpg",
+      "1280": "opt/SC24-08-1280w.jpg",
+      "1920": "opt/SC24-08-1920w.jpg"
+    }
+  },
+  "SC24-09.jpeg": {
+    "width": 4030,
+    "height": 2259,
+    "derivatives": {
+      "640": "opt/SC24-09-640w.jpg",
+      "1280": "opt/SC24-09-1280w.jpg",
+      "1920": "opt/SC24-09-1920w.jpg"
+    }
+  },
+  "SC24-10.jpeg": {
+    "width": 4030,
+    "height": 2464,
+    "derivatives": {
+      "640": "opt/SC24-10-640w.jpg",
+      "1280": "opt/SC24-10-1280w.jpg",
+      "1920": "opt/SC24-10-1920w.jpg"
+    }
+  },
+  "SC24-11.jpeg": {
+    "width": 4030,
+    "height": 2451,
+    "derivatives": {
+      "640": "opt/SC24-11-640w.jpg",
+      "1280": "opt/SC24-11-1280w.jpg",
+      "1920": "opt/SC24-11-1920w.jpg"
+    }
+  },
+  "SC24-12.jpeg": {
+    "width": 4030,
+    "height": 2305,
+    "derivatives": {
+      "640": "opt/SC24-12-640w.jpg",
+      "1280": "opt/SC24-12-1280w.jpg",
+      "1920": "opt/SC24-12-1920w.jpg"
+    }
+  },
+  "SC24-13.jpeg": {
+    "width": 4030,
+    "height": 2456,
+    "derivatives": {
+      "640": "opt/SC24-13-640w.jpg",
+      "1280": "opt/SC24-13-1280w.jpg",
+      "1920": "opt/SC24-13-1920w.jpg"
+    }
+  },
+  "SC24-14.jpeg": {
+    "width": 4765,
+    "height": 2747,
+    "derivatives": {
+      "640": "opt/SC24-14-640w.jpg",
+      "1280": "opt/SC24-14-1280w.jpg",
+      "1920": "opt/SC24-14-1920w.jpg"
+    }
+  },
+  "SC24-15.jpeg": {
+    "width": 2998,
+    "height": 1908,
+    "derivatives": {
+      "640": "opt/SC24-15-640w.jpg",
+      "1280": "opt/SC24-15-1280w.jpg",
+      "1920": "opt/SC24-15-1920w.jpg"
+    }
+  },
+  "SC24-16.jpeg": {
+    "width": 2998,
+    "height": 1820,
+    "derivatives": {
+      "640": "opt/SC24-16-640w.jpg",
+      "1280": "opt/SC24-16-1280w.jpg",
+      "1920": "opt/SC24-16-1920w.jpg"
+    }
+  },
+  "SC24-17-poster.jpg": {
+    "width": 1600,
+    "height": 901,
+    "derivatives": {
+    }
+  },
+  "SC24-18.png": {
+    "width": 1062,
+    "height": 1222,
+    "derivatives": {
+      "640": "opt/SC24-18-640w.jpg"
+    }
+  },
+  "SC24-19.png": {
+    "width": 1170,
+    "height": 1317,
+    "derivatives": {
+      "640": "opt/SC24-19-640w.jpg"
+    }
+  },
+  "SC24-20.png": {
+    "width": 676,
+    "height": 898,
+    "derivatives": {
+      "640": "opt/SC24-20-640w.jpg"
+    }
+  },
+  "SC24-21.png": {
+    "width": 1126,
+    "height": 717,
+    "derivatives": {
+      "640": "opt/SC24-21-640w.jpg"
+    }
+  },
+  "SC24-22-poster.jpg": {
+    "width": 1600,
+    "height": 900,
+    "derivatives": {
+      "640": "opt/SC24-22-poster-640w.jpg",
+      "1280": "opt/SC24-22-poster-1280w.jpg"
+    }
+  },
+  "SC24-23.jpg": {
+    "width": 3500,
+    "height": 2333,
+    "derivatives": {
+      "640": "opt/SC24-23-640w.jpg",
+      "1280": "opt/SC24-23-1280w.jpg",
+      "1920": "opt/SC24-23-1920w.jpg"
+    }
+  },
+  "SC24-24.jpg": {
+    "width": 3500,
+    "height": 2333,
+    "derivatives": {
+      "640": "opt/SC24-24-640w.jpg",
+      "1280": "opt/SC24-24-1280w.jpg",
+      "1920": "opt/SC24-24-1920w.jpg"
+    }
+  },
+  "SC24-25.jpg": {
+    "width": 3500,
+    "height": 2333,
+    "derivatives": {
+      "640": "opt/SC24-25-640w.jpg",
+      "1280": "opt/SC24-25-1280w.jpg",
+      "1920": "opt/SC24-25-1920w.jpg"
+    }
+  },
+  "SC24-26.jpg": {
+    "width": 3500,
+    "height": 2333,
+    "derivatives": {
+      "640": "opt/SC24-26-640w.jpg",
+      "1280": "opt/SC24-26-1280w.jpg",
+      "1920": "opt/SC24-26-1920w.jpg"
+    }
+  },
+  "SC24-27.jpg": {
+    "width": 3500,
+    "height": 2333,
+    "derivatives": {
+      "640": "opt/SC24-27-640w.jpg",
+      "1280": "opt/SC24-27-1280w.jpg",
+      "1920": "opt/SC24-27-1920w.jpg"
+    }
+  },
+  "SC24-28.jpeg": {
+    "width": 1600,
+    "height": 1200,
+    "derivatives": {
+    }
+  },
+  "SC24-29.jpeg": {
+    "width": 1280,
+    "height": 960,
+    "derivatives": {
+    }
+  },
+  "SC24-30.jpeg": {
+    "width": 1280,
+    "height": 960,
+    "derivatives": {
+    }
+  },
+  "SC24-31.jpeg": {
+    "width": 1280,
+    "height": 960,
+    "derivatives": {
+    }
+  },
+  "SC24-32.jpeg": {
+    "width": 1600,
+    "height": 1200,
+    "derivatives": {
+    }
+  },
+  "SC24-33.jpeg": {
+    "width": 1024,
+    "height": 768,
+    "derivatives": {
+      "640": "opt/SC24-33-640w.jpg"
+    }
+  },
+  "SC24-34.jpeg": {
+    "width": 1024,
+    "height": 768,
+    "derivatives": {
+    }
+  },
+  "SC24-35.jpeg": {
+    "width": 1086,
+    "height": 724,
+    "derivatives": {
+    }
+  },
+  "SC24Poster.jpg": {
+    "width": 3072,
+    "height": 4608,
+    "derivatives": {
+      "640": "opt/SC24Poster-640w.jpg",
+      "1280": "opt/SC24Poster-1280w.jpg",
+      "1920": "opt/SC24Poster-1920w.jpg"
+    }
+  },
+  "SC25-01.jpeg": {
+    "width": 1086,
+    "height": 724,
+    "derivatives": {
+      "640": "opt/SC25-01-640w.jpg"
+    }
+  },
+  "SC25-02.jpeg": {
+    "width": 1086,
+    "height": 724,
+    "derivatives": {
+      "640": "opt/SC25-02-640w.jpg"
+    }
+  },
+  "SC25-03.jpeg": {
+    "width": 768,
+    "height": 1024,
+    "derivatives": {
+      "640": "opt/SC25-03-640w.jpg"
+    }
+  },
+  "SC25-04.jpeg": {
+    "width": 1024,
+    "height": 768,
+    "derivatives": {
+      "640": "opt/SC25-04-640w.jpg"
+    }
+  },
+  "SC26-01.png": {
+    "width": 664,
+    "height": 311,
+    "derivatives": {
+    }
+  },
+  "SC26-abdullah-ismail-headshot.jpeg": {
+    "width": 464,
+    "height": 464,
+    "derivatives": {
+    }
+  },
+  "SC26-alex-knigge-headshot.png": {
+    "width": 1256,
+    "height": 1256,
+    "derivatives": {
+      "640": "opt/SC26-alex-knigge-headshot-640w.jpg"
+    }
+  },
+  "SC26-amber-smith-headshot.png": {
+    "width": 800,
+    "height": 800,
+    "derivatives": {
+      "640": "opt/SC26-amber-smith-headshot-640w.jpg"
+    }
+  },
+  "SC26-beckett-dunlavy-headshot.jpeg": {
+    "width": 1851,
+    "height": 1565,
+    "derivatives": {
+      "640": "opt/SC26-beckett-dunlavy-headshot-640w.jpg",
+      "1280": "opt/SC26-beckett-dunlavy-headshot-1280w.jpg"
+    }
+  },
+  "SC26-ethan-hoover-headshot.jpg": {
+    "width": 1863,
+    "height": 2004,
+    "derivatives": {
+      "640": "opt/SC26-ethan-hoover-headshot-640w.jpg",
+      "1280": "opt/SC26-ethan-hoover-headshot-1280w.jpg"
+    }
+  },
+  "SC26-kianara-tarter.JPG": {
+    "width": 2795,
+    "height": 2741,
+    "derivatives": {
+      "640": "opt/SC26-kianara-tarter-640w.jpg",
+      "1280": "opt/SC26-kianara-tarter-1280w.jpg",
+      "1920": "opt/SC26-kianara-tarter-1920w.jpg"
+    }
+  },
+  "SC26-matthew-fricke-headshot.jpeg": {
+    "width": 800,
+    "height": 800,
+    "derivatives": {
+    }
+  },
+  "SC26-nevaeh-martinez-headshot.png": {
+    "width": 800,
+    "height": 800,
+    "derivatives": {
+      "640": "opt/SC26-nevaeh-martinez-headshot-640w.jpg"
+    }
+  },
+  "Sandia_National_Laboratories_logo.png": {
+    "width": 480,
+    "height": 480,
+    "derivatives": {
+    }
+  },
+  "Setup-01.jpg": {
+    "width": 7005,
+    "height": 4347,
+    "derivatives": {
+      "640": "opt/Setup-01-640w.jpg",
+      "1280": "opt/Setup-01-1280w.jpg",
+      "1920": "opt/Setup-01-1920w.jpg"
+    }
+  },
+  "Setup-02.jpeg": {
+    "width": 1024,
+    "height": 768,
+    "derivatives": {
+      "640": "opt/Setup-02-640w.jpg"
+    }
+  },
+  "Setup-03.jpeg": {
+    "width": 1024,
+    "height": 768,
+    "derivatives": {
+    }
+  },
+  "Setup-04.jpeg": {
+    "width": 1024,
+    "height": 768,
+    "derivatives": {
+    }
+  },
+  "Setup-05.jpeg": {
+    "width": 1024,
+    "height": 768,
+    "derivatives": {
+    }
+  },
+  "Setup-06.jpeg": {
+    "width": 1024,
+    "height": 768,
+    "derivatives": {
+    }
+  },
+  "Setup-07.jpg": {
+    "width": 768,
+    "height": 669,
+    "derivatives": {
+    }
+  },
+  "Setup-08.jpg": {
+    "width": 1024,
+    "height": 768,
+    "derivatives": {
+    }
+  },
+  "Setup-09.jpg": {
+    "width": 1024,
+    "height": 768,
+    "derivatives": {
+    }
+  },
+  "Setup-10.jpeg": {
+    "width": 8064,
+    "height": 4715,
+    "derivatives": {
+      "640": "opt/Setup-10-640w.jpg",
+      "1280": "opt/Setup-10-1280w.jpg",
+      "1920": "opt/Setup-10-1920w.jpg"
+    }
+  },
+  "WORLD-fav.png": {
+    "width": 160,
+    "height": 160,
+    "derivatives": {
+    }
+  },
+  "afrl_logo.png": {
+    "width": 652,
+    "height": 652,
+    "derivatives": {
+    }
+  },
+  "braveNewWorld.png": {
+    "width": 330,
+    "height": 330,
+    "derivatives": {
+    }
+  },
+  "carc_logo.png": {
+    "width": 400,
+    "height": 400,
+    "derivatives": {
+    }
+  },
+  "carc_logo_transparent.png": {
+    "width": 276,
+    "height": 107,
+    "derivatives": {
+    }
+  },
+  "loc.png": {
+    "width": 140,
+    "height": 65,
+    "derivatives": {
+    }
+  },
+  "nvidia_logo.png": {
+    "width": 520,
+    "height": 371,
+    "derivatives": {
+    }
+  },
+  "race1.png": {
+    "width": 225,
+    "height": 225,
+    "derivatives": {
+    }
+  },
+  "race2.jpeg": {
+    "width": 400,
+    "height": 400,
+    "derivatives": {
+    }
+  },
+  "sandia_labs_logo.png": {
+    "width": 1983,
+    "height": 779,
+    "derivatives": {
+    }
+  },
+  "sc23_logo.png": {
+    "width": 810,
+    "height": 810,
+    "derivatives": {
+    }
+  },
+  "sc23_logo_2.png": {
+    "width": 2400,
+    "height": 1500,
+    "derivatives": {
+    }
+  },
+  "sc24_logo.png": {
+    "width": 284,
+    "height": 177,
+    "derivatives": {
+    }
+  },
+  "sc24_logo_2.png": {
+    "width": 882,
+    "height": 527,
+    "derivatives": {
+    }
+  },
+  "server-01.JPG": {
+    "width": 2208,
+    "height": 1202,
+    "derivatives": {
+      "640": "opt/server-01-640w.jpg",
+      "1280": "opt/server-01-1280w.jpg",
+      "1920": "opt/server-01-1920w.jpg"
+    }
+  },
+  "setup-background.jpg": {
+    "width": 4032,
+    "height": 3024,
+    "derivatives": {
+      "640": "opt/setup-background-640w.jpg",
+      "1280": "opt/setup-background-1280w.jpg",
+      "1920": "opt/setup-background-1920w.jpg"
+    }
+  },
+  "stock.jpg": {
+    "width": 3388,
+    "height": 2502,
+    "derivatives": {
+      "640": "opt/stock-640w.jpg",
+      "1280": "opt/stock-1280w.jpg",
+      "1920": "opt/stock-1920w.jpg"
+    }
+  },
+  "tesla-battery.png": {
+    "width": 1153,
+    "height": 767,
+    "derivatives": {
+    }
+  },
+  "tesla_logo.png": {
+    "width": 1024,
+    "height": 1024,
+    "derivatives": {
+    }
+  },
+  "tesla_logo_2.png": {
+    "width": 481,
+    "height": 519,
+    "derivatives": {
+    }
+  },
+  "unm_logo.png": {
+    "width": 746,
+    "height": 558,
+    "derivatives": {
+    }
+  },
+  "winter_classic_logo.png": {
+    "width": 400,
+    "height": 400,
+    "derivatives": {
+    }
+  }
+}

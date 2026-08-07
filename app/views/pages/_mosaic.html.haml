@@ -1,0 +1,43 @@
+-# One packed contact sheet.
+-#
+-# `plate` is any hash with title:, meta:, alt: and images: — the same shape
+-# the home page, SC24 and SC23 all keep their photographs in. The geometry
+-# comes from photo_mosaic; nothing here decides layout.
+-#
+-# `bleed` is optional: pass it when the sheet runs the full width of the
+-# viewport rather than sitting inside a .shell, so it drops the sides of
+-# its frame.
+-#
+-# `key` is optional too: the short, stable name this sheet answers to in a
+-# photo permalink (#photo=<key>/<frame>). Without one the viewer slugs the
+-# plate title instead, which is stable but longer.
+-#
+-# Every tile is a real link to its own frame, so the sheet opens with no JS
+-# at all; data-frames / data-frame is what the viewer reads to upgrade that
+-# into a modal. Clips are in the walk on the same terms as stills — same
+-# link, same permalink, same place in prev/next — they simply open onto a
+-# transport instead of a still.
+.mosaic{class: ("mosaic--bleed" if local_assigns[:bleed]), data: {frames: true, plate: plate[:title], meta: plate[:meta]}, "data-frame-key" => local_assigns[:key], "data-frame-group" => local_assigns[:group]}
+  - photo_mosaic(plate).each_with_index do |t, i|
+    - geom = "--pad: #{t[:pad]}; --c1: #{t[:c1]}; --c2: #{t[:c2]}; --c3: #{t[:c3]};"
+    - if t[:clip]
+      -# The tile is only the poster and the affordance; the viewer is where
+      -# a clip plays, so there is no transport here and preload="none" keeps
+      -# the video off the wire until somebody asks for it. Still a <video>
+      -# rather than an <img>, because a clip cut without a poster has to
+      -# render as something.
+      %a.mtile.mtile--clip{href: t[:full], data: {frame: true}, "data-frame-id" => t[:id], "aria-label" => t[:alt], style: geom}
+        %video.mtile__clip{src: t[:full], poster: t[:poster], preload: "none", playsinline: true, tabindex: "-1", "aria-hidden" => "true"}
+        %span.mtile__play{"aria-hidden" => "true"}
+        %span.mtile__tab{"aria-hidden" => "true"}
+          %span.mtile__no= format("%02d", i + 1)
+          %span.mtile__cue Play
+    - else
+      -# data-frame-id is the frame's half of its permalink. It is the source
+      -# basename, not the href — the href carries a Sprockets digest that
+      -# changes whenever the file does.
+      %a.mtile{href: t[:full], data: {frame: true}, "data-frame-id" => t[:id], style: geom}
+        = responsive_image_tag t[:file], alt: t[:alt], class: "mtile__img", sizes: "(min-width: 1000px) 34vw, (min-width: 620px) 46vw, 94vw"
+        %span.mtile__tab{"aria-hidden" => "true"}
+          %span.mtile__no= format("%02d", i + 1)
+          %span.mtile__cue Open

@@ -1,0 +1,204 @@
+// Emit a fluid clamp() without letting Sass evaluate the rem+vw sum.
+// (Custom-property values below are exempt — Sass never touches those —
+// so only real property declarations need this.)
+@function fluid($min, $base, $slope, $max) {
+  @return unquote("clamp(#{$min}, #{$base} + #{$slope}, #{$max})");
+}
+
+// ─────────────────────────────────────────────────────────────
+//  Design tokens
+//
+//  Printed paper. A warm cream stock with real tooth, black ink,
+//  one clay accent, and photographs that bleed into the sheet
+//  rather than sitting in boxes on top of it.
+//
+//  Monospace for anything measured. Serif for anything said.
+// ─────────────────────────────────────────────────────────────
+
+:root {
+  // ── Stock ─────────────────────────────────────────────────
+  --bg:       #f0eee6;   // Ivory Medium — page canvas, the parchment
+  --bg-raise: #faf9f5;   // Ivory Light  — cards, elevated panels
+  --bg-card:  #faf9f5;
+  --bg-hover: #faf9f5;
+  --bg-sunk:  #e3dacc;   // Oat Warm     — grouped panels, feature containers
+  --bg-feature: #f5e3c7; // Manilla      — the one editorial hero card
+  --bg-ink:   #141413;   // Slate Dark   — footer and inverted blocks
+
+  // ── Rules ─────────────────────────────────────────────────
+  --line-faint: #cccbc8; // Stone      — section dividers, visible but quiet
+  --line:       #cccbc8;
+  --line-loud:  #87867f; // Cloud Dark — outlined buttons, mid-contrast rules
+
+  // ── Ink ───────────────────────────────────────────────────
+  --fg:   #141413;   // Slate Dark   — body, headings
+  --fg-2: #3d3d3a;   // Slate Medium — secondary copy
+  --fg-3: #87867f;   // Cloud Dark   — mid-contrast labels
+  --fg-4: #b0aea5;   // Cloud Medium — muted helper text, inactive nav
+  --fg-5: #cccbc8;   // Stone        — decorative only
+
+  // Ink laid over a photograph.
+  --fg-photo:   #ffffff;
+  --fg-photo-2: rgba(255, 255, 255, 0.8);
+
+  // Ink laid on the inverted block.
+  --fg-invert:   #f0eee6;
+  --fg-invert-2: #b0aea5;
+  --line-invert: #3d3d3a; // Slate Medium — dark-on-dark borders
+
+  // ── Accent: one pastel green ──────────────────────────────
+  //
+  // Same tonal family as Anthropic's Book Cloth — soft, earthy, one
+  // step off the neutral — rotated to green. Fills, rules and marks.
+  --clay:      #7cc39a;  // filled CTAs
+  --clay-deep: #5faa80;  // hover / pressed
+  --clay-wash: rgba(124, 195, 154, 0.18);
+  --manilla:   #f5e3c7;
+  --oat:       #e3dacc;
+
+  // The pastel is 1.8:1 on ivory — fine as a field, unreadable as text.
+  // Small accent text takes this darkened cut (5.5:1). And a filled
+  // button carries INK, not white: ink on the pastel is 7.8:1 where
+  // white would be 2.1:1.
+  --clay-ink: #2f6b4a;
+
+  --focus: #61aaf2;
+  --error: #bf4d43;
+
+  // ── Timeline tracks ───────────────────────────────────────
+  //
+  // Warm against cool. Two hues that separate instantly at 8px wide on
+  // cream, drawn from the brand's own earth family rather than a
+  // generic categorical ramp. "Live" is the pulse on the Now line, not
+  // a third colour — so hue answers "which kind of work" and nothing else.
+  --track-pro:        #4f9a72;   // the accent's own green — paid work
+  --track-pro-soft:   #a8d3bb;
+  --track-extra:      #b5825e;   // kraft — the volunteered work
+  --track-extra-soft: #dcc0a6;
+
+  // ── Data rails (HPC diagrams keep their semantics) ────────
+  --rail-0: #3a6ea5;
+  --rail-1: #47774f;
+  --rail-2: #99711d;
+  --rail-3: #6f5395;
+  --ok:     #47774f;
+  --warn:   #99711d;
+  --over:   #bf4d43;
+
+  // ── Type families ─────────────────────────────────────────
+  //
+  //  serif — display, body copy, card titles. Carrying body text in a
+  //          serif is the tell: research-publication DNA, not tech-UI.
+  //  sans  — nav, buttons, labels, badges, footer.
+  //  code  — technical snippets only, sparingly.
+  --font-serif: "Newsreader", Georgia, "Source Serif Pro", Charter, serif;
+  --font-sans:  "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --font-code:  "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  // ── Fluid type scale ──────────────────────────────────────
+  //
+  //  Serif tops out at 68px per the spec; --fs-display is the one
+  //  deliberate exception — a name laid across a full-bleed frame
+  //  needs more than a marketing headline does.
+  --fs-display: clamp(3rem, 0.9rem + 8.6vw, 8rem);
+  --fs-h1:      clamp(2.25rem, 1.35rem + 3.2vw, 4.25rem);  //  36 → 68
+  --fs-h2:      clamp(1.6rem, 1.25rem + 1.4vw, 2rem);      //  26 → 32
+  --fs-h3:      clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);   //  20 → 24
+  --fs-lede:    clamp(1.4rem, 1.15rem + 1.05vw, 2rem);
+  --fs-body:    clamp(1.0625rem, 0.98rem + 0.42vw, 1.25rem); // 17 → 20
+  --fs-sm:      clamp(0.9375rem, 0.92rem + 0.16vw, 1rem);    // 15 → 16
+  --fs-label:   0.875rem;   // 14
+  --fs-micro:   0.75rem;    // 12
+
+  // ── Line height ───────────────────────────────────────────
+  --lh-tight: 1.1;
+  --lh-ui:    1.4;
+  --lh-body:  1.43;
+
+  // ── Tracking ──────────────────────────────────────────────
+  //
+  //  The serif runs at its natural fit. The sans tightens as it
+  //  shrinks, which is the opposite of the tracked-out micro-caps
+  //  convention — and is what keeps it from reading as generic UI.
+  --tr-display: -0.03em;
+  --tr-head:    -0.02em;
+  --tr-serif:   normal;
+  --tr-12:      -0.02em;
+  --tr-16:      -0.005em;
+  --tr-lg:      -0.002em;
+  --tr-label:   -0.005em;
+
+  // ── Rhythm ────────────────────────────────────────────────
+  --gutter:    clamp(1.25rem, 4.2vw, 4.5rem);
+  --maxw:      1460px;
+  --maxw-text: 62ch;
+  --maxw-wide: 1180px;
+
+  --sp-1:  0.25rem;
+  --sp-2:  0.5rem;
+  --sp-3:  0.75rem;
+  --sp-4:  1rem;
+  --sp-5:  1.5rem;
+  --sp-6:  2rem;
+  --sp-7:  3rem;
+  --sp-8:  4rem;
+  --sp-9:  6rem;
+  --sp-10: 8rem;
+
+  --section-gap: clamp(4.5rem, 10vw, 10rem);
+
+  // ── Form ──────────────────────────────────────────────────
+  --r-sm: 2px;
+  --r-md: 4px;
+  --r-lg: 6px;
+  --r-xl: 10px;
+
+  // ── Motion ────────────────────────────────────────────────
+  --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast:  0.18s;
+  --dur:       0.32s;
+  --dur-slow:  0.6s;
+
+  // ── Chrome ────────────────────────────────────────────────
+  --nav-h: 68px;
+
+  // Driven by JS — never hand-set these.
+  --nav-p: 0;        // linear travel progress; drives position only
+  --nav-s: 0;        // eased, back-loaded; drives size / tint / fades
+  --nav-travel: 0px; // px distance between the hero home and the bar
+
+  // ── Legacy aliases ────────────────────────────────────────
+  //
+  // The first pass of this redesign ran a dark palette, naming its
+  // surfaces --ink-* and its text --paper-*. Page-level partials still
+  // reference those names. Aliasing them here re-skins those files for
+  // free until they are renamed out.
+  --ink-900: var(--bg);
+  --ink-850: var(--bg-sunk);
+  --ink-800: var(--bg-raise);
+  --ink-700: var(--bg-card);
+  --ink-600: var(--bg-hover);
+  --ink-500: var(--bg-hover);
+
+  --paper:   var(--fg);
+  --paper-2: var(--fg-2);
+  --paper-3: var(--fg-3);
+  --paper-4: var(--fg-4);
+  --paper-5: var(--fg-5);
+
+  --ember:      var(--clay-deep);
+  --ember-soft: var(--clay);
+  --ember-dim:  var(--clay);
+  --ember-wash: var(--clay-wash);
+  --clay-soft:  var(--clay);
+
+  // Mono used to carry every label on the site. Under the new type
+  // system that job belongs to the sans, so the old name is pointed
+  // at it wholesale; true code sets --font-code explicitly.
+  --font-mono: var(--font-sans);
+}
+
+@media (max-width: 700px) {
+  :root { --nav-h: 58px; }
+}

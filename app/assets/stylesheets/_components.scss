@@ -1,0 +1,1059 @@
+// ─────────────────────────────────────────────────────────────
+//  Components
+// ─────────────────────────────────────────────────────────────
+
+// ── Reveal on scroll ────────────────────────────────────────
+
+// A .reveal is only hidden once JS has adopted it (.is-armed). If the
+// script never runs, an observer misfires, or an element is scrolled past
+// before it can be observed, the content is simply visible — a section
+// silently rendering blank is far worse than a missed animation.
+.reveal {
+  transition:
+    opacity 0.7s var(--ease-out),
+    transform 0.8s var(--ease-out);
+}
+
+.reveal.is-armed {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.reveal.is-armed.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+// ── Buttons ─────────────────────────────────────────────────
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  letter-spacing: var(--tr-16);
+  color: var(--fg);
+  border: 1px solid var(--line-loud);
+  border-radius: 999px;
+  padding: 0.7em 1.3em;
+  background: transparent;
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+
+  &:hover {
+    color: var(--fg);
+    border-color: var(--fg);
+    background: var(--bg-raise);
+    transform: translateY(-1px);
+  }
+
+  &:active { transform: none; }
+
+  .icon { width: 0.95em; height: 0.95em; }
+}
+
+.btn--clay,
+.btn--ember {  // --ember kept as an alias class for existing markup
+  color: var(--fg);
+  border-color: var(--clay);
+  background: var(--clay);
+
+  &:hover {
+    color: var(--fg);
+    background: var(--clay-deep);
+    border-color: var(--clay-deep);
+  }
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: transparent;
+  padding-inline: 0;
+
+  &:hover { background: transparent; border-color: transparent; color: var(--fg); }
+}
+
+// ── Filter pills ────────────────────────────────────────────
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.pill {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  letter-spacing: var(--tr-16);
+  color: var(--fg-4);
+  border: 0;
+  border-radius: 0;
+  padding: 0.2em 0 0.45em;
+  position: relative;
+  transition: color var(--dur-fast) var(--ease-out);
+
+  // A rule that draws itself under the active filter — no capsule, no
+  // chrome. The set reads as a line of choices, not three buttons.
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: var(--clay);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--dur) var(--ease-out);
+  }
+
+  &:hover { color: var(--fg-2); }
+
+  &[aria-pressed="true"] {
+    color: var(--fg);
+
+    &::after { transform: scaleX(1); }
+  }
+}
+
+.pills { gap: clamp(1.25rem, 3vw, 2.25rem); }
+
+// ── Social row ──────────────────────────────────────────────
+
+.social {
+  display: flex;
+  gap: var(--sp-2);
+}
+
+.social__link {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line-faint);
+  border-radius: 50%;
+  color: var(--fg-3);
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    transform var(--dur) var(--ease-out);
+
+  .icon { width: 15px; height: 15px; }
+
+  &:hover {
+    color: var(--fg);
+    border-color: var(--line-loud);
+    transform: translateY(-2px);
+  }
+}
+
+// ── Surface ─────────────────────────────────────────────────
+
+.card {
+  position: relative;
+  background: var(--bg-raise);
+  border: 1px solid var(--line-faint);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+// ── Bento: tight panel mosaic ───────────────────────────────
+//
+// Hairline gaps so the panels read as one plate that has been cut,
+// not as floating cards.
+
+.bento {
+  display: grid;
+  gap: 3px;
+  // One column on phones. Two 150px tracks left no room for a title and a
+  // subtitle, and forcing a minimum height on a 16:10 box forced a minimum
+  // WIDTH the track could not honour.
+  grid-template-columns: 1fr;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.panel {
+  position: relative;
+  display: block;
+  min-width: 0;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--bg-raise);
+  isolation: isolate;
+}
+
+.panel__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  // Reproduced clean. The old dark theme crushed these to near-black;
+  // on cream stock a photograph should read as a photograph.
+  filter: contrast(1.03) saturate(0.97);
+  transform: scale(1.02);
+  transition: transform 0.9s var(--ease-out);
+}
+
+// Artwork rather than photography: contain it on stock, don't crop it.
+.panel--mark {
+  background: var(--manilla);
+
+  .panel__img {
+    object-fit: contain;
+    padding: clamp(1.25rem, 4%, 3rem);
+    padding-bottom: 42%;
+    filter: none;
+    mix-blend-mode: multiply;
+  }
+
+  .panel__scrim { background: none; }
+  .panel__index { color: var(--fg-4); }
+  .panel__title { color: var(--fg); }
+  .panel__sub   { color: var(--fg-3); }
+  .panel__arrow { color: var(--fg-3); }
+}
+
+// Only the lower band is tinted, so the image stays open at the top.
+.panel__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(18, 15, 10, 0.88) 0%,
+    rgba(18, 15, 10, 0.42) 34%,
+    rgba(18, 15, 10, 0) 62%
+  );
+  transition: opacity var(--dur) var(--ease-out);
+}
+
+.panel__body {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 2;
+  padding: clamp(0.9rem, 2vw, 1.35rem);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+
+.panel__index {
+  font-family: var(--font-sans);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tr-12);
+  color: var(--fg-photo-2);
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+.panel__title {
+  font-family: var(--font-serif);
+  font-size: fluid(1.3rem, 1.05rem, 1vw, 2rem);
+  font-weight: 380;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--fg-photo);
+}
+
+.panel__sub {
+  font-family: var(--font-sans);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tr-12);
+  color: var(--fg-photo-2);
+  margin-top: 0.5em;
+  display: block;
+}
+
+.panel__arrow {
+  flex-shrink: 0;
+  color: var(--fg-photo-2);
+  opacity: 0;
+  transform: translate(-6px, 6px);
+  transition:
+    opacity var(--dur) var(--ease-out),
+    transform var(--dur) var(--ease-out),
+    color var(--dur) var(--ease-out);
+
+  .icon { width: 18px; height: 18px; }
+}
+
+.panel:hover {
+  .panel__img { transform: scale(1.06); }
+  .panel__scrim { opacity: 0.86; }
+  .panel__arrow { opacity: 1; transform: none; color: var(--clay-soft); }
+}
+
+.panel--mark:hover .panel__arrow { color: var(--clay); }
+
+@media (min-width: 520px) {
+  .bento { grid-template-columns: repeat(2, 1fr); }
+}
+
+// An asymmetric six-cell plate once there is room for one.
+@media (min-width: 760px) {
+  .bento {
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: minmax(0, 1fr);
+  }
+
+  .panel { aspect-ratio: auto; }
+
+  .bento--six {
+    height: clamp(340px, 42vw, 520px);
+
+    .panel:nth-child(1) { grid-column: 1 / span 2; grid-row: 1 / span 2; }
+    .panel:nth-child(2) { grid-column: 3 / span 2; grid-row: 1; }
+    .panel:nth-child(3) { grid-column: 5 / span 2; grid-row: 1; }
+    .panel:nth-child(4) { grid-column: 3 / span 1; grid-row: 2; }
+    .panel:nth-child(5) { grid-column: 4 / span 1; grid-row: 2; }
+    .panel:nth-child(6) { grid-column: 5 / span 2; grid-row: 2; }
+  }
+}
+
+@media (min-width: 1200px) {
+  .bento--six { height: clamp(400px, 32vw, 560px); }
+}
+
+// ── Gallery ─────────────────────────────────────────────────
+//
+// Native scroll-snap does the hard part: real momentum on touch,
+// no JS in the swipe path. JS only syncs the segment bar and
+// drives autoplay.
+
+.gallery {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--bg-sunk);
+}
+
+.gallery__viewport {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overscroll-behavior-x: contain;
+
+  &::-webkit-scrollbar { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery__viewport { scroll-behavior: auto; }
+}
+
+.gallery__slide {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--bg-sunk);
+
+  img,
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+// Charts and posters must not be cropped.
+.gallery--contain .gallery__slide {
+  img, video { object-fit: contain; }
+}
+
+.gallery__caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 2.6rem 1.15rem 0.9rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tr-12);
+  color: var(--fg-photo);
+  background: linear-gradient(to top, rgba(18, 15, 10, 0.85), transparent);
+  pointer-events: none;
+}
+
+// Segment bar — one thin rule per slide. On autoplay galleries the
+// active segment fills across its dwell, so the bar *is* the clock.
+.gallery__bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  display: flex;
+  gap: 3px;
+  padding: 10px 12px;
+  pointer-events: none;
+}
+
+.gallery__seg {
+  flex: 1;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(255, 253, 246, 0.45);
+  overflow: hidden;
+  pointer-events: auto;
+  cursor: pointer;
+  position: relative;
+  border: none;
+  padding: 0;
+  // Widen the hit target without widening the mark.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -9px 0;
+  }
+}
+
+.gallery__seg-fill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--fg-photo);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+.gallery__seg.is-done .gallery__seg-fill { transform: scaleX(1); }
+
+.gallery__seg.is-active .gallery__seg-fill {
+  background: var(--clay-soft);
+  transform: scaleX(var(--seg-p, 1));
+}
+
+// When autoplay is running the fill is animated by JS via --seg-p;
+// this transition smooths the discrete updates.
+.gallery.is-playing .gallery__seg.is-active .gallery__seg-fill {
+  transition: transform 0.12s linear;
+}
+
+.gallery__arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  width: 40px;
+  height: 40px;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  color: var(--fg);
+  background: rgba(251, 250, 245, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(20, 20, 15, 0.1);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease-out), background var(--dur-fast) var(--ease-out);
+
+  .icon { width: 16px; height: 16px; }
+
+  &:hover { background: var(--bg-card); }
+  &[disabled] { opacity: 0 !important; pointer-events: none; }
+}
+
+.gallery__arrow--prev { left: 12px; }
+.gallery__arrow--next { right: 12px; }
+
+.gallery:hover .gallery__arrow,
+.gallery:focus-within .gallery__arrow { opacity: 1; }
+
+// Touch devices get no hover, so keep the arrows on but quiet.
+@media (hover: none) {
+  .gallery__arrow { opacity: 0.75; }
+}
+
+.gallery__count {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  z-index: 3;
+  font-family: var(--font-sans);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tr-12);
+  color: var(--fg-2);
+  background: rgba(251, 250, 245, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 0.35em 0.7em;
+  border-radius: 999px;
+  pointer-events: none;
+  font-variant-numeric: tabular-nums;
+}
+
+// ── Disclosure ──────────────────────────────────────────────
+
+.disclosure__trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-sans);
+  font-size: var(--fs-label);
+  letter-spacing: var(--tr-label);
+  color: var(--fg-3);
+  border: 1px solid var(--line-faint);
+  border-radius: var(--r-md);
+  padding: 0.85em 1.2em;
+  transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+
+  &:hover { color: var(--fg-2); border-color: var(--line); }
+
+  .icon {
+    margin-left: auto;
+    width: 13px;
+    height: 13px;
+    transition: transform var(--dur) var(--ease-out);
+  }
+
+  &[aria-expanded="true"] {
+    color: var(--fg);
+    border-color: var(--line);
+
+    .icon { transform: rotate(180deg); }
+  }
+}
+
+.disclosure__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--dur-slow) var(--ease-out);
+
+  > div { overflow: hidden; }
+}
+
+.disclosure__panel.is-open { grid-template-rows: 1fr; }
+
+.no-js .disclosure__panel { grid-template-rows: 1fr; }
+
+// ── Archive index ───────────────────────────────────────────
+//
+// The long list of links. Dense, date-led, hover pulls the row.
+
+.index-list {
+  border-top: 1px solid var(--line-faint);
+}
+
+.index-row {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr auto;
+  align-items: baseline;
+  gap: var(--sp-4);
+  padding: 0.72rem 0.35rem;
+  border-bottom: 1px solid var(--line-faint);
+  transition: background var(--dur-fast) var(--ease-out), padding-left var(--dur) var(--ease-out);
+
+  &:hover {
+    background: var(--bg-raise);
+    padding-left: 0.9rem;
+
+    .index-row__title { color: var(--fg); }
+    .index-row__mark  { opacity: 1; transform: none; color: var(--clay); }
+  }
+}
+
+.index-row__date {
+  font-family: var(--font-sans);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tr-12);
+  color: var(--fg-4);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.index-row__title {
+  font-size: var(--fs-sm);
+  color: var(--fg-2);
+  line-height: 1.45;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.index-row__mark {
+  color: var(--fg-5);
+  opacity: 0.5;
+  transform: translate(-4px, 3px);
+  transition:
+    opacity var(--dur) var(--ease-out),
+    transform var(--dur) var(--ease-out),
+    color var(--dur) var(--ease-out);
+
+  .icon { width: 13px; height: 13px; }
+}
+
+@media (max-width: 600px) {
+  .index-row {
+    grid-template-columns: 1fr auto;
+    row-gap: 0.2rem;
+    padding-block: 0.85rem;
+  }
+
+  .index-row__date { grid-column: 1 / -1; order: -1; }
+}
+
+// ── Spec table ──────────────────────────────────────────────
+
+.spec {
+  border: 1px solid var(--line-faint);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+
+.spec__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: 0.7rem 1.05rem;
+  background: var(--bg-sunk);
+  border-bottom: 1px solid var(--line-faint);
+  font-family: var(--font-sans);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: var(--tr-label);
+  color: var(--fg-2);
+}
+
+.spec__row {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: var(--sp-4);
+  padding: 0.62rem 1.05rem;
+  border-bottom: 1px solid var(--line-faint);
+  font-size: var(--fs-sm);
+  color: var(--fg-2);
+
+  &:last-child { border-bottom: none; }
+}
+
+.spec__label {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  letter-spacing: var(--tr-16);
+  color: var(--fg-3);
+  padding-top: 0.15em;
+}
+
+.spec__value { font-family: var(--font-code); font-size: var(--fs-sm); line-height: var(--lh-ui); }
+
+@media (max-width: 520px) {
+  .spec__row { grid-template-columns: 1fr; gap: 0.15rem; }
+}
+
+// ── Data table (power budget etc.) ──────────────────────────
+
+.dtable {
+  border: 1px solid var(--line-faint);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  font-family: var(--font-code);
+  font-size: var(--fs-sm);
+}
+
+.dtable__row {
+  display: grid;
+  grid-template-columns: 1fr 6rem 7rem;
+  padding: 0.5rem 1.05rem;
+  border-bottom: 1px solid var(--line-faint);
+  color: var(--fg-2);
+  font-variant-numeric: tabular-nums;
+
+  &:last-child { border-bottom: none; }
+
+  > span:nth-child(2),
+  > span:nth-child(3) { text-align: right; white-space: nowrap; }
+}
+
+.dtable__row--head {
+  background: var(--bg-sunk);
+  color: var(--fg-2);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: var(--fs-label);
+  letter-spacing: var(--tr-label);
+}
+
+.dtable__row--over { color: var(--over); }
+.dtable__row--ok   { color: var(--ok); }
+
+.dtable__cell-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  white-space: nowrap;
+}
+
+.dtable__note {
+  font-size: var(--fs-micro);
+  color: var(--clay);
+  letter-spacing: var(--tr-12);
+}
+
+@media (max-width: 700px) {
+  .dtable__row {
+    grid-template-columns: 1fr auto;
+    gap: var(--sp-3);
+
+    > span:nth-child(2) { display: none; }
+  }
+}
+
+// ── People ──────────────────────────────────────────────────
+
+.people {
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+}
+
+.person {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: var(--bg-raise);
+  border: 1px solid var(--line-faint);
+  border-radius: var(--r-lg);
+  padding: 1rem 1.15rem;
+  transition:
+    border-color var(--dur) var(--ease-out),
+    background var(--dur) var(--ease-out),
+    transform var(--dur) var(--ease-out);
+
+  &:hover {
+    border-color: var(--line-loud);
+    background: var(--bg-sunk);
+    transform: translateY(-2px);
+  }
+}
+
+.person__photo {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--bg-hover);
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .icon { width: 22px; height: 22px; color: var(--fg-5); }
+}
+
+
+.person__body { min-width: 0; flex: 1; }
+
+.person__name {
+  font-size: 1rem;
+  font-weight: 450;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.person__role {
+  font-family: var(--font-sans);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tr-label);
+  color: var(--fg-4);
+  margin-top: 0.35em;
+}
+
+.person__bio {
+  font-size: var(--fs-sm);
+  color: var(--fg-3);
+  line-height: 1.6;
+  margin-top: 0.55em;
+
+  &:empty { display: none; }
+}
+
+// ── Hero for interior pages ─────────────────────────────────
+
+.page-hero {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  padding-bottom: clamp(2rem, 4vw, 3.25rem);
+  border-bottom: 1px solid var(--line-faint);
+}
+
+.page-hero__mark {
+  flex-shrink: 0;
+  width: clamp(76px, 11vw, 132px);
+
+  img { width: 100%; height: auto; opacity: 0.9; }
+}
+
+.page-hero__body { flex: 1; min-width: 0; }
+
+.page-hero__title {
+  font-size: var(--fs-h1);
+  font-weight: 400;
+  color: var(--fg);
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+
+.page-hero__sub {
+  font-size: var(--fs-lede);
+  font-weight: 400;
+  color: var(--fg-2);
+  line-height: 1.3;
+}
+
+.page-hero__meta {
+  font-family: var(--font-sans);
+  font-size: var(--fs-label);
+  letter-spacing: var(--tr-label);
+  color: var(--fg-4);
+  margin-top: 0.7rem;
+}
+
+.page-hero__links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 1.4rem;
+}
+
+.page-hero__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65em;
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  letter-spacing: var(--tr-16);
+  color: var(--fg-2);
+  border-bottom: 1px solid var(--line-loud);
+  padding-bottom: 2px;
+  transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+
+  .icon { width: 11px; height: 11px; opacity: 0.7; }
+
+  &:hover { color: var(--clay-ink); border-color: var(--clay); }
+}
+
+@media (max-width: 700px) {
+  .page-hero { flex-direction: column; gap: 1.25rem; }
+}
+
+// ── Footer ──────────────────────────────────────────────────
+
+.footer {
+  position: relative;
+  padding-block: clamp(1.5rem, 3vw, 2.25rem);
+  margin-top: var(--section-gap);
+  background: var(--bg-ink);
+  color: var(--fg-invert);
+}
+
+
+
+
+
+
+.footer__base {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tr-12);
+  color: var(--fg-invert-2);
+}
+
+// ── Page transition ─────────────────────────────────────────
+
+.content { animation: page-in 0.5s var(--ease-out) both; }
+
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+body.is-leaving .content {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.2s var(--ease-soft), transform 0.2s var(--ease-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content { animation: none; }
+  body.is-leaving .content { opacity: 1; transform: none; transition: none; }
+}
+
+// ── Gallery aspect variants ─────────────────────────────────
+
+.gallery--portrait .gallery__slide { aspect-ratio: 4 / 5; }
+.gallery--square   .gallery__slide { aspect-ratio: 1 / 1; }
+.gallery--tall     .gallery__slide { aspect-ratio: 3 / 4; }
+
+// ── Intro block ─────────────────────────────────────────────
+
+.intro {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 3.5rem);
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+@media (min-width: 820px) {
+  .intro { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+}
+
+.intro__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(1.25rem, 3vw, 2rem);
+}
+
+.intro__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+}
+
+.intro__facts {
+  width: 100%;
+  border-top: 1px solid var(--line-faint);
+}
+
+.intro__fact {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--line-faint);
+  font-family: var(--font-sans);
+  font-size: var(--fs-label);
+  letter-spacing: var(--tr-label);
+
+  // Stone was decorative-weight (2.0:1) and these are real content.
+  dt { color: var(--fg-3); }
+  dd { color: var(--fg); text-align: right; margin: 0; }
+}
+
+// ── Gallery stack (the photo section) ───────────────────────
+
+.plates {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+}
+
+.plate__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  margin-bottom: 0.85rem;
+}
+
+.plate__title {
+  font-size: fluid(1.05rem, 0.95rem, 0.5vw, 1.4rem);
+  font-weight: 400;
+  color: var(--fg);
+  letter-spacing: -0.015em;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+a.plate__title:hover { color: var(--clay-deep); }
+
+.plate__meta {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  letter-spacing: var(--tr-16);
+  color: var(--fg-3);
+  white-space: nowrap;
+}
+
+// ── Footer social sits on the inverted block ────────────────
+
+.footer .social__link {
+  border-color: var(--line-invert);
+  color: var(--fg-invert-2);
+
+  &:hover { color: var(--fg-invert); border-color: var(--fg-invert-2); }
+}
+
+// ── Footer stamp ────────────────────────────────────────────
+
+.footer__stamp {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  letter-spacing: var(--tr-16);
+  color: var(--fg-invert-2);
+}
+
+// ── Multi-entry fact rows ───────────────────────────────────
+
+.intro__list {
+  display: grid;
+  gap: 0.4rem;
+  justify-items: end;
+}
+
+.intro__list li {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.6em;
+}
+
+.intro__tag {
+  font-family: var(--font-sans);
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: var(--tr-12);
+  color: var(--clay-ink);
+  border: 1px solid var(--clay);
+  border-radius: 999px;
+  padding: 0.1em 0.55em 0.15em;
+  white-space: nowrap;
+}
+
+.footer__elapsed {
+  font: inherit;
+  color: var(--fg-invert);
+  cursor: pointer;
+  border-bottom: 1px dotted var(--line-invert);
+  transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+
+  &:hover { color: #fff; border-color: var(--fg-invert-2); }
+}

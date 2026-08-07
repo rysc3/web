@@ -1,728 +1,202 @@
-%div.row
-  %div.col-md-4.d-flex.flex-column.align-items-center
-    .profile-picture
-      #carouselProfile.carousel.slide.carousel-fade{"data-bs-ride" => "carousel", "data-bs-interval" => "10000"}
-        .carousel-indicators
-          %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselProfile", :type => "button"}
-          %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselProfile", :type => "button"}
-          %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselProfile", :type => "button"}
-          %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselProfile", :type => "button"}
-        .carousel-inner
-          .carousel-item.active
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth — Sr. Software Engineer at NVIDIA", src: asset_path('Profile-05.jpg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth — software engineer and HPC researcher", src: asset_path('Profile-01.jpg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth — University of New Mexico Computer Science", src: asset_path('Profile-02.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth — HPC and machine learning engineer", src: asset_path('Profile-03.jpeg')}
+-# ── Masthead ──────────────────────────────────────────────────
+- content_for :masthead do
+  -# A taller stage than the plate. The plate sticks to the top through
+  -# the extra height, which buys a stretch of scroll where nothing moves
+  -# except the nav rising into place.
+  .masthead-stage.movement
+    %header.masthead
+      -# The one photograph on the site that carries grain. The mask on
+      -# .masthead__media dissolves image and grit together into the stock.
+      .masthead__media.press
+        = responsive_image_tag "Profile-05.jpg", alt: "Ryan Scherbarth", class: "masthead__img", sizes: "100vw", loading: "eager", fetchpriority: "high"
+        .masthead__hold{"aria-hidden" => "true"}
+        .press__grit{"aria-hidden" => "true"}
+        .press__grit.press__grit--lift{"aria-hidden" => "true"}
 
-    %div.favicon-container.mt-3.d-flex.justify-content-center
-      %ul.favicon-list.list-inline.text-center
-        %li.favicon-item.list-inline-item
-          %a{href: "https://www.linkedin.com/in/ryanscherbarth/", :target => "_blank"}
-            %i.fab.fa-linkedin
-        %li.favicon-item.list-inline-item
-          %a{href: "https://github.com/rysc3", :target => "_blank"}
-            %i.fab.fa-github
-        %li.favicon-item.list-inline-item
-          %a{href: "https://stackoverflow.com/users/20306478/ry-sch", :target => "_blank"}
-            %i.fab.fa-stack-overflow
-        %li.favicon-item.list-inline-item
-          %a{href: "mailto:online@ryanscherbarth.com"}
-            %i.fas.fa-envelope
+      .masthead__inner
+        %h1.masthead__title Ryan Scherbarth
 
-  %div.col-md-8.d-flex.align-items-center
-    %div.text-center
-      %p.pt-2
-        Sr. Software Engineer, ML & HPC Infra at NVIDIA
-      %p.pt-2
-        View my resume
-        %a{href: "/resume"} here
-      %p.pt-2
-        %b.underline
-          %a{href: "/meet"} Schedule a meeting
+      .masthead__nav-anchor{"aria-hidden" => "true"}
 
-%hr.mt-3
+-# ── 01 · Standing ─────────────────────────────────────────────
+#profile.shell.section.section--screen.movement
 
-.career-filter-wrap.d-flex.justify-content-start.align-items-center.gap-2.mb-4.ps-2
-  %button.career-filter-btn.active{"data-filter" => "all"} Both
-  %button.career-filter-btn{"data-filter" => "professional"} Professional
-  %button.career-filter-btn{"data-filter" => "extracurricular"} Extracurricular
+  .intro
+    .intro__portrait.reveal
+      -# A carousel, not a sheet — four frames of the same subject. It still
+      -# hands the viewer its frames: data-frames on the carousel, data-frame
+      -# and the file to open on each slide.
+      .gallery.gallery--portrait{data: {autoplay: 15000, frames: true, plate: "Portraits"}, "data-frame-key" => "portrait", role: "region", "aria-roledescription" => "carousel", "aria-label" => "Portraits"}
+        .gallery__bar
+          - portrait_frames.each_with_index do |_, i|
+            %button.gallery__seg{type: "button", "aria-label" => "Photo #{i + 1}"}
+              %span.gallery__seg-fill
+        .gallery__viewport{tabindex: "0"}
+          - portrait_frames.each do |file, alt|
+            .gallery__slide{data: {frame: true, full: viewer_src(file)}, "data-frame-id" => File.basename(file, ".*")}
+              = responsive_image_tag file, alt: alt, sizes: "(min-width: 820px) 42vw, 100vw"
 
-.career-timeline.career-timeline-left
-  .career-year-marker
-    %span 2026
+    .intro__body.reveal
+      %p.lede
+        Sr. Software Engineer, ML &amp; HPC Infra at NVIDIA.
 
-  .career-event{data: {career_type: "professional"}}
-    .career-event-dot
-    .career-event-card
-      .event-card-inner
-        .event-logo
-          %img{src: asset_path('nvidia_logo.png'), alt: "NVIDIA"}
-        .event-body
-          %h6.event-title Sr. Software Engineer
-          %p.event-org NVIDIA
-          %p.event-dates July 2026 — Present
-          %p.event-desc New cluster builds & performance optimization for next-generation hyperscale deployments.
+      .intro__actions
+        %a.btn.btn--ember{href: "/resume"}
+          View my resume
+          = icon("arrow-right")
+        %a.btn{href: "/meet"}
+          Schedule a meeting
+          = icon("clock")
 
-  .career-event{data: {career_type: "extracurricular"}}
-    .career-event-dot
-    .career-event-card.event-extra
-      .event-card-inner
-        .event-body
-          %h6.event-title Team Coach
-          %p.event-org SC26 Student Cluster Competition
-          %p.event-dates April 2026 — Present
-          %p.event-desc
-            %a{href: "/sc26"} SC26 Team Site.
+      %dl.intro__facts
+        .intro__fact
+          %dt Now
+          %dd Sr. Software Engineer @ NVIDIA
+        .intro__fact
+          %dt Focus
+          %dd ML &amp; HPC Infrastructure
+        .intro__fact
+          %dt Education
+          %dd B.S. Computer Science, UNM
+        .intro__fact
+          %dt Other
+          %dd
+            %ul.intro__list
+              %li
+                %a.link{href: "/sc26"} SC26 Student Cluster Competition
+              %li
+                %a.link{href: "https://hoti.org/2026/committees.html", target: "_blank", rel: "noopener"} Hot Interconnects 2026
 
-  .career-event{data: {career_type: "extracurricular"}}
-    .career-event-dot
-    .career-event-card.event-extra
-      .event-card-inner
-        .event-body
-          %h6.event-title Online Conference Chair
-          %p.event-org Hot Interconnects 2026
-          %p.event-dates January 2026 — August 2026
-          %p.event-desc
-            %a{href: "https://hoti.org/2026/committees.html", target: "_blank"} HotI 2026 Committees.
+      .social
+        - social_items.each do |s|
+          %a.social__link{href: s[:url], target: (s[:url].start_with?("mailto") ? nil : "_blank"), rel: "noopener", "aria-label" => s[:label]}
+            = icon(s[:icon])
 
-  .career-year-marker
-    %span 2025
+-# ── 02 · Trajectory ───────────────────────────────────────────
+- tl = career_timeline
 
-  .career-event{data: {career_type: "professional"}}
-    .career-event-dot
-    .career-event-card
-      .event-card-inner
-        .event-logo
-          %img{src: asset_path('tesla_logo_2.png'), alt: "Tesla"}
-        .event-body
-          %h6.event-title Sr. Software Engineer
-          %p.event-org Tesla
-          %p.event-dates December 2025 — July 2026
-          %p.event-desc More ml & more hpc infra for tesla ap.
+#timeline.section.movement
+  .shell
+    .tl-bench.reveal
+      .pills
+        %button.pill{type: "button", data: {filter: "all"}, "aria-pressed" => "true"} Both
+        %button.pill.pill--pro{type: "button", data: {filter: "professional"}, "aria-pressed" => "false"}
+          %span.pill__dot{"aria-hidden" => "true"}
+          Professional
+        %button.pill.pill--extra{type: "button", data: {filter: "extracurricular"}, "aria-pressed" => "false"}
+          %span.pill__dot{"aria-hidden" => "true"}
+          Extracurricular
 
-  .career-event{data: {career_type: "professional"}}
-    .career-event-dot
-    .career-event-card
-      .event-card-inner
-        .event-logo
-          %img{src: asset_path('tesla_logo_2.png'), alt: "Tesla"}
-        .event-body
-          %h6.event-title Software Engineer
-          %p.event-org Tesla
-          %p.event-dates January 2025 — December 2025
-          %p.event-desc Machine Learning & HPC Infrastructure for Tesla Autopilot.
+  .tl{style: "--tl-span: #{tl[:span]}; --tl-lanes: #{tl[:lanes]};", data: {timeline: true, span: tl[:span], y0: tl[:y0], m0: tl[:m0]}}
+    .tl__chart
+      .tl__plot
+        %span.tl__spine
+        - tl[:months].each do |m|
+          %span.tl-tick{class: (m[:major] ? "tl-tick--major" : nil), style: "--t: #{m[:t]};"}
+        - tl[:years].each do |y|
+          %span.tl-year{style: "--t: #{y[:t]};"}
+            %span.tl-year__label= y[:year]
+        %span.tl-now{style: "--t: #{tl[:now_t]};"}
+          %span.tl-now__label Now
+        - tl[:rows].each_with_index do |r, i|
+          %button.tl-bar{type: "button", class: ["tl-bar--#{r[:entry][:track]}", (r[:open] ? "tl-bar--open" : nil)], style: "--t: #{r[:top]}; --d: #{r[:d]}; --lane: #{r[:lane]};", data: {t: r[:t], d: r[:d], jump: i}, "aria-label" => "#{r[:entry][:org]}, #{r[:dates]}"}
+            - r[:promos].each do |k|
+              %span.tl-bar__promo{style: "--k: #{k};"}
+        %span.tl__play
 
-  .career-event{data: {career_type: "extracurricular"}}
-    .career-event-dot
-    .career-event-card.event-extra
-      .event-card-inner
-        .event-body
-          %h6.event-title Committee Member
-          %p.event-org SC25 HPC Student Cluster Competition
-          %p.event-dates January 2025 — November 2025
-          %p.event-desc
-            %a{href: "https://sc25.supercomputing.org/planning-committee/", target: "_blank"} SC25 Planning Committee.
+    %ol.tl__entries
+      - tl[:rows].each_with_index do |r, i|
+        - e = r[:entry]
+        %li.tl-entry.reveal{class: "tl-entry--#{e[:track]}", id: "tl-#{i}", data: {track: e[:track], t: r[:t], jump: i}}
+          %p.tl-entry__meta
+            %span.tl-entry__dates{class: (r[:open] ? "is-live" : nil)}= r[:dates]
+            %span.tl-entry__dur{"aria-hidden" => "true"}= r[:dur_short]
+            %span.visually-hidden= r[:dur_long]
+            %span.tl-entry__span{"aria-hidden" => "true", style: "--t: #{r[:top]}; --d: #{r[:d]};"}
+              %span.tl-entry__span-fill
+          .tl-entry__row
+            - if e[:logo]
+              -# logo_light marks are drawn for a dark ground, so they get
+              -# an ink chip rather than vanishing into the stock.
+              %span.tl-entry__mark{class: (e[:logo_light] ? "tl-entry__mark--ink" : nil)}
+                %img{src: asset_path(e[:logo]), alt: e[:alt], loading: "lazy", decoding: "async"}
+            - else
+              %span.tl-entry__mark.tl-entry__mark--type{"aria-hidden" => "true"}= e[:mark] || org_monogram(e[:org])
+            .tl-entry__body
+              - if r[:roles].size > 1
+                -# One tenure, several titles. The org leads; the roles
+                -# stack under it with the promotion marked between them.
+                %p.tl-entry__org.tl-entry__org--lead= e[:org]
+                %ol.tl-roles
+                  - r[:roles].each_with_index do |role, ri|
+                    %li.tl-role{class: (ri.zero? ? "tl-role--latest" : nil)}
+                      %h3.tl-role__title= role[:title]
+                      %span.tl-role__dates= role[:dates]
+                      - if role[:desc]
+                        %p.tl-entry__desc= raw(role[:desc])
+              - else
+                %h3.tl-entry__title= e[:title]
+                %p.tl-entry__org= e[:org]
+                - if e[:desc]
+                  %p.tl-entry__desc= raw(e[:desc])
 
-  .career-year-marker
-    %span 2024
+-# ── 03 · Elsewhere ────────────────────────────────────────────
+#site-map.bleed.section
 
-  .career-event{data: {career_type: "extracurricular"}}
-    .career-event-dot
-    .career-event-card.event-extra
-      .event-card-inner
-        .event-body
-          %h6.event-title Student Volunteer
-          %p.event-org PEARC24 Conference
-          %p.event-dates July 2024
-          %p.event-desc
-            %a{href: "https://pearc.acm.org/", target: "_blank"} PEARC conference series.
+  - panels = home_panels
 
-  .career-event{data: {career_type: "extracurricular"}}
-    .career-event-dot
-    .career-event-card.event-extra
-      .event-card-inner
-        .event-body
-          %h6.event-title Team Manager
-          %p.event-org SC24 HPC Student Cluster Competition
-          %p.event-dates June 2024 — December 2024
-          %p.event-desc
-            Student teams design HPC clusters and compete in a 48-hour challenge. More info
-            %a{href: "/sc24"} here.
+  .bento.bento--six.reveal
+    - panels.each_with_index do |p, i|
+      %a.panel{href: p[:href], class: (p[:mark] ? "panel--mark" : nil)}
+        = responsive_image_tag p[:img], alt: "", class: "panel__img", sizes: "(min-width: 760px) 34vw, 50vw"
+        .panel__scrim{"aria-hidden" => "true"}
+        .panel__body
+          %div
+            %span.panel__index= format("%02d", i + 1)
+            %span.panel__title= p[:title]
+            %span.panel__sub= p[:sub]
+          %span.panel__arrow{"aria-hidden" => "true"}
+            = icon("arrow-right")
 
-  .career-event{data: {career_type: "extracurricular"}}
-    .career-event-dot
-    .career-event-card.event-extra
-      .event-card-inner
-        .event-body
-          %h6.event-title Project Evaluation Committee Member
-          %p.event-org NM Supercomputing Challenge
-          %p.event-dates February 2024
-          %p.event-desc
-            %a{href: "https://supercomputingchallenge.org/23-24/evaluations-schedule", target: "_blank"} Supercomputing Challenge website.
+-# ── 05 · Plates ───────────────────────────────────────────────
+- plates = photo_plates
 
-  .career-event{data: {career_type: "professional"}}
-    .career-event-dot
-    .career-event-card
-      .event-card-inner
-        .event-logo
-          %img{src: asset_path('unm_logo.png'), alt: "UNM"}
-        .event-body
-          %h6.event-title Teaching Assistant — CS491
-          %p.event-org The University of New Mexico
-          %p.event-dates Spring & Fall 2024
-          %p.event-desc Teaching Assistant for CS491: High Performance Computing.
+#images.bleed.section
 
-  .career-event{data: {career_type: "extracurricular"}}
-    .career-event-dot
-    .career-event-card.event-extra
-      .event-card-inner
-        .event-body
-          %h6.event-title Team Manager
-          %p.event-org Winter Classic Invitational HPC 2024
-          %p.event-dates January 2024 — May 2024
-          %p.event-desc
-            %a{href: "https://www.winterclassicinvitational.com/team/university-of-new-mexico-lobo24/", target: "_blank"} View team site.
+  .plates
+    - plates.each do |plate|
+      .reveal
+        .plate__head
+          - if plate[:href]
+            - external = plate[:href].start_with?("http")
+            %a.plate__title{href: plate[:href], target: (external ? "_blank" : nil), rel: (external ? "noopener" : nil)}= plate[:title]
+          - else
+            %span.plate__title= plate[:title]
+          %span.plate__meta= plate[:meta]
 
-  .career-event{data: {career_type: "extracurricular"}}
-    .career-event-dot
-    .career-event-card.event-extra
-      .event-card-inner
-        .event-body
-          %h6.event-title Member of Artifact Evaluation Committee
-          %p.event-org International Conference for Performance Engineering (ICPE)
-          %p.event-dates January 2024 — May 2024
-          %p.event-desc
-            %a{href: "https://icpe2024.spec.org/program-committee/", target: "_blank"} 2024 ICPE committee.
+        -# One group across every plate: the headings stay, but prev/next
+        -# walks the whole section rather than stopping at each plate.
+        = render "mosaic", plate: plate, group: "images"
 
-  .career-event{data: {career_type: "extracurricular"}}
-    .career-event-dot
-    .career-event-card.event-extra
-      .event-card-inner
-        .event-body
-          %h6.event-title Team Manager
-          %p.event-org ISC24 Virtual HPC Student Cluster Competition
-          %p.event-dates January 2024 — April 2024
-          %p.event-desc
-            %a{href: "https://www.isc-hpc.com/student-cluster-competition-2024.html", target: "_blank"} View competition site.
+-# ── Archive ─────────────────────────────────────────────────
+- archive = archive_entries
 
-  .career-year-marker
-    %span 2023
+#archive.bleed.section
 
-  .career-event{data: {career_type: "extracurricular"}}
-    .career-event-dot
-    .career-event-card.event-extra
-      .event-card-inner
-        .event-body
-          %h6.event-title Team Manager
-          %p.event-org SC23 HPC Student Cluster Competition
-          %p.event-dates August 2023 — December 2023
-          %p.event-desc
-            More info
-            %a{href: "/sc23"} here.
+  .reveal
+    %button.disclosure__trigger{type: "button", data: {disclosure: true}, "aria-expanded" => "false", "aria-controls" => "archive-list"}
+      = "Open the archive · #{archive.size} entries"
+      = icon("chevron-down")
 
-  .career-event{data: {career_type: "professional"}}
-    .career-event-dot
-    .career-event-card
-      .event-card-inner
-        .event-logo
-          %img{src: asset_path('carc_logo_transparent.png'), alt: "CARC"}
-        .event-body
-          %h6.event-title HPC Systems Specialist
-          %p.event-org Center for Advanced Research Computing — UNM
-          %p.event-dates May 2023 — December 2024
-          %p.event-desc Supporting users on UNM HPC clusters, benchmarking, profiling, and reporting.
+    #archive-list.disclosure__panel
+      %div
+        .index-list
+          - archive.each do |date, title, href|
+            - external = href.start_with?("http")
+            %a.index-row{href: href, target: (external ? "_blank" : nil), rel: (external ? "noopener" : nil)}
+              %span.index-row__date= date
+              %span.index-row__title= title
+              %span.index-row__mark{"aria-hidden" => "true"}
+                = icon(external ? "arrow-out" : "arrow-right")
 
-  .career-event{data: {career_type: "extracurricular"}}
-    .career-event-dot
-    .career-event-card.event-extra
-      .event-card-inner
-        .event-body
-          %h6.event-title Peer Mentor
-          %p.event-org UNM School of Engineering
-          %p.event-dates January 2023 — December 2024
-          %p.event-desc
-            %a{href: "https://ess.unm.edu/about-us/index.html", target: "_blank"} UNM Engineering Student Success Center (ESS).
-
-  .career-event{data: {career_type: "extracurricular"}}
-    .career-event-dot
-    .career-event-card.event-extra
-      .event-card-inner
-        .event-body
-          %h6.event-title Team Manager
-          %p.event-org Winter Classic Invitational HPC 2023
-          %p.event-dates January 2023 — May 2023
-          %p.event-desc
-            %a{href: "https://www.winterclassicinvitational.com/team/university-of-new-mexico/", target: "_blank"} View team site.
-
-  .career-year-marker
-    %span 2022
-
-  .career-event{data: {career_type: "extracurricular"}}
-    .career-event-dot
-    .career-event-card.event-extra
-      .event-card-inner
-        .event-body
-          %h6.event-title Machine Learning Team
-          %p.event-org NASA Minds Team Chili House
-          %p.event-dates November 2022 — May 2023
-          %p.event-desc
-            %a{href: "https://drive.google.com/file/d/1lyjeK7hHzxfpkWrZFMXKVdWN3r56dOvG/view", target: "_blank"} View PDR.
-
-  .career-event{data: {career_type: "professional"}}
-    .career-event-dot
-    .career-event-card
-      .event-card-inner
-        .event-logo
-          %img{src: asset_path('sandia_labs_logo.png'), alt: "Sandia"}
-        .event-body
-          %h6.event-title Software Engineer, HPC
-          %p.event-org Sandia National Laboratories
-          %p.event-dates October 2022 — December 2024
-          %p.event-desc Design, acquisition, deployment, and optimization of large-scale scientific HPC clusters. Full stack web in Ruby on Rails.
-
-  .career-event{data: {career_type: "professional"}}
-    .career-event-dot
-    .career-event-card
-      .event-card-inner
-        .event-logo
-          %img{src: asset_path('afrl_logo.png'), alt: "AFRL"}
-        .event-body
-          %h6.event-title Software Engineer Intern
-          %p.event-org Air Force Research Laboratory
-          %p.event-dates August 2022 — December 2022
-          %p.event-desc Cyber Resilience Team, Space Vehicles Directorate at Kirtland Air Force Base.
-
-  .career-event{data: {career_type: "extracurricular"}}
-    .career-event-dot
-    .career-event-card.event-extra
-      .event-card-inner
-        .event-logo
-          %img{src: asset_path('unm_logo.png'), alt: "UNM"}
-        .event-body
-          %h6.event-title B.S. Computer Science w/ Minor in Mathematics
-          %p.event-org The University of New Mexico
-          %p.event-dates August 2022 — December 2024
-
-:javascript
-  document.addEventListener('DOMContentLoaded', function() {
-    // Career filter buttons
-    var btns = document.querySelectorAll('.career-filter-btn');
-    btns.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        btns.forEach(function(b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-        var filter = btn.dataset.filter;
-        document.querySelectorAll('.career-event').forEach(function(ev) {
-          var type = ev.dataset.careerType;
-          ev.style.display = (filter === 'all' || filter === type) ? '' : 'none';
-        });
-      });
-    });
-
-    // Scroll fade-in for career timeline events
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-
-    document.querySelectorAll('.career-event').forEach(function(ev, i) {
-      ev.style.transitionDelay = (i * 0.04) + 's';
-      observer.observe(ev);
-    });
-  });
-
-.apps-scroll-container.mt-4.mb-2
-  %a.app-panel{href: "/sc26"}
-    .app-panel-bg{style: "background-image: url(#{asset_path('SC26-01.png')})"}
-    .app-panel-content
-      %p.app-panel-title SC26
-      %p.app-panel-sub HPC Student Cluster Competition
-  %a.app-panel.app-panel-wide{href: "/sc24"}
-    .app-panel-bg{style: "background-image: url(#{asset_path('SC24-33.jpeg')})"}
-    .app-panel-content
-      %p.app-panel-title SC24
-      %p.app-panel-sub HPC Student Cluster Competition
-  %a.app-panel.app-panel-wide{href: "/sc23"}
-    .app-panel-bg{style: "background-image: url(#{asset_path('SC23-06.jpeg')})"}
-    .app-panel-content
-      %p.app-panel-title SC23
-      %p.app-panel-sub HPC Student Cluster Competition
-  %a.app-panel{href: "/resume"}
-    .app-panel-bg{style: "background-image: url(#{asset_path('Profile-01.jpg')})"}
-    .app-panel-content
-      %p.app-panel-title Resume
-      %p.app-panel-sub Experience & education
-  %a.app-panel{href: "/meet"}
-    .app-panel-bg{style: "background-image: url(#{asset_path('SC24-14.jpeg')})"}
-    .app-panel-content
-      %p.app-panel-title Meet
-      %p.app-panel-sub Book a meeting
-  %a.app-panel{href: "/courses"}
-    .app-panel-bg{style: "background-image: url(#{asset_path('Profile-03.jpeg')})"}
-    .app-panel-content
-      %p.app-panel-title Courses
-      %p.app-panel-sub Course history
-
-%h2.pt-5 Recent Events
-%hr
-  %div
-    %ul
-      %li
-        (5/18/2025)
-        %a{href: "https://deepwiki.com/rysc3/web/1-overview", :target => "_blank"} Website Deepwiki
-      %li
-        (4/7/2025)
-        %a{href: "https://sc25.supercomputing.org/wp-content/uploads/2025/04/sc25_webinar01.pdf", :target => "_blank"} SC25 Competition Intro / Overview
-      %li
-        (2/21/2025)
-        %a{href: "https://www.dropbox.com/scl/fi/1pwtxjcu842j58uwxc1g9/carc_brochure.pdf?rlkey=aaumu5z1pnqubv04ulyc20y4w&st=dwe4oml2&dl=0", :target => "_blank"} CARC Quantum Brochure
-      %li
-        (2/19/2025)
-        %a{href: "https://ciq.com/blog/educating-the-next-generation-of-hpc-engineers-with-open-source-tools/", :target => "_blank"} CIQ @ SC24 Article
-      %li
-        (2/1/2025)
-        %a{href: "https://sc25.supercomputing.org/planning-committee/", :target => "_blank"} SC25 Student Cluster Competition Committee
-      %li
-        (12/23/2024)
-        %a{href: "https://graduation.unm.edu/fa24ug/program/_bachelors.html", :target => "_blank"} Graduation Program
-      %li
-        (12/11/2024)
-        %a{href: "https://engineering.unm.edu/news/2024/12/partnering-for-success-computer-science-students-represent-unm-in-nasa-and-supercomputing-competitions.html", :target => "_blank"} UNM HPC Team Article
-      %li
-        (10/5/2024)
-        %a{href: "https://news.unm.edu/news/carc-team-gears-up-for-sc24-competition", :target => "_blank"} UNM Newsroom SC24 Article
-      %li
-        (10/2/2024)
-        %a{href: "https://carc.unm.edu/news--events/News/sc24.html", :target => "_blank"} SC24 CARC Team Article
-      %li
-        (9/11/2024)
-        %a{href: "/sc24"} SC24 Cluster Build
-      %li
-        (9/7/2024)
-        %a{href: "https://sc24.supercomputing.org/2024/09/teams-compete-in-the-ultimate-hpc-challenge-at-sc24/", :target => "_blank"} SC24 Meet the Teams
-      %li
-        (5/31/2024)
-        %a{href: "/tesla_battery"} 2018 Tesla Model S P100D sentry mode battery drain
-      %li
-        (5/15/2024)
-        %a{href: "https://search.asu.edu/profile/4267690", :target => "_blank"} ASU Profile
-      %li
-        (5/10/2024)
-        %a{href: "https://www.youtube.com/watch?v=SURm-vMrFV8&ab_channel=StudentClusterCompetitions", :target => "_blank"} 2024 Winter Classic HPC Results
-      %li
-        (5/10/2024)
-        %a{href: "https://www.winterclassicinvitational.com/team/university-of-new-mexico-lobo24/", :target => "_blank"} 2024 Winter Classic Invitational HPC Competition
-      %li
-        (5/5/2024)
-        %a{href: "https://icpe2024.spec.org/program-committee/", :target => "_blank"} Member of ICPE Artifact Review Committee
-      %li
-        (4/5/2024)
-        %a{href: "https://fricke.co.uk/Teaching/CS491_2024/Assignments/HPC_Project2.pdf", :target => "_blank"} CS491 Project 2: High Performance Conjugate Gradients
-      %li
-        (4/1/2024)
-        %a{href: "https://www.hpcadvisorycouncil.com/events/student-cluster-competition/team-unm.php", :target => "_blank"} ISC24 Student Cluster Competition Team
-      %li
-        (2/26/2024)
-        %a{href: "https://github.com/rysc3/fricke.uk", :target => "_blank"} Tilted fricke.uk
-      %li
-        (2/15/2024)
-        %a{href: "https://fricke.co.uk/Teaching/CS491_2024/Assignments/HPC_Project1.pdf", :target => "_blank"} CS491 Project 1: High Performance Linpack
-      %li
-        (2/13/2024)
-        %a{href: "https://www.westbigdatahub.org/post/two-western-states-teams-compete-in-student-cluster-competition-at-sc2023-in-denver_", :target => "_blank"} West Big Data Innovation Hub SC23 Article
-      %li
-        (2/13/2024)
-        %a{href: "https://supercomputingchallenge.org/23-24/evaluations-schedule", :target => "_blank"} Judge for New Mexico Consortium Supercomputing Challenge
-      %li
-        (1/20/2024)
-        %a{href: "https://fricke.co.uk/Teaching/CS491_2024/HPC_Course_Syllabus.pdf", :target => "_blank"} TA for CS491 HPC Course
-      %li
-        (1/3/2024)
-        %a{href: "https://medium.com/@penguinsolutions/student-cluster-competition-team-the-roadrunners-sponsored-by-penguin-solutions-at-sc23-e265233c8cff", :target => "_blank"} Penguin Solutions Article, SC23 Competition
-      %li
-        (12/3/2023)
-        %a{href: "https://carc.unm.edu/news--events/News/sc23-conference.html", :target => "_blank"} UNM CARC SC23 Team Article
-      %li
-        (11/23/2023)
-        %a{href: "https://roadrunners.cs.unm.edu/", :target => "_blank"} UNM HPC Roadrunners Team Site
-      %li
-        (11/20/2023)
-        %a{href: "https://www.penguinsolutions.com/company/resources/newsroom/student-cluster-competition-team-the-roadrunners-sponsored-by-penguin-solutions-at-sc23", :target => "_blank"} Penguin Solutions SC23 Team Sponsorship Article
-      %li
-        (10/22/2023)
-        %a{href: "https://www.athlinks.com/event/35398/results/Event/1063165/Course/2408972/Bib/54", :target => "_blank"} Duke City Marathon
-      %li
-        (8/7/2023)
-        %a{href: "https://sc23.supercomputing.org/2023/08/meet-this-years-scc-teams/", :target => "_blank"} SC23 Student Cluster Competition Team
-      %li
-        (5/5/2023)
-        %a{href: "https://engineering.unm.edu/awards/annual-awards-2023.pdf", :target => "_blank"} UNM Outstanding Sophomore Award
-      %li
-        (5/3/2023)
-        %a{href: "/web"} How I built my website
-      %li
-        (5/1/2023)
-        %a{href: "https://carc.unm.edu/news--events/News/fall-23-undergrads.html", :target => "_blank"} UNM CARC Employee Article
-      %li
-        (4/10/2023)
-        %a{href: "https://carc.unm.edu/news--events/News/hpc-competitions-2023.html", :target => "_blank"} UNM CARC HPC Team Article
-      %li
-        (3/30/2023)
-        %a{href: "https://www.winterclassicinvitational.com/team/university-of-new-mexico/", :target => "_blank"} 2023 Winter Classic Invitational HPC Competition
-      %li
-        (3/3/2023)
-        %a{href: "https://www.cs.unm.edu/news/2023/03/unm-computer-science-students-take-part-in-hpc-competition.html", :target => "_blank"} UNM CS Founding UNM HPC Team
-      %li
-        (3/2/2023)
-        %a{href: "https://news.unm.edu/news/computer-science-students-take-part-in-hpc-competition", :target => "_blank"} UNM News Founding UNM HPC Team
-      %li
-        (1/25/2023)
-        %a{href: "https://drive.google.com/file/d/1lyjeK7hHzxfpkWrZFMXKVdWN3r56dOvG/view", :target => "_blank"} NASA Minds Team Chilihouse
-      %li
-        (10/16/2022)
-        %a{href: "https://www.athlinks.com/event/35398/results/Event/1032202/Course/2296577/Bib/1417", :target => "_blank"} Duke City Half Marathon
-      %li
-        (3/3/2023)
-        %a{href: "https://web.archive.org/web/20251115000000*/ryanscherbarth.com", :target => "_blank"} Website History
-
-
-%h2.pt-5 Images
-%hr
-.images-content
-  %div.mt-5
-    %div.text-center
-      %h3
-        %a{href: "/sc24"} SC24 HPC Competition (11/2024)
-
-    %div.d-flex.justify-content-center
-      #carouselSC24.carousel.slide{style: "width: 95%; max-width: 1500px;"}
-        .carousel-indicators
-          %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC24", :type => "button"}
-          %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC24", :type => "button"}
-          %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselSC24", :type => "button"}
-          %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselSC24", :type => "button"}
-          %button{"aria-label" => "Slide 5", "data-bs-slide-to" => "4", "data-bs-target" => "#carouselSC24", :type => "button"}
-          %button{"aria-label" => "Slide 6", "data-bs-slide-to" => "5", "data-bs-target" => "#carouselSC24", :type => "button"}
-          %button{"aria-label" => "Slide 7", "data-bs-slide-to" => "6", "data-bs-target" => "#carouselSC24", :type => "button"}
-          %button{"aria-label" => "Slide 8", "data-bs-slide-to" => "7", "data-bs-target" => "#carouselSC24", :type => "button"}
-          %button{"aria-label" => "Slide 9", "data-bs-slide-to" => "8", "data-bs-target" => "#carouselSC24", :type => "button"}
-        .carousel-inner
-          .carousel-item.active
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC24 HPC Student Cluster Competition, Atlanta 2024", src: asset_path('SC24-35.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC24 HPC Student Cluster Competition, Atlanta 2024", src: asset_path('SC24-33.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC24 HPC Student Cluster Competition, Atlanta 2024", src: asset_path('SC24-34.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth SC24 cluster build, Team UNM", src: asset_path('SC24-27.jpg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth SC24 cluster build, Team UNM", src: asset_path('SC24-28.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth SC24 cluster build, Team UNM", src: asset_path('SC24-29.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC24 HPC Student Cluster Competition, Atlanta 2024", src: asset_path('SC24-08.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC24 HPC Student Cluster Competition, Atlanta 2024", src: asset_path('SC24-14.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC24 HPC Student Cluster Competition, Atlanta 2024", src: asset_path('SC24-07.jpeg')}
-        %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC24", :type => "button"}
-          %span.carousel-control-prev-icon{"aria-hidden" => "true"}
-          %span.visually-hidden Previous
-        %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSC24", :type => "button"}
-          %span.carousel-control-next-icon{"aria-hidden" => "true"}
-          %span.visually-hidden Next
-
-  %div.mt-5
-    %div.text-center
-      %h3
-        %a{href: "https://pearc.acm.org/"} PEARC24 HPC Conference (7/2024)
-
-    %div.d-flex.justify-content-center
-      #carouselPEARC24.carousel.slide{style: "width: 95%; max-width: 1500px;"}
-        .carousel-indicators
-          %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselPEARC24", :type => "button"}
-          %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselPEARC24", :type => "button"}
-          %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselPEARC24", :type => "button"}
-          %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselPEARC24", :type => "button"}
-          %button{"aria-label" => "Slide 5", "data-bs-slide-to" => "4", "data-bs-target" => "#carouselPEARC24", :type => "button"}
-          %button{"aria-label" => "Slide 6", "data-bs-slide-to" => "5", "data-bs-target" => "#carouselPEARC24", :type => "button"}
-        .carousel-inner
-          .carousel-item.active
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at PEARC24 HPC Conference 2024", src: asset_path('PEARC24-06.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at PEARC24 HPC Conference 2024", src: asset_path('PEARC24-01.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at PEARC24 HPC Conference 2024", src: asset_path('PEARC24-02.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at PEARC24 HPC Conference 2024", src: asset_path('PEARC24-03.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at PEARC24 HPC Conference 2024", src: asset_path('PEARC24-04.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at PEARC24 HPC Conference 2024", src: asset_path('PEARC24-05.jpeg')}
-        %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselPEARC24", :type => "button"}
-          %span.carousel-control-prev-icon{"aria-hidden" => "true"}
-          %span.visually-hidden Previous
-        %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselPEARC24", :type => "button"}
-          %span.carousel-control-next-icon{"aria-hidden" => "true"}
-          %span.visually-hidden Next
-
-  %div.mt-5
-    %div.text-center
-      %h3
-        %a{href: "https://rmacc.org/about-us"} RMACC HPC Conference (5/2024)
-
-    %div.d-flex.justify-content-center
-      #carouselRMACC24.carousel.slide{style: "width: 95%; max-width: 1500px;"}
-        .carousel-indicators
-          %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselRMACC24", :type => "button"}
-          %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselRMACC24", :type => "button"}
-          %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselRMACC24", :type => "button"}
-        .carousel-inner
-          .carousel-item.active
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at RMACC HPC Conference 2024", src: asset_path('RMACC24-01.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at RMACC HPC Conference 2024", src: asset_path('RMACC24-02.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at RMACC HPC Conference 2024", src: asset_path('RMACC24-03.jpeg')}
-        %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselRMACC24", :type => "button"}
-          %span.carousel-control-prev-icon{"aria-hidden" => "true"}
-          %span.visually-hidden Previous
-        %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselRMACC24", :type => "button"}
-          %span.carousel-control-next-icon{"aria-hidden" => "true"}
-          %span.visually-hidden Next
-
-  %div.mt-5
-    %div.text-center
-      %h3
-        %a{href: "/sc23"} SC23 HPC Competition (11/2023)
-
-    %div.d-flex.justify-content-center
-      #carouselSC23.carousel.slide{style: "width: 95%; max-width: 1500px;"}
-        .carousel-indicators
-          %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSC23", :type => "button"}
-          %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSC23", :type => "button"}
-          %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselSC23", :type => "button"}
-          %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselSC23", :type => "button"}
-          %button{"aria-label" => "Slide 5", "data-bs-slide-to" => "4", "data-bs-target" => "#carouselSC23", :type => "button"}
-          %button{"aria-label" => "Slide 6", "data-bs-slide-to" => "5", "data-bs-target" => "#carouselSC23", :type => "button"}
-          %button{"aria-label" => "Slide 7", "data-bs-slide-to" => "6", "data-bs-target" => "#carouselSC23", :type => "button"}
-          %button{"aria-label" => "Slide 8", "data-bs-slide-to" => "7", "data-bs-target" => "#carouselSC23", :type => "button"}
-          %button{"aria-label" => "Slide 9", "data-bs-slide-to" => "8", "data-bs-target" => "#carouselSC23", :type => "button"}
-        .carousel-inner
-          .carousel-item.active
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC23 HPC Student Cluster Competition, Denver 2023", src: asset_path('SC23-04.jpg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC23 HPC Student Cluster Competition, Denver 2023", src: asset_path('SC23-01.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC23 HPC Student Cluster Competition, Denver 2023", src: asset_path('SC23-02.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC23 HPC Student Cluster Competition, Denver 2023", src: asset_path('SC23-03.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC23 HPC Student Cluster Competition, Denver 2023", src: asset_path('SC23-06.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC23 HPC Student Cluster Competition, Denver 2023", src: asset_path('SC23-05.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC23 HPC Student Cluster Competition, Denver 2023", src: asset_path('SC23-07.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC23 HPC Student Cluster Competition, Denver 2023", src: asset_path('SC23-08.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth at SC23 HPC Student Cluster Competition, Denver 2023", src: asset_path('SC23-09.jpeg')}
-        %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSC23", :type => "button"}
-          %span.carousel-control-prev-icon{"aria-hidden" => "true"}
-          %span.visually-hidden Previous
-        %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSC23", :type => "button"}
-          %span.carousel-control-next-icon{"aria-hidden" => "true"}
-          %span.visually-hidden Next
-
-  %div.mt-5
-    %div.text-center
-      %h3 Setup Photos
-
-    %div.d-flex.justify-content-center
-      #carouselSetup.carousel.slide{style: "width: 95%; max-width: 1500px;"}
-        .carousel-indicators
-          %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselSetup", :type => "button"}
-          %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselSetup", :type => "button"}
-          %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselSetup", :type => "button"}
-          %button{"aria-label" => "Slide 4", "data-bs-slide-to" => "3", "data-bs-target" => "#carouselSetup", :type => "button"}
-          %button{"aria-label" => "Slide 5", "data-bs-slide-to" => "4", "data-bs-target" => "#carouselSetup", :type => "button"}
-          %button{"aria-label" => "Slide 6", "data-bs-slide-to" => "5", "data-bs-target" => "#carouselSetup", :type => "button"}
-          %button{"aria-label" => "Slide 7", "data-bs-slide-to" => "6", "data-bs-target" => "#carouselSetup", :type => "button"}
-        .carousel-inner
-          .carousel-item.active
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth home server and PC setup", src: asset_path('Setup-10.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth home server and PC setup", src: asset_path('Setup-01.jpg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth home server and PC setup", src: asset_path('Setup-05.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth home server and PC setup", src: asset_path('Setup-06.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth home server and PC setup", src: asset_path('Setup-08.jpg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth home server and PC setup", src: asset_path('Setup-09.jpg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth home server and PC setup", src: asset_path('Setup-07.jpg')}
-        %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselSetup", :type => "button"}
-          %span.carousel-control-prev-icon{"aria-hidden" => "true"}
-          %span.visually-hidden Previous
-        %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselSetup", :type => "button"}
-          %span.carousel-control-next-icon{"aria-hidden" => "true"}
-          %span.visually-hidden Next
-
-  %div.mt-5
-    %div.text-center
-      %h3
-        %a{href: "https://www.athlinks.com/event/35398/results/Event/1063165/Course/2408972/Bib/54", :target => "_blank"} Duke City Marathon (10/2023)
-
-    %div.d-flex.justify-content-center
-      #carouseldukeFull.carousel.slide{style: "width: 95%; max-width: 1500px;"}
-        .carousel-indicators
-          %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouseldukeFull", :type => "button"}
-          %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouseldukeFull", :type => "button"}
-          %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouseldukeFull", :type => "button"}
-        .carousel-inner
-          .carousel-item.active
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth running Duke City Marathon 2023", src: asset_path('DukeFull-01.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth running Duke City Marathon 2023", src: asset_path('DukeFull-03.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth Duke City Marathon 2023 results", src: asset_path('DukeFull-02.png')}
-        %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouseldukeFull", :type => "button"}
-          %span.carousel-control-prev-icon{"aria-hidden" => "true"}
-          %span.visually-hidden Previous
-        %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouseldukeFull", :type => "button"}
-          %span.carousel-control-next-icon{"aria-hidden" => "true"}
-          %span.visually-hidden Next
-
-  %div.mt-5
-    %div.text-center
-      %h3
-        %a{href: "https://www.athlinks.com/event/35398/results/Event/1032202/Course/2296577/Bib/1417", :target => "_blank"} Duke City Half Marathon (10/2022)
-
-    %div.d-flex.justify-content-center
-      #carouselDukeHalf.carousel.slide{style: "width: 95%; max-width: 1500px;"}
-        .carousel-indicators
-          %button.active{"aria-current" => "true", "aria-label" => "Slide 1", "data-bs-slide-to" => "0", "data-bs-target" => "#carouselDukeHalf", :type => "button"}
-          %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#carouselDukeHalf", :type => "button"}
-          %button{"aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#carouselDukeHalf", :type => "button"}
-        .carousel-inner
-          .carousel-item.active
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth running Duke City Half Marathon 2022", src: asset_path('DukeHalf-02.jpeg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth running Duke City Half Marathon 2022", src: asset_path('DukeHalf-03.jpg')}
-          .carousel-item
-            %img.custom-carousel-img.d-block.w-100{alt: "Ryan Scherbarth Duke City Half Marathon 2022 results", src: asset_path('DukeHalf-01.png')}
-        %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselDukeHalf", :type => "button"}
-          %span.carousel-control-prev-icon{"aria-hidden" => "true"}
-          %span.visually-hidden Previous
-        %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselDukeHalf", :type => "button"}
-          %span.carousel-control-next-icon{"aria-hidden" => "true"}
-          %span.visually-hidden Next
+= render "viewer"

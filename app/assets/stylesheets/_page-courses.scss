@@ -1,0 +1,230 @@
+// ─────────────────────────────────────────────────────────────
+//  Courses — the transcript
+//
+//  A records document printed on the stock: one ivory sheet laid on
+//  the canvas, ruled edge to edge. Codes and credits are measured
+//  values, so they take the code face with tabular figures and the
+//  columns rule up; titles are said, so they are serif. Term heads
+//  are sans, sentence case, and pin under the bar while their rows
+//  travel beneath them.
+// ─────────────────────────────────────────────────────────────
+
+// Local correction, not a new convention: the shared .page-hero__meta
+// and .section-head__note both paint --fg-4, which lands at ~1.9:1 on
+// ivory. Both carry real record data here (the award date, the counts),
+// so they take the secondary ink. Reported upstream — this rule should
+// come out once _components/_base are corrected.
+.courses-ink { color: var(--fg-2); }
+
+// ── Readout strip, sitting under the hero rule ──────────────
+
+.courses-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  gap: 1px;
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  // The 1px gap shows the container through as a hairline rule.
+  background: var(--line);
+  overflow: hidden;
+}
+
+.courses-summary__cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: clamp(0.9rem, 2vw, 1.2rem) clamp(0.9rem, 2vw, 1.35rem);
+  background: var(--bg-raise);
+}
+
+// The figure the whole record adds up to. It gets the one manilla
+// card and a clay rule across its head — the accent stays a mark,
+// never small text, because clay does not clear AA at this size.
+.courses-summary__cell--total {
+  background: var(--bg-feature);
+  box-shadow: inset 0 2px 0 var(--clay);
+}
+
+.courses-summary__label {
+  font-family: var(--font-sans);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: var(--tr-12);
+  color: var(--fg-2);
+  line-height: 1.35;
+}
+
+.courses-summary__value {
+  font-family: var(--font-code);
+  font-variant-numeric: tabular-nums lining-nums;
+  font-size: fluid(1.05rem, 0.95rem, 0.62vw, 1.375rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: var(--fg);
+  margin-top: auto;
+  white-space: nowrap;
+}
+
+// ── The sheet ───────────────────────────────────────────────
+
+.courses-sheet {
+  --sheet-pad: clamp(1rem, 2.4vw, 2.25rem);
+
+  background: var(--bg-raise);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: var(--sheet-pad);
+  box-shadow:
+    0 1px 2px rgba(20, 20, 15, 0.035),
+    0 10px 28px rgba(20, 20, 15, 0.04);
+}
+
+.courses-term {
+  position: relative;
+
+  & + & { margin-top: clamp(1.75rem, 3.2vw, 2.75rem); }
+}
+
+// ── Term head ───────────────────────────────────────────────
+//
+// Bled to the sheet edges so it reads as a ruled band and fully
+// masks the rows sliding under it while pinned.
+
+.courses-term__head {
+  position: sticky;
+  top: var(--nav-h);
+  z-index: 5;
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-4);
+  margin-inline: calc(var(--sheet-pad) * -1);
+  padding: 0.7rem var(--sheet-pad) 0.6rem;
+  background: var(--bg-raise);
+  border-bottom: 1px solid var(--line-loud);
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: var(--tr-16);
+}
+
+.courses-term__name {
+  color: var(--fg);
+  white-space: nowrap;
+}
+
+// The leader rule that carries the eye across to the credit count.
+.courses-term__rule {
+  flex: 1 1 1rem;
+  align-self: center;
+  height: 1px;
+  min-width: 0.75rem;
+  background: var(--line);
+}
+
+.courses-term__credits {
+  font-family: var(--font-code);
+  font-size: var(--fs-label);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums lining-nums;
+  letter-spacing: 0;
+  color: var(--fg-2);
+  white-space: nowrap;
+}
+
+// ── One course, one line ────────────────────────────────────
+
+.courses-row {
+  display: grid;
+  // Gutters are cell padding, not grid gap, so the leader can run
+  // close to the figure it points at while the code stays clear.
+  // The first track holds the longest code on the record, GEOL 2110C.
+  grid-template-columns: 6.5rem minmax(0, 1fr) 1.5rem;
+  align-items: baseline;
+  column-gap: 0;
+  margin-inline: calc(var(--sheet-pad) * -1);
+  padding: 0.5rem var(--sheet-pad);
+  border-bottom: 1px solid var(--line-faint);
+  transition: background var(--dur-fast) var(--ease-out);
+
+  &:last-child { border-bottom: none; }
+
+  &:hover {
+    background: var(--bg);
+
+    .courses-row__code { color: var(--clay-ink); }
+  }
+}
+
+.courses-row__code {
+  font-family: var(--font-code);
+  font-size: var(--fs-sm);
+  font-variant-numeric: tabular-nums lining-nums;
+  letter-spacing: 0;
+  color: var(--fg-2);
+  white-space: nowrap;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+// The title, then a dotted leader carrying the eye across to the
+// credit — the one mark that makes a column of figures read as a
+// printed record rather than a UI table.
+.courses-row__title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  min-width: 0;
+  padding-left: clamp(0.75rem, 2vw, 1.75rem);
+  padding-right: 0.8rem;
+  font-family: var(--font-serif);
+  font-size: fluid(1.0625rem, 1rem, 0.35vw, 1.1875rem);
+  line-height: 1.35;
+  color: var(--fg);
+  text-wrap: pretty;
+
+  &::after {
+    content: "";
+    flex: 1 1 0;
+    min-width: 0;
+    align-self: baseline;
+    height: 0;
+    border-bottom: 1px dotted var(--fg-4);
+  }
+}
+
+.courses-row__credits {
+  font-family: var(--font-code);
+  font-size: var(--fs-sm);
+  font-variant-numeric: tabular-nums lining-nums;
+  letter-spacing: 0;
+  color: var(--fg-2);
+  text-align: right;
+}
+
+// ── Narrow: the row folds instead of shredding ──────────────
+//
+// Code leads the line with the credit flush right; the title drops
+// underneath in full measure.
+
+@media (max-width: 560px) {
+  .courses-row {
+    grid-template-columns: minmax(0, 1fr) 2.25rem;
+    row-gap: 0.15rem;
+    padding-block: 0.7rem;
+  }
+
+  .courses-row__code    { grid-column: 1; grid-row: 1; }
+  .courses-row__credits { grid-column: 2; grid-row: 1; }
+
+  // Nothing left to lead to: the credit is already on the line above.
+  .courses-row__title {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: block;
+    padding-inline: 0;
+
+    &::after { content: none; }
+  }
+}

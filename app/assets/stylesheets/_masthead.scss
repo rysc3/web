@@ -1,0 +1,154 @@
+// ─────────────────────────────────────────────────────────────
+//  Masthead
+//
+//  One photograph, full bleed, with the name laid straight across
+//  it. Nothing else — no kicker, no strapline, no scrim, no box. The bottom of the plate is
+//  masked away so the image dissolves into the cream stock instead
+//  of ending at a seam, and a coat of lithograph grit sits over the
+//  photo so it reads as printed rather than displayed.
+//
+//  This is the ONLY photograph on the site that carries grain.
+// ─────────────────────────────────────────────────────────────
+
+// The stage is taller than the screen; the plate sticks through the
+// surplus. That surplus is the intro: a stretch of scroll during which
+// nothing moves except the nav rising up into the frame.
+.masthead-stage {
+  position: relative;
+  height: calc(100svh + var(--intro-h));
+  --intro-h: 55svh;
+}
+
+// On a phone there is no row to raise — the links live in the hamburger —
+// so the intro has nothing to play and the surplus scroll would just be
+// dead travel. The plate is exactly one screen.
+@media (max-width: 899px) {
+  .masthead-stage { --intro-h: 0px; }
+}
+
+.masthead {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;   // fallback
+  height: 100svh;  // ignores the mobile URL bar's transient height
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 1fr auto;
+  isolation: isolate;
+  // The plate dissolves INTO this, so the field it lands on is graded:
+  // a warm off-white under the fade that settles to the page canvas.
+  // Without it the bleed ends on a flat colour and reads as a seam.
+  background:
+    linear-gradient(
+      to bottom,
+      var(--bg) 0%,
+      var(--bg) 62%,
+      #f7f3ea 82%,
+      var(--bg) 100%
+    );
+}
+
+// ── Plate ───────────────────────────────────────────────────
+
+.masthead__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+
+  // The bleed. Image and grit fade together because the mask is on
+  // the wrapper, not on either layer.
+  mask-image: linear-gradient(to bottom, #000 0%, #000 62%, rgba(0, 0, 0, 0.5) 84%, transparent 98%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 62%, rgba(0, 0, 0, 0.5) 84%, transparent 98%);
+}
+
+.masthead__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 22%;
+  // Left warm and legible — the reference photograph is not treated,
+  // it is simply well lit. Only enough contrast to hold white type.
+  filter: contrast(1.04) saturate(0.94) brightness(1.02);
+  will-change: transform;
+}
+
+// Just enough darkening behind the name to guarantee contrast on a
+// bright frame, without reading as a scrim.
+.masthead__hold {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    // behind the name
+    radial-gradient(
+      68% 24% at 50% 45%,
+      rgba(20, 20, 15, 0.44) 0%,
+      rgba(20, 20, 15, 0.2) 62%,
+      rgba(20, 20, 15, 0) 100%
+    ),
+    // a whisper across the whole plate so nothing floats unsupported
+    linear-gradient(to bottom, rgba(20, 20, 15, 0.16) 0%, rgba(20, 20, 15, 0) 34%);
+}
+
+// ── Content ─────────────────────────────────────────────────
+
+.masthead__inner {
+  position: relative;
+  z-index: 4;
+  grid-row: 1;
+  align-self: center;
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  min-width: 0;
+  padding-inline: var(--gutter);
+  padding-top: calc(var(--nav-h) + 12vh);
+  text-align: center;
+}
+
+.masthead__title {
+  font-family: var(--font-serif);
+  font-size: var(--fs-display);
+  font-weight: 350;
+  line-height: 0.94;
+  letter-spacing: var(--tr-display);
+  color: var(--fg-photo);
+  text-shadow: 0 2px 40px rgba(20, 20, 15, 0.34);
+  text-wrap: balance;
+  margin-bottom: clamp(1rem, 2.4vw, 1.9rem);
+}
+
+// ── Where the nav links come to rest ────────────────────────
+//
+// Zero-height marker. JS measures its centre and hands the delta to
+// --nav-travel. Art-direct the resting spot by moving this.
+
+.masthead__nav-anchor {
+  grid-row: 2;
+  height: 0;
+  margin-top: clamp(3rem, 9vh, 7rem);
+  margin-bottom: clamp(6rem, 17vh, 12rem);
+  pointer-events: none;
+}
+
+// ── Small screens ───────────────────────────────────────────
+
+@media (max-width: 899px) {
+  // Portrait crops want the face higher on a tall frame.
+  .masthead__img { object-position: 50% 26%; }
+
+  // The link row wraps to two lines here and is centred on this
+  // marker, so it needs clearance on both sides — not just below.
+  .masthead__nav-anchor {
+    margin-top: clamp(3rem, 9vh, 5rem);
+    margin-bottom: clamp(5rem, 15vh, 9rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .masthead__media { transform: none !important; }
+}
+

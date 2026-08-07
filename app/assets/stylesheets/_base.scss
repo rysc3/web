@@ -1,0 +1,426 @@
+// ─────────────────────────────────────────────────────────────
+//  Reset + baseline typography
+// ─────────────────────────────────────────────────────────────
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+* { margin: 0; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  // The rule across the top of the page is the scroll indicator. Wheel,
+  // trackpad, keyboard and scroll position are all untouched — only the
+  // painted track is suppressed.
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  background: var(--bg);
+  color-scheme: light;
+  // Anything that lands on a snap point or an anchor clears the fixed bar.
+  scroll-padding-top: var(--nav-h);
+}
+
+body {
+  min-height: 100vh;
+  color: var(--fg);
+  font-family: var(--font-serif);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: var(--lh-body);
+  letter-spacing: var(--tr-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  // `clip`, not `hidden`: hidden makes <body> a scroll container, which
+  // competes with the snap declared on <html> and is a large part of why
+  // the snapping felt like it was arguing with the wheel.
+  overflow-x: clip;
+}
+
+body.is-locked { overflow: hidden; }
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar { width: 0; height: 0; display: none; }
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img { height: auto; }
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol { list-style: none; padding: 0; }
+
+:focus-visible {
+  outline: 2px solid var(--clay);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--manilla);
+  color: var(--fg);
+}
+
+// ── Headings ────────────────────────────────────────────────
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tr-head);
+  text-wrap: balance;
+  color: var(--fg);
+}
+
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+
+p { text-wrap: pretty; }
+
+strong, b { font-weight: 600; color: var(--fg); }
+em, i { font-style: italic; }
+
+code, pre, kbd, samp {
+  font-family: var(--font-code);
+  font-size: 0.9em;
+  line-height: var(--lh-ui);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--line-faint);
+  margin: 0;
+}
+
+// ── Utility voices ──────────────────────────────────────────
+
+// The measured voice: genuine technical data only — codes, wattages,
+// spec values. Not a styling flourish.
+.mono {
+  font-family: var(--font-code);
+  font-variant-numeric: tabular-nums lining-nums;
+  letter-spacing: 0;
+}
+
+// Small sans label. Sentence case and tightly tracked, not tracked-out
+// micro-caps — that convention is exactly what this system avoids.
+.label {
+  font-family: var(--font-sans);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: var(--tr-label);
+  color: var(--fg-3);
+  line-height: var(--lh-ui);
+}
+
+.dim   { color: var(--fg-2); }
+.faint { color: var(--fg-3); }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--sp-4);
+  top: -100px;
+  z-index: 10001;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: var(--sp-3) var(--sp-5);
+  font-family: var(--font-sans);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: var(--tr-label);
+  transition: top var(--dur-fast) var(--ease-out);
+
+  &:focus { top: var(--sp-4); }
+}
+
+// ── Page shell ──────────────────────────────────────────────
+
+.shell {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.shell--wide { max-width: var(--maxw-wide); }
+.shell--text { max-width: calc(var(--maxw-text) + var(--gutter) * 2); }
+
+// Edge to edge. For plates of images and dense indexes, a 1460px column
+// centred in a 2560px screen wastes the screen; these take all of it and
+// only keep the gutter.
+.bleed {
+  width: 100%;
+  padding-inline: var(--gutter);
+}
+
+// Standard interior page top spacing (pages without a masthead).
+.page {
+  padding-top: calc(var(--nav-h) + clamp(2.75rem, 7vw, 6.5rem));
+  padding-bottom: var(--section-gap);
+}
+
+.section { margin-block: var(--section-gap); }
+
+// .page already pads the foot of every interior page; a trailing section
+// margin on top of that doubles the gap before the footer.
+.page > :last-child.section,
+.page > :last-child > :last-child.section { margin-bottom: 0; }
+.section--tight { margin-block: clamp(2.75rem, 5vw, 5rem); }
+
+// ── Full-screen movements ───────────────────────────────────
+//
+// The opening of the site reads as three whole screens — the plate, the
+// standing, the record — before it settles into a scrolling index.
+// Snapping is `proximity`, never `mandatory`: mandatory fights the
+// reader on any section taller than the viewport, and the record is.
+
+
+
+.section--screen {
+  min-height: 100svh;
+  margin-block: 0;
+  padding-block: clamp(2rem, 6vh, 5rem) clamp(3rem, 8vh, 7rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+
+// ── Section header ──────────────────────────────────────────
+//
+//  01 ── STANDING ───────────────────────────── note
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-4);
+  margin-bottom: clamp(1.75rem, 3.5vw, 3rem);
+  padding-bottom: var(--sp-3);
+  border-bottom: 1px solid var(--line);
+}
+
+.section-head__index {
+  font-family: var(--font-sans);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  color: var(--clay-ink);
+  letter-spacing: var(--tr-label);
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.section-head__title {
+  font-family: var(--font-sans);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: var(--tr-label);
+  color: var(--fg-2);
+  flex-shrink: 0;
+}
+
+.section-head__note {
+  margin-left: auto;
+  font-family: var(--font-sans);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tr-12);
+  color: var(--fg-4);
+  text-align: right;
+}
+
+@media (max-width: 560px) {
+  .section-head__note { display: none; }
+}
+
+// ── Prose ───────────────────────────────────────────────────
+
+.prose {
+  max-width: var(--maxw-text);
+  color: var(--fg-2);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+
+  p + p { margin-top: 0.9em; }
+
+  a {
+    color: var(--fg);
+    border-bottom: 1px solid var(--line-loud);
+    transition: border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+
+    &:hover { color: var(--clay); border-color: var(--clay); }
+  }
+
+  strong { color: var(--fg); }
+}
+
+.lede {
+  font-family: var(--font-serif);
+  font-size: var(--fs-lede);
+  line-height: 1.28;
+  letter-spacing: var(--tr-head);
+  color: var(--fg);
+  max-width: 24ch;
+  font-weight: 400;
+  text-wrap: balance;
+}
+
+// ── Inline link ─────────────────────────────────────────────
+
+.link {
+  position: relative;
+  color: var(--fg);
+  transition: color var(--dur-fast) var(--ease-out);
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 1px;
+    background: var(--line-loud);
+    transform-origin: left;
+    transition: background var(--dur) var(--ease-out);
+  }
+
+  &:hover {
+    color: var(--clay);
+
+    &::after { background: var(--clay); }
+  }
+}
+
+// ── Icons ───────────────────────────────────────────────────
+
+.icon {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+.icon--solid { fill: currentColor; stroke: none; }
+
+// ── Movement choreography ───────────────────────────────────
+//
+// Two values per section, both written by JS:
+//   --m   presence. 1 while the section holds the screen, easing to 0
+//         on the way in and on the way out.
+//   --sp  travel. 0 while the section sits at rest, rising to 1 as it
+//         leaves upward.
+//
+// Everything below is CSS reading those two. The point is that layers
+// inside a screen move at DIFFERENT rates as it passes, so a section
+// comes apart on its way out instead of sliding away as one slab.
+// Both default so a no-JS or reduced-motion visitor sees a still page.
+
+.movement { --m: 1; --sp: 0; }
+
+.movement > *:not(.masthead__media) {
+  opacity: calc(0.28 + var(--m) * 0.72);
+  transition: opacity 0.2s linear;
+  will-change: opacity, transform;
+}
+
+// ── The plate: the photograph holds while the name lifts off it ──
+
+.masthead.movement > .masthead__media {
+  opacity: 1;
+  // Closes in slightly and rises at a third of scroll speed, so the
+  // frame feels like it has depth behind the type.
+  transform: scale(calc(1 + var(--sp) * 0.06)) translate3d(0, calc(var(--sp) * -4vh), 0);
+}
+
+.masthead.movement > .masthead__inner {
+  // The name travels nearly three times faster than the picture, and is
+  // gone before the picture is.
+  transform: translate3d(0, calc(var(--sp) * -16vh), 0);
+  opacity: calc(1 - var(--sp) * 1.6);
+}
+
+// ── Standing: the portrait and the copy unstack ──
+
+#profile.movement .intro__portrait {
+  transform: translate3d(0, calc(var(--sp) * -7vh), 0);
+}
+
+#profile.movement .intro__body {
+  transform: translate3d(0, calc(var(--sp) * -2.5vh), 0);
+}
+
+// ── The record: the chart holds, the entries carry on past it ──
+
+#timeline.movement .tl__entries {
+  transform: translate3d(0, calc((1 - var(--m)) * 2.5vh), 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .movement > *,
+  .movement .intro__portrait,
+  .movement .intro__body,
+  .movement .tl__entries {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+// ── Section label ───────────────────────────────────────────
+//
+// Just the word. The numbered "01 ── STANDING ──── note" bar it
+// replaces was doing too much: an index nobody counts, and a
+// right-hand annotation nobody reads.
+
+.section-label {
+  font-family: var(--font-serif);
+  font-size: var(--fs-h3);
+  font-weight: 400;
+  letter-spacing: var(--tr-head);
+  color: var(--fg);
+  margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
+  padding-bottom: var(--sp-3);
+  border-bottom: 1px solid var(--line);
+}

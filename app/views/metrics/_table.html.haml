@@ -1,0 +1,7 @@
+.mx-table
+  - rows.each do |key, count|
+    .mx-tr
+      %span.mx-tr__k{title: key.to_s}= key.to_s.truncate(52)
+      %span.mx-tr__bar
+        %span.mx-tr__fill{class: (hot ? "is-hot" : nil), style: "width: #{max.to_i.zero? ? 0 : ((count.to_f / max) * 100).round(1)}%"}
+      %span.mx-tr__n= number_with_delimiter(count)

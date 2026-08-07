@@ -1,6 +1,42 @@
-.show-cont
-  %img{:alt => "Displayed Image", :src => "#{asset_path('tesla-battery.png')}"}
+-# ── Sentry mode battery drain ──────────────────────────────────
+-# One chart, mounted like a print. The plot is line art on a white
+-# ground, so it is multiplied into the plate: the white drops out
+-# and only the ink lands on the stock.
+.shell
+  .page-hero.reveal
+    .page-hero__body
+      %p.label Measurement
+      %h1.page-hero__title Sentry Mode Battery Drain
+      %p.page-hero__sub Battery percentage over 324 hours with sentry mode active.
+      %p.page-hero__meta Sampled every 12 hours
 
-%hr
-%p
-  A graph of the rate of battery drain over time while sentry mode is active. Battery was logged every 12 hours.
+  .section.section--tight
+    %figure.chart.reveal
+      .chart__print
+        .chart__scroll{tabindex: "0", role: "group", "aria-label" => "Battery percentage over time chart, scrollable"}
+          %img.chart__img{src: asset_path('tesla-battery.png'), alt: "Line chart titled Battery Percentage Over Time: battery falls steadily from 100 percent at hour 0 to 21 percent at hour 324, roughly thirteen and a half days.", loading: "lazy", decoding: "async"}
+        %p.chart__hint{"aria-hidden" => "true"} Drag to pan
+      %figcaption.chart__caption
+        A graph of the rate of battery drain over time while sentry mode is active. Battery was logged every 12 hours.
+
+.shell.section
+
+  .spec.reveal
+    .spec__head
+      %span Sentry mode
+      %span 28 samples
+    .spec__row
+      %span.spec__label Window
+      %span.spec__value 0 → 324 h · 13.5 days
+    .spec__row
+      %span.spec__label Interval
+      %span.spec__value 12 h
+    .spec__row
+      %span.spec__label Start
+      %span.spec__value 100 %
+    .spec__row
+      %span.spec__label End
+      %span.spec__value 21 %
+    .spec__row
+      %span.spec__label Mean drain
+      %span.spec__value ≈ 5.9 % per day

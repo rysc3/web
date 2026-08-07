@@ -1,0 +1,33 @@
+-# The frame viewer. One per page; JS moves it to <body> on load so no
+-# animating ancestor can become its containing block, and fills it from
+-# whichever [data-frames] collection was clicked.
+-#
+-# There is no Close button: the chrome is deliberately down to the plate
+-# name, the count and the walk. Every other way out still works — Escape,
+-# the scrim, and the table around the photograph — and because none of
+-# those is visible, how to leave is stated for a screen reader in
+-# #viewer-help and the dialog is described by it.
+#plate-viewer.viewer{role: "dialog", "aria-modal" => "true", "aria-labelledby" => "viewer-plate", "aria-describedby" => "viewer-help", hidden: true}
+  .viewer__scrim{"aria-hidden" => "true", data: {close: true}}
+  -# tabindex -1 so the dialog itself can hold focus. It is where focus
+  -# lands on open and where the tab ring rests when a lone frame leaves
+  -# nothing else to land on — a keyboard user is never left with no stop.
+  .viewer__frame{tabindex: "-1"}
+    %p#viewer-help.visually-hidden Press Escape to close. Use the left and right arrow keys to move between frames.
+    .viewer__head
+      %p.viewer__ident
+        %span#viewer-plate.viewer__plate
+        %span.viewer__meta
+      %p.viewer__count{"aria-live" => "polite"}
+    -# Two stages, one at a time: a frame is either a still or a clip, and
+    -# the one it is not is hidden outright so it holds no space and takes
+    -# no tab stop. The clip carries the transport — it is the only thing
+    -# in the viewer somebody is meant to operate rather than just read.
+    .viewer__stage{data: {close: true}}
+      %img.viewer__img{alt: "", decoding: "async"}
+      %video.viewer__clip{controls: true, playsinline: true, preload: "metadata", hidden: true}
+    %p.viewer__cap
+    %button.viewer__nav.viewer__nav--prev{type: "button", "aria-label" => "Previous frame"}
+      = icon("arrow-left")
+    %button.viewer__nav.viewer__nav--next{type: "button", "aria-label" => "Next frame"}
+      = icon("arrow-right")
