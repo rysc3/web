@@ -20,9 +20,12 @@
 
 .courses-summary {
   display: grid;
-  // 'Aug 2022 — Dec 2024' does not fit an 8.5rem cell; the value was
-  // spilling past its box. Give every cell room for the longest one.
-  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  // Explicit counts, NOT repeat(auto-fit, minmax(11rem, 1fr)). auto-fit packs
+  // in as many tracks as will fit, which settles on THREE across a wide band
+  // of widths and strands the fourth box alone on a second row. Four boxes
+  // should read 4 → 2×2 → 1 and never 3+1, so the count is stated outright
+  // and the breakpoints are placed where four 11rem cells stop fitting.
+  grid-template-columns: 1fr;
   gap: 1px;
   margin-top: clamp(1.5rem, 3vw, 2.5rem);
   border: 1px solid var(--line);
@@ -30,6 +33,15 @@
   // The 1px gap shows the container through as a hairline rule.
   background: var(--line);
   overflow: hidden;
+}
+
+// 2×2 as soon as two 11rem cells clear the gutters, 4-across once four do.
+@media (min-width: 34rem) {
+  .courses-summary { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 62rem) {
+  .courses-summary { grid-template-columns: repeat(4, 1fr); }
 }
 
 .courses-summary__cell {
