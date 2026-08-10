@@ -202,7 +202,9 @@
   transform: translate(var(--x), var(--top));
   transition:
     background var(--dur) var(--ease-out),
-    opacity var(--dur) var(--ease-out);
+    opacity var(--dur) var(--ease-out),
+    width var(--dur) var(--ease-out),
+    margin-left var(--dur) var(--ease-out);
 }
 
 // Hue is the track. Nothing else on this chart uses colour to mean
@@ -250,7 +252,25 @@
 
 
 
-.tl-bar.is-off { opacity: 0.12; pointer-events: none; }
+// A filtered-out bar is not removed. It still happened, and dropping it would
+// change the shape of the chart — the lanes would reflow and the selected
+// track would appear to move. So it keeps its lane and narrows to a hairline.
+//
+// Fading alone did not work: at 0.12 the track colour is gone, but the SHAPE
+// still reads against light stock, and fourteen full-width ghosts next to six
+// real bars is what the eye lands on. Taking the width away is what actually
+// demotes them; the neutral tint is what stops them competing for colour.
+.tl-bar.is-off {
+  width: 2px;
+  // Re-centre the hairline on the lane the full-width bar occupied, so
+  // nothing appears to shift sideways when the filter flips.
+  margin-left: calc((var(--tl-barw) - 2px) / 2);
+  background: var(--fg-5);
+  opacity: 0.55;
+  pointer-events: none;
+  box-shadow: none;
+  z-index: 0;
+}
 
 // Widen the hit target well past the 8–11px mark without widening the mark.
 .tl-bar::after {

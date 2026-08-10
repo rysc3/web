@@ -702,7 +702,11 @@
         });
 
         items.forEach(function (el, i) {
-          var keep = want === "all" || el.getAttribute("data-track") === want;
+          // data-track is a space-separated list, so an entry can answer to
+          // more than one pill. Match a whole token — a plain indexOf on the
+          // string would let "pro" match "professional".
+          var tracks = (el.getAttribute("data-track") || "").split(/\s+/);
+          var keep = want === "all" || tracks.indexOf(want) !== -1;
           el.classList.toggle("is-hidden", !keep);
           if (!keep) el.classList.remove("is-read");
           if (!bars[i]) return;

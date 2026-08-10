@@ -54,10 +54,10 @@
           %dd Sr. Software Engineer @ Nvidia
         .intro__fact
           %dt Focus
-          %dd ML &amp; HPC Infrastructure
+          %dd ML Performance &amp; AI Infrastructure
         .intro__fact
           %dt Education
-          %dd B.S. Computer Science, UNM
+          %dd B.S. Computer Science &amp; Math, UNM
         .intro__fact
           %dt Other
           %dd
@@ -107,7 +107,10 @@
     %ol.tl__entries
       - tl[:rows].each_with_index do |r, i|
         - e = r[:entry]
-        %li.tl-entry.reveal{class: "tl-entry--#{e[:track]}", id: "tl-#{i}", data: {track: e[:track], t: r[:t], jump: i}}
+        -# data-track carries every track this entry answers to, space
+        -# separated, so one entry can sit under both pills. Falls back to the
+        -# single track, which is what all but the degree have.
+        %li.tl-entry.reveal{class: "tl-entry--#{e[:track]}", id: "tl-#{i}", data: {track: Array(e[:tracks] || e[:track]).join(" "), t: r[:t], jump: i}}
           %p.tl-entry__meta
             %span.tl-entry__dates{class: (r[:open] ? "is-live" : nil)}= r[:dates]
             %span.tl-entry__dur{"aria-hidden" => "true"}= r[:dur_short]
@@ -200,7 +203,7 @@
 
   .reveal
     %button.disclosure__trigger{type: "button", data: {disclosure: true}, "aria-expanded" => "false", "aria-controls" => "archive-list"}
-      = "Open the archive · #{archive.size} entries"
+      = "· Archive ·"
       = icon("chevron-down")
 
     #archive-list.disclosure__panel
