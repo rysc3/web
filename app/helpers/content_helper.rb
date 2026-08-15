@@ -72,10 +72,7 @@ module ContentHelper
       { track: "extracurricular", title: "Team Manager", org: "SC23 HPC Student Cluster Competition", dates: "August 2023 — December 2023", start: "2023-08", end: "2023-12",
         desc: '<a href="/sc23">SC23 Team Site</a>.' },
       { track: "professional", title: "HPC Systems Specialist", org: "Center for Advanced Research Computing — UNM", dates: "May 2023 — December 2024", start: "2023-05", end: "2024-12", logo: "carc_logo_transparent.png", alt: "CARC",
-        desc: 'Supporting users on UNM HPC clusters, benchmarking, profiling, and reporting. <a href="https://carc.unm.edu/news--events/News/fall-23-undergrads.html" target="_blank" rel="noopener">(CARC Article)</a>.',
-        media: [
-          { file: "carc-2.png", alt: "Center for Advanced Reserach Computing Team"}
-        ] },
+        desc: 'Supporting users on UNM HPC clusters, benchmarking, profiling, and reporting. <a href="https://carc.unm.edu/news--events/News/fall-23-undergrads.html" target="_blank" rel="noopener">(CARC Article)</a>.'},
       { track: "extracurricular", title: "Peer Mentor", org: "UNM School of Engineering", dates: "January 2023 — December 2024", start: "2023-01", end: "2024-12",
         desc: '<a href="https://ess.unm.edu/about-us/index.html" target="_blank" rel="noopener">UNM Engineering Student Success Center (ESS).</a>' },
       { track: "extracurricular", title: "Team Manager", org: "Winter Classic Invitational HPC 2023", dates: "January 2023 — May 2023", start: "2023-01", end: "2023-05",
